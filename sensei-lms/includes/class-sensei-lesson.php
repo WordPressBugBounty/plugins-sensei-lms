@@ -1697,12 +1697,14 @@ class Sensei_Lesson {
 	}
 
 	public function quiz_panel_add( $context = 'quiz' ) {
-
-		$html = '<div id="add-new-question">';
-
-			$question_types = Sensei()->question->question_types();
-
-			$question_cats = get_terms( 'question-category', array( 'hide_empty' => false ) );
+		$question_types = Sensei()->question->question_types();
+		$question_cats  = get_terms(
+			array(
+				'hide_empty' => false,
+				'taxonomy'   => 'question-category',
+			)
+		);
+		$html           = '<div id="add-new-question">';
 
 		if ( 'quiz' == $context ) {
 			$html     .= '<h2 class="nav-tab-wrapper add-question-tabs">';
@@ -2014,7 +2016,7 @@ class Sensei_Lesson {
 
 		$question_type = Sensei()->question->get_question_type( $question_id );
 
-		$question_cat_list = strip_tags( get_the_term_list( $question_id, 'question-category', '', ', ', '' ) );
+		$question_cat_list = wp_strip_all_tags( get_the_term_list( $question_id, 'question-category', '', ', ', '' ) );
 
 		$html .= '<tr class="' . esc_attr( $existing_class ) . '">
 					<td class="cb"><input type="checkbox" value="' . esc_attr( $question_id ) . '" class="existing-item" /></td>
@@ -3967,7 +3969,7 @@ class Sensei_Lesson {
 				 * @param {string} $html HTML for the lesson placeholder image.
 				 * @return {string} HTML for the lesson placeholder image.
 				 */
-				$img_element = apply_filters( 'sensei_lesson_placeholder_image_url', '<img src="//via.placeholder.com/' . esc_url( $width ) . 'x' . esc_url( $height ) . '" class="woo-image thumbnail alignleft" />' );
+				$img_element = apply_filters( 'sensei_lesson_placeholder_image_url', '<img src="' . esc_url( Sensei()->assets->get_image( 'placeholder.png' ) ) . '" width="' . $width . '" height="' . $height . '" class="woo-image thumbnail alignleft" />' );
 
 			}
 		}

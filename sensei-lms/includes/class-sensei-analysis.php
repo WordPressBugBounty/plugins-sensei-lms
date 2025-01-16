@@ -68,7 +68,7 @@ class Sensei_Analysis {
 		}
 
 		if ( 'name' === $key ) {
-			_doing_it_wrong( __CLASS__ . '->name', 'The "name" property is deprecated. Use get_name() instead.', '$$next-version$$' );
+			_doing_it_wrong( __CLASS__ . '->name', 'The "name" property is deprecated. Use get_name() instead.', '4.24.5' );
 
 			return $this->get_name();
 		}
@@ -1022,7 +1022,7 @@ class Sensei_Analysis {
 		foreach ( $report_data as $row ) {
 			fputcsv( $fp, $row );
 		}
-		fclose( $fp );
+		fclose( $fp ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 	}
 
 	/**
