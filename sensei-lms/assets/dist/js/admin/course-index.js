@@ -1,23 +1,23 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
-/******/var e,r={
-/***/47701:
+/******/var e={
+/***/98490:
 /***/e=>{e.exports=window.wp.domReady;
 /***/
-/******/}},t={};
+/******/}},r={};
 /************************************************************************/
 /******/ // The module cache
 /******/
 /******/
 /******/ // The require function
-/******/function o(e){
+/******/function t(o){
 /******/ // Check if module is in cache
-/******/var n=t[e];
+/******/var n=r[o];
 /******/if(void 0!==n)
 /******/return n.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var s=t[e]={
+/******/var s=r[o]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -27,33 +27,35 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return r[e](s,s.exports,o),s.exports;
+/******/return e[o](s,s.exports,t),s.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/o.n=e=>{
+/******/t.n=e=>{
 /******/var r=e&&e.__esModule?
 /******/()=>e.default
 /******/:()=>e
 /******/;
-/******/return o.d(r,{a:r}),r;
+/******/return t.d(r,{a:r}),r;
 /******/},
 /******/ // define getter functions for harmony exports
-/******/o.d=(e,r)=>{
-/******/for(var t in r)
-/******/o.o(r,t)&&!o.o(e,t)&&
-/******/Object.defineProperty(e,t,{enumerable:!0,get:r[t]})
+/******/t.d=(e,r)=>{
+/******/for(var o in r)
+/******/t.o(r,o)&&!t.o(e,o)&&
+/******/Object.defineProperty(e,o,{enumerable:!0,get:r[o]})
 /******/;
 /******/},
-/******/o.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
-/******/,
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-e=o(47701),
+/******/t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
+/******/;
+/******/
+/************************************************************************/
+/* harmony import */var o=t(98490);
+/* harmony import */
 /**
  * WordPress dependencies
  */
-o.n(e)()((()=>{jQuery(".sensei-show-more").on("click",(e=>{e.preventDefault(),jQuery(e.target).addClass("hidden").siblings().removeClass("hidden")}))}))})
+t.n(o)()((()=>{jQuery(".sensei-show-more").on("click",(e=>{e.preventDefault(),jQuery(e.target).addClass("hidden").siblings().removeClass("hidden")}))}))})
 /******/();

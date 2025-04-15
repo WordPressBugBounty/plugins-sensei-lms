@@ -123,6 +123,7 @@ class ComposerStaticInitbc69057726243faa562ab94e67ae6f6c
         'Sensei\\Internal\\Quiz_Submission\\Submission\\Repositories\\Table_Reading_Aggregate_Submission_Repository' => __DIR__ . '/../..' . '/includes/internal/quiz-submission/submission/repositories/class-table-reading-aggregate-submission-repository.php',
         'Sensei\\Internal\\Quiz_Submission\\Submission\\Repositories\\Tables_Based_Submission_Repository' => __DIR__ . '/../..' . '/includes/internal/quiz-submission/submission/repositories/class-tables-based-submission-repository.php',
         'Sensei\\Internal\\Services\\Progress_Storage_Settings' => __DIR__ . '/../..' . '/includes/internal/services/class-progress-storage-settings.php',
+        'Sensei\\Internal\\Services\\Sensei_Pro_Upsell' => __DIR__ . '/../..' . '/includes/internal/services/class-sensei-pro-upsell.php',
         'Sensei\\Internal\\Student_Progress\\Course_Progress\\Models\\Comments_Based_Course_Progress' => __DIR__ . '/../..' . '/includes/internal/student-progress/course-progress/models/class-comments-based-course-progress.php',
         'Sensei\\Internal\\Student_Progress\\Course_Progress\\Models\\Course_Progress_Abstract' => __DIR__ . '/../..' . '/includes/internal/student-progress/course-progress/models/class-course-progress-abstract.php',
         'Sensei\\Internal\\Student_Progress\\Course_Progress\\Models\\Course_Progress_Interface' => __DIR__ . '/../..' . '/includes/internal/student-progress/course-progress/models/class-course-progress-interface.php',

@@ -1,23 +1,23 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
-/******/var e,r={
-/***/65736:
+/******/var e={
+/***/27723:
 /***/e=>{e.exports=window.wp.i18n;
 /***/
-/******/}},o={};
+/******/}},r={};
 /************************************************************************/
 /******/ // The module cache
 /******/
 /******/
 /******/ // The require function
-/******/function n(e){
+/******/function o(n){
 /******/ // Check if module is in cache
-/******/var t=o[e];
+/******/var t=r[n];
 /******/if(void 0!==t)
 /******/return t.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var i=o[e]={
+/******/var i=r[n]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -27,41 +27,46 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return r[e](i,i.exports,n),i.exports;
+/******/return e[n](i,i.exports,o),i.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/n.n=e=>{
+/******/o.n=e=>{
 /******/var r=e&&e.__esModule?
 /******/()=>e.default
 /******/:()=>e
 /******/;
-/******/return n.d(r,{a:r}),r;
+/******/return o.d(r,{a:r}),r;
 /******/},
 /******/ // define getter functions for harmony exports
-/******/n.d=(e,r)=>{
-/******/for(var o in r)
-/******/n.o(r,o)&&!n.o(e,o)&&
-/******/Object.defineProperty(e,o,{enumerable:!0,get:r[o]})
+/******/o.d=(e,r)=>{
+/******/for(var n in r)
+/******/o.o(r,n)&&!o.o(e,n)&&
+/******/Object.defineProperty(e,n,{enumerable:!0,get:r[n]})
 /******/;
 /******/},
-/******/n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
-/******/,
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-e=n(65736),
+/******/o.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
+/******/;
+/******/
+/************************************************************************/
+/* harmony import */var n=o(27723);
+/* harmony import */
+/**
+ * WordPress dependencies
+ */
 /**
  * Add placeholder to tinymce editor
  *
- * @param  editor tinymce editor.
+ * @param editor tinymce editor.
  */
-window.addPlaceholderInTinymceEditor=r=>{
+window.addPlaceholderInTinymceEditor=e=>{
 // Remove placeholder on submit.
-jQuery("#sensei-quiz-form").submit((function(){return r.dom.remove("multi-line-placeholder"),!0})),
+jQuery("#sensei-quiz-form").submit((function(){return e.dom.remove("multi-line-placeholder"),!0})),
 // Add placeholder on init and blur.
-r.on("blur init",(function(){""==r.getContent()&&r.setContent("<p id='multi-line-placeholder'>"+(0,e.__)("Your answer","sensei-lms")+"</p>")})),
+e.on("blur init",(function(){""==e.getContent()&&e.setContent("<p id='multi-line-placeholder'>"+(0,n.__)("Your answer","sensei-lms")+"</p>")})),
 // Remove placeholder on focus.
-r.on("focus",(function(){r.dom.remove("multi-line-placeholder")}))}})
+e.on("focus",(function(){e.dom.remove("multi-line-placeholder")}))}})
 /******/();

@@ -3,6 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+use Sensei\Internal\Services\Sensei_Pro_Upsell;
+
 /**
  * Sensei Course Class
  *
@@ -265,9 +267,18 @@ class Sensei_Course {
 						<span class="sensei-showcase-upsell__price-period"><?php esc_html_e( 'per year, 1 site', 'sensei-lms' ); ?></span>
 					</div>
 
+					<?php
+					$upsell_args = array_merge(
+						Sensei_Pro_Upsell::get_default_utm_params(),
+						[ 'utm_campaign' => 'showcase' ]
+					);
+
+					$primary_url    = Sensei_Pro_Upsell::get_sensei_pro_upsell_url( 'showcase' );
+					$learn_more_url = add_query_arg( $upsell_args, 'https://senseilms.com/documentation/showcase/' );
+					?>
 					<ul class="sensei-showcase-upsell__buttons">
-						<li><a href="https://senseilms.com/sensei-pro/?utm_source=plugin_sensei&utm_medium=upsell&utm_campaign=showcase" class="sensei-showcase-upsell__button sensei-showcase-upsell__button--primary" target="_blank" rel="noreferrer"><?php esc_html_e( 'Get Sensei Pro', 'sensei-lms' ); ?></a></li>
-						<li><a href="https://senseilms.com/documentation/showcase/?utm_source=plugin_sensei&utm_medium=upsell&utm_campaign=showcase" class="sensei-showcase-upsell__button sensei-showcase-upsell__button--secondary" target="_blank" rel="noreferrer"><?php esc_html_e( 'Learn more', 'sensei-lms' ); ?></a></li>
+						<li><a href="<?php echo esc_url( $primary_url ); ?>" class="sensei-showcase-upsell__button sensei-showcase-upsell__button--primary" target="_blank" rel="noreferrer"><?php esc_html_e( 'Get Sensei Pro', 'sensei-lms' ); ?></a></li>
+						<li><a href="<?php echo esc_url( $learn_more_url ); ?>" class="sensei-showcase-upsell__button sensei-showcase-upsell__button--secondary" target="_blank" rel="noreferrer"><?php esc_html_e( 'Learn more', 'sensei-lms' ); ?></a></li>
 					</ul>
 				</div>
 
@@ -3473,60 +3484,53 @@ class Sensei_Course {
 	 * @return void
 	 */
 	public static function archive_header( $query_type = '', $before_html = '', $after_html = '' ) {
-
 		if ( ! is_post_type_archive( 'course' ) ) {
 			return;
 		}
 
-		$html = '';
+		// Set default HTML wrappers if not provided.
+		$before_html = empty( $before_html ) ? '<header class="archive-header"><h1>' : $before_html;
+		$after_html  = empty( $after_html ) ? '</h1></header>' : $after_html;
 
-		if ( empty( $before_html ) ) {
-
-			$before_html = '<header class="archive-header"><h1>';
-
-		}
-
-		if ( empty( $after_html ) ) {
-
-			$after_html = '</h1></header>';
-
-		}
-
+		// Handle course category archives.
 		if ( is_tax( 'course-category' ) ) {
-
 			global $wp_query;
+			$taxonomy = $wp_query->get_queried_object();
+			$tax_obj  = get_taxonomy( $taxonomy->taxonomy );
 
-			$taxonomy_obj        = $wp_query->get_queried_object();
-			$taxonomy_short_name = $taxonomy_obj->taxonomy;
-			$taxonomy_raw_obj    = get_taxonomy( $taxonomy_short_name );
-			// translators: Placeholders are the taxonomy name and the term name, respectively.
-			$title = sprintf( __( '%1$s Archives: %2$s', 'sensei-lms' ), $taxonomy_raw_obj->labels->name, $taxonomy_obj->name );
-			echo wp_kses_post( apply_filters( 'course_category_archive_title', $before_html . $title . $after_html ) );
+			$title = $tax_obj ? sprintf(
+				// translators: Placeholders are the taxonomy name and the term name, respectively.
+				__( '%1$s Archives: %2$s', 'sensei-lms' ),
+				$tax_obj->labels->name,
+				$taxonomy->name
+			) : '';
+
+			echo wp_kses_post(
+				apply_filters( 'course_category_archive_title', $before_html . $title . $after_html )
+			);
 			return;
-
 		}
 
-		switch ( $query_type ) {
-			case 'newcourses':
-				$html .= $before_html . __( 'New Courses', 'sensei-lms' ) . $after_html;
-				break;
-			case 'featuredcourses':
-				$html .= $before_html . __( 'Featured Courses', 'sensei-lms' ) . $after_html;
-				break;
-			case 'freecourses':
-				$html .= $before_html . __( 'Free Courses', 'sensei-lms' ) . $after_html;
-				break;
-			case 'paidcourses':
-				$html .= $before_html . __( 'Paid Courses', 'sensei-lms' ) . $after_html;
-				break;
-			default:
-				$html .= $before_html . __( 'Courses', 'sensei-lms' ) . $after_html;
-				break;
+		$titles = [
+			'newcourses'      => __( 'New Courses', 'sensei-lms' ),
+			'featuredcourses' => __( 'Featured Courses', 'sensei-lms' ),
+			'freecourses'     => __( 'Free Courses', 'sensei-lms' ),
+			'paidcourses'     => __( 'Paid Courses', 'sensei-lms' ),
+		];
+
+		$default_title = __( 'Courses', 'sensei-lms' );
+
+		if ( Sensei()->course->course_archive_page_has_query_block() ) {
+			$archive_page_title = get_post( Sensei()->settings->get( 'course_page' ) )->post_title;
+			$default_title      = 'Courses' === $archive_page_title ? $default_title : $archive_page_title;
 		}
 
-		echo wp_kses_post( apply_filters( 'course_archive_title', $html ) );
+		$title = $titles[ $query_type ] ?? $default_title;
+
+		echo wp_kses_post(
+			apply_filters( 'course_archive_title', $before_html . $title . $after_html )
+		);
 	}
-
 
 	/**
 	 * Filter the single course content taking into account if the user has access.

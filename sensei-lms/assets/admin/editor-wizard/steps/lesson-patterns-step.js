@@ -9,6 +9,7 @@ import { Fragment } from '@wordpress/element';
  */
 import PatternsStep from './patterns-step';
 import LogoTreeIcon from '../../../icons/logo-tree.svg';
+import { getSenseiProUpsellUrl } from '../../helpers';
 import { useHideEditorWizardUpsell } from '../helpers';
 
 /**
@@ -19,6 +20,7 @@ import { useHideEditorWizardUpsell } from '../helpers';
  */
 const LessonPatternsStep = ( { wizardData, ...props } ) => {
 	const replaces = {};
+	const excludeLessonPatterns = [ 'sensei-lms/default' ];
 
 	if ( wizardData.title ) {
 		replaces[ 'sensei-content-title' ] = wizardData.title;
@@ -35,6 +37,7 @@ const LessonPatternsStep = ( { wizardData, ...props } ) => {
 			<PatternsStep
 				title={ __( 'Lesson Layout', 'sensei-lms' ) }
 				replaces={ replaces }
+				patternsToExclude={ excludeLessonPatterns }
 				{ ...props }
 			/>
 			<PatternsStep.UpsellFill>
@@ -61,7 +64,9 @@ const UpsellBlock = () => (
 			) }{ ' ' }
 			<a
 				className="sensei-editor-wizard-patterns-upsell__link"
-				href="https://senseilms.com/sensei-pro/?utm_source=plugin_sensei&utm_medium=upsell&utm_campaign=lesson_patterns_editor_wizard"
+				href={ getSenseiProUpsellUrl(
+					'lesson_patterns_editor_wizard'
+				) }
 				rel="noreferrer external"
 				target="blank"
 			>

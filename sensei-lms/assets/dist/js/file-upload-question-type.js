@@ -1,23 +1,23 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
-/******/var e,r={
-/***/47701:
+/******/var e={
+/***/98490:
 /***/e=>{e.exports=window.wp.domReady;
 /***/
-/******/}},t={};
+/******/}},r={};
 /************************************************************************/
 /******/ // The module cache
 /******/
 /******/
 /******/ // The require function
-/******/function n(e){
+/******/function t(n){
 /******/ // Check if module is in cache
-/******/var o=t[e];
+/******/var o=r[n];
 /******/if(void 0!==o)
 /******/return o.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var a=t[e]={
+/******/var a=r[n]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -27,31 +27,33 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return r[e](a,a.exports,n),a.exports;
+/******/return e[n](a,a.exports,t),a.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/n.n=e=>{
+/******/t.n=e=>{
 /******/var r=e&&e.__esModule?
 /******/()=>e.default
 /******/:()=>e
 /******/;
-/******/return n.d(r,{a:r}),r;
+/******/return t.d(r,{a:r}),r;
 /******/},
 /******/ // define getter functions for harmony exports
-/******/n.d=(e,r)=>{
-/******/for(var t in r)
-/******/n.o(r,t)&&!n.o(e,t)&&
-/******/Object.defineProperty(e,t,{enumerable:!0,get:r[t]})
+/******/t.d=(e,r)=>{
+/******/for(var n in r)
+/******/t.o(r,n)&&!t.o(e,n)&&
+/******/Object.defineProperty(e,n,{enumerable:!0,get:r[n]})
 /******/;
 /******/},
-/******/n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
-/******/,
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-e=n(47701),
+/******/t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
+/******/;
+/******/
+/************************************************************************/
+/* harmony import */var n=t(98490);
+/* harmony import */
 /**
  * WordPress dependencies
  */
@@ -59,5 +61,5 @@ e=n(47701),
  * Handles uploading a file for a file upload question.
  *
  */
-n.n(e)()((()=>{document.querySelectorAll(".sensei-lms-question-block__file-input").forEach((e=>{e.addEventListener("change",(e=>{var r;const t=e.target,n=null===(r=t.files)||void 0===r?void 0:r[0],o=t.parentElement.parentElement.querySelector(".sensei-lms-question-block__file-upload-name");o&&(o.innerText=n&&n.name)}))}))}))})
+t.n(n)()((()=>{document.querySelectorAll(".sensei-lms-question-block__file-input").forEach((e=>{e.addEventListener("change",(e=>{const r=e.target,t=r.files?.[0],n=r.parentElement.parentElement.querySelector(".sensei-lms-question-block__file-upload-name");n&&(n.innerText=t&&t.name)}))}))}))})
 /******/();

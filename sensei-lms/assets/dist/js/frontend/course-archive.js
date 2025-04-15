@@ -1,4 +1,4 @@
-/******/
+/******/ // webpackBootstrap
 /**
  * Functionality for the course archive (courses) page.
  */

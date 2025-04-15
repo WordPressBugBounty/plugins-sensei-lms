@@ -1,23 +1,23 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
-/******/var e,t={
-/***/81975:
+/******/var e={
+/***/89877:
 /***/e=>{e.exports=window.wp.escapeHtml;
 /***/
-/******/}},n={};
+/******/}},t={};
 /************************************************************************/
 /******/ // The module cache
 /******/
 /******/
 /******/ // The require function
-/******/function i(e){
+/******/function n(i){
 /******/ // Check if module is in cache
-/******/var a=n[e];
+/******/var a=t[i];
 /******/if(void 0!==a)
 /******/return a.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var s=n[e]={
+/******/var s=t[i]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -27,36 +27,38 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return t[e](s,s.exports,i),s.exports;
+/******/return e[i](s,s.exports,n),s.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/i.n=e=>{
+/******/n.n=e=>{
 /******/var t=e&&e.__esModule?
 /******/()=>e.default
 /******/:()=>e
 /******/;
-/******/return i.d(t,{a:t}),t;
+/******/return n.d(t,{a:t}),t;
 /******/},
 /******/ // define getter functions for harmony exports
-/******/i.d=(e,t)=>{
-/******/for(var n in t)
-/******/i.o(t,n)&&!i.o(e,n)&&
-/******/Object.defineProperty(e,n,{enumerable:!0,get:t[n]})
+/******/n.d=(e,t)=>{
+/******/for(var i in t)
+/******/n.o(t,i)&&!n.o(e,i)&&
+/******/Object.defineProperty(e,i,{enumerable:!0,get:t[i]})
 /******/;
 /******/},
-/******/i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t)
-/******/,
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-e=i(81975),
+/******/n.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t)
+/******/;
+/******/
+/************************************************************************/
+/* harmony import */var i=n(89877);
+/* harmony import */
 /**
  * WordPress dependencies
  */
 /* eslint-disable */
-jQuery(document).ready((function(){var t;
+jQuery(document).ready((function(){var e;
 /***************************************************************************************************
    * 	1 - Helper Functions.
    ***************************************************************************************************/
@@ -163,13 +165,13 @@ jQuery.fn.updateQuestionOrder=function(){var e="";jQuery("#sortable-questions").
    *
    * @since  1.5.0
    */
-jQuery.fn.uploadQuestionMedia=function(e){var n=e.attr("id"),i=n.replace("_button",""),a=n.replace("_button","_preview"),s=n.replace("_button","_link"),u=n.replace("_button","_button_delete");
+jQuery.fn.uploadQuestionMedia=function(t){var n=t.attr("id"),i=n.replace("_button",""),a=n.replace("_button","_preview"),s=n.replace("_button","_link"),u=n.replace("_button","_button_delete");
 // When a file is selected, run a callback.
 (
 // Create the media frame.
-t=wp.media.frames.file_frame=wp.media({title:e.data("uploader_title"),button:{text:e.data("uploader_button_text")},multiple:!1})).on("select",(function(){var n=t.state().get("selection").first().toJSON();jQuery("#"+i).val(n.id);var r=n.type,o=!1;"image"==r&&(o=!0);var d=n.title;d&&""!=d||(d=n.filename);var l='<a class="'+r+'" href="'+n.url+'" target="_blank">'+d+"</a>";jQuery("#"+s).removeClass("hidden"),jQuery("#"+s).html(l),o?(jQuery("#"+a).removeClass("hidden"),jQuery("#"+a).attr("src",n.sizes.thumbnail.url)):(jQuery("#"+a).addClass("hidden"),jQuery("#"+a).attr("src","")),e.text(woo_localized_data.change_file),jQuery("#"+u).removeClass("hidden")})),
+e=wp.media.frames.file_frame=wp.media({title:t.data("uploader_title"),button:{text:t.data("uploader_button_text")},multiple:!1})).on("select",(function(){var n=e.state().get("selection").first().toJSON();jQuery("#"+i).val(n.id);var r=n.type,o=!1;"image"==r&&(o=!0);var d=n.title;d&&""!=d||(d=n.filename);var l='<a class="'+r+'" href="'+n.url+'" target="_blank">'+d+"</a>";jQuery("#"+s).removeClass("hidden"),jQuery("#"+s).html(l),o?(jQuery("#"+a).removeClass("hidden"),jQuery("#"+a).attr("src",n.sizes.thumbnail.url)):(jQuery("#"+a).addClass("hidden"),jQuery("#"+a).attr("src","")),t.text(woo_localized_data.change_file),jQuery("#"+u).removeClass("hidden")})),
 // Open the modal
-t.open()},jQuery.fn.deleteQuestionMedia=function(e){var t=e.attr("id"),n=t.replace("_button_delete","_button"),i=t.replace("_button_delete",""),a=t.replace("_button_delete","_preview"),s=t.replace("_button_delete","_link");jQuery("#"+i).val(""),jQuery("#"+a).addClass("hidden"),jQuery("#"+a).attr("src",""),jQuery("#"+s).addClass("hidden"),jQuery("#"+s).html(),jQuery("#"+n).text(woo_localized_data.add_file),e.addClass("hidden")},
+e.open()},jQuery.fn.deleteQuestionMedia=function(e){var t=e.attr("id"),n=t.replace("_button_delete","_button"),i=t.replace("_button_delete",""),a=t.replace("_button_delete","_preview"),s=t.replace("_button_delete","_link");jQuery("#"+i).val(""),jQuery("#"+a).addClass("hidden"),jQuery("#"+a).attr("src",""),jQuery("#"+s).addClass("hidden"),jQuery("#"+s).html(),jQuery("#"+n).text(woo_localized_data.add_file),e.addClass("hidden")},
 /**
    * Update answer order input field
    *
@@ -196,9 +198,9 @@ jQuery.post(ajaxurl,{action:"filter_existing_questions",filter_existing_question
    */
 jQuery("input.gapfill-field").each((function(){
 // Handles change events like paste, tabbing, and click change selectors
-jQuery(this).change((function(){var t=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_pre]").val(),n=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_gap]").val(),i=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_post]").val();jQuery(this).parent("div").find("p.gapfill-preview").html((0,e.escapeHTML)(t)+" <u>"+(0,e.escapeHTML)(n)+"</u> "+(0,e.escapeHTML)(i))})),
+jQuery(this).change((function(){var e=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_pre]").val(),t=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_gap]").val(),n=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_post]").val();jQuery(this).parent("div").find("p.gapfill-preview").html((0,i.escapeHTML)(e)+" <u>"+(0,i.escapeHTML)(t)+"</u> "+(0,i.escapeHTML)(n))})),
 // Handles the pressing up of the key, general typing
-jQuery(this).keyup((function(){var t=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_pre]").val(),n=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_gap]").val(),i=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_post]").val();jQuery(this).parent("div").find("p.gapfill-preview").html((0,e.escapeHTML)(t)+" <u>"+(0,e.escapeHTML)(n)+"</u> "+(0,e.escapeHTML)(i))}))})),
+jQuery(this).keyup((function(){var e=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_pre]").val(),t=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_gap]").val(),n=jQuery(this).parent("div").find("input[name=add_question_right_answer_gapfill_post]").val();jQuery(this).parent("div").find("p.gapfill-preview").html((0,i.escapeHTML)(e)+" <u>"+(0,i.escapeHTML)(t)+"</u> "+(0,i.escapeHTML)(n))}))})),
 /**
    * Quiz grade type checkbox change event
    *

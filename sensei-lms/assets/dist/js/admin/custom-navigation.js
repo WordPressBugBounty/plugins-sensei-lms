@@ -1,4 +1,5 @@
-/******/(()=>{const e=document.querySelector("#sensei-custom-navigation");if(!e)return;
+/******/ // webpackBootstrap
+(()=>{const e=document.querySelector("#sensei-custom-navigation");if(!e)return;
 // Move the custom navigation to the top of the page.
 document.querySelector("#wpbody-content > .wrap").prepend(e);
 // Find the default heading and hide it.

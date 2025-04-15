@@ -1,4 +1,5 @@
-/******/(()=>{var e,i;e=jQuery,i=window.inlineEditPost.edit,
+/******/(()=>{// webpackBootstrap
+var e,i;e=jQuery,i=window.inlineEditPost.edit,
 // and then we overwrite the function with our own code
 window.inlineEditPost.edit=function(n){
 // "call" the original WP edit function

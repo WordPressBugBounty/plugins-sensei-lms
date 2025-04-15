@@ -11,7 +11,10 @@ import { EXTENSIONS_STORE } from '../../extensions/store';
 import { Col } from '../grid';
 import senseiProAdImageUrl from '../../images/sensei-pro-ad-image.png';
 import senseiProAdStarsUrl from '../../images/sensei-pro-ad-stars.png';
-import { addUtms } from '../utils';
+import {
+	getSenseiProUpsellUrl,
+	getSenseiProCheckoutUrl,
+} from '../../admin/helpers';
 
 /**
  * Sensei Pro Ad to be shown on Sensei Home.
@@ -21,9 +24,8 @@ import { addUtms } from '../utils';
 const SenseiProAd = ( { show } ) => {
 	const { senseiProExtension } = useSelect(
 		( select ) => ( {
-			senseiProExtension: select(
-				EXTENSIONS_STORE
-			).getSenseiProExtension(),
+			senseiProExtension:
+				select( EXTENSIONS_STORE ).getSenseiProExtension(),
 		} ),
 		[]
 	);
@@ -110,9 +112,7 @@ const SenseiProAd = ( { show } ) => {
 							</ul>
 
 							<a
-								href={ addUtms(
-									'https://senseilms.com/checkout/?add-to-cart=7009'
-								) }
+								href={ getSenseiProCheckoutUrl( 'home' ) }
 								target="_blank"
 								rel="noreferrer external"
 								className="sensei-home__sensei-pro-ad__button is-primary is-large components-button"
@@ -121,9 +121,7 @@ const SenseiProAd = ( { show } ) => {
 							</a>
 
 							<a
-								href={ addUtms(
-									'https://senseilms.com/sensei-pro/'
-								) }
+								href={ getSenseiProUpsellUrl( 'home' ) }
 								target="_blank"
 								rel="noreferrer external"
 								className="sensei-home__sensei-pro-ad__button is-secondary is-large components-button"

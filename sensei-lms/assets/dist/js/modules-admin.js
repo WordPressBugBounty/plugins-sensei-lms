@@ -22,7 +22,7 @@ page:e.page||1,action:"sensei_json_search_courses",security:window.modulesAdmin.
 return jQuery.each(e,(function(e,o){if(!jQuery.isEmptyObject(o)){var r={id:e,text:o};t.push(r)}})),{results:t,page:o}}}}),// end select2
 jQuery("#sensei-module-add-toggle").on("click",(function(){var e="wp-hidden-child",o=jQuery(this).parent().next("p#sensei-module-add"),t=o.children("#newmodule");if(o.hasClass(e))return o.removeClass(e),t.val(""),void t.focus();o.addClass(e)})),jQuery("#sensei-module-add-submit").on("click",(function(){
 // setup the fields
-var o=
+var o=// webpackBootstrap
 /**
  * Get the url qiuery paramater by name
  *
@@ -53,8 +53,8 @@ l.focus(),t.val("")}}))}}));
    */
 const o=document.querySelector('select[name="sensei-course-teacher-author"]');o&&o.addEventListener("change",(()=>{const e=document.querySelector("#module_course_mb");e&&e.parentNode.removeChild(e)})),
 // Refresh the modules meta box on course select change.
-jQuery("#lesson-course-options").on("change",(function(){var e;
+jQuery("#lesson-course-options").on("change",(function(){
 // Try to get the lesson ID from the wp data store. If not present, fallback to getting it from the DOM.
-const o=(null===(e=wp.data.select("core/editor"))||void 0===e?void 0:e.getCurrentPostId())||jQuery("#post_ID").val(),t=jQuery(this).val();jQuery.get(ajaxurl,{action:"sensei_get_lesson_module_metabox",lesson_id:o,course_id:t,security:window.modulesAdmin.getLessonModuleMetaBoxNonce},(function(e){""!==e&&(
+const e=wp.data.select("core/editor")?.getCurrentPostId()||jQuery("#post_ID").val(),o=jQuery(this).val();jQuery.get(ajaxurl,{action:"sensei_get_lesson_module_metabox",lesson_id:e,course_id:o,security:window.modulesAdmin.getLessonModuleMetaBoxNonce},(function(e){""!==e&&(
 // Replace the meta box and re-initialize select2.
 jQuery("> .inside","#module_select").html(e),jQuery("#lesson-module-options").select2({width:"resolve"}))}))}))}));

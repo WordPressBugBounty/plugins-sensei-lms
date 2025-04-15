@@ -1,4 +1,4 @@
-/******/
+/******/ // webpackBootstrap
 /**
  * Lesson bulk edit screen save functionality
  */

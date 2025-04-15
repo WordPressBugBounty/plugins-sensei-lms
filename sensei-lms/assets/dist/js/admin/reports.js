@@ -1,23 +1,23 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
-/******/var e,r={
-/***/47701:
+/******/var e={
+/***/98490:
 /***/e=>{e.exports=window.wp.domReady;
 /***/
-/******/}},t={};
+/******/}},r={};
 /************************************************************************/
 /******/ // The module cache
 /******/
 /******/
 /******/ // The require function
-/******/function o(e){
+/******/function t(o){
 /******/ // Check if module is in cache
-/******/var n=t[e];
-/******/if(void 0!==n)
-/******/return n.exports;
+/******/var a=r[o];
+/******/if(void 0!==a)
+/******/return a.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var a=t[e]={
+/******/var n=r[o]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -27,33 +27,35 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return r[e](a,a.exports,o),a.exports;
+/******/return e[o](n,n.exports,t),n.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/o.n=e=>{
+/******/t.n=e=>{
 /******/var r=e&&e.__esModule?
 /******/()=>e.default
 /******/:()=>e
 /******/;
-/******/return o.d(r,{a:r}),r;
+/******/return t.d(r,{a:r}),r;
 /******/},
 /******/ // define getter functions for harmony exports
-/******/o.d=(e,r)=>{
-/******/for(var t in r)
-/******/o.o(r,t)&&!o.o(e,t)&&
-/******/Object.defineProperty(e,t,{enumerable:!0,get:r[t]})
+/******/t.d=(e,r)=>{
+/******/for(var o in r)
+/******/t.o(r,o)&&!t.o(e,o)&&
+/******/Object.defineProperty(e,o,{enumerable:!0,get:r[o]})
 /******/;
 /******/},
-/******/o.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
-/******/,
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-e=o(47701),
+/******/t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
+/******/;
+/******/
+/************************************************************************/
+/* harmony import */var o=t(98490);
+/* harmony import */
 /**
  * WordPress dependencies
  */
-o.n(e)()((()=>{var e,r,t;jQuery(".sensei-date-picker").datepicker({dateFormat:"yy-mm-dd"});const o=null===(e=Intl)||void 0===e||null===(r=e.DateTimeFormat())||void 0===r||null===(t=r.resolvedOptions())||void 0===t?void 0:t.timeZone;o&&jQuery('.sensei-analysis__top-filters input[name="timezone"]').val(o)}))})
+t.n(o)()((()=>{jQuery(".sensei-date-picker").datepicker({dateFormat:"yy-mm-dd"});const e=Intl?.DateTimeFormat()?.resolvedOptions()?.timeZone;e&&jQuery('.sensei-analysis__top-filters input[name="timezone"]').val(e)}))})
 /******/();

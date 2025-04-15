@@ -1,4 +1,5 @@
-/******/jQuery(document).ready((function(e){
+/******/ // webpackBootstrap
+jQuery(document).ready((function(e){
 /***** Settings Tabs *****/
 const n=e("#woothemes-sensei.sensei-settings");
 // Show the current section.

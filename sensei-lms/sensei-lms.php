@@ -3,12 +3,12 @@
  * Plugin Name: Sensei LMS
  * Plugin URI: https://senseilms.com/
  * Description: Share your knowledge, grow your network, and strengthen your brand by launching an online course.
- * Version: 4.24.5
+ * Version: 4.25.0
  * Author: Automattic
  * Author URI: https://automattic.com
  * License: GPLv2 or later
- * Requires at least: 6.5
- * Tested up to: 6.7
+ * Requires at least: 6.6
+ * Tested up to: 6.8
  * Requires PHP: 7.4
  * Text Domain: sensei-lms
  * Domain path: /lang/
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'SENSEI_LMS_VERSION' ) ) {
-	define( 'SENSEI_LMS_VERSION', '4.24.5' ); // WRCS: DEFINED_VERSION.
+	define( 'SENSEI_LMS_VERSION', '4.25.0' ); // WRCS: DEFINED_VERSION.
 }
 
 if ( ! defined( 'SENSEI_LMS_PLUGIN_FILE' ) ) {
@@ -86,7 +86,7 @@ if (
 	require SENSEI_LMS_PLUGIN_PATH . 'vendor/woocommerce/action-scheduler/action-scheduler.php';
 }
 
-require_once dirname( __FILE__ ) . '/includes/class-sensei-dependency-checker.php';
+require_once __DIR__ . '/includes/class-sensei-dependency-checker.php';
 if ( ! Sensei_Dependency_Checker::check_php_requirement() ) {
 	add_action( 'admin_notices', array( 'Sensei_Dependency_Checker', 'add_php_version_notice' ) );
 	return;

@@ -1,4 +1,4 @@
-/******/(()=>{
+/******/(()=>{// webpackBootstrap
 /**
  * Used to add tracking to WP core elements, where we can't add custom code.
  * Settings and Extensions submenus are logged elsewhere.

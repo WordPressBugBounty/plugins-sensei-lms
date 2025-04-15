@@ -1,23 +1,23 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
-/******/var e,r={
-/***/65736:
+/******/var e={
+/***/27723:
 /***/e=>{e.exports=window.wp.i18n;
 /***/
-/******/}},n={};
+/******/}},r={};
 /************************************************************************/
 /******/ // The module cache
 /******/
 /******/
 /******/ // The require function
-/******/function a(e){
+/******/function n(a){
 /******/ // Check if module is in cache
-/******/var t=n[e];
+/******/var t=r[a];
 /******/if(void 0!==t)
 /******/return t.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var i=n[e]={
+/******/var i=r[a]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -27,35 +27,37 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return r[e](i,i.exports,a),i.exports;
+/******/return e[a](i,i.exports,n),i.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/a.n=e=>{
+/******/n.n=e=>{
 /******/var r=e&&e.__esModule?
 /******/()=>e.default
 /******/:()=>e
 /******/;
-/******/return a.d(r,{a:r}),r;
+/******/return n.d(r,{a:r}),r;
 /******/},
 /******/ // define getter functions for harmony exports
-/******/a.d=(e,r)=>{
-/******/for(var n in r)
-/******/a.o(r,n)&&!a.o(e,n)&&
-/******/Object.defineProperty(e,n,{enumerable:!0,get:r[n]})
+/******/n.d=(e,r)=>{
+/******/for(var a in r)
+/******/n.o(r,a)&&!n.o(e,a)&&
+/******/Object.defineProperty(e,a,{enumerable:!0,get:r[a]})
 /******/;
 /******/},
-/******/a.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
-/******/,
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-e=a(65736),
+/******/n.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
+/******/;
+/******/
+/************************************************************************/
+/* harmony import */var a=n(27723);
+/* harmony import */
 /**
  * WordPress dependencies
  */
-jQuery(document).ready((function(r){
+jQuery(document).ready((function(e){
 /***************************************************************************************************
    * 	1 - Helper Functions.
    ***************************************************************************************************/
@@ -69,19 +71,19 @@ jQuery.fn.exists=function(){return this.length>0},
    * Calculates the total grade based on the questions already graded
    * @return void
    */
-jQuery.fn.calculateTotalGrade=function(){var r,n,a=0,t=0;jQuery(".question_box.user_right").each((function(){r=jQuery(this).find(".question_id").val(),n=parseInt(jQuery(this).find("#question_"+r+"_grade").val()),a+=n,t++})),jQuery(".question_box.user_wrong").each((function(){t++})),jQuery("#total_graded_questions").val(t);var i=parseInt(jQuery("#total_questions").val()),s=parseInt(jQuery("#quiz_grade_total").val()),o="0";0<s&&(o=parseFloat(100*a/s).toFixed(2)),o=o.replace(".00",""),jQuery("#total_grade").val(a),jQuery(".total_grade_total").html(a),jQuery(".total_grade_percent").html(o),jQuery(".quiz_grade_total").html(s),i==t?(jQuery("#all_questions_graded").val("yes"),jQuery(".grade-button").val((0,e.__)("Grade","sensei-lms"))):(jQuery("#all_questions_graded").val("no"),jQuery(".grade-button").val((0,e.__)("Save","sensei-lms")))},jQuery.fn.updateFeedback=function(){jQuery(".question_box").each((function(){var e=jQuery(this).find(".question_id").val(),r=parseInt(jQuery(this).find("#question_"+e+"_grade").val()),n=jQuery(this).find(".answer-feedback-correct"),a=jQuery(this).find(".answer-feedback-incorrect");n.toggle(0<r),a.toggle(!r)}))},
+jQuery.fn.calculateTotalGrade=function(){var e,r,n=0,t=0;jQuery(".question_box.user_right").each((function(){e=jQuery(this).find(".question_id").val(),r=parseInt(jQuery(this).find("#question_"+e+"_grade").val()),n+=r,t++})),jQuery(".question_box.user_wrong").each((function(){t++})),jQuery("#total_graded_questions").val(t);var i=parseInt(jQuery("#total_questions").val()),s=parseInt(jQuery("#quiz_grade_total").val()),o="0";0<s&&(o=parseFloat(100*n/s).toFixed(2)),o=o.replace(".00",""),jQuery("#total_grade").val(n),jQuery(".total_grade_total").html(n),jQuery(".total_grade_percent").html(o),jQuery(".quiz_grade_total").html(s),i==t?(jQuery("#all_questions_graded").val("yes"),jQuery(".grade-button").val((0,a.__)("Grade","sensei-lms"))):(jQuery("#all_questions_graded").val("no"),jQuery(".grade-button").val((0,a.__)("Save","sensei-lms")))},jQuery.fn.updateFeedback=function(){jQuery(".question_box").each((function(){var e=jQuery(this).find(".question_id").val(),r=parseInt(jQuery(this).find("#question_"+e+"_grade").val()),n=jQuery(this).find(".answer-feedback-correct"),a=jQuery(this).find(".answer-feedback-incorrect");n.toggle(0<r),a.toggle(!r)}))},
 /**
    * Automatically grades questions where possible
    * @return void
    */
-r.fn.autoGrade=function(){r(".question_box").each((function(){var e,n,a=r(this),t=!1;
+e.fn.autoGrade=function(){e(".question_box").each((function(){var r,n,a=e(this),t=!1;
 // Only grade questions that haven't already been graded.
 if(a.hasClass("user_right")||a.hasClass("user_wrong")||a.hasClass("zero-graded"))jQuery(this).hasClass("zero-graded")&&(a.find(".grading-mark.icon_wrong input").attr("checked",!1),a.find(".grading-mark.icon_right input").attr("checked",!1),a.find("input.question-grade").val(0));else
 // Auto-grading
-if(a.addClass("ungraded"),a.hasClass("gap-fill")?(e=a.find(".user-answer").contents().find(".highlight").html(),n=a.find(".correct-answer .highlight").html()):(e=a.find(".user-answer").contents().find("body").map((function(){return this.innerHTML.trim()})).toArray().join("<br>"),n=a.find(".correct-answer").html()),e=e.trim(),n=n.trim(),a.hasClass("auto-grade")){
+if(a.addClass("ungraded"),a.hasClass("gap-fill")?(r=a.find(".user-answer").contents().find(".highlight").html(),n=a.find(".correct-answer .highlight").html()):(r=a.find(".user-answer").contents().find("body").map((function(){return this.innerHTML.trim()})).toArray().join("<br>"),n=a.find(".correct-answer").html()),r=r.trim(),n=n.trim(),a.hasClass("auto-grade")){
 // Split answers to multiple choice questions into an array since there may be
 // multiple correct answers.
-if(a.hasClass("multiple-choice")){var i=e.split("<br>"),s=n.split("<br>");t=!0,i.forEach((function(e){-1===r.inArray(e,s)&&(t=!1)})),i.length!==s.length-1&&(t=!1)}else e=e.split("<br>")[0],n=n.split("<br>")[0];t||e===n?(
+if(a.hasClass("multiple-choice")){var i=r.split("<br>"),s=n.split("<br>");t=!0,i.forEach((function(r){-1===e.inArray(r,s)&&(t=!1)})),i.length!==s.length-1&&(t=!1)}else r=r.split("<br>")[0],n=n.split("<br>")[0];t||r===n?(
 // Right answer
 a.addClass("user_right").removeClass("user_wrong").removeClass("ungraded"),a.find(".grading-mark.icon_right input").attr("checked",!0),a.find(".grading-mark.icon_wrong input").attr("checked",!1),a.find("input.question-grade").val(a.find("input.question_total_grade").val())):(
 // Wrong answer
@@ -89,7 +91,7 @@ a.addClass("user_wrong").removeClass("user_right").removeClass("ungraded"),a.fin
 // Manual grading
 a.find(".grading-mark.icon_wrong input").attr("checked",!1),a.find(".grading-mark.icon_right input").attr("checked",!1),a.removeClass("user_wrong").removeClass("user_right");
 // Question with a grade value of 0.
-})),r.fn.calculateTotalGrade(),r.fn.updateFeedback()},
+})),e.fn.calculateTotalGrade(),e.fn.updateFeedback()},
 // Calculate total grade on page load to make sure everything is set up correctly
 jQuery.fn.autoGrade(),
 /**
@@ -164,7 +166,7 @@ jQuery(".sensei-grading-main .buttons").on("click",".reset-button",(function(){j
 jQuery(".sensei-grading-main .buttons").on("click",".autograde-button",(function(){
 // Toggle manual-grade questions to auto-grade for question types that are able to be
 // automatically graded, so that they will now be scored.
-r(".boolean.manual-grade, .multiple-choice.manual-grade, .gap-fill.manual-grade").addClass("auto-grade").removeClass("manual-grade"),jQuery.fn.autoGrade()})),jQuery(".sensei-grading-main").length&&jQuery.fn.updateFeedback(),
+e(".boolean.manual-grade, .multiple-choice.manual-grade, .gap-fill.manual-grade").addClass("auto-grade").removeClass("manual-grade"),jQuery.fn.autoGrade()})),jQuery(".sensei-grading-main").length&&jQuery.fn.updateFeedback(),
 /***************************************************************************************************
    * 	4 - Load Select2 Dropdowns.
    ***************************************************************************************************/
