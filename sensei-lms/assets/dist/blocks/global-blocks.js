@@ -713,7 +713,7 @@ return(0,a.jsx)(o.ToolbarGroup,{children:(0/* ["default"] */,a.jsx)(i.A,{options
 /***/e=>{"use strict";e.exports=window.wp.hooks}
 /***/,
 /***/54350:
-/***/e=>{"use strict";e.exports=JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sensei-lms/course-overview","title":"Course Overview","category":"sensei-lms","description":"Displays a link to the course.","textdomain":"sensei-lms","usesContext":["postType"],"example":{}}')}
+/***/e=>{"use strict";e.exports=JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"sensei-lms/course-overview","title":"Course Overview","category":"sensei-lms","description":"Displays a link to the course.","textdomain":"sensei-lms","supports":{"color":{"background":false,"text":true}},"usesContext":["postType"],"example":{}}')}
 /***/,
 /***/56427:
 /***/e=>{"use strict";e.exports=window.wp.components}
