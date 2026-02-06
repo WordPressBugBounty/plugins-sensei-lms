@@ -382,6 +382,7 @@ class ComposerStaticInitbc69057726243faa562ab94e67ae6f6c
         'Sensei_Email_Teacher_Quiz_Submitted' => __DIR__ . '/../..' . '/includes/emails/class-sensei-email-teacher-quiz-submitted.php',
         'Sensei_Email_Teacher_Started_Course' => __DIR__ . '/../..' . '/includes/emails/class-sensei-email-teacher-started-course.php',
         'Sensei_Emails' => __DIR__ . '/../..' . '/includes/class-sensei-emails.php',
+        'Sensei_Enrolment_Course_Calculation_Command' => __DIR__ . '/../..' . '/includes/cli/class-sensei-enrolment-course-calculation-command.php',
         'Sensei_Enrolment_Course_Calculation_Job' => __DIR__ . '/../..' . '/includes/enrolment/class-sensei-enrolment-course-calculation-job.php',
         'Sensei_Enrolment_Job_Scheduler' => __DIR__ . '/../..' . '/includes/enrolment/class-sensei-enrolment-job-scheduler.php',
         'Sensei_Enrolment_Learner_Calculation_Job' => __DIR__ . '/../..' . '/includes/enrolment/class-sensei-enrolment-learner-calculation-job.php',

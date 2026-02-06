@@ -377,6 +377,7 @@ return array(
     'Sensei_Email_Teacher_Quiz_Submitted' => $baseDir . '/includes/emails/class-sensei-email-teacher-quiz-submitted.php',
     'Sensei_Email_Teacher_Started_Course' => $baseDir . '/includes/emails/class-sensei-email-teacher-started-course.php',
     'Sensei_Emails' => $baseDir . '/includes/class-sensei-emails.php',
+    'Sensei_Enrolment_Course_Calculation_Command' => $baseDir . '/includes/cli/class-sensei-enrolment-course-calculation-command.php',
     'Sensei_Enrolment_Course_Calculation_Job' => $baseDir . '/includes/enrolment/class-sensei-enrolment-course-calculation-job.php',
     'Sensei_Enrolment_Job_Scheduler' => $baseDir . '/includes/enrolment/class-sensei-enrolment-job-scheduler.php',
     'Sensei_Enrolment_Learner_Calculation_Job' => $baseDir . '/includes/enrolment/class-sensei-enrolment-learner-calculation-job.php',
