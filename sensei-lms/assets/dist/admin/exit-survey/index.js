@@ -5,7 +5,7 @@
 /***/e=>{e.exports=window.wp.apiFetch;
 /***/},
 /***/2192:
-/***/(e,t,s)=>{var n=s(51609),i=Symbol.for("react.element"),r=Symbol.for("react.fragment"),a=Object.prototype.hasOwnProperty,o=n.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,l={key:!0,ref:!0,__self:!0,__source:!0};
+/***/(e,t,s)=>{var n=s(51609),i=Symbol.for("react.element"),r=Symbol.for("react.fragment"),o=Object.prototype.hasOwnProperty,a=n.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,l={key:!0,ref:!0,__self:!0,__source:!0};
 /**
  * @license React
  * react-jsx-runtime.production.min.js
@@ -14,7 +14,7 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */function d(e,t,s){var n,r={},d=null,c=null;for(n in void 0!==s&&(d=""+s),void 0!==t.key&&(d=""+t.key),void 0!==t.ref&&(c=t.ref),t)a.call(t,n)&&!l.hasOwnProperty(n)&&(r[n]=t[n]);if(e&&e.defaultProps)for(n in t=e.defaultProps)void 0===r[n]&&(r[n]=t[n]);return{$$typeof:i,type:e,key:d,ref:c,props:r,_owner:o.current}}t.jsx=d,t.jsxs=d}
+ */function d(e,t,s){var n,r={},d=null,c=null;for(n in void 0!==s&&(d=""+s),void 0!==t.key&&(d=""+t.key),void 0!==t.ref&&(c=t.ref),t)o.call(t,n)&&!l.hasOwnProperty(n)&&(r[n]=t[n]);if(e&&e.defaultProps)for(n in t=e.defaultProps)void 0===r[n]&&(r[n]=t[n]);return{$$typeof:i,type:e,key:d,ref:c,props:r,_owner:a.current}}t.jsx=d,t.jsxs=d}
 /***/,
 /***/7894:
 /***/(e,t,s)=>{
@@ -64,7 +64,7 @@ return(0,n.jsxs)("div",{className:"sensei-exit-survey__item",children:[(0,n.jsx)
 /* harmony export */s.d(t,{
 /* harmony export */V:()=>/* binding */l
 /* harmony export */});
-/* harmony import */var n=s(86087),i=s(27723),r=s(80757),a=s(7894),o=s(62540);
+/* harmony import */var n=s(86087),i=s(27723),r=s(80757),o=s(7894),a=s(62540);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -80,7 +80,7 @@ return(0,n.jsxs)("div",{className:"sensei-exit-survey__item",children:[(0,n.jsx)
  * @param {Function} props.skip   Callback to skip feedback.
  */
 const l=({submit:e,skip:t})=>{const s=(0,n.useRef)(null),[,l]=(0,n.useState)(null),d=(0,n.useCallback)((t=>{t.preventDefault();const n=new window.FormData(s.current),i=n.get("reason");e({reason:i,details:i&&n.get(`details-${i}`)})}),[e]);let c=!1;if(s.current){const e=new window.FormData(s.current),t=`details-${e.get("reason")}`,n=s.current?.elements[t]||!1;c=!(!e.get("reason")||n&&""===e.get(t).trim())}
-return(0,o.jsxs)("form",{onChange:()=>{const e=new window.FormData(s.current);l(e.values())},className:"sensei-modal sensei-exit-survey",ref:s,onSubmit:d,children:[(0,o.jsxs)("div",{className:"sensei-exit-survey__content",children:[(0,o.jsx)("h2",{children:(0,i.__)("Quick Feedback","sensei-lms")}),(0,o.jsx)("p",{children:(0,i.__)("If you have a moment, please let us know why you are deactivating so that we can work to improve our product.","sensei-lms")}),a/* .reasons */.O.map((e=>(0/* .ExitSurveyFormItem */,o.jsx)(r.Y,{...e},e.id)))]}),(0,o.jsxs)("div",{className:"sensei-exit-survey__buttons",children:[(0,o.jsx)("button",{className:"button button-primary",type:"submit",disabled:!c,children:(0,i.__)("Submit Feedback","sensei-lms")}),(0,o.jsx)("button",{className:"button button-secondary",onClick:t,type:"button",children:(0,i.__)("Skip Feedback","sensei-lms")})]})]})};
+return(0,a.jsxs)("form",{onChange:()=>{const e=new window.FormData(s.current);l(e.values())},className:"sensei-modal sensei-exit-survey",ref:s,onSubmit:d,children:[(0,a.jsxs)("div",{className:"sensei-exit-survey__content",children:[(0,a.jsx)("h2",{children:(0,i.__)("Quick Feedback","sensei-lms")}),(0,a.jsx)("p",{children:(0,i.__)("If you have a moment, please let us know why you are deactivating so that we can work to improve our product.","sensei-lms")}),o/* .reasons */.O.map((e=>(0/* .ExitSurveyFormItem */,a.jsx)(r.Y,{...e},e.id)))]}),(0,a.jsxs)("div",{className:"sensei-exit-survey__buttons",children:[(0,a.jsx)("button",{className:"button button-primary",type:"submit",disabled:!c,children:(0,i.__)("Submit Feedback","sensei-lms")}),(0,a.jsx)("button",{className:"button button-secondary",onClick:t,type:"button",children:(0,i.__)("Skip Feedback","sensei-lms")})]})]})};
 /***/
 /******/}},t={};
 /************************************************************************/
@@ -128,7 +128,7 @@ return(0,o.jsxs)("form",{onChange:()=>{const e=new window.FormData(s.current);l(
 /******/},
 /******/s.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t)
 /******/;
-/* harmony import */var n=s(1455),i=s.n(n),r=s(86087),a=s(98769),o=s(62540);
+/* harmony import */var n=s(1455),i=s.n(n),r=s(86087),o=s(98769),a=s(62540);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -138,9 +138,21 @@ return(0,o.jsxs)("form",{onChange:()=>{const e=new window.FormData(s.current);l(
  */
 !function(){
 /**
+   * Id of the container the survey is mounted into.
+   */
+const e="sensei-exit-survey-modal";
+/**
+   * The single React root for the survey, reused across opens.
+   *
+   * @type {?Object}
+   */let t=null;
+/**
+   * Add exit survey modal when clicking the Deactivate link for Sensei LMS plugin.
+   */
+/**
    * Exit survey modal.
    */
-class e{href;container;
+class s{href;container;root;
 /**
      * Exit survey constructor.
      *
@@ -150,7 +162,10 @@ constructor({href:e}){this.href=e}
 /**
      * Create and open a modal with an exit survey form.
      *
-     */open=()=>{let e=document.querySelector("#sensei-exit-survey");e||(e=document.createElement("div"),e.setAttribute("id","sensei-exit-survey-modal"),document.body.appendChild(e)),this.container=e,(0,r.render)((0/* .ExitSurveyForm */,o.jsx)(a.V,{submit:this.submitExitSurvey,skip:this.closeAndDeactivate}),e)};
+     */open=()=>{let s=document.getElementById(e);s||(s=document.createElement("div"),s.setAttribute("id",e),document.body.appendChild(s)),this.container=s,
+// Reuse a single root so repeated opens don't mount twice
+// into the same container.
+t||(t=(0,r.createRoot)(s)),this.root=t,this.root.render((0/* .ExitSurveyForm */,a.jsx)(o.V,{submit:this.submitExitSurvey,skip:this.closeAndDeactivate}))};
 /**
      * Submit exit survey to AJAX endpoint.
      *
@@ -162,5 +177,5 @@ try{const e=await i()({path:"/wp/v2/themes?status=active"});e.length>0&&t.append
 /**
      * Close survey modal and continue plugin deactivation.
      */
-closeAndDeactivate=()=>{this.container.remove(),window.location=this.href}}(()=>{const t=e=>document.querySelector(`#the-list [data-slug="${e}"] span.deactivate a`);[t("sensei-lms"),t("sensei-pro-wc-paid-courses"),t("sensei-with-woocommerce-paid-courses"),t("woocommerce-com-woocommerce-paid-courses")].filter((e=>!!e)).forEach((t=>{t.addEventListener("click",(t=>{t.preventDefault(),new e({href:t.target.href}).open()}))}))})()}()})
+closeAndDeactivate=()=>{this.root?.unmount(),t=null,this.container.remove(),window.location=this.href}}(()=>{const e=e=>document.querySelector(`#the-list [data-slug="${e}"] span.deactivate a`);[e("sensei-lms"),e("sensei-pro-wc-paid-courses"),e("sensei-with-woocommerce-paid-courses"),e("woocommerce-com-woocommerce-paid-courses")].filter((e=>!!e)).forEach((e=>{e.addEventListener("click",(e=>{e.preventDefault(),new s({href:e.target.href}).open()}))}))})()}()})
 /******/();

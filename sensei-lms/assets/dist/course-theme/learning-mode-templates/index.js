@@ -268,5 +268,5 @@ return(0,l.jsxs)("li",{className:"sensei-lm-template-option__container",children
 /**
  * Internal dependencies
  */
-const n=document.getElementById("sensei-lm-block-template__options");(0,e.render)((0/* .TemplateSelector */,r.jsx)(t.U,{}),n)})()})
+const n=document.getElementById("sensei-lm-block-template__options");n&&(0,e.createRoot)(n).render((0/* .TemplateSelector */,r.jsx)(t.U,{}))})()})
 /******/();

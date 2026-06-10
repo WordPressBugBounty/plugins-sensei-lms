@@ -1098,5 +1098,5 @@ const m=()=>{const{currentRoute:e}=(0,o/* .useQueryStringRouter */.Yr)();return(
 (0,s.useLayoutEffect)((()=>{p()}),[p]);let _=null;return _=t?(0,u.jsx)(i.Spinner,{className:"sensei-setup-wizard__main-loader"}):a?(0,u.jsxs)(i.Notice,{status:"error",isDismissible:!1,children:[(0,n.__)("An error has occurred while fetching the data. Please try again later!","sensei-lms"),(0,u.jsx)("br",{}),(0,n.__)("Error details:","sensei-lms")," ",a.message]}):(0,u.jsx)("div",{className:"sensei-setup-wizard__container",children:d/* ["default"] */.A.map((e=>(0/* .Route */,u.jsx)(o.qh,{route:e.key,children:e.container},e.key)))}),(0/* ["default"] */,u.jsxs)(o.Ay,{paramName:"step",routes:d/* ["default"] */.A.map((e=>e.key)),defaultRoute:d/* ["default"] */.A[0].key,children:[(0,u.jsx)(m,{}),(0,u.jsxs)("header",{className:"sensei-setup-wizard__header",children:[(0/* ["default"] */,u.jsx)(l.A,{steps:d/* ["default"] */.A}),(0,u.jsxs)("h1",{className:"sensei-setup-wizard__sensei-logo",children:[(0/* ["default"] */,u.jsx)(c.A,{})," Sensei"]})]}),_]})};
 /**
  * A component to set the full screen and a custom class related to the current route.
- */(0,s.render)((0,u.jsx)(p,{}),document.getElementById("sensei-setup-wizard-page"))})()})
+ */(0,s.createRoot)(document.getElementById("sensei-setup-wizard-page")).render((0,u.jsx)(p,{}))})()})
 /******/();

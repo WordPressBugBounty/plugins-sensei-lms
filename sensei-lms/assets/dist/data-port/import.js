@@ -1169,5 +1169,5 @@ function*d(e){try{const t=yield l({path:(0,i/* .buildJobEndpointUrl */.O)(e)});y
  */
 const c=()=>{const{error:s,navigationSteps:i}=(0,t.useSelect)((e=>{const t=e("sensei/import");return{error:t.getFetchError(),navigationSteps:t.getNavigationSteps()}}),[]),{loadCurrentJobState:c}=(0,t.useDispatch)("sensei/import");if((0,r.useLayoutEffect)((()=>{c()}),[c]),(0,n/* .useSenseiColorTheme */.x)(),s)
 return(0,a.jsxs)(l.Notice,{status:"error",isDismissible:!1,children:[(0,e.__)("An error has occurred while fetching the data. Please try again later!","sensei-lms"),(0,a.jsx)("br",{}),(0,e.__)("Error details:","sensei-lms")," ",s.message]});const d=i.find((e=>e.isNext));
-return(0,a.jsxs)("div",{className:"sensei-page-import",children:[(0/* .DataPortStepper */,a.jsx)(o.B,{steps:i}),d.container]})};(0,r.render)((0,a.jsx)(c,{}),document.getElementById("sensei-import-page"))})()})
+return(0,a.jsxs)("div",{className:"sensei-page-import",children:[(0/* .DataPortStepper */,a.jsx)(o.B,{steps:i}),d.container]})};(0,r.createRoot)(document.getElementById("sensei-import-page")).render((0,a.jsx)(c,{}))})()})
 /******/();

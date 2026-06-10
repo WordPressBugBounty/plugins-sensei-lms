@@ -1099,18 +1099,5 @@ const t=(e="")=>{const{upsellUrl:s}=window.sensei_admin;return`${s}?${new URLSea
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (()=>{"use strict";
 /* harmony import */var e=n(86087),s=n(47204),t=n(62540);
-/* harmony import */
-/**
- * WordPress dependencies
- */
-/**
- * Internal dependencies
- */
-/**
- * WordPress dependencies
- */
-/**
- * Internal dependencies
- */
-(0,e.render)((0/* ["default"] */,t.jsx)(s.A,{}),document.getElementById("sensei-home-page"))})()})
+/* harmony import */(0,e.createRoot)(document.getElementById("sensei-home-page")).render((0/* ["default"] */,t.jsx)(s.A,{}))})()})
 /******/();
