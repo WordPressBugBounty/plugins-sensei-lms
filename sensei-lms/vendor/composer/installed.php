@@ -3,7 +3,7 @@
         'name' => 'automattic/sensei-lms',
         'pretty_version' => 'dev-trunk',
         'version' => 'dev-trunk',
-        'reference' => '876c87531817182aff23ed249ee62d8221f9f9fd',
+        'reference' => 'd3513b6b3a412b25855ecf4f564a38f4e28a2a0d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'automattic/sensei-lms' => array(
             'pretty_version' => 'dev-trunk',
             'version' => 'dev-trunk',
-            'reference' => '876c87531817182aff23ed249ee62d8221f9f9fd',
+            'reference' => 'd3513b6b3a412b25855ecf4f564a38f4e28a2a0d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
