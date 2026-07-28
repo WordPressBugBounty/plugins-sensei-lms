@@ -306,7 +306,9 @@ const d={course:"courses",lesson:"lessons",question:"questions"},u=e=>(0,l.decod
 // and clobbering its result.
 // `cancelled` guards against an older request resolving after a newer one
 // and clobbering its result.
-(0,n.useEffect)((()=>{let s=!1;const t=new URLSearchParams({per_page:String(20),status:"any",_fields:"id,title",context:"edit"});return f&&t.set("search",f),i()({path:`/wp/v2/${d[e]}?${t.toString()}`}).then((e=>{s||(u(e),x(e.map((e=>e.id))))})).catch((t=>{s||(x([]),
+(0,n.useEffect)((()=>{let s=!1;const t=new URLSearchParams({per_page:String(100),status:"any",_fields:"id,title",context:"edit"});return f&&(t.set("search",f),t.append("search_columns[]","post_title"),
+// WP core rejects `orderby=relevance` without a `search`.
+t.set("orderby","relevance")),i()({path:`/wp/v2/${d[e]}?${t.toString()}`}).then((e=>{s||(u(e),x(e.map((e=>e.id))))})).catch((t=>{s||(x([]),
 // Suggestions failing leaves the dropdown empty, which is
 // indistinguishable from "no matches" for the user. Surface
 // the underlying reason for the developer console at least.

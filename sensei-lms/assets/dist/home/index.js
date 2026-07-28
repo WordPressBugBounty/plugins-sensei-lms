@@ -716,7 +716,7 @@ const r=(0,i.jsx)(t.SVG,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",
  * @param {Array}  props.className Class name to be added in the wrapper.
  * @param {Object} props.children  Children.
  */
-const a=({as:e="div",className:s,children:n})=>(0,l.jsx)(e,{className:i()(s,"sensei-home__grid"),children:n})
+const a=({as:e="div",className:s,children:n})=>(0,l.jsx)(e,{className:i()(s,"sensei-home__grid"),children:r.Children.toArray(n)})
 /**
  * Col component (should be used inside the Grid).
  *

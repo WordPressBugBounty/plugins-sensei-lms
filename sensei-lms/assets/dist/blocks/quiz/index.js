@@ -288,7 +288,7 @@ let B=Object.entries(b/* ["default"] */.A).map((([e,s])=>({...s,label:s.title,va
  * @param {number} grade Question grade.
  * @return {string} Grade text.
  */
-const N=(0/* .withBlockMeta */,o.compose)(g.Hm,(0/* .validateQuestionBlock */,c/* .withBlockValidation */.N)(k.S))((e=>{const{attributes:{title:s,type:t,answer:o={},options:a,shared:c,editable:g=!0},setAttributes:q,clientId:N,context:P}=e,{removeBlock:E,selectBlock:I}=(0,i.useDispatch)("core/block-editor"),T=(0,r.useCallback)((()=>{const e=(0,i.select)("core/block-editor").getBlocks(N);e.length&&I(e[0].clientId)}),[N,I]),z=(0,m/* .useQuestionNumber */.f)(N),R=t&&b/* ["default"] */.A[t],F=R?.feedback,M=(0,_/* .useHasSelected */.bb)(e),O=P&&!("sensei-lms/quizId"in P),Q=s||M||O,V=!O&&(0,S.jsxs)("h2",{className:"sensei-lms-question-block__index",children:[z,"."]}),D=e.meta.showValidationErrors&&e.meta.validationErrors?.length,H=(0,S.jsx)("div",{className:"sensei-lms-question-block__grade grade",children:(U=a.grade,
+const N=(0/* .withBlockMeta */,o.compose)(g.Hm,(0/* .validateQuestionBlock */,c/* .withBlockValidation */.N)(k.S))((e=>{const{attributes:{title:s,type:t,answer:o={},options:a,shared:c,editable:g=!0},setAttributes:q,clientId:N,context:P}=e,{removeBlock:E,selectBlock:I}=(0,i.useDispatch)("core/block-editor"),T=(0,r.useCallback)((()=>{const e=(0,i.select)("core/block-editor").getBlocks(N);e.length&&I(e[0].clientId)}),[N,I]),R=(0,m/* .useQuestionNumber */.f)(N),z=t&&b/* ["default"] */.A[t],F=z?.feedback,M=(0,_/* .useHasSelected */.bb)(e),O=P&&!("sensei-lms/quizId"in P),Q=s||M||O,V=!O&&(0,S.jsxs)("h2",{className:"sensei-lms-question-block__index",children:[R,"."]}),D=e.meta.showValidationErrors&&e.meta.validationErrors?.length,H=(0,S.jsx)("div",{className:"sensei-lms-question-block__grade grade",children:(U=a.grade,
 // Translators: placeholder is the grade for the questions.
 // Translators: placeholder is the grade for the questions.
 (0,l.sprintf)((0,l._n)("%d point","%d points",U,"sensei-lms"),U))});var U;
@@ -300,7 +300,7 @@ const N=(0/* .withBlockMeta */,o.compose)(g.Hm,(0/* .validateQuestionBlock */,c/
  * @param {Object}   props.attributes.title Question title.
  * @param {Function} props.setAttributes    Set block attributes.
  * @param {Object}   props.meta             Block metadata.
- */const[L,G]=(0,r.useState)(!1),W=(0,r.useMemo)((()=>({answer:o,setAttributes:q,AnswerBlock:R,hasSelected:M,canHaveFeedback:F,answerFeedback:{showAnswerFeedback:L,toggleAnswerFeedback:G},options:a})),[R,o,M,q,L,F,a]),$=(0,r.useMemo)((()=>[[d/* ["default"] */.A.name,{}],[p/* ["default"] */.A.name,{}],...F?[[u/* .answerFeedbackCorrectBlock */.f.name,{}],[u/* .answerFeedbackIncorrectBlock */.Q.name,{}]]:[]]),[F]),Z=(0,n.useBlockProps)({className:C()("sensei-lms-question-block",{"is-draft":!s,"is-invalid":D,"show-answer-feedback":L})});return g?(0,S.jsxs)("div",{...Z,children:[(0,S.jsxs)("div",{className:"sensei-lms-question-block__header",children:[V,O&&(0/* ["default"] */,S.jsx)(y.A,{...e}),(0,S.jsx)("h2",{className:"sensei-lms-question-block__title",children:(0/* ["default"] */,S.jsx)(h.A,{placeholder:(0,l.__)("Question Title","sensei-lms"),value:s,onChange:e=>q({title:e}),onEnter:T,onRemove:()=>E(N)})}),R.subtitle&&(0,S.jsx)(R.subtitle,{isQuestionSelected:M}),Q&&H]}),M&&c&&(0/* .SharedQuestionNotice */,S.jsx)(v.A7,{}),Q&&(0/* .QuestionContext */,S.jsx)(x.q.Provider,{value:W,children:(0,S.jsx)(n.InnerBlocks,{template:$,templateInsertUpdatesSelection:!1,templateLock:"all",renderAppender:null})}),(0/* .QuestionValidationNotice */,S.jsx)(v.uN,{...e,getErrorMessages:k/* .getQuestionBlockValidationErrorMessages */.v}),(0,S.jsxs)(n.BlockControls,{children:[(0/* .QuestionTypeToolbar */,S.jsx)(A.a,{value:t,onSelect:e=>q({type:e}),options:B}),(0/* .QuestionGradeToolbar */,S.jsx)(w.H,{value:a.grade,onChange:e=>q({options:{...a,grade:e}})})]}),(0/* ["default"] */,S.jsx)(j.A,{controls:R?.settings,...e})]}):(0/* ["default"] */,S.jsx)(f.A,{...e,questionGrade:H,questionIndex:V,AnswerBlock:R})}))}
+ */const[L,G]=(0,r.useState)(!1),W=(0,r.useMemo)((()=>({answer:o,setAttributes:q,AnswerBlock:z,hasSelected:M,canHaveFeedback:F,answerFeedback:{showAnswerFeedback:L,toggleAnswerFeedback:G},options:a})),[z,o,M,q,L,F,a]),$=(0,r.useMemo)((()=>[[d/* ["default"] */.A.name,{}],[p/* ["default"] */.A.name,{}],...F?[[u/* .answerFeedbackCorrectBlock */.f.name,{}],[u/* .answerFeedbackIncorrectBlock */.Q.name,{}]]:[]]),[F]),Z=(0,n.useBlockProps)({className:C()("sensei-lms-question-block",{"is-draft":!s,"is-invalid":D,"show-answer-feedback":L})});return g?(0,S.jsxs)("div",{...Z,children:[(0,S.jsxs)("div",{className:"sensei-lms-question-block__header",children:[V,O&&(0/* ["default"] */,S.jsx)(y.A,{...e}),(0,S.jsx)("h2",{className:"sensei-lms-question-block__title",children:(0/* ["default"] */,S.jsx)(h.A,{placeholder:(0,l.__)("Question Title","sensei-lms"),value:s,onChange:e=>q({title:e}),onEnter:T,onRemove:()=>E(N)})}),z.subtitle&&(0,S.jsx)(z.subtitle,{isQuestionSelected:M}),Q&&H]}),M&&c&&(0/* .SharedQuestionNotice */,S.jsx)(v.A7,{}),Q&&(0/* .QuestionContext */,S.jsx)(x.q.Provider,{value:W,children:(0,S.jsx)(n.InnerBlocks,{template:$,templateInsertUpdatesSelection:!1,templateLock:"all",renderAppender:null})}),(0/* .QuestionValidationNotice */,S.jsx)(v.uN,{...e,getErrorMessages:k/* .getQuestionBlockValidationErrorMessages */.v}),(0,S.jsxs)(n.BlockControls,{children:[(0/* .QuestionTypeToolbar */,S.jsx)(A.a,{value:t,onSelect:e=>q({type:e}),options:B}),(0/* .QuestionGradeToolbar */,S.jsx)(w.H,{value:a.grade,onChange:e=>q({options:{...a,grade:e}})})]}),(0/* ["default"] */,S.jsx)(j.A,{controls:z?.settings,...e})]}):(0/* ["default"] */,S.jsx)(f.A,{...e,questionGrade:H,questionIndex:V,AnswerBlock:z})}))}
 /***/,
 /***/19361:
 /***/(e,s,t)=>{"use strict";
@@ -1091,7 +1091,7 @@ const o=e=>(0,i.createHigherOrderComponent)((s=>t=>(((e,{attributes:s,setMeta:t}
 /***/54675:
 /***/(e,s,t)=>{"use strict";
 /* harmony export */t.d(s,{
-/* harmony export */S:()=>/* binding */d
+/* harmony export */S:()=>/* binding */u
 /* harmony export */});
 /* unused harmony export QUIZ_STORE */
 /* harmony import */var n=t(66087),i=t(47143),r=t(86087),o=t(27723),l=t(63492),a=t(65526);
@@ -1105,14 +1105,13 @@ const o=e=>(0,i.createHigherOrderComponent)((s=>t=>(((e,{attributes:s,setMeta:t}
 /**
  * Internal dependencies
  */
-const c="sensei/quiz-structure",u=["categories","shared","options.studentHelp","media","categoryName","lock"];
+const c="sensei/quiz-structure";
 /**
  * Syncronize this block with quiz data.
  *
  * @param {Object} props
  * @param {string} props.clientId Block ID.
- */
-function d({clientId:e}){const{setBlock:s,loadStructure:t}=(0,i.useDispatch)(c);(0,r.useEffect)((()=>(s(e),t(),()=>{s(null)})),[s,t,e])}(0,l/* .registerStructureStore */.W)({storeName:c,*getEndpoint(){return`lesson-quiz/${yield(0,i.select)("core/editor").getCurrentPostId()}?context=edit`},
+ */function u({clientId:e}){const{setBlock:s,loadStructure:t}=(0,i.useDispatch)(c);(0,r.useEffect)((()=>(s(e),t(),()=>{s(null)})),[s,t,e])}(0,l/* .registerStructureStore */.W)({storeName:c,*getEndpoint(){return`lesson-quiz/${yield(0,i.select)("core/editor").getCurrentPostId()}?context=edit`},
 /**
    * Update Quiz block with settings and questions.
    *
@@ -1128,9 +1127,9 @@ blockExists(){const e=(0,i.select)(c).getBlock();return!!(0,i.select)("core/bloc
    *
    * @throws {Object} Quiz structure.
    */
-readBlock(){const e=(0,i.select)(c).getBlock();if(!e)return;const s=(0,i.select)("core/block-editor").getBlock(e);if(!s)return;const t=(0,a/* .normalizeAttributes */.BI)(s.attributes.options,n.snakeCase),r=(0,i.select)("core/editor").getCurrentPost(),o=(0,i.select)(c).getServerStructure(),l=(0,i.select)("core/block-editor").getBlocks(e);let d=[];if(0<l.length&&o){const e=(0,a/* .parseQuestionBlocks */.gI)(l),s=(0,n.keyBy)(o.questions,"id");d=e.map((e=>
+readBlock(){const e=(0,i.select)(c).getBlock();if(!e)return;const s=(0,i.select)("core/block-editor").getBlock(e);if(!s)return;const t=(0,a/* .normalizeAttributes */.BI)(s.attributes.options,n.snakeCase),r=(0,i.select)("core/editor").getCurrentPost(),o=(0,i.select)(c).getServerStructure(),l=(0,i.select)("core/block-editor").getBlocks(e);let u=[];if(0<l.length&&o){const e=(0,a/* .parseQuestionBlocks */.gI)(l),s=(0,n.keyBy)(o.questions,"id");u=e.map((e=>
 // Avoid overriding non-editable question.
-!1===e.editable?s[e.id]:(0,n.omit)(e,u)))}return{lesson_status:r?.status,lesson_title:r?.title,options:t,questions:d}},*fetchError(e){const s=(0,o.sprintf)(/* translators: Error message. */ /* translators: Error message. */
+!1===e.editable?s[e.id]:(0,n.omit)(e,a/* .READ_ONLY_ATTRIBUTES */.kd)))}return{lesson_status:r?.status,lesson_title:r?.title,options:t,questions:u}},*fetchError(e){const s=(0,o.sprintf)(/* translators: Error message. */ /* translators: Error message. */
 (0,o.__)("Quiz settings and questions could not be loaded. %s","sensei-lms"),e.message);yield(0,i.dispatch)("core/notices").createErrorNotice(s,{id:"quiz-structure-save-error"})},
 /**
    * Display save error notice.
@@ -1150,7 +1149,7 @@ clearError(){(0,i.dispatch)("core/notices").removeNotice("quiz-structure-save-er
    *
    * @return {Object} The modified response.
    */
-setServerStructure:e=>e?{...e,questions:e.questions.map((e=>(0,n.omit)(e,u)))}:{}})}
+setServerStructure:a/* .normalizeServerStructure */.sV})}
 /***/,
 /***/55014:
 /***/(e,s,t)=>{"use strict";
@@ -1253,9 +1252,9 @@ if(o[6]=15&o[6]|64,o[8]=63&o[8]|128,s)for(var l=0;l<16;++l)s[r+l]=o[l];return s|
 /***/60817:
 /***/(e,s,t)=>{"use strict";
 /* harmony export */t.d(s,{
-/* harmony export */A:()=>a
+/* harmony export */A:()=>c
 /* harmony export */});
-/* harmony import */var n=t(4452),i=t.n(n),r=t(56427),o=t(27723),l=t(62540);
+/* harmony import */var n=t(4452),i=t.n(n),r=t(56427),o=t(86087),l=t(27723),a=t(62540);
 /* harmony import */
 /**
  * External dependencies
@@ -1278,7 +1277,7 @@ if(o[6]=15&o[6]|64,o[8]=63&o[8]|128,s)for(var l=0;l<16;++l)s[r+l]=o[l];return s|
  * @param {string}   props.suffix              Input suffix.
  * @param {boolean}  props.hideLabelFromVision Hides label.
  */
-const a=({className:e,id:s,label:t,value:n,help:a,allowReset:c=!1,resetLabel:u,onChange:d,suffix:p,hideLabelFromVision:m,...h})=>(0,l.jsx)(r.BaseControl,{id:s,label:t,help:a,hideLabelFromVision:m,children:(0,l.jsxs)("div",{className:"sensei-number-control",children:[(0,l.jsxs)("div",{className:"sensei-number-control__input-container",children:[(0,l.jsx)("input",{className:i()("sensei-number-control__input components-text-control__input",e),type:"number",id:s,onChange:e=>{d(parseInt(e.target.value,10)||h.min||0)},value:null===n?"":n,...h}),p&&(0,l.jsx)("span",{className:"sensei-number-control__input-suffix",children:p})]}),c&&(0,l.jsx)(r.Button,{className:"sensei-number-control__button",isSmall:!0,isSecondary:!0,onClick:()=>d(null),children:u||(0,o.__)("Reset","sensei-lms")})]})});
+const c=(0,o.forwardRef)((({className:e,id:s,label:t,value:n,help:o,allowReset:c=!1,resetLabel:u,onChange:d,suffix:p,hideLabelFromVision:m,...h},g)=>(0,a.jsx)(r.BaseControl,{id:s,label:t,help:o,hideLabelFromVision:m,children:(0,a.jsxs)("div",{className:"sensei-number-control",children:[(0,a.jsxs)("div",{className:"sensei-number-control__input-container",children:[(0,a.jsx)("input",{ref:g,className:i()("sensei-number-control__input components-text-control__input",e),type:"number",id:s,onChange:e=>{d(parseInt(e.target.value,10)||h.min||0)},value:null===n?"":n,...h}),p&&(0,a.jsx)("span",{className:"sensei-number-control__input-suffix",children:p})]}),c&&(0,a.jsx)(r.Button,{className:"sensei-number-control__button",isSmall:!0,isSecondary:!0,onClick:()=>d(null),children:u||(0,l.__)("Reset","sensei-lms")})]})})));
 /* harmony default export */}
 /***/,
 /***/60929:
@@ -1625,12 +1624,14 @@ s.head&&(s.head.prev=i,i.next=s.head),s.head=i,i.val}return a.getDependants=o,a.
 /***/65526:
 /***/(e,s,t)=>{"use strict";
 /* harmony export */t.d(s,{
-/* harmony export */BI:()=>/* binding */p
-/* harmony export */,Cl:()=>/* binding */u
-/* harmony export */,bE:()=>/* binding */d
-/* harmony export */,cm:()=>/* binding */m
-/* harmony export */,gI:()=>/* binding */c
-/* harmony export */,ui:()=>/* binding */a
+/* harmony export */BI:()=>/* binding */h
+/* harmony export */,Cl:()=>/* binding */p
+/* harmony export */,bE:()=>/* binding */m
+/* harmony export */,cm:()=>/* binding */g
+/* harmony export */,gI:()=>/* binding */d
+/* harmony export */,kd:()=>/* binding */a
+/* harmony export */,sV:()=>/* binding */c
+/* harmony export */,ui:()=>/* binding */u
 /* harmony export */});
 /* harmony import */var n=t(74997),i=t(47143),r=t(75057),o=t(63160),l=t(66087);
 /* harmony import */
@@ -1643,6 +1644,26 @@ s.head&&(s.head.prev=i,i.next=s.head),s.head=i,i.val}return a.getDependants=o,a.
 /**
  * External dependencies
  */
+/**
+ * Question attributes that are derived from the server and must not be sent
+ * back as editable structure.
+ *
+ * @type {string[]}
+ */
+const a=["categories","shared","options.studentHelp","media","categoryName","lock"];
+/**
+ * Normalize a quiz REST response into the structure the editor tracks.
+ *
+ * Only the fields that make up the editor's structure are kept. Other plugins
+ * (e.g. Polylang) may inject extra top-level fields such as `lang` and
+ * `translations` into the REST response; including them here would make the
+ * structure comparison detect a permanent diff and trigger an infinite save
+ * loop.
+ *
+ * @param {Object} structure The quiz response.
+ *
+ * @return {Object} The normalized structure.
+ */function c(e){return e?{lesson_status:e.lesson_status,lesson_title:e.lesson_title,options:e.options,questions:(e.questions||[]).map((e=>(0,l.omit)(e,a)))}:{}}
 /**
  * Quiz settings and questions data.
  *
@@ -1679,8 +1700,7 @@ s.head&&(s.head.prev=i,i.next=s.head),s.head=i,i.val}return a.getDependants=o,a.
  * @param {QuizQuestion[]} structure Quiz questions.
  * @param {Object[]}       blocks    Existing blocks.
  * @return {Object[]} Updated blocks.
- */
-function a(e,s){return e&&0!==e.length?(e||[]).map((e=>{const{description:t,...r}=e;let o=s?d(s,e):null;if(o){o.attributes={...o.attributes,...r};const e=t&&(0,n.rawHandler)({HTML:t})||[];(0,i.dispatch)("core/block-editor").replaceInnerBlocks(o.clientId,e)}else o=u(e);return o})):[(0,n.createBlock)("sensei-lms/quiz-question",{})]}
+ */function u(e,s){return e&&0!==e.length?(e||[]).map((e=>{const{description:t,...r}=e;let o=s?m(s,e):null;if(o){o.attributes={...o.attributes,...r};const e=t&&(0,n.rawHandler)({HTML:t})||[];(0,i.dispatch)("core/block-editor").replaceInnerBlocks(o.clientId,e)}else o=p(e);return o})):[(0,n.createBlock)("sensei-lms/quiz-question",{})]}
 /**
  * Manually run our deprecated migrations for the question block.
  *
@@ -1695,14 +1715,14 @@ function a(e,s){return e&&0!==e.length?(e||[]).map((e=>{const{description:t,...r
  *
  * @return {QuizQuestion[]} Question structure
  */
-function c(e){const s=e?.map((e=>{const s=(0,l.omit)(e.attributes,["className"]);return"category-question"===e.attributes.type?s:{...s,description:(0,n.getBlockContent)(e)}}));if(0===s.length)return s;const t=s.pop();return m(t)||s.push(t),s}
+function d(e){const s=e?.map((e=>{const s=(0,l.omit)(e.attributes,["className"]);return"category-question"===e.attributes.type?s:{...s,description:(0,n.getBlockContent)(e)}}));if(0===s.length)return s;const t=s.pop();return g(t)||s.push(t),s}
 /**
  * Create a new question block.
  *
  * @param {Object} question Question item.
  *
  * @return {QuizQuestion} Block.
- */function u(e){if("category-question"===e.type)return(0/* ["default"] */,n.createBlock)(o.A.name,e,[]);const[s,t]=function(e,s){return r/* ["default"] */.A.deprecated.forEach((t=>{
+ */function p(e){if("category-question"===e.type)return(0/* ["default"] */,n.createBlock)(o.A.name,e,[]);const[s,t]=function(e,s){return r/* ["default"] */.A.deprecated.forEach((t=>{
 // Check our flag for deprecations that should run here.
 t.onProgrammaticCreation&&t.isEligible(e,s)&&([e,s]=t.migrate(e,s))})),[e,s]}(e,e.description&&(0,n.rawHandler)({HTML:e.description})||[]);return(0/* ["default"] */,n.createBlock)(r.A.name,s,t)}
 /**
@@ -1710,7 +1730,7 @@ t.onProgrammaticCreation&&t.isEligible(e,s)&&([e,s]=t.migrate(e,s))})),[e,s]}(e,
  *
  * @param {Array}                             blocks
  * @param {QuizQuestion|QuizCategoryQuestion} item
- */const d=(e,{id:s,title:t,options:n})=>{const i=n?.category;return e.find((({attributes:e})=>s===e.id||!e.id&&e.title&&e.title===t||!e.id&&e.options?.category&&e.options?.category===i))},p=(e,s)=>{const t=(0,l.mapKeys)(e,((e,t)=>s(t)));return(0,l.mapValues)(t,(e=>(0,l.isObject)(e)?p(e,s):e))},m=e=>"category-question"===e.type?!e.options.category:!e.title;
+ */const m=(e,{id:s,title:t,options:n})=>{const i=n?.category;return e.find((({attributes:e})=>s===e.id||!e.id&&e.title&&e.title===t||!e.id&&e.options?.category&&e.options?.category===i))},h=(e,s)=>{const t=(0,l.mapKeys)(e,((e,t)=>s(t)));return(0,l.mapValues)(t,(e=>(0,l.isObject)(e)?h(e,s):e))},g=e=>"category-question"===e.type?!e.options.category:!e.title;
 /**
  * Normalize an object by applying a mapping function to it's keys, including nested ones.
  *
@@ -1827,8 +1847,8 @@ return(0,l.jsx)("div",{...u,children:t?.edit&&(0,l.jsxs)(l.Fragment,{children:[(
  *
  * @param {Object} props NumberControl props.
  */
-const a=e=>{const s=(0,n.useMemo)((()=>(0,r/* ["default"] */.A)()),[]);
-return(0/* ["default"] */,l.jsx)(o.A,{id:s,min:0,step:1,...e,suffix:(0,i._n)("Point","Points",e.value,"sensei-lms")})};
+const a=(0,n.forwardRef)(((e,s)=>{const t=(0,n.useMemo)((()=>(0,r/* ["default"] */.A)()),[]);
+return(0/* ["default"] */,l.jsx)(o.A,{ref:s,id:t,min:0,step:1,...e,suffix:(0,i._n)("Point","Points",e.value,"sensei-lms")})}));
 /***/},
 /***/70251:
 /***/(e,s,t)=>{"use strict";
@@ -2417,10 +2437,10 @@ return e.media&&t.push((e=>{switch(e.type){case"image":return(0,i.createBlock)("
 /***/94542:
 /***/(e,s,t)=>{"use strict";
 /* harmony export */t.d(s,{
-/* harmony export */c:()=>/* binding */m
-/* harmony export */,t:()=>/* binding */h
+/* harmony export */c:()=>/* binding */h
+/* harmony export */,t:()=>/* binding */g
 /* harmony export */});
-/* harmony import */var n=t(56427),i=t(27723),r=t(60817),o=t(2567),l=t(62540);
+/* harmony import */var n=t(56427),i=t(86087),r=t(27723),o=t(60817),l=t(2567),a=t(62540);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -2428,17 +2448,17 @@ return e.media&&t.push((e=>{switch(e.type){case"image":return(0,i.createBlock)("
 /**
  * Internal dependencies
  */
-const a="single",c="multi",u=[{label:(0,i.__)("Single page","sensei-lms"),value:a},{label:(0,i.__)("Multi-page","sensei-lms"),value:c}],d=e=>s=>{e({paginationNumber:s===c?1:null})}
+const c="single",u="multi",d=[{label:(0,r.__)("Single page","sensei-lms"),value:c},{label:(0,r.__)("Multi-page","sensei-lms"),value:u}],p=e=>s=>{e({paginationNumber:s===u?1:null})}
 /**
  * A component which contains a NumberControl and the 'per page' accompanying text.
  *
  * @param {Object}   props                  Component props.
  * @param {Object}   props.settings         Pagination settings object.
  * @param {Function} props.updatePagination Update pagination options function.
- */,p=({settings:e,updatePagination:s,...t})=>{const{paginationNumber:n}=e;
-return(0,l.jsxs)(l.Fragment,{children:[(0/* ["default"] */,l.jsx)(r.A,{label:(0,i.__)("Number of Questions","sensei-lms"),min:1,step:1,hideLabelFromVision:!0,suffix:(0,i._n)("question","questions",n,"sensei-lms"),value:n,onChange:e=>s({paginationNumber:e}),...t}),(0,l.jsx)("span",{children:(0,i.__)("per page","sensei-lms")})]})},m=({settings:e,updatePagination:s})=>{const{paginationNumber:t,showProgressBar:o,progressBarRadius:m,progressBarHeight:h}=e;
-return(0,l.jsx)(l.Fragment,{children:(0,l.jsxs)(n.PanelBody,{title:(0,i.__)("Pagination","sensei-lms"),initialOpen:!0,children:[(0,l.jsx)(n.PanelRow,{className:"sensei-lms-quiz-block-settings__pagination",children:(0,l.jsx)(n.SelectControl,{label:(0,i.__)("Pagination","sensei-lms"),hideLabelFromVision:!0,value:null===t?a:c,options:u,onChange:d(s)})}),null!==t&&(0,l.jsx)(n.PanelRow,{className:"sensei-lms-quiz-block-settings__question-count",children:(0,l.jsx)(p,{settings:e,updatePagination:s})}),null!==t&&(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(n.PanelRow,{children:(0,l.jsx)(n.ToggleControl,{checked:o,label:(0,i.__)("Show Progress Bar","sensei-lms"),value:m,onChange:e=>s({showProgressBar:e})})}),(0,l.jsxs)(n.PanelRow,{className:"sensei-lms-quiz-block-settings__progress-bar",children:[(0/* ["default"] */,l.jsx)(r.A,{label:(0,i.__)("Radius","sensei-lms"),min:1,step:1,suffix:(0,i.__)("PX","sensei-lms"),value:m,onChange:e=>s({progressBarRadius:e})}),(0/* ["default"] */,l.jsx)(r.A,{label:(0,i.__)("Height","sensei-lms"),min:1,step:1,suffix:(0,i.__)("PX","sensei-lms"),value:h,onChange:e=>s({progressBarHeight:e})})]})]})]})})},h=({settings:e,updatePagination:s})=>{const{paginationNumber:t}=e;
-return(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(n.ToolbarGroup,{children:(0/* ["default"] */,l.jsx)(o.A,{options:u,optionsLabel:(0,i.__)("Quiz pagination","sensei-lms"),value:null===t?a:c,onChange:d(s)})}),null!==t&&(0,l.jsx)(n.ToolbarGroup,{className:"sensei-lms-quiz-block__toolbar-group",children:(0,l.jsx)(n.ToolbarItem,{as:p,settings:e,updatePagination:s})})]})}}
+ */,m=(0,i.forwardRef)((({settings:e,updatePagination:s,...t},n)=>{const{paginationNumber:i}=e;
+return(0,a.jsxs)(a.Fragment,{children:[(0/* ["default"] */,a.jsx)(o.A,{ref:n,label:(0,r.__)("Number of Questions","sensei-lms"),min:1,step:1,hideLabelFromVision:!0,suffix:(0,r._n)("question","questions",i,"sensei-lms"),value:i,onChange:e=>s({paginationNumber:e}),...t}),(0,a.jsx)("span",{children:(0,r.__)("per page","sensei-lms")})]})})),h=({settings:e,updatePagination:s})=>{const{paginationNumber:t,showProgressBar:i,progressBarRadius:l,progressBarHeight:h}=e;
+return(0,a.jsx)(a.Fragment,{children:(0,a.jsxs)(n.PanelBody,{title:(0,r.__)("Pagination","sensei-lms"),initialOpen:!0,children:[(0,a.jsx)(n.PanelRow,{className:"sensei-lms-quiz-block-settings__pagination",children:(0,a.jsx)(n.SelectControl,{label:(0,r.__)("Pagination","sensei-lms"),hideLabelFromVision:!0,value:null===t?c:u,options:d,onChange:p(s)})}),null!==t&&(0,a.jsx)(n.PanelRow,{className:"sensei-lms-quiz-block-settings__question-count",children:(0,a.jsx)(m,{settings:e,updatePagination:s})}),null!==t&&(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(n.PanelRow,{children:(0,a.jsx)(n.ToggleControl,{checked:i,label:(0,r.__)("Show Progress Bar","sensei-lms"),value:l,onChange:e=>s({showProgressBar:e})})}),(0,a.jsxs)(n.PanelRow,{className:"sensei-lms-quiz-block-settings__progress-bar",children:[(0/* ["default"] */,a.jsx)(o.A,{label:(0,r.__)("Radius","sensei-lms"),min:1,step:1,suffix:(0,r.__)("PX","sensei-lms"),value:l,onChange:e=>s({progressBarRadius:e})}),(0/* ["default"] */,a.jsx)(o.A,{label:(0,r.__)("Height","sensei-lms"),min:1,step:1,suffix:(0,r.__)("PX","sensei-lms"),value:h,onChange:e=>s({progressBarHeight:e})})]})]})]})})},g=({settings:e,updatePagination:s})=>{const{paginationNumber:t}=e;
+return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(n.ToolbarGroup,{children:(0/* ["default"] */,a.jsx)(l.A,{options:d,optionsLabel:(0,r.__)("Quiz pagination","sensei-lms"),value:null===t?c:u,onChange:p(s)})}),null!==t&&(0,a.jsx)(n.ToolbarGroup,{className:"sensei-lms-quiz-block__toolbar-group",children:(0,a.jsx)(n.ToolbarItem,{as:m,settings:e,updatePagination:s})})]})}}
 /***/,
 /***/94715:
 /***/e=>{"use strict";e.exports=window.wp.blockEditor}

@@ -100,12 +100,12 @@ return(0,r.jsxs)(i.PanelBody,{title:(0,n.__)("Video","sensei-lms"),initialOpen:!
 /***/38139:
 /***/(e,s,t)=>{
 /* harmony export */t.d(s,{
-/* harmony export */AV:()=>/* binding */x
-/* harmony export */,Fk:()=>/* binding */b
-/* harmony export */,QX:()=>/* binding */g
-/* harmony export */,cz:()=>/* binding */w
+/* harmony export */AV:()=>/* binding */w
+/* harmony export */,Fk:()=>/* binding */x
+/* harmony export */,QX:()=>/* binding */b
+/* harmony export */,cz:()=>/* binding */f
 /* harmony export */});
-/* harmony import */var n=t(52619),i=t(14309),o=t(43656),r=t(27723),l=t(47143),a=t(56427),c=t(55956),d=t(1486),u=t(79347),p=t(19899),m=t(14136),_=t(48597),h=t(62540);
+/* harmony import */var n=t(52619),i=t(14309),o=t(43656),r=t(27723),l=t(47143),a=t(86087),c=t(56427),d=t(55956),u=t(1486),p=t(79347),m=t(19899),_=t(14136),h=t(48597),g=t(62540);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -113,7 +113,7 @@ return(0,r.jsxs)(i.PanelBody,{title:(0,n.__)("Video","sensei-lms"),initialOpen:!
 /**
  * Internal dependencies
  */
-o.PluginDocumentSettingPanel||(o.PluginDocumentSettingPanel=i.PluginDocumentSettingPanel),o.PluginSidebar||(o.PluginSidebar=i.PluginSidebar),o.PluginSidebarMoreMenuItem||(o.PluginSidebarMoreMenuItem=i.PluginSidebarMoreMenuItem);const g="sensei-lms-course-settings-sidebar",b="sensei-lms-document-settings-sidebar",x=()=>{
+o.PluginDocumentSettingPanel||(o.PluginDocumentSettingPanel=i.PluginDocumentSettingPanel),o.PluginSidebar||(o.PluginSidebar=i.PluginSidebar),o.PluginSidebarMoreMenuItem||(o.PluginSidebarMoreMenuItem=i.PluginSidebarMoreMenuItem);const b="sensei-lms-course-settings-sidebar",x="sensei-lms-document-settings-sidebar",w=()=>{
 /**
    * Filter to show or hide course pricing component.
    *
@@ -131,11 +131,10 @@ const e=(0,n.applyFilters)("senseiCoursePricingHide",!1),s=(0,n.applyFilters)("s
    * @hook  senseiCourseAccessPeriodHide This hook allows to pass a boolean value for hiding course expiration (access period) upsell.
    * @return {boolean} 				   Hide the component.
    */
-return(0,h.jsxs)(h.Fragment,{children:[(0,h.jsx)(o.PluginSidebarMoreMenuItem,{target:g,icon:(0/* ["default"] */,h.jsx)(_.A,{height:"20",width:"20"}),children:(0,r.__)("Course Settings","sensei-lms")}),(0,h.jsxs)(o.PluginSidebar,{name:g,title:(0,r.__)("Course Settings","sensei-lms"),icon:(0/* ["default"] */,h.jsx)(_.A,{height:"20",width:"20"}),children:[!e&&(0/* ["default"] */,h.jsx)(c.A,{}),!s&&(0/* ["default"] */,h.jsx)(d.A,{}),(0,h.jsx)(a.Slot,{name:"SenseiCourseSidebar"}),(0/* ["default"] */,h.jsx)(u.A,{}),(0/* ["default"] */,h.jsx)(p.A,{}),(0/* ["default"] */,h.jsx)(m.A,{})]})]})},w=()=>{if((0,l.useSelect)((e=>(e(o.store).isEditorPanelOpened?e(o.store).isEditorPanelOpened:e(i.store).isEditorPanelOpened)(`${b}/${b}`)))){const e=(0,l.dispatch)(o.store).toggleEditorPanelOpened?(0,l.dispatch)(o.store).toggleEditorPanelOpened:(0,l.dispatch)(i.store).toggleEditorPanelOpened;
+return(0,g.jsxs)(g.Fragment,{children:[(0,g.jsx)(o.PluginSidebarMoreMenuItem,{target:b,icon:(0/* ["default"] */,g.jsx)(h.A,{height:"20",width:"20"}),children:(0,r.__)("Course Settings","sensei-lms")}),(0,g.jsxs)(o.PluginSidebar,{name:b,title:(0,r.__)("Course Settings","sensei-lms"),icon:(0/* ["default"] */,g.jsx)(h.A,{height:"20",width:"20"}),children:[!e&&(0/* ["default"] */,g.jsx)(d.A,{}),!s&&(0/* ["default"] */,g.jsx)(u.A,{}),(0,g.jsx)(c.Slot,{name:"SenseiCourseSidebar"}),(0/* ["default"] */,g.jsx)(p.A,{}),(0/* ["default"] */,g.jsx)(m.A,{}),(0/* ["default"] */,g.jsx)(_.A,{})]})]})},f=()=>{const e=(0,l.useSelect)((e=>(e(o.store).isEditorPanelOpened?e(o.store).isEditorPanelOpened:e(i.store).isEditorPanelOpened)(`${x}/${x}`)));return(0,a.useEffect)((()=>{if(!e)return;const s=(0,l.dispatch)(o.store).toggleEditorPanelOpened?(0,l.dispatch)(o.store).toggleEditorPanelOpened:(0,l.dispatch)(i.store).toggleEditorPanelOpened;
 // when 'Course Settings' is clicked, isSenseiEditorPanelOpen returns true, so we open the 'Course Settings'
 // plugin sidebar and then close the 'Sensei Settings' panel which sets isSenseiEditorPanelOpen back to false.
-(0,l.dispatch)(i.store).openGeneralSidebar(`${g}/${g}`),e(`${b}/${b}`)}
-return(0,h.jsx)(o.PluginDocumentSettingPanel,{name:b,title:(0,r.__)("Course Settings","sensei-lms"),className:"sensei-plugin-document-setting-panel"})}}
+(0,l.dispatch)(i.store).openGeneralSidebar(`${b}/${b}`),s(`${x}/${x}`)}),[e]),(0,g.jsx)(o.PluginDocumentSettingPanel,{name:x,title:(0,r.__)("Course Settings","sensei-lms"),className:"sensei-plugin-document-setting-panel"})}}
 /***/,
 /***/41544:
 /***/e=>{e.exports=JSON.parse('{"name":"sensei-lms/course-outline"}');

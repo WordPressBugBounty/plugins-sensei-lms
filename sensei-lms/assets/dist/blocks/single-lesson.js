@@ -110,9 +110,9 @@ return o.createElement("svg",i({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
 /***/60817:
 /***/(e,s,t)=>{"use strict";
 /* harmony export */t.d(s,{
-/* harmony export */A:()=>a
+/* harmony export */A:()=>c
 /* harmony export */});
-/* harmony import */var n=t(4452),r=t.n(n),o=t(56427),i=t(27723),l=t(62540);
+/* harmony import */var n=t(4452),r=t.n(n),o=t(56427),i=t(86087),l=t(27723),a=t(62540);
 /* harmony import */
 /**
  * External dependencies
@@ -135,7 +135,7 @@ return o.createElement("svg",i({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
  * @param {string}   props.suffix              Input suffix.
  * @param {boolean}  props.hideLabelFromVision Hides label.
  */
-const a=({className:e,id:s,label:t,value:n,help:a,allowReset:c=!1,resetLabel:d,onChange:u,suffix:p,hideLabelFromVision:m,...f})=>(0,l.jsx)(o.BaseControl,{id:s,label:t,help:a,hideLabelFromVision:m,children:(0,l.jsxs)("div",{className:"sensei-number-control",children:[(0,l.jsxs)("div",{className:"sensei-number-control__input-container",children:[(0,l.jsx)("input",{className:r()("sensei-number-control__input components-text-control__input",e),type:"number",id:s,onChange:e=>{u(parseInt(e.target.value,10)||f.min||0)},value:null===n?"":n,...f}),p&&(0,l.jsx)("span",{className:"sensei-number-control__input-suffix",children:p})]}),c&&(0,l.jsx)(o.Button,{className:"sensei-number-control__button",isSmall:!0,isSecondary:!0,onClick:()=>u(null),children:d||(0,i.__)("Reset","sensei-lms")})]})});
+const c=(0,i.forwardRef)((({className:e,id:s,label:t,value:n,help:i,allowReset:c=!1,resetLabel:d,onChange:u,suffix:p,hideLabelFromVision:m,...f},v)=>(0,a.jsx)(o.BaseControl,{id:s,label:t,help:i,hideLabelFromVision:m,children:(0,a.jsxs)("div",{className:"sensei-number-control",children:[(0,a.jsxs)("div",{className:"sensei-number-control__input-container",children:[(0,a.jsx)("input",{ref:v,className:r()("sensei-number-control__input components-text-control__input",e),type:"number",id:s,onChange:e=>{u(parseInt(e.target.value,10)||f.min||0)},value:null===n?"":n,...f}),p&&(0,a.jsx)("span",{className:"sensei-number-control__input-suffix",children:p})]}),c&&(0,a.jsx)(o.Button,{className:"sensei-number-control__button",isSmall:!0,isSecondary:!0,onClick:()=>u(null),children:d||(0,l.__)("Reset","sensei-lms")})]})})));
 /* harmony default export */}
 /***/,
 /***/61277:

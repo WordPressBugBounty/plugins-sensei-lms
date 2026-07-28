@@ -442,9 +442,9 @@ return i.createElement("svg",o({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
 /***/60817:
 /***/(e,s,t)=>{"use strict";
 /* harmony export */t.d(s,{
-/* harmony export */A:()=>a
+/* harmony export */A:()=>c
 /* harmony export */});
-/* harmony import */var r=t(4452),n=t.n(r),i=t(56427),o=t(27723),l=t(62540);
+/* harmony import */var r=t(4452),n=t.n(r),i=t(56427),o=t(86087),l=t(27723),a=t(62540);
 /* harmony import */
 /**
  * External dependencies
@@ -467,7 +467,7 @@ return i.createElement("svg",o({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
  * @param {string}   props.suffix              Input suffix.
  * @param {boolean}  props.hideLabelFromVision Hides label.
  */
-const a=({className:e,id:s,label:t,value:r,help:a,allowReset:c=!1,resetLabel:u,onChange:p,suffix:m,hideLabelFromVision:d,..._})=>(0,l.jsx)(i.BaseControl,{id:s,label:t,help:a,hideLabelFromVision:d,children:(0,l.jsxs)("div",{className:"sensei-number-control",children:[(0,l.jsxs)("div",{className:"sensei-number-control__input-container",children:[(0,l.jsx)("input",{className:n()("sensei-number-control__input components-text-control__input",e),type:"number",id:s,onChange:e=>{p(parseInt(e.target.value,10)||_.min||0)},value:null===r?"":r,..._}),m&&(0,l.jsx)("span",{className:"sensei-number-control__input-suffix",children:m})]}),c&&(0,l.jsx)(i.Button,{className:"sensei-number-control__button",isSmall:!0,isSecondary:!0,onClick:()=>p(null),children:u||(0,o.__)("Reset","sensei-lms")})]})});
+const c=(0,o.forwardRef)((({className:e,id:s,label:t,value:r,help:o,allowReset:c=!1,resetLabel:u,onChange:p,suffix:m,hideLabelFromVision:d,..._},h)=>(0,a.jsx)(i.BaseControl,{id:s,label:t,help:o,hideLabelFromVision:d,children:(0,a.jsxs)("div",{className:"sensei-number-control",children:[(0,a.jsxs)("div",{className:"sensei-number-control__input-container",children:[(0,a.jsx)("input",{ref:h,className:n()("sensei-number-control__input components-text-control__input",e),type:"number",id:s,onChange:e=>{p(parseInt(e.target.value,10)||_.min||0)},value:null===r?"":r,..._}),m&&(0,a.jsx)("span",{className:"sensei-number-control__input-suffix",children:m})]}),c&&(0,a.jsx)(i.Button,{className:"sensei-number-control__button",isSmall:!0,isSecondary:!0,onClick:()=>p(null),children:u||(0,l.__)("Reset","sensei-lms")})]})})));
 /* harmony default export */}
 /***/,
 /***/62540:
@@ -623,7 +623,7 @@ return(0,m.jsxs)(m.Fragment,{children:[!g&&(0,m.jsx)(l.InspectorControls,{childr
 const a=({attributes:e})=>(0,l.jsx)("style",{dangerouslySetInnerHTML:{__html:e.content}}),c={...o,title:(0,r.__)("Template Style","sensei-lms"),icon:{src:(0,l.jsx)(n.Icon,{icon:i/* ["default"] */.A}),foreground:"#43AF99"},edit:a,save:a}}
 /***/,
 /***/92088:
-/***/e=>{"use strict";e.exports=JSON.parse('{"name":"sensei-lms/course-theme-lesson-module","category":"theme","apiVersion":2,"attributes":{"className":"some-className"},"supports":{"align":true,"color":{"gradients":true,"link":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}}}}')}
+/***/e=>{"use strict";e.exports=JSON.parse('{"name":"sensei-lms/course-theme-lesson-module","category":"theme","apiVersion":2,"attributes":{"className":{"type":"string"}},"supports":{"align":true,"color":{"gradients":true,"link":true},"spacing":{"margin":true,"padding":true,"blockGap":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalTextDecoration":true,"__experimentalLetterSpacing":true,"__experimentalDefaultControls":{"fontSize":true}}}}')}
 /***/,
 /***/92675:
 /***/(e,s,t)=>{"use strict";
