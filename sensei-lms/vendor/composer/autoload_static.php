@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbc69057726243faa562ab94e67ae6f6c
+class ComposerStaticInit6c2a32718286f60437c225c97346892c
 {
     public static $files = array (
         '7e03bc80976ad8e42da9beffeb3edb01' => __DIR__ . '/../..' . '/includes/sensei-functions.php',
@@ -189,6 +189,7 @@ class ComposerStaticInitbc69057726243faa562ab94e67ae6f6c
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\HtmlProcessor\\HtmlPruner' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/HtmlProcessor/HtmlPruner.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\Utilities\\ArrayIntersector' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/Utilities/ArrayIntersector.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\Utilities\\CssConcatenator' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/Utilities/CssConcatenator.php',
+        'Sensei\\ThirdParty\\PhpToken' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\CSSList\\AtRuleBlockList' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/CSSList/AtRuleBlockList.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\CSSList\\CSSBlockList' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/CSSList/CSSBlockList.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\CSSList\\CSSList' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/CSSList/CSSList.php',
@@ -279,16 +280,20 @@ class ComposerStaticInitbc69057726243faa562ab94e67ae6f6c
         'Sensei\\ThirdParty\\Symfony\\Component\\CssSelector\\XPath\\TranslatorInterface' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/css-selector/XPath/TranslatorInterface.php',
         'Sensei\\ThirdParty\\Symfony\\Component\\CssSelector\\XPath\\XPathExpr' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/css-selector/XPath/XPathExpr.php',
         'Sensei\\ThirdParty\\Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/polyfill-php80/Php80.php',
+        'Sensei\\ThirdParty\\Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/polyfill-php80/PhpToken.php',
+        'Sensei\\ThirdParty\\UnhandledMatchError' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'Sensei\\ThirdParty\\ValueError' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Sensei\\WPML\\Course_Progress' => __DIR__ . '/../..' . '/includes/wpml/class-course-progress.php',
         'Sensei\\WPML\\Course_Translation' => __DIR__ . '/../..' . '/includes/wpml/class-course-translation.php',
         'Sensei\\WPML\\Custom_Fields' => __DIR__ . '/../..' . '/includes/wpml/class-custom-fields.php',
         'Sensei\\WPML\\Email' => __DIR__ . '/../..' . '/includes/wpml/class-email.php',
+        'Sensei\\WPML\\Grading' => __DIR__ . '/../..' . '/includes/wpml/class-grading.php',
         'Sensei\\WPML\\Language_Details' => __DIR__ . '/../..' . '/includes/wpml/class-language-details.php',
         'Sensei\\WPML\\Lesson_Progress' => __DIR__ . '/../..' . '/includes/wpml/class-lesson-progress.php',
         'Sensei\\WPML\\Lesson_Translation' => __DIR__ . '/../..' . '/includes/wpml/class-lesson-translation.php',
         'Sensei\\WPML\\Lesson_Translation_Helper' => __DIR__ . '/../..' . '/includes/wpml/trait-lesson-translation-helper.php',
         'Sensei\\WPML\\Page' => __DIR__ . '/../..' . '/includes/wpml/class-page.php',
+        'Sensei\\WPML\\Question_Display' => __DIR__ . '/../..' . '/includes/wpml/class-question-display.php',
         'Sensei\\WPML\\Question_Translation_Helper' => __DIR__ . '/../..' . '/includes/wpml/trait-question-translation-helper.php',
         'Sensei\\WPML\\Quiz_Progress' => __DIR__ . '/../..' . '/includes/wpml/class-quiz-progress.php',
         'Sensei\\WPML\\Quiz_Submission' => __DIR__ . '/../..' . '/includes/wpml/class-quiz-submission.php',
@@ -629,7 +634,7 @@ class ComposerStaticInitbc69057726243faa562ab94e67ae6f6c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInitbc69057726243faa562ab94e67ae6f6c::$classMap;
+            $loader->classMap = ComposerStaticInit6c2a32718286f60437c225c97346892c::$classMap;
 
         }, null, ClassLoader::class);
     }

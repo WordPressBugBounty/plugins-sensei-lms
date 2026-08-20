@@ -1,26 +1,24 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
-/******/var t={
-/***/52619:
-/***/t=>{t.exports=window.wp.hooks;
+/******/var e={
+/***/66087(e){e.exports=window.lodash;
 /***/},
-/***/66087:
-/***/t=>{t.exports=window.lodash;
-/***/
-/******/}},o={};
+/***/52619(e){e.exports=window.wp.hooks;
+/***/}
+/******/};
 /************************************************************************/
 /******/ // The module cache
-/******/
+/******/const t={};
 /******/
 /******/ // The require function
-/******/function r(e){
+/******/function r(o){
 /******/ // Check if module is in cache
-/******/var a=o[e];
-/******/if(void 0!==a)
-/******/return a.exports;
+/******/const s=t[o];
+/******/if(void 0!==s)
+/******/return s.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var s=o[e]={
+/******/const a=t[o]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -30,47 +28,61 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return t[e](s,s.exports,r),s.exports;
+/******/return e[o](a,a.exports,r),a.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/r.n=t=>{
-/******/var o=t&&t.__esModule?
-/******/()=>t.default
-/******/:()=>t
-/******/;
-/******/return r.d(o,{a:o}),o;
+/******/r.n=e=>{
+/******/const t=e&&e.__esModule?
+/******/()=>e.default:
+/******/()=>e;
+/******/
+/******/return r.d(t,{a:t}),t;
 /******/},
-/******/ // define getter functions for harmony exports
-/******/r.d=(t,o)=>{
-/******/for(var e in o)
-/******/r.o(o,e)&&!r.o(t,e)&&
-/******/Object.defineProperty(t,e,{enumerable:!0,get:o[e]})
+/******/ // define getter/value functions for harmony exports
+/******/r.d=(e,t)=>{
+/******/if(Array.isArray(t))
+/******/for(
+/******/var o=0;o<t.length;){
+/******/var s=t[o++],a=t[o++];
+/******/
+/******/r.o(e,s)?0===a&&o++
+/******/:
+/******/0===a?
+/******/Object.defineProperty(e,s,{enumerable:!0,value:t[o++]}):
+/******/Object.defineProperty(e,s,{enumerable:!0,get:a})
+/******/}
+/******/else
+/******/for(var s in t)
+/******/r.o(t,s)&&!r.o(e,s)&&
+/******/Object.defineProperty(e,s,{enumerable:!0,get:t[s]})
 /******/;
+/******/
 /******/},
-/******/r.o=(t,o)=>Object.prototype.hasOwnProperty.call(t,o)
+/******/r.o=(e,t)=>Object.hasOwn(e,t)
 /******/;
+/******/
+/************************************************************************/
 /* unused harmony export default */
-/* harmony import */var e=r(52619),a=r(66087);
-/* harmony import */(0,e.addFilter)("blocks.registerBlockType","sensei-lms/email-blocks",(
+/* harmony import */var o=r(52619),s=r(66087);
+/* harmony import */(0,o.addFilter)("blocks.registerBlockType","sensei-lms/email-blocks",
 /**
    * Update the blocks to remove extra settings when used in email editor.
    *
    * @param {Object} settings Block settings.
    * @param {string} name     Block name.
    */
-function(t,o){const r={...t.supports?t.supports:{}};
+function(e,t){const r={...e.supports?e.supports:{}};
 // Remove font family setting.
-return((0,a.has)(t,"supports.typography.fontFamily")||(0,a.has)(t,"supports.typography.__experimentalFontFamily"))&&(r.typography={...r.typography,__experimentalFontFamily:!1,fontFamily:!1}),
+return((0,s.has)(e,"supports.typography.fontFamily")||(0,s.has)(e,"supports.typography.__experimentalFontFamily"))&&(r.typography={...r.typography,__experimentalFontFamily:!1,fontFamily:!1}),
 // Remove alignWide setting.
-(0,a.has)(t,"supports.alignWide")&&(r.alignWide=!1),
+(0,s.has)(e,"supports.alignWide")&&(r.alignWide=!1),
 // Remove wide from align options.
-(0,a.has)(t,"supports.align.length")&&(r.align=r.align.filter((t=>"wide"!==t))),
+(0,s.has)(e,"supports.align.length")&&(r.align=r.align.filter(e=>"wide"!==e)),
 // Alignment is not supported for buttons block in emails.
-"core/buttons"===o&&(0,a.has)(r,"layout")&&(r.layout=!1),
+"core/buttons"===t&&(0,s.has)(r,"layout")&&(r.layout=!1),
 // Alingment is not supported for image block in emails.
-"core/image"===o&&(0,a.has)(r,"align")&&(r.align=!1),{...t,supports:r}}),10)})
-/******/();
+"core/image"===t&&(0,s.has)(r,"align")&&(r.align=!1),{...e,supports:r}},10)})();

@@ -1,23 +1,22 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
 /******/var e={
-/***/27723:
-/***/e=>{e.exports=window.wp.i18n;
-/***/
-/******/}},r={};
+/***/27723(e){e.exports=window.wp.i18n;
+/***/}
+/******/};
 /************************************************************************/
 /******/ // The module cache
-/******/
+/******/const r={};
 /******/
 /******/ // The require function
-/******/function o(n){
+/******/function n(o){
 /******/ // Check if module is in cache
-/******/var t=r[n];
+/******/const t=r[o];
 /******/if(void 0!==t)
 /******/return t.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/var i=r[n]={
+/******/const i=r[o]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -27,32 +26,45 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return e[n](i,i.exports,o),i.exports;
+/******/return e[o](i,i.exports,n),i.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
 /******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/o.n=e=>{
-/******/var r=e&&e.__esModule?
-/******/()=>e.default
-/******/:()=>e
-/******/;
-/******/return o.d(r,{a:r}),r;
+/******/n.n=e=>{
+/******/const r=e&&e.__esModule?
+/******/()=>e.default:
+/******/()=>e;
+/******/
+/******/return n.d(r,{a:r}),r;
 /******/},
-/******/ // define getter functions for harmony exports
-/******/o.d=(e,r)=>{
-/******/for(var n in r)
-/******/o.o(r,n)&&!o.o(e,n)&&
-/******/Object.defineProperty(e,n,{enumerable:!0,get:r[n]})
+/******/ // define getter/value functions for harmony exports
+/******/n.d=(e,r)=>{
+/******/if(Array.isArray(r))
+/******/for(
+/******/var o=0;o<r.length;){
+/******/var t=r[o++],i=r[o++];
+/******/
+/******/n.o(e,t)?0===i&&o++
+/******/:
+/******/0===i?
+/******/Object.defineProperty(e,t,{enumerable:!0,value:r[o++]}):
+/******/Object.defineProperty(e,t,{enumerable:!0,get:i})
+/******/}
+/******/else
+/******/for(var t in r)
+/******/n.o(r,t)&&!n.o(e,t)&&
+/******/Object.defineProperty(e,t,{enumerable:!0,get:r[t]})
 /******/;
+/******/
 /******/},
-/******/o.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r)
+/******/n.o=(e,r)=>Object.hasOwn(e,r)
 /******/;
 /******/
 /************************************************************************/
-/* harmony import */var n=o(27723);
+/* harmony import */var o=n(27723);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -64,9 +76,8 @@
  */
 window.addPlaceholderInTinymceEditor=e=>{
 // Remove placeholder on submit.
-jQuery("#sensei-quiz-form").submit((function(){return e.dom.remove("multi-line-placeholder"),!0})),
+jQuery("#sensei-quiz-form").submit(function(){return e.dom.remove("multi-line-placeholder"),!0}),
 // Add placeholder on init and blur.
-e.on("blur init",(function(){""==e.getContent()&&e.setContent("<p id='multi-line-placeholder'>"+(0,n.__)("Your answer","sensei-lms")+"</p>")})),
+e.on("blur init",function(){""==e.getContent()&&e.setContent("<p id='multi-line-placeholder'>"+(0,o.__)("Your answer","sensei-lms")+"</p>")}),
 // Remove placeholder on focus.
-e.on("focus",(function(){e.dom.remove("multi-line-placeholder")}))}})
-/******/();
+e.on("focus",function(){e.dom.remove("multi-line-placeholder")})}})();
