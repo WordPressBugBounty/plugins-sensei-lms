@@ -48,7 +48,7 @@ const adminTracking = [
 	},
 ];
 
-window.sensei_log_event = function ( event_name, properties ) {
+window.sensei_log_event = function ( eventName, properties ) {
 	const actionName = 'sensei_log_event';
 
 	if ( ! sensei_event_logging.enabled ) {
@@ -59,7 +59,8 @@ window.sensei_log_event = function ( event_name, properties ) {
 		const formData = new FormData();
 
 		formData.append( 'action', actionName );
-		formData.append( 'event_name', event_name );
+		formData.append( 'nonce', sensei_event_logging.nonce );
+		formData.append( 'event_name', eventName );
 
 		if ( properties ) {
 			formData.append( 'properties', JSON.stringify( properties ) );
@@ -69,9 +70,10 @@ window.sensei_log_event = function ( event_name, properties ) {
 		return;
 	}
 
-	let data = {
+	const data = {
 		action: actionName,
-		event_name: event_name,
+		nonce: sensei_event_logging.nonce,
+		event_name: eventName,
 	};
 
 	if ( properties ) {
@@ -90,7 +92,7 @@ jQuery( document ).ready( function ( $ ) {
 	} );
 
 	$( 'body' ).on( 'click', 'a[data-sensei-log-event]', function ( event ) {
-		let sensei_event_name = $( event.target ).data( 'sensei-log-event' );
-		sensei_log_event( sensei_event_name );
+		const senseiEventName = $( event.target ).data( 'sensei-log-event' );
+		sensei_log_event( senseiEventName );
 	} );
 } );

@@ -43,6 +43,41 @@ interface Progress_Aggregation_Service_Interface {
 	public function count_statuses( array $args ): array;
 
 	/**
+	 * Count course progress records grouped by user and status.
+	 *
+	 * @since 4.26.4
+	 *
+	 * @param array $args {
+	 *     Query arguments.
+	 *
+	 *     @type string    $type    Must be 'course'.
+	 *     @type int|array $user_id Restrict to specific user IDs.
+	 * }
+	 * @return array<int, array<string, int>> Map of user_id => [ status => count ].
+	 */
+	public function count_statuses_by_user( array $args ): array;
+
+	/**
+	 * Count students with activity on a lesson.
+	 *
+	 * @since 4.26.4
+	 *
+	 * @param array $args Comments-API-shaped activity arguments.
+	 * @return int Number of students with matching lesson activity.
+	 */
+	public function get_lesson_student_count( array $args ): int;
+
+	/**
+	 * Count students who completed a lesson.
+	 *
+	 * @since 4.26.4
+	 *
+	 * @param array $args Comments-API-shaped activity arguments.
+	 * @return int Number of students with matching completed lesson activity.
+	 */
+	public function get_lesson_completion_count( array $args ): int;
+
+	/**
 	 * Get aggregate totals for a set of lessons.
 	 *
 	 * @since 4.26.0

@@ -37,14 +37,14 @@ const l=e=>({type:r/* .FETCH_FROM_API */.l1,request:e}),a=e=>({type:/* inlined e
  *
  * @param {string} jobId The job ID.
  */
-function*d(e){try{const t=yield l({path:(0,i/* .buildJobEndpointUrl */.O)(e)});yield p((0,o/* .normalizeImportData */.xk)(t))}catch(e){
+function*d(e){try{const t=yield l({path:(0,i/* .buildJobEndpointUrl */.O)(e)});yield p((0,o/* .normalizeImportData */.xk)(t))}catch{
 // Silent.
 }}
 /**
  * Run job batches and query progress until it is completed.
  *
  * @param {string} jobId Job ID.
- */const u=function*(e){try{const t=yield l({path:(0,i/* .buildJobEndpointUrl */.O)(e,["process"]),method:"POST"});yield p((0,o/* .normalizeImportData */.xk)(t));const{status:s}=t.status;"completed"!==s&&(yield*u(e))}catch(t){yield a(2e3),yield*u(e)}},p=e=>({type:r/* .SET_JOB_STATE */.RI,data:e});
+ */const u=function*(e){try{const t=yield l({path:(0,i/* .buildJobEndpointUrl */.O)(e,["process"]),method:"POST"});yield p((0,o/* .normalizeImportData */.xk)(t));const{status:s}=t.status;"completed"!==s&&(yield*u(e))}catch{yield a(2e3),yield*u(e)}},p=e=>({type:r/* .SET_JOB_STATE */.RI,data:e});
 /**
  * @typedef  {Object} SetJobStateAction
  * @property {string} type Action type.
@@ -437,10 +437,7 @@ const a=[{key:"upload",container:(0/* ["default"] */,l.jsx)(n.A,{}),label:(0,r._
 /* harmony import */var r=s(56427),n=s(56009),o=s(27723),i=s(75808),l=s(27371),a=s(62540);
 /* harmony import */
 /* harmony export */s.d(t,[
-/* harmony export */"n",0,({jobId:e,state:t,uploadFileForLevel:s,throwEarlyUploadError:c,deleteLevelFile:d})=>(0,a.jsx)("ol",{children:l/* .levels */.y.map(l=>{const u=t[l.key],p=(e=>e.hasError?(0/* .Notice */,a.jsx)(i.$,{message:e.errorMsg,isError:!0}):e.isUploaded?(0/* .Notice */,a.jsx)(i.$,{message:e.filename}):void 0)(u);let m;
-/* eslint-disable jsx-a11y/label-has-for */
-return u.isDeleting?m=(0,a.jsx)("div",{className:"sensei-upload-file-line__delete-button-wrapper",children:(0,a.jsx)(r.Spinner,{})}):u.isUploaded&&(m=(0,a.jsx)("div",{className:"sensei-upload-file-line__delete-button-wrapper",children:(0,a.jsx)(r.Button,{icon:n/* ["default"] */.A,label:(0,o.__)("Delete File","sensei-lms"),onClick:()=>d(e,l.key),disabled:u.isDeleting})})),(0,a.jsxs)("li",{className:"sensei-upload-file-line sensei-data-port-step__line",children:[(0,a.jsx)("label",{className:"sensei-upload-file-line__description",htmlFor:`sensei-upload-file-line-${l.key}`,children:l.description}),(0,a.jsx)(r.FormFileUpload,{isSecondary:!0,id:`sensei-upload-file-line-${l.key}`,accept:[".csv",".txt"],disabled:u.isUploading||u.isDeleting,onChange:t=>((e,t,s,r,n)=>{if(t.length<1)return;const i=t[0];if(!["csv","txt"].includes(i.name.split(".").pop()))return void n(s,(0,o.__)("Only CSV files are supported.","sensei-lms"));const l=new FormData;l.append("file",i),r(e,s,l)})(e,t.target.files,l.key,s,c),children:u.isUploading?(0,o.__)("Uploading…","sensei-lms"):(0,o.__)("Upload","sensei-lms")},u.isUploading),(p||m)&&(0,a.jsxs)("div",{className:"sensei-upload-file-line__info",children:[p,m]})]},l.key);
-/* eslint-enable */})})])},
+/* harmony export */"n",0,({jobId:e,state:t,uploadFileForLevel:s,throwEarlyUploadError:c,deleteLevelFile:d})=>(0,a.jsx)("ol",{children:l/* .levels */.y.map(l=>{const u=t[l.key],p=(e=>e.hasError?(0/* .Notice */,a.jsx)(i.$,{message:e.errorMsg,isError:!0}):e.isUploaded?(0/* .Notice */,a.jsx)(i.$,{message:e.filename}):void 0)(u);let m;return u.isDeleting?m=(0,a.jsx)("div",{className:"sensei-upload-file-line__delete-button-wrapper",children:(0,a.jsx)(r.Spinner,{})}):u.isUploaded&&(m=(0,a.jsx)("div",{className:"sensei-upload-file-line__delete-button-wrapper",children:(0,a.jsx)(r.Button,{icon:n/* ["default"] */.A,label:(0,o.__)("Delete File","sensei-lms"),onClick:()=>d(e,l.key),disabled:u.isDeleting})})),(0,a.jsxs)("li",{className:"sensei-upload-file-line sensei-data-port-step__line",children:[(0,a.jsx)("label",{className:"sensei-upload-file-line__description",htmlFor:`sensei-upload-file-line-${l.key}`,children:l.description}),(0,a.jsx)(r.FormFileUpload,{isSecondary:!0,id:`sensei-upload-file-line-${l.key}`,accept:[".csv",".txt"],disabled:u.isUploading||u.isDeleting,onChange:t=>((e,t,s,r,n)=>{if(t.length<1)return;const i=t[0];if(!["csv","txt"].includes(i.name.split(".").pop()))return void n(s,(0,o.__)("Only CSV files are supported.","sensei-lms"));const l=new FormData;l.append("file",i),r(e,s,l)})(e,t.target.files,l.key,s,c),children:u.isUploading?(0,o.__)("Uploading…","sensei-lms"):(0,o.__)("Upload","sensei-lms")},u.isUploading),(p||m)&&(0,a.jsxs)("div",{className:"sensei-upload-file-line__info",children:[p,m]})]},l.key)})})])},
 /***/58694(e,t,s){"use strict";
 /* harmony import */var r=s(47143),n=s(29491),o=s(67513);
 /* harmony import */

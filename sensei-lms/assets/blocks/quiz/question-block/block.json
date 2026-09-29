@@ -1,13 +1,11 @@
 {
 	"name": "sensei-lms/quiz-question",
 	"title": "Question",
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"description": "The building block of all quizzes.",
-	"parent": [
-		"sensei-lms/quiz"
-	],
+	"parent": [ "sensei-lms/quiz" ],
 	"category": "sensei-lms",
-    "textdomain": "sensei-lms",
+	"textdomain": "sensei-lms",
 	"supports": {
 		"html": false
 	},

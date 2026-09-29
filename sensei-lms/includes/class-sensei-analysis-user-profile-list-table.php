@@ -38,7 +38,7 @@ class Sensei_Analysis_User_Profile_List_Table extends Sensei_List_Table {
 	public function __construct( $user_id = 0, ?Reports_Listing_Service_Interface $reports_listing_service = null ) {
 		$this->user_id                 = intval( $user_id );
 		$this->page_slug               = Sensei_Analysis::PAGE_SLUG;
-		$this->reports_listing_service = $reports_listing_service ?? ( new Progress_Query_Service_Factory() )->create_reports_listing_service();
+		$this->reports_listing_service = $reports_listing_service ?? ( new Progress_Query_Service_Factory( Sensei()->progress_storage_configuration ) )->create_reports_listing_service();
 
 		// Load Parent token into constructor
 		parent::__construct( 'analysis_user_profile' );
@@ -112,21 +112,21 @@ class Sensei_Analysis_User_Profile_List_Table extends Sensei_List_Table {
 		// Handle orderby (needs work)
 		$orderby = '';
 		if ( ! empty( $_GET['orderby'] ) ) {
-			if ( array_key_exists( esc_html( $_GET['orderby'] ), $this->get_sortable_columns() ) ) {
-				$orderby = esc_html( $_GET['orderby'] );
+			if ( array_key_exists( sensei_request_text( $_GET['orderby'] ), $this->get_sortable_columns() ) ) {
+				$orderby = sensei_request_text( $_GET['orderby'] );
 			}
 		}
 
 		// Handle order
 		$order = 'ASC';
 		if ( ! empty( $_GET['order'] ) ) {
-			$order = ( 'ASC' == strtoupper( $_GET['order'] ) ) ? 'ASC' : 'DESC';
+			$order = ( 'ASC' == strtoupper( sensei_request_text( $_GET['order'] ) ) ) ? 'ASC' : 'DESC';
 		}
 
 		// Handle search, need 4.1 version of WP to be able to restrict statuses to known post_ids
 		$search = false;
 		if ( ! empty( $_GET['s'] ) ) {
-			$search = esc_html( $_GET['s'] );
+			$search = sensei_request_text( $_GET['s'] );
 		}
 		$this->search = $search;
 
@@ -186,21 +186,21 @@ class Sensei_Analysis_User_Profile_List_Table extends Sensei_List_Table {
 		// Handle orderby
 		$orderby = '';
 		if ( ! empty( $_GET['orderby'] ) ) {
-			if ( array_key_exists( esc_html( $_GET['orderby'] ), $this->get_sortable_columns() ) ) {
-				$orderby = esc_html( $_GET['orderby'] );
+			if ( array_key_exists( sensei_request_text( $_GET['orderby'] ), $this->get_sortable_columns() ) ) {
+				$orderby = sensei_request_text( $_GET['orderby'] );
 			}
 		}
 
 		// Handle order
 		$order = 'ASC';
 		if ( ! empty( $_GET['order'] ) ) {
-			$order = ( 'ASC' == strtoupper( $_GET['order'] ) ) ? 'ASC' : 'DESC';
+			$order = ( 'ASC' == strtoupper( sensei_request_text( $_GET['order'] ) ) ) ? 'ASC' : 'DESC';
 		}
 
 		// Handle search
 		$search = false;
 		if ( ! empty( $_GET['s'] ) ) {
-			$search = esc_html( $_GET['s'] );
+			$search = sensei_request_text( $_GET['s'] );
 		}
 		$this->search = $search;
 

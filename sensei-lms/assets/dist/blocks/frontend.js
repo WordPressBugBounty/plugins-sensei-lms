@@ -11,7 +11,7 @@
  * @module sensei-modal
  * @description Adds a basic suport for modals via "data-sensei-modal-*" attribures on HTML elements.
  *
- * @usage
+ * @example
  * The Sensei Modal consists of four basic elements: open, close, content and overlay.
  * Each of those elements should be denoted with HTML attributes:
  * - data-sensei-modal-open

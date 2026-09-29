@@ -10,7 +10,7 @@ use Sensei\ThirdParty\Sabberworm\CSS\RuleSet\DeclarationBlock;
  *
  * @internal
  */
-class StyleRule
+final class StyleRule
 {
     /**
      * @var DeclarationBlock

@@ -42,20 +42,20 @@ function(e){const n=new FormData;n.append("action","sensei_settings_section_visi
 /**
    * Get section id from the current URL.
    *
-   * @returns {string}
+   * @return {string} The current section id.
    */
 /**
    * Get section id from a URL.
    *
    * @param {string} url
-   * @returns {string}
+   * @return {string} The section id parsed from the URL.
    */
 function o(e){return new URLSearchParams(e).get("tab")||e.split("#")[1]||"default-settings"}
 /**
    * Check if a section exists.
    *
    * @param {string} sectionId
-   * @returns {boolean}
+   * @return {boolean} Whether a section with that id exists.
    */function s(n){return e("#"+n).length>0}function r(e){e?(n.find("#submit").hide(),n.find("h2").hide()):(n.find("#submit").show(),n.find("h2").show())}i(o(window.location.href)),
 // Switch to the section when the tab is clicked.
 n.find("a.tab:not(.external)").on("click",function(n){const r=e(this).attr("href"),c=o(r);if(!s(c))return!0;
@@ -66,4 +66,4 @@ n.find("a.tab:not(.external)").on("click",function(n){const r=e(this).attr("href
    */
 var a;a=r,window.history.pushState({},null,a),t(r),i(c),n.preventDefault()}),
 // Change the section when the user navigates the session history.
-addEventListener("popstate",e=>{const n=o(window.location.href);s(n)&&(t(window.location.href),i(n))}),jQuery(".colorpicker").hide(),jQuery(".colorpicker").each(function(){jQuery(this).farbtastic(jQuery(this).prev(".color"))}),jQuery(".color").click(function(){jQuery(this).next(".colorpicker").fadeIn()}),jQuery(document).mousedown(function(){jQuery(".colorpicker").each(function(){"block"==jQuery(this).css("display")&&jQuery(this).fadeOut()})})});
+addEventListener("popstate",()=>{const e=o(window.location.href);s(e)&&(t(window.location.href),i(e))}),jQuery(".colorpicker").hide(),jQuery(".colorpicker").each(function(){jQuery(this).farbtastic(jQuery(this).prev(".color"))}),jQuery(".color").click(function(){jQuery(this).next(".colorpicker").fadeIn()}),jQuery(document).mousedown(function(){jQuery(".colorpicker").each(function(){"block"===jQuery(this).css("display")&&jQuery(this).fadeOut()})})});

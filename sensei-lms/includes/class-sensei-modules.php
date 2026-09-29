@@ -127,12 +127,16 @@ class Sensei_Core_Modules {
 	 * @since 4.9.0
 	 * @access private
 	 *
-	 * @param int     $post_ID      Post ID.
-	 * @param WP_Post $post_after   Post object following the update.
-	 * @param WP_Post $post_before  Post object before the update.
+	 * @param int          $post_ID     Post ID.
+	 * @param WP_Post|null $post_after  Post object following the update.
+	 * @param WP_Post|null $post_before Post object before the update.
 	 */
-	public function update_module_teacher_id_meta_on_post_teacher_update( int $post_ID, WP_Post $post_after, WP_Post $post_before ) {
-		if ( 'course' !== get_post( $post_ID )->post_type ) {
+	public function update_module_teacher_id_meta_on_post_teacher_update( int $post_ID, ?WP_Post $post_after = null, ?WP_Post $post_before = null ) {
+		if ( ! $post_after instanceof WP_Post || ! $post_before instanceof WP_Post ) {
+			return;
+		}
+
+		if ( 'course' !== $post_after->post_type ) {
 			return;
 		}
 
@@ -477,7 +481,7 @@ class Sensei_Core_Modules {
 
 		// Verify post type and nonce
 		if ( ( get_post_type( $post ) != 'lesson' ) || ! isset( $_POST[ 'woo_lesson_' . $this->taxonomy . '_nonce' ] )
-			|| ! wp_verify_nonce( $_POST[ 'woo_lesson_' . $this->taxonomy . '_nonce' ], plugin_basename( $this->file ) ) ) {
+			|| ! wp_verify_nonce( sensei_request_text( $_POST[ 'woo_lesson_' . $this->taxonomy . '_nonce' ] ), plugin_basename( $this->file ) ) ) {
 			return $post_id;
 		}
 
@@ -495,8 +499,8 @@ class Sensei_Core_Modules {
 		// Get module and course IDs
 		$lesson_module_id_key = 'lesson_module';
 		$lesson_course_id_key = 'lesson_course';
-		$module_id            = isset( $_POST[ $lesson_module_id_key ] ) ? $_POST[ $lesson_module_id_key ] : null;
-		$course_id            = isset( $_POST[ $lesson_course_id_key ] ) ? $_POST[ $lesson_course_id_key ] : null;
+		$module_id            = isset( $_POST[ $lesson_module_id_key ] ) ? sensei_request_text( $_POST[ $lesson_module_id_key ] ) : '';
+		$course_id            = isset( $_POST[ $lesson_course_id_key ] ) ? sensei_request_text( $_POST[ $lesson_course_id_key ] ) : '';
 
 		// Set the module on the lesson
 		$lesson_modules = new Sensei_Core_Lesson_Modules( $post_id );
@@ -658,7 +662,7 @@ class Sensei_Core_Modules {
 		if ( isset( $_POST['module_courses'] ) && ! empty( $_POST['module_courses'] ) ) {
 
 			// phpcs:ignore WordPress.Security.NonceVerification
-			$course_ids = is_array( $_POST['module_courses'] ) ? $_POST['module_courses'] : explode( ',', $_POST['module_courses'] );
+			$course_ids = is_array( $_POST['module_courses'] ) ? array_map( 'absint', wp_unslash( $_POST['module_courses'] ) ) : explode( ',', sensei_request_text( $_POST['module_courses'] ) );
 
 			foreach ( $course_ids as $course_id ) {
 
@@ -686,7 +690,7 @@ class Sensei_Core_Modules {
 		$module           = get_term( $module_id );
 		$event_properties = [
 			// phpcs:ignore WordPress.Security.NonceVerification
-			'page'      => isset( $_REQUEST['from_page'] ) ? $_REQUEST['from_page'] : '',
+			'page'      => isset( $_REQUEST['from_page'] ) ? sensei_request_text( $_REQUEST['from_page'] ) : '',
 			'parent_id' => -1,
 		];
 
@@ -711,7 +715,9 @@ class Sensei_Core_Modules {
 		header( 'Content-Type: application/json; charset=utf-8' );
 
 		// Get user input
-		$term = urldecode( stripslashes( $_GET['term'] ) );
+		// Decode before sanitizing: sanitize_text_field() strips percent-encoded octets, so it must run after urldecode().
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized with sanitize_text_field() after urldecode(); the sniff cannot trace sanitization through urldecode().
+		$term = isset( $_GET['term'] ) ? sanitize_text_field( urldecode( wp_unslash( is_array( $_GET['term'] ) ? '' : $_GET['term'] ) ) ) : '';
 
 		// Return nothing if term is empty
 		if ( empty( $term ) ) {
@@ -719,7 +725,7 @@ class Sensei_Core_Modules {
 		}
 
 		// Set a default if none is given
-		$default = isset( $_GET['default'] ) ? $_GET['default'] : __( 'No course', 'sensei-lms' );
+		$default = isset( $_GET['default'] ) ? sensei_request_text( $_GET['default'] ) : __( 'No course', 'sensei-lms' );
 
 		// Set up array of results
 		$found_courses = array( '' => $default );
@@ -1302,7 +1308,7 @@ class Sensei_Core_Modules {
 		check_admin_referer( 'order_modules' );
 
 		$course_id    = isset( $_POST['course_id'] ) ? intval( $_POST['course_id'] ) : 0;
-		$module_order = isset( $_POST['module-order'] ) ? sanitize_text_field( wp_unslash( $_POST['module-order'] ) ) : '';
+		$module_order = isset( $_POST['module-order'] ) ? sensei_request_text( $_POST['module-order'] ) : '';
 
 		if (
 			! Sensei_Course::can_current_user_edit_course( $course_id )
@@ -2513,12 +2519,12 @@ class Sensei_Core_Modules {
 	 */
 	public static function add_new_module_term() {
 
-		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( $_POST['security'], '_ajax_nonce-add-module' ) ) {
+		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( sensei_request_text( $_POST['security'] ), '_ajax_nonce-add-module' ) ) {
 			wp_send_json_error( array( 'error' => 'wrong security nonce' ) );
 		}
 
 		// get the term an create the new term storing infomration
-		$term_name = sanitize_text_field( $_POST['newTerm'] );
+		$term_name = isset( $_POST['newTerm'] ) ? sensei_request_text( $_POST['newTerm'] ) : '';
 
 		if ( current_user_can( 'manage_options' ) ) {
 
@@ -2530,10 +2536,17 @@ class Sensei_Core_Modules {
 
 		}
 
-		$course_id = sanitize_text_field( $_POST['course_id'] );
+		$course_id = isset( $_POST['course_id'] ) ? absint( sensei_request_text( $_POST['course_id'] ) ) : 0;
 
-		// save the term
-		$slug = wp_insert_term( $term_name, 'module', array( 'slug' => $term_slug ) );
+		// The course ID is optional: an unsaved course has none yet. When one is supplied it must be a
+		// course the current user can edit, post type included, since `edit_course` maps to
+		// `edit_post` on whatever the ID points at.
+		if ( $course_id && ( 'course' !== get_post_type( $course_id ) || ! Sensei_Course::can_current_user_edit_course( $course_id ) ) ) {
+			wp_send_json_error( array( 'error' => 'cannot edit this course' ) );
+		}
+
+		// save the term. wp_insert_term() unslashes internally, so re-slash to preserve any backslashes in the name.
+		$slug = wp_insert_term( wp_slash( $term_name ), 'module', array( 'slug' => $term_slug ) );
 
 		// send error for all errors except term exits
 		if ( is_wp_error( $slug ) ) {
@@ -2549,7 +2562,9 @@ class Sensei_Core_Modules {
 				$term_data['id']   = $term->term_id;
 
 				// set the object terms
-				wp_set_object_terms( $course_id, $term->term_id, 'module', true );
+				if ( $course_id ) {
+					wp_set_object_terms( $course_id, $term->term_id, 'module', true );
+				}
 			}
 
 			wp_send_json_error(
@@ -2562,7 +2577,9 @@ class Sensei_Core_Modules {
 		}
 
 		// make sure the new term is checked for this course
-		wp_set_object_terms( $course_id, $slug['term_id'], 'module', true );
+		if ( $course_id ) {
+			wp_set_object_terms( $course_id, $slug['term_id'], 'module', true );
+		}
 
 		// Handle request then generate response using WP_Ajax_Response
 		wp_send_json_success(
@@ -2629,16 +2646,10 @@ class Sensei_Core_Modules {
 			return $terms;
 		}
 
-		// in certain cases the array is passed in as reference to the parent term_id => parent_id
-		if ( isset( $args['fields'] ) ) {
-			if ( in_array( $args['fields'], array( 'ids', 'tt_ids' ), true ) ) {
-				return $terms;
-			}
-
-			// change only scrub the terms ids form the array keys
-			if ( 'id=>parent' == $args['fields'] ) {
-				$terms = array_keys( $terms );
-			}
+		// These formats are ID lists or an id => parent map rather than term objects, and the caller
+		// needs that shape back. Same as in append_teacher_name_to_module().
+		if ( isset( $args['fields'] ) && in_array( $args['fields'], array( 'id=>parent', 'ids', 'tt_ids' ), true ) ) {
+			return $terms;
 		}
 
 		$teachers_terms = $this->filter_terms_by_owner_no_infinite_loop( $terms, get_current_user_id() );

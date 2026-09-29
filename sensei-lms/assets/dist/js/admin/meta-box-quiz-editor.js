@@ -224,9 +224,9 @@ jQuery("#add-quiz-metadata").on("change","#quiz_grade_type",function(){jQuery.fn
    * 	3 - Load Chosen Dropdowns.
    ***************************************************************************************************/
 // Quiz edit panel
-jQuery("#add-question-type-options").exists()&&jQuery("#add-question-type-options").select2({width:"resolve"}),jQuery("#add-question-category-options").exists()&&jQuery("#add-question-category-options").select2({width:"resolve"}),jQuery("#add-multiple-question-options").exists()&&jQuery("#add-multiple-question-options").select2({width:"resolve"}),
+jQuery("select#add-question-type-options").exists()&&jQuery("select#add-question-type-options").select2({width:"resolve"}),jQuery("select#add-question-category-options").exists()&&jQuery("select#add-question-category-options").select2({width:"resolve"}),jQuery("select#add-multiple-question-options").exists()&&jQuery("select#add-multiple-question-options").select2({width:"resolve"}),
 // Courses Write Panel
-jQuery("#add-multiple-question-category-options").exists()&&jQuery("#add-multiple-question-category-options").select2({width:"resolve"})
+jQuery("select#add-multiple-question-category-options").exists()&&jQuery("select#add-multiple-question-category-options").select2({width:"resolve"})
 /***************************************************************************************************
    * 	4 - Quiz Question Functions.
    ***************************************************************************************************/

@@ -156,7 +156,7 @@ t||(t=(0,r.createRoot)(s)),this.root=t,this.root.render((0/* .ExitSurveyForm */,
      */
 submitExitSurvey=async e=>{const t=new window.FormData;t.append("action","exit_survey"),t.append("_wpnonce",window.sensei_exit_survey?.nonce),t.append("reason",e.reason),t.append("details",e.details);
 // Get the name of the active theme.
-try{const e=await i()({path:"/wp/v2/themes?status=active"});e.length>0&&t.append("theme",e[0].name?.raw||"")}catch(e){}await window.fetch(window.ajaxurl,{method:"POST",body:t}),this.closeAndDeactivate()};
+try{const e=await i()({path:"/wp/v2/themes?status=active"});e.length>0&&t.append("theme",e[0].name?.raw||"")}catch{}await window.fetch(window.ajaxurl,{method:"POST",body:t}),this.closeAndDeactivate()};
 /**
      * Close survey modal and continue plugin deactivation.
      */

@@ -10,6 +10,6 @@ namespace Sensei\ThirdParty\Pelago\Emogrifier\HtmlProcessor;
  * - add HEAD and BODY elements (if they are missing)
  * - reformat the HTML
  */
-class HtmlNormalizer extends AbstractHtmlProcessor
+final class HtmlNormalizer extends AbstractHtmlProcessor
 {
 }

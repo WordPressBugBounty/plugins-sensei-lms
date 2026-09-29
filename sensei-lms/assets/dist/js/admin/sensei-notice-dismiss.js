@@ -73,7 +73,7 @@ t.n(i)()(()=>{const e="sensei-notice--is-hidden",s=e=>{const s=new FormData;e.da
 /**
    * Handle tasks present on the element if the element has the attribute "data-sensei-notice-tasks".
    *
-   * @param event The event to handle.
+   * @param {Event} event The event to handle.
    */document.body.addEventListener("click",t=>{const i=t.target.closest(".sensei-notice");i&&(i.dataset.dismissNonce&&i.dataset.dismissAction&&t.target.classList.contains("notice-dismiss")?s(i):(t=>{const{target:i}=t;if(!i.dataset.senseiNoticeTasks)return;const n=JSON.parse(i.dataset.senseiNoticeTasks);if(n)for(const i of n){const n=i.notice_id&&document.querySelector(`.sensei-notice[data-sensei-notice-id="${i.notice_id}"]`);switch(i.type){case"preventDefault":t.preventDefault();break;case"show":n?.classList.remove(e);break;case"dismiss":n&&s(n);
 //  We need to also hide the notice being dismissed:
 // eslint-disable-next-line no-fallthrough

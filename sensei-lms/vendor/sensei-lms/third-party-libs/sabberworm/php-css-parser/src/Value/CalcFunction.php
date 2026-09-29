@@ -5,14 +5,21 @@ namespace Sensei\ThirdParty\Sabberworm\CSS\Value;
 use Sensei\ThirdParty\Sabberworm\CSS\Parsing\ParserState;
 use Sensei\ThirdParty\Sabberworm\CSS\Parsing\UnexpectedEOFException;
 use Sensei\ThirdParty\Sabberworm\CSS\Parsing\UnexpectedTokenException;
+/**
+ * Support for `-webkit-calc` and `-moz-calc` is deprecated in version 8.8.0, and will be removed in version 9.0.0.
+ */
 class CalcFunction extends CSSFunction
 {
     /**
      * @var int
+     *
+     * @internal
      */
     const T_OPERAND = 1;
     /**
      * @var int
+     *
+     * @internal
      */
     const T_OPERATOR = 2;
     /**
@@ -23,6 +30,8 @@ class CalcFunction extends CSSFunction
      *
      * @throws UnexpectedTokenException
      * @throws UnexpectedEOFException
+     *
+     * @internal since V8.8.0
      */
     public static function parse(ParserState $oParserState, $bIgnoreCase = \false)
     {
@@ -70,7 +79,7 @@ class CalcFunction extends CSSFunction
                     $oCalcList->addListComponent($oParserState->consume(1));
                     $iLastComponentType = CalcFunction::T_OPERATOR;
                 } else {
-                    throw new UnexpectedTokenException(\sprintf('Next token was expected to be an operand of type %s. Instead "%s" was found.', \implode(', ', $aOperators), $oVal), '', 'custom', $oParserState->currentLine());
+                    throw new UnexpectedTokenException(\sprintf('Next token was expected to be an operand of type %s. Instead "%s" was found.', \implode(', ', $aOperators), $oParserState->peek()), '', 'custom', $oParserState->currentLine());
                 }
             }
             $oParserState->consumeWhiteSpace();

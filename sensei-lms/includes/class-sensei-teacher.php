@@ -112,6 +112,7 @@ class Sensei_Teacher {
 
 		add_action( 'admin_menu', array( $this, 'restrict_posts_menu_page' ), 10 );
 		add_filter( 'pre_get_comments', array( $this, 'restrict_comment_moderation' ), 10, 1 );
+		add_filter( 'map_meta_cap', array( $this, 'restrict_comment_moderation_capability' ), 10, 3 );
 
 		// If slug changed to custom, try to extract and save teacher id.
 		add_action( 'edit_module', [ $this, 'extract_and_save_teacher_to_meta_from_slug' ] );
@@ -384,7 +385,10 @@ class Sensei_Teacher {
 
 		// If a custom slug is of a module that belongs to another teacher from another course, don't process farther.
 		if ( isset( $_POST['course_module_custom_slugs'] ) ) {
-			$module_custom_slugs = json_decode( sanitize_text_field( wp_unslash( $_POST['course_module_custom_slugs'] ) ) );
+			$module_custom_slugs = json_decode( sensei_request_text( $_POST['course_module_custom_slugs'] ) );
+			if ( ! is_array( $module_custom_slugs ) ) {
+				$module_custom_slugs = array();
+			}
 			foreach ( $module_custom_slugs as $module_custom_slug ) {
 				$course_name = self::is_module_in_use_by_different_course_and_teacher( $module_custom_slug, $course_id, absint( $_POST['sensei-course-teacher-author'] ) );
 				if ( $course_name ) {
@@ -1528,7 +1532,7 @@ AND comments.comment_type = 'sensei_course_status'";
 		$users_who_can_edit_courses = get_users( $user_query_args );
 
 		// Create the select element with the given users who can edit course
-		$selected       = isset( $_GET['course_teacher'] ) ? $_GET['course_teacher'] : '';
+		$selected       = isset( $_GET['course_teacher'] ) ? absint( $_GET['course_teacher'] ) : '';
 		$course_options = '';
 		foreach ( $users_who_can_edit_courses as $user ) {
 			$course_options .= '<option value="' . esc_attr( $user->ID ) . '" ' . selected( $selected, $user->ID, false ) . '>' . esc_html( $user->display_name ) . '</option>';
@@ -1568,7 +1572,7 @@ AND comments.comment_type = 'sensei_course_status'";
 		if ( ! is_admin() && 'course' != $typenow || ! current_user_can( 'manage_sensei' ) ) {
 			return $query;
 		}
-		$course_teacher = isset( $_GET['course_teacher'] ) ? $_GET['course_teacher'] : '';
+		$course_teacher = isset( $_GET['course_teacher'] ) ? absint( $_GET['course_teacher'] ) : '';
 
 		if ( empty( $course_teacher ) ) {
 			return $query;
@@ -1823,6 +1827,80 @@ AND comments.comment_type = 'sensei_course_status'";
 
 		return $clauses;
 
+	}
+
+	/**
+	 * Only let teachers use `moderate_comments` on the Comments admin screen, where
+	 * restrict_comment_moderation() limits the list to their own posts. Everywhere else
+	 * (REST API, XML-RPC, AJAX, front end) the capability is denied, so a teacher can
+	 * only act on the comments of posts they can edit.
+	 *
+	 * Super admins and users who also get the capability from another role or from a
+	 * direct grant keep it everywhere.
+	 *
+	 * @since 4.26.4
+	 *
+	 * @internal
+	 *
+	 * @param string[] $caps    Primitive capabilities required of the user.
+	 * @param string   $cap     Capability being checked.
+	 * @param int      $user_id User ID.
+	 * @return string[]
+	 */
+	public function restrict_comment_moderation_capability( $caps, $cap, $user_id ) {
+		global $pagenow;
+
+		if ( 'moderate_comments' !== $cap || ! self::is_a_teacher( $user_id ) ) {
+			return $caps;
+		}
+
+		// WordPress grants super admins every capability without looking at their roles, except
+		// when the mapping returns `do_not_allow`. Without this check, a super admin whose only
+		// role on the site is teacher would be denied like any other teacher.
+		if ( is_multisite() && is_super_admin( $user_id ) ) {
+			return $caps;
+		}
+
+		if ( $this->has_moderate_comments_outside_teacher_role( $user_id ) ) {
+			return $caps;
+		}
+
+		// Keep the capability on the Comments screen so teachers still get the bulk actions and the
+		// Empty Spam/Trash buttons.
+		$on_comments_screen = is_admin() && 'edit-comments.php' === $pagenow;
+
+		return $on_comments_screen ? $caps : array( 'do_not_allow' );
+	}
+
+	/**
+	 * Whether a user gets `moderate_comments` from somewhere other than the teacher role:
+	 * a direct grant on the user or another role.
+	 *
+	 * @param int $user_id User ID.
+	 * @return bool
+	 */
+	private function has_moderate_comments_outside_teacher_role( $user_id ) {
+		$user = get_userdata( $user_id );
+		if ( ! $user ) {
+			return false;
+		}
+
+		if ( ! empty( $user->caps['moderate_comments'] ) ) {
+			return true;
+		}
+
+		foreach ( (array) $user->roles as $role_name ) {
+			if ( 'teacher' === $role_name ) {
+				continue;
+			}
+
+			$role = get_role( $role_name );
+			if ( $role && $role->has_cap( 'moderate_comments' ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

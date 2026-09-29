@@ -4,11 +4,14 @@ namespace Sensei\ThirdParty\Sabberworm\CSS\Property;
 
 use Sensei\ThirdParty\Sabberworm\CSS\Comment\Comment;
 use Sensei\ThirdParty\Sabberworm\CSS\OutputFormat;
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Position;
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Positionable;
 /**
  * `CSSNamespace` represents an `@namespace` rule.
  */
-class CSSNamespace implements AtRule
+class CSSNamespace implements AtRule, Positionable
 {
+    use Position;
     /**
      * @var string
      */
@@ -23,6 +26,8 @@ class CSSNamespace implements AtRule
     private $iLineNo;
     /**
      * @var array<array-key, Comment>
+     *
+     * @internal since 8.8.0
      */
     protected $aComments;
     /**
@@ -34,27 +39,24 @@ class CSSNamespace implements AtRule
     {
         $this->mUrl = $mUrl;
         $this->sPrefix = $sPrefix;
-        $this->iLineNo = $iLineNo;
+        $this->setPosition($iLineNo);
         $this->aComments = [];
     }
     /**
-     * @return int
-     */
-    public function getLineNo()
-    {
-        return $this->iLineNo;
-    }
-    /**
      * @return string
+     *
+     * @deprecated in V8.8.0, will be removed in V9.0.0. Use `render` instead.
      */
     public function __toString()
     {
         return $this->render(new OutputFormat());
     }
     /**
+     * @param OutputFormat|null $oOutputFormat
+     *
      * @return string
      */
-    public function render(OutputFormat $oOutputFormat)
+    public function render($oOutputFormat)
     {
         return '@namespace ' . ($this->sPrefix === null ? '' : $this->sPrefix . ' ') . $this->mUrl->render($oOutputFormat) . ';';
     }

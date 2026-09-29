@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6c2a32718286f60437c225c97346892c
+class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
 {
     public static $files = array (
         '7e03bc80976ad8e42da9beffeb3edb01' => __DIR__ . '/../..' . '/includes/sensei-functions.php',
@@ -134,6 +134,7 @@ class ComposerStaticInit6c2a32718286f60437c225c97346892c
         'Sensei\\Internal\\Services\\Progress_Aggregation_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/services/class-progress-aggregation-service-interface.php',
         'Sensei\\Internal\\Services\\Progress_Clauses_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/services/class-progress-clauses-service-interface.php',
         'Sensei\\Internal\\Services\\Progress_Query_Service_Factory' => __DIR__ . '/../..' . '/includes/internal/services/class-progress-query-service-factory.php',
+        'Sensei\\Internal\\Services\\Progress_Storage_Configuration' => __DIR__ . '/../..' . '/includes/internal/services/class-progress-storage-configuration.php',
         'Sensei\\Internal\\Services\\Progress_Storage_Settings' => __DIR__ . '/../..' . '/includes/internal/services/class-progress-storage-settings.php',
         'Sensei\\Internal\\Services\\Reports_Item' => __DIR__ . '/../..' . '/includes/internal/services/class-reports-item.php',
         'Sensei\\Internal\\Services\\Reports_Listing_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/services/class-reports-listing-service-interface.php',
@@ -185,11 +186,15 @@ class ComposerStaticInit6c2a32718286f60437c225c97346892c
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\Css\\StyleRule' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/Css/StyleRule.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\HtmlProcessor\\AbstractHtmlProcessor' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/HtmlProcessor/AbstractHtmlProcessor.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\HtmlProcessor\\CssToAttributeConverter' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/HtmlProcessor/CssToAttributeConverter.php',
+        'Sensei\\ThirdParty\\Pelago\\Emogrifier\\HtmlProcessor\\CssVariableEvaluator' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/HtmlProcessor/CssVariableEvaluator.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\HtmlProcessor\\HtmlNormalizer' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/HtmlProcessor/HtmlNormalizer.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\HtmlProcessor\\HtmlPruner' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/HtmlProcessor/HtmlPruner.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\Utilities\\ArrayIntersector' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/Utilities/ArrayIntersector.php',
         'Sensei\\ThirdParty\\Pelago\\Emogrifier\\Utilities\\CssConcatenator' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/Utilities/CssConcatenator.php',
+        'Sensei\\ThirdParty\\Pelago\\Emogrifier\\Utilities\\DeclarationBlockParser' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/Utilities/DeclarationBlockParser.php',
+        'Sensei\\ThirdParty\\Pelago\\Emogrifier\\Utilities\\Preg' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/pelago/emogrifier/src/Utilities/Preg.php',
         'Sensei\\ThirdParty\\PhpToken' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'Sensei\\ThirdParty\\Sabberworm\\CSS\\CSSElement' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/CSSElement.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\CSSList\\AtRuleBlockList' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/CSSList/AtRuleBlockList.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\CSSList\\CSSBlockList' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/CSSList/CSSBlockList.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\CSSList\\CSSList' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/CSSList/CSSList.php',
@@ -206,6 +211,8 @@ class ComposerStaticInit6c2a32718286f60437c225c97346892c
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\Parsing\\SourceException' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Parsing/SourceException.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\Parsing\\UnexpectedEOFException' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Parsing/UnexpectedEOFException.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\Parsing\\UnexpectedTokenException' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Parsing/UnexpectedTokenException.php',
+        'Sensei\\ThirdParty\\Sabberworm\\CSS\\Position\\Position' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Position/Position.php',
+        'Sensei\\ThirdParty\\Sabberworm\\CSS\\Position\\Positionable' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Position/Positionable.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\Property\\AtRule' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Property/AtRule.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\Property\\CSSNamespace' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Property/CSSNamespace.php',
         'Sensei\\ThirdParty\\Sabberworm\\CSS\\Property\\Charset' => __DIR__ . '/..' . '/sensei-lms/third-party-libs/sabberworm/php-css-parser/src/Property/Charset.php',
@@ -293,6 +300,7 @@ class ComposerStaticInit6c2a32718286f60437c225c97346892c
         'Sensei\\WPML\\Lesson_Translation' => __DIR__ . '/../..' . '/includes/wpml/class-lesson-translation.php',
         'Sensei\\WPML\\Lesson_Translation_Helper' => __DIR__ . '/../..' . '/includes/wpml/trait-lesson-translation-helper.php',
         'Sensei\\WPML\\Page' => __DIR__ . '/../..' . '/includes/wpml/class-page.php',
+        'Sensei\\WPML\\Progress_Query_Helper' => __DIR__ . '/../..' . '/includes/wpml/trait-progress-query-helper.php',
         'Sensei\\WPML\\Question_Display' => __DIR__ . '/../..' . '/includes/wpml/class-question-display.php',
         'Sensei\\WPML\\Question_Translation_Helper' => __DIR__ . '/../..' . '/includes/wpml/trait-question-translation-helper.php',
         'Sensei\\WPML\\Quiz_Progress' => __DIR__ . '/../..' . '/includes/wpml/class-quiz-progress.php',
@@ -634,7 +642,7 @@ class ComposerStaticInit6c2a32718286f60437c225c97346892c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit6c2a32718286f60437c225c97346892c::$classMap;
+            $loader->classMap = ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8::$classMap;
 
         }, null, ClassLoader::class);
     }

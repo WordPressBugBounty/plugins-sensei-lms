@@ -548,7 +548,7 @@ p + .components-button.is-tertiary {
 
 @keyframes components-button__busy-animation {
   0% {
-    background-position: 200px 0;
+    background-position: right 200px top 0;
   }
 }
 /* Root of the component. */

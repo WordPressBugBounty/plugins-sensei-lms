@@ -72,12 +72,12 @@
 /**
  * Add placeholder to tinymce editor
  *
- * @param editor tinymce editor.
+ * @param {Object} editor The tinymce editor.
  */
 window.addPlaceholderInTinymceEditor=e=>{
 // Remove placeholder on submit.
 jQuery("#sensei-quiz-form").submit(function(){return e.dom.remove("multi-line-placeholder"),!0}),
 // Add placeholder on init and blur.
-e.on("blur init",function(){""==e.getContent()&&e.setContent("<p id='multi-line-placeholder'>"+(0,o.__)("Your answer","sensei-lms")+"</p>")}),
+e.on("blur init",function(){""===e.getContent()&&e.setContent("<p id='multi-line-placeholder'>"+(0,o.__)("Your answer","sensei-lms")+"</p>")}),
 // Remove placeholder on focus.
 e.on("focus",function(){e.dom.remove("multi-line-placeholder")})}})();

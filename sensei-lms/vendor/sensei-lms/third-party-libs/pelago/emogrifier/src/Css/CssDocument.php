@@ -3,6 +3,7 @@
 declare (strict_types=1);
 namespace Sensei\ThirdParty\Pelago\Emogrifier\Css;
 
+use Sensei\ThirdParty\Pelago\Emogrifier\Utilities\Preg;
 use Sensei\ThirdParty\Sabberworm\CSS\CSSList\AtRuleBlockList as CssAtRuleBlockList;
 use Sensei\ThirdParty\Sabberworm\CSS\CSSList\Document as SabberwormCssDocument;
 use Sensei\ThirdParty\Sabberworm\CSS\Parser as CssParser;
@@ -19,7 +20,7 @@ use Sensei\ThirdParty\Sabberworm\CSS\Settings as ParserSettings;
  *
  * @internal
  */
-class CssDocument
+final class CssDocument
 {
     /**
      * @var SabberwormCssDocument
@@ -55,14 +56,14 @@ class CssDocument
      */
     private function hasNestedAtRule(string $css) : bool
     {
-        return \preg_match('/@(?:media|supports|(?:-webkit-|-moz-|-ms-|-o-)?+(keyframes|document))\\b/', $css) === 1;
+        return (new Preg())->match('/@(?:media|supports|(?:-webkit-|-moz-|-ms-|-o-)?+(keyframes|document))\\b/', $css) !== 0;
     }
     /**
      * Collates the media query, selectors and declarations for individual rules from the parsed CSS, in order.
      *
      * @param array<array-key, string> $allowedMediaTypes
      *
-     * @return array<int, StyleRule>
+     * @return list<StyleRule>
      */
     public function getStyleRulesData(array $allowedMediaTypes) : array
     {
@@ -123,7 +124,7 @@ class CssDocument
                     return \preg_quote($allowedMediaType, '/');
                 }, $allowedMediaTypes);
                 $mediaTypesMatcher = \implode('|', $escapedAllowedMediaTypes);
-                $isAllowed = \preg_match('/^\\s*+(?:only\\s++)?+(?:' . $mediaTypesMatcher . ')/i', $mediaType) > 0;
+                $isAllowed = (new Preg())->match('/^\\s*+(?:only\\s++)?+(?:' . $mediaTypesMatcher . ')/i', $mediaType) !== 0;
             } else {
                 $isAllowed = \true;
             }

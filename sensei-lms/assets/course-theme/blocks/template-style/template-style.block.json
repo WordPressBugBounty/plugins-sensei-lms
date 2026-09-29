@@ -2,10 +2,10 @@
 	"name": "sensei-lms/template-style",
 	"category": "theme",
 	"parent": [],
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"attributes": {
 		"content": {
-            "source": "text",
+			"source": "text",
 			"type": "string",
 			"selector": "style"
 		}

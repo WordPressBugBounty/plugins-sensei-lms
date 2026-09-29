@@ -4,14 +4,15 @@ namespace Sensei\ThirdParty\Sabberworm\CSS\Comment;
 
 use Sensei\ThirdParty\Sabberworm\CSS\OutputFormat;
 use Sensei\ThirdParty\Sabberworm\CSS\Renderable;
-class Comment implements Renderable
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Position;
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Positionable;
+class Comment implements Positionable, Renderable
 {
-    /**
-     * @var int
-     */
-    protected $iLineNo;
+    use Position;
     /**
      * @var string
+     *
+     * @internal since 8.8.0
      */
     protected $sComment;
     /**
@@ -21,7 +22,7 @@ class Comment implements Renderable
     public function __construct($sComment = '', $iLineNo = 0)
     {
         $this->sComment = $sComment;
-        $this->iLineNo = $iLineNo;
+        $this->setPosition($iLineNo);
     }
     /**
      * @return string
@@ -29,13 +30,6 @@ class Comment implements Renderable
     public function getComment()
     {
         return $this->sComment;
-    }
-    /**
-     * @return int
-     */
-    public function getLineNo()
-    {
-        return $this->iLineNo;
     }
     /**
      * @param string $sComment
@@ -48,15 +42,19 @@ class Comment implements Renderable
     }
     /**
      * @return string
+     *
+     * @deprecated in V8.8.0, will be removed in V9.0.0. Use `render` instead.
      */
     public function __toString()
     {
         return $this->render(new OutputFormat());
     }
     /**
+     * @param OutputFormat|null $oOutputFormat
+     *
      * @return string
      */
-    public function render(OutputFormat $oOutputFormat)
+    public function render($oOutputFormat)
     {
         return '/*' . $this->sComment . '*/';
     }

@@ -7,6 +7,7 @@
 
 use Sensei\Internal\Services\Progress_Query_Service_Factory;
 use Sensei\Internal\Services\Progress_Clauses_Service_Interface;
+use Sensei\Internal\Services\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -55,7 +56,7 @@ class Sensei_Reports_Overview_Data_Provider_Courses implements Sensei_Reports_Ov
 	 */
 	public function __construct( ?Progress_Clauses_Service_Interface $progress_clauses_service = null ) {
 		$this->progress_clauses_service = $progress_clauses_service
-			?? ( new Progress_Query_Service_Factory() )->create_clauses_service();
+			?? ( new Progress_Query_Service_Factory( Sensei()->progress_storage_configuration ) )->create_clauses_service();
 	}
 
 	/**
@@ -71,7 +72,7 @@ class Sensei_Reports_Overview_Data_Provider_Courses implements Sensei_Reports_Ov
 
 		$course_args = array(
 			'post_type'        => 'course',
-			'post_status'      => array( 'publish', 'private' ),
+			'post_status'      => Utils::REPORTS_POST_STATUSES,
 			'posts_per_page'   => $filters['number'],
 			'offset'           => $filters['offset'],
 			'fields'           => $filters['fields'] ?? '',

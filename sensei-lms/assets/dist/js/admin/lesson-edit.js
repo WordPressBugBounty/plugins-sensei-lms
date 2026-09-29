@@ -12,7 +12,7 @@
  * Internal dependencies
  */
 // Sensei blocks by post type.
-const l={outline:"sensei-lms/course-outline",takeCourse:"sensei-lms/button-take-course",contactTeacher:"sensei-lms/button-contact-teacher",courseProgress:"sensei-lms/course-progress",viewResults:"sensei-lms/button-view-results"},c={lessonActions:"sensei-lms/lesson-actions",lessonProperties:"sensei-lms/lesson-properties",contactTeacher:"sensei-lms/button-contact-teacher",featuredVideo:"sensei-lms/featured-video"},a={course:{"meta-box-course-lessons":[l.outline],"meta-box-module_course_mb":[l.outline],"meta-box-course-video":Object.values(l)},lesson:{"meta-box-lesson-info":[c.lessonProperties]}},u=(0,o.select)(r.store),d=(0,o.dispatch)(r.store),b=(0,o.select)(n.store),p=(0,o.dispatch)(n.store),m=u.isEditorPanelEnabled?u.isEditorPanelEnabled:b.isEditorPanelEnabled,v=d.toggleEditorPanelEnabled?d.toggleEditorPanelEnabled:p.toggleEditorPanelEnabled,g=(e,s=[])=>s.some(s=>{var t;return e.includes(s.name)||g(e,null!==(t=s.innerBlocks)&&void 0!==t?t:[])});
+const l={outline:"sensei-lms/course-outline",takeCourse:"sensei-lms/button-take-course",contactTeacher:"sensei-lms/button-contact-teacher",courseProgress:"sensei-lms/course-progress",viewResults:"sensei-lms/button-view-results"},c={lessonActions:"sensei-lms/lesson-actions",lessonProperties:"sensei-lms/lesson-properties",contactTeacher:"sensei-lms/button-contact-teacher",featuredVideo:"sensei-lms/featured-video"},a={course:{"meta-box-course-lessons":[l.outline],"meta-box-module_course_mb":[l.outline],"meta-box-course-video":Object.values(l)},lesson:{"meta-box-lesson-info":[c.lessonProperties]}},u=(0,o.select)(r.store),d=(0,o.dispatch)(r.store),b=(0,o.select)(n.store),p=(0,o.dispatch)(n.store),m=u.isEditorPanelEnabled?u.isEditorPanelEnabled:b.isEditorPanelEnabled,v=d.toggleEditorPanelEnabled?d.toggleEditorPanelEnabled:p.toggleEditorPanelEnabled,g=(e,s=[])=>s.some(s=>e.includes(s.name)||g(e,s.innerBlocks??[]));
 // Metabox replacements.
 /* harmony export */t.d(s,[
 /* harmony export */"b",0,e=>{if(!u)return;let s;(0,i/* ["default"] */.A)({subscribeListener:()=>{const e=u.getEditorBlocks();
@@ -131,10 +131,10 @@ i=c,t()):i=c})};
  */
 n()(()=>{(0,r/* .startBlocksTogglingControl */.b)("lesson");
 // Lessons Write Panel.
-const e=jQuery("#lesson-complexity-options");e.length>0&&e.select2({width:"resolve"});const s=jQuery("#lesson-prerequisite-options");s.length>0&&s.select2({width:"resolve"});const t=jQuery("#lesson-course-options");t.length>0&&t.select2({width:"resolve"});const o=jQuery("#lesson-module-options");o.length>0&&o.select2({width:"resolve"}),
+const e=jQuery("select#lesson-complexity-options");e.length>0&&e.select2({width:"resolve"});const s=jQuery("select#lesson-prerequisite-options");s.length>0&&s.select2({width:"resolve"});const t=jQuery("select#lesson-course-options");t.length>0&&t.select2({width:"resolve"});const o=jQuery("#lesson-module-metabox-select select#lesson-module-options");o.length>0&&o.select2({width:"resolve"}),
 // Refresh the prerequisite meta box when the course changes in order to get the relevant prerequisites.
 jQuery("#lesson-course-options").on("change",function(){
 // Try to get the lesson ID from the wp data store. If not present, fallback to getting it from the DOM.
 const e=wp.data.select("core/editor")?.getCurrentPostId()||jQuery("#post_ID").val(),s=jQuery(this).val();jQuery.get(ajaxurl,{action:"get_prerequisite_meta_box_content",lesson_id:e,course_id:s,security:window.sensei_lesson_metadata.get_prerequisite_meta_box_content_nonce},function(e){""!==e&&(
 // Replace the meta box and re-initialize select2.
-jQuery("> .inside","#lesson-prerequisite").html(e),jQuery("#lesson-prerequisite-options").select2({width:"resolve"}))})})})})();
+jQuery("> .inside","#lesson-prerequisite").html(e),jQuery("select#lesson-prerequisite-options").select2({width:"resolve"}))})})})})();

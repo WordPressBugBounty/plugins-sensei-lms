@@ -4,12 +4,15 @@ namespace Sensei\ThirdParty\Sabberworm\CSS\Property;
 
 use Sensei\ThirdParty\Sabberworm\CSS\Comment\Comment;
 use Sensei\ThirdParty\Sabberworm\CSS\OutputFormat;
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Position;
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Positionable;
 use Sensei\ThirdParty\Sabberworm\CSS\Value\URL;
 /**
  * Class representing an `@import` rule.
  */
-class Import implements AtRule
+class Import implements AtRule, Positionable
 {
+    use Position;
     /**
      * @var URL
      */
@@ -19,11 +22,9 @@ class Import implements AtRule
      */
     private $sMediaQuery;
     /**
-     * @var int
-     */
-    protected $iLineNo;
-    /**
      * @var array<array-key, Comment>
+     *
+     * @internal since 8.8.0
      */
     protected $aComments;
     /**
@@ -35,15 +36,8 @@ class Import implements AtRule
     {
         $this->oLocation = $oLocation;
         $this->sMediaQuery = $sMediaQuery;
-        $this->iLineNo = $iLineNo;
+        $this->setPosition($iLineNo);
         $this->aComments = [];
-    }
-    /**
-     * @return int
-     */
-    public function getLineNo()
-    {
-        return $this->iLineNo;
     }
     /**
      * @param URL $oLocation
@@ -63,15 +57,19 @@ class Import implements AtRule
     }
     /**
      * @return string
+     *
+     * @deprecated in V8.8.0, will be removed in V9.0.0. Use `render` instead.
      */
     public function __toString()
     {
         return $this->render(new OutputFormat());
     }
     /**
+     * @param OutputFormat|null $oOutputFormat
+     *
      * @return string
      */
-    public function render(OutputFormat $oOutputFormat)
+    public function render($oOutputFormat)
     {
         return $oOutputFormat->comments($this) . "@import " . $this->oLocation->render($oOutputFormat) . ($this->sMediaQuery === null ? '' : ' ' . $this->sMediaQuery) . ';';
     }

@@ -4,11 +4,14 @@ namespace Sensei\ThirdParty\Sabberworm\CSS\CSSList;
 
 use Sensei\ThirdParty\Sabberworm\CSS\Comment\Comment;
 use Sensei\ThirdParty\Sabberworm\CSS\Comment\Commentable;
+use Sensei\ThirdParty\Sabberworm\CSS\CSSElement;
 use Sensei\ThirdParty\Sabberworm\CSS\OutputFormat;
 use Sensei\ThirdParty\Sabberworm\CSS\Parsing\ParserState;
 use Sensei\ThirdParty\Sabberworm\CSS\Parsing\SourceException;
 use Sensei\ThirdParty\Sabberworm\CSS\Parsing\UnexpectedEOFException;
 use Sensei\ThirdParty\Sabberworm\CSS\Parsing\UnexpectedTokenException;
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Position;
+use Sensei\ThirdParty\Sabberworm\CSS\Position\Positionable;
 use Sensei\ThirdParty\Sabberworm\CSS\Property\AtRule;
 use Sensei\ThirdParty\Sabberworm\CSS\Property\Charset;
 use Sensei\ThirdParty\Sabberworm\CSS\Property\CSSNamespace;
@@ -28,20 +31,21 @@ use Sensei\ThirdParty\Sabberworm\CSS\Value\Value;
  *
  * It can also contain `Import` and `Charset` objects stemming from at-rules.
  */
-abstract class CSSList implements Renderable, Commentable
+abstract class CSSList implements Commentable, CSSElement, Positionable
 {
+    use Position;
     /**
      * @var array<array-key, Comment>
+     *
+     * @internal since 8.8.0
      */
     protected $aComments;
     /**
      * @var array<int, RuleSet|CSSList|Import|Charset>
+     *
+     * @internal since 8.8.0
      */
     protected $aContents;
-    /**
-     * @var int
-     */
-    protected $iLineNo;
     /**
      * @param int $iLineNo
      */
@@ -49,13 +53,15 @@ abstract class CSSList implements Renderable, Commentable
     {
         $this->aComments = [];
         $this->aContents = [];
-        $this->iLineNo = $iLineNo;
+        $this->setPosition($iLineNo);
     }
     /**
      * @return void
      *
      * @throws UnexpectedTokenException
      * @throws SourceException
+     *
+     * @internal since V8.8.0
      */
     public static function parseList(ParserState $oParserState, CSSList $oList)
     {
@@ -115,18 +121,15 @@ abstract class CSSList implements Renderable, Commentable
             }
             return $oAtRule;
         } elseif ($oParserState->comes('}')) {
-            if (!$oParserState->getSettings()->bLenientParsing) {
-                throw new UnexpectedTokenException('CSS selector', '}', 'identifier', $oParserState->currentLine());
-            } else {
-                if ($bIsRoot) {
-                    if ($oParserState->getSettings()->bLenientParsing) {
-                        return DeclarationBlock::parse($oParserState);
-                    } else {
-                        throw new SourceException("Unopened {", $oParserState->currentLine());
-                    }
+            if ($bIsRoot) {
+                if ($oParserState->getSettings()->bLenientParsing) {
+                    return DeclarationBlock::parse($oParserState);
                 } else {
-                    return null;
+                    throw new SourceException("Unopened {", $oParserState->currentLine());
                 }
+            } else {
+                // End of list
+                return null;
             }
         } else {
             return DeclarationBlock::parse($oParserState, $oList);
@@ -229,13 +232,6 @@ abstract class CSSList implements Renderable, Commentable
         return \strcasecmp($sIdentifier, $sMatch) === 0 ?: \preg_match("/^(-\\w+-)?{$sMatch}\$/i", $sIdentifier) === 1;
     }
     /**
-     * @return int
-     */
-    public function getLineNo()
-    {
-        return $this->iLineNo;
-    }
-    /**
      * Prepends an item to the list of contents.
      *
      * @param RuleSet|CSSList|Import|Charset $oItem
@@ -269,6 +265,21 @@ abstract class CSSList implements Renderable, Commentable
     public function splice($iOffset, $iLength = null, $mReplacement = null)
     {
         \array_splice($this->aContents, $iOffset, $iLength, $mReplacement);
+    }
+    /**
+     * Inserts an item in the CSS list before its sibling. If the desired sibling cannot be found,
+     * the item is appended at the end.
+     *
+     * @param RuleSet|CSSList|Import|Charset $item
+     * @param RuleSet|CSSList|Import|Charset $sibling
+     */
+    public function insertBefore($item, $sibling)
+    {
+        if (\in_array($sibling, $this->aContents, \true)) {
+            $this->replace($sibling, [$item, $sibling]);
+        } else {
+            $this->append($item);
+        }
     }
     /**
      * Removes an item from the CSS list.
@@ -358,6 +369,8 @@ abstract class CSSList implements Renderable, Commentable
     }
     /**
      * @return string
+     *
+     * @deprecated in V8.8.0, will be removed in V9.0.0. Use `render` instead.
      */
     public function __toString()
     {

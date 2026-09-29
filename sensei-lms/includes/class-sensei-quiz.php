@@ -309,7 +309,9 @@ class Sensei_Quiz {
 			|| empty( $_POST['questions_asked'] )
 			|| ! isset( $_POST['woothemes_sensei_save_quiz_nonce'] )
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Do not change the nonce.
-			|| ! wp_verify_nonce( wp_unslash( $_POST['woothemes_sensei_save_quiz_nonce'] ), 'woothemes_sensei_save_quiz_nonce' ) ) {
+			|| ! wp_verify_nonce( wp_unslash( $_POST['woothemes_sensei_save_quiz_nonce'] ), 'woothemes_sensei_save_quiz_nonce' )
+			|| ! self::is_quiz_available()
+			|| self::is_quiz_completed() ) {
 			return;
 		}
 
@@ -329,7 +331,9 @@ class Sensei_Quiz {
 
 		if ( $success ) {
 			// Update the message shown to the user.
-			Sensei()->frontend->messages = '<div class="sensei-message note">' . __( 'Quiz Saved Successfully.', 'sensei-lms' ) . '</div>';
+			$message                     = __( 'Quiz Saved Successfully.', 'sensei-lms' );
+			Sensei()->frontend->messages = '<div class="sensei-message note">' . $message . '</div>';
+			Sensei_Context_Notices::instance( 'course_theme_quiz_grade' )->add_notice( 'quiz-save', $message );
 		}
 
 		// remove the hook as it should only fire once per click
@@ -639,7 +643,7 @@ class Sensei_Quiz {
 
 		// Redirect to the target page.
 		wp_safe_redirect(
-			add_query_arg( [ 'bypass_server_cache' => uniqid() ], sanitize_text_field( wp_unslash( $_POST['quiz_target_page'] ) ) )
+			add_query_arg( [ 'bypass_server_cache' => uniqid() ], sensei_request_text( $_POST['quiz_target_page'] ) )
 		);
 		exit;
 
@@ -1188,7 +1192,7 @@ class Sensei_Quiz {
 			$user_id = get_current_user_id();
 		}
 
-		$quiz_id = Sensei()->lesson->get_quiz_id( $lesson_id );
+		$quiz_id = Sensei()->lesson->lesson_quizzes( $lesson_id );
 
 		if (
 			! intval( $lesson_id ) > 0
@@ -1560,7 +1564,7 @@ class Sensei_Quiz {
 
 		$lesson = get_post( $lesson_id );
 
-		if ( is_singular( 'quiz' ) && ! $has_questions && $_SERVER['REQUEST_URI'] !== "/lesson/$lesson->post_name" ) {
+		if ( is_singular( 'quiz' ) && ! $has_questions && isset( $_SERVER['REQUEST_URI'] ) && sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) !== "/lesson/$lesson->post_name" ) {
 
 			wp_redirect( get_permalink( $lesson->ID ), 301 );
 			exit;

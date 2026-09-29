@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'automattic/sensei-lms',
-        'pretty_version' => 'dev-6fbb47d206caddf28775fb020cb06de5e4332b1a',
-        'version' => 'dev-6fbb47d206caddf28775fb020cb06de5e4332b1a',
-        'reference' => '6fbb47d206caddf28775fb020cb06de5e4332b1a',
+        'pretty_version' => 'dev-bbdd3bfe878b5a9b07c9f0dad0d2794566ae3d57',
+        'version' => 'dev-bbdd3bfe878b5a9b07c9f0dad0d2794566ae3d57',
+        'reference' => 'bbdd3bfe878b5a9b07c9f0dad0d2794566ae3d57',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,18 +11,18 @@
     ),
     'versions' => array(
         'automattic/sensei-lms' => array(
-            'pretty_version' => 'dev-6fbb47d206caddf28775fb020cb06de5e4332b1a',
-            'version' => 'dev-6fbb47d206caddf28775fb020cb06de5e4332b1a',
-            'reference' => '6fbb47d206caddf28775fb020cb06de5e4332b1a',
+            'pretty_version' => 'dev-bbdd3bfe878b5a9b07c9f0dad0d2794566ae3d57',
+            'version' => 'dev-bbdd3bfe878b5a9b07c9f0dad0d2794566ae3d57',
+            'reference' => 'bbdd3bfe878b5a9b07c9f0dad0d2794566ae3d57',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'woocommerce/action-scheduler' => array(
-            'pretty_version' => '3.6.2',
-            'version' => '3.6.2.0',
-            'reference' => '4eb2fa9737a53e4d284dafcf3e0bf428b5f941bc',
+            'pretty_version' => '4.1.0',
+            'version' => '4.1.0.0',
+            'reference' => '40a3df93a251590c58717b91b1049a13410e2ac4',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../woocommerce/action-scheduler',
             'aliases' => array(),

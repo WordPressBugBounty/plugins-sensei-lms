@@ -468,11 +468,12 @@ jQuery( document ).ready( function () {
 		str = str.toLowerCase();
 		str = str.replace( '-', ' ' );
 		str = str.replace( 'boolean', 'True/False' );
-		return str.replace( /(^([a-zA-Z{M}]))|([ -][a-zA-Z{M}])/g, function (
-			$1
-		) {
-			return $1.toUpperCase();
-		} );
+		return str.replace(
+			/(^([a-zA-Z{M}]))|([ -][a-zA-Z{M}])/g,
+			function ( $1 ) {
+				return $1.toUpperCase();
+			}
+		);
 	};
 
 	jQuery.fn.filterExistingQuestions = function ( page ) {
@@ -648,23 +649,25 @@ jQuery( document ).ready( function () {
 	 ***************************************************************************************************/
 
 	// Quiz edit panel
-	if ( jQuery( '#add-question-type-options' ).exists() ) {
-		jQuery( '#add-question-type-options' ).select2( { width: 'resolve' } );
-	}
-	if ( jQuery( '#add-question-category-options' ).exists() ) {
-		jQuery( '#add-question-category-options' ).select2( {
+	if ( jQuery( 'select#add-question-type-options' ).exists() ) {
+		jQuery( 'select#add-question-type-options' ).select2( {
 			width: 'resolve',
 		} );
 	}
-	if ( jQuery( '#add-multiple-question-options' ).exists() ) {
-		jQuery( '#add-multiple-question-options' ).select2( {
+	if ( jQuery( 'select#add-question-category-options' ).exists() ) {
+		jQuery( 'select#add-question-category-options' ).select2( {
+			width: 'resolve',
+		} );
+	}
+	if ( jQuery( 'select#add-multiple-question-options' ).exists() ) {
+		jQuery( 'select#add-multiple-question-options' ).select2( {
 			width: 'resolve',
 		} );
 	}
 
 	// Courses Write Panel
-	if ( jQuery( '#add-multiple-question-category-options' ).exists() ) {
-		jQuery( '#add-multiple-question-category-options' ).select2( {
+	if ( jQuery( 'select#add-multiple-question-category-options' ).exists() ) {
+		jQuery( 'select#add-multiple-question-category-options' ).select2( {
 			width: 'resolve',
 		} );
 	}
@@ -1021,9 +1024,8 @@ jQuery( document ).ready( function () {
 							jQuery.fn.resetAddQuestionForm();
 							jQuery.fn.checkQuizGradeType( questionType );
 
-							var max_questions = jQuery(
-								'#show_questions'
-							).attr( 'max' );
+							var max_questions =
+								jQuery( '#show_questions' ).attr( 'max' );
 							max_questions++;
 							jQuery( '#show_questions' ).attr(
 								'max',
@@ -1115,9 +1117,8 @@ jQuery( document ).ready( function () {
 
 							jQuery.fn.updateQuestionOrder();
 
-							var max_questions = jQuery(
-								'#show_questions'
-							).attr( 'max' );
+							var max_questions =
+								jQuery( '#show_questions' ).attr( 'max' );
 							max_questions += questionNumber;
 							jQuery( '#show_questions' ).attr(
 								'max',
@@ -1656,9 +1657,8 @@ jQuery( document ).ready( function () {
 
 							jQuery.fn.checkQuizGradeType();
 
-							var max_questions = jQuery(
-								'#show_questions'
-							).attr( 'max' );
+							var max_questions =
+								jQuery( '#show_questions' ).attr( 'max' );
 							max_questions += i;
 							jQuery( '#show_questions' ).attr(
 								'max',
