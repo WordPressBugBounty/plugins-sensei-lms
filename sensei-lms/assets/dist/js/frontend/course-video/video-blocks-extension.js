@@ -158,7 +158,7 @@ const m=r/* .ADAPTER_NAME */.U,p=o/* .ADAPTER_NAME */.U,h=s/* .ADAPTER_NAME */.U
  *
  * @return {number|undefined} The video duration.
  */
-const y=
+const E=
 /**
  * A class that abstracts the use of the player APIs: Video, VideoPress, YouTube, and Vimeo.
  */
@@ -248,7 +248,7 @@ const n={timeupdate:this.onTimeUpdate.bind(this),ended:this.onEnded.bind(this)}[
    */onEnded(e){return this.getPlayer().then(t=>this.getAdapter().onEnded(t,e,this.w))}};
 /* harmony default export */
 /* harmony export */n.d(t,[
-/* harmony export */"A",0,/* export default binding */y
+/* harmony export */"A",0,E
 /* harmony export */])},
 /***/9737(e,t,n){
 /**
@@ -262,7 +262,7 @@ const n={timeupdate:this.onTimeUpdate.bind(this),ended:this.onEnded.bind(this)}[
 const r=(e,t)=>{const n=Math.pow(10,t);return Math.round((e+Number.EPSILON)*n)/n};
 /* harmony default export */
 /* harmony export */n.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/78889(e,t,n){n.r(t);
 /* harmony export */n.d(t,[
@@ -388,7 +388,6 @@ const s=n=>{n.data===t.YT.PlayerState.PLAYING&&(e.dataset.hasPlayed="has-played"
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/n.n=e=>{
 /******/const t=e&&e.__esModule?
@@ -397,18 +396,16 @@ const s=n=>{n.data===t.YT.PlayerState.PLAYING&&(e.dataset.hasPlayed="has-played"
 /******/
 /******/return n.d(t,{a:t}),t;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/n.d=(e,t)=>{
 /******/if(Array.isArray(t))
 /******/for(
 /******/var r=0;r<t.length;){
-/******/var o=t[r++],s=t[r++];
+/******/var o=t[r++],s=t[r++],i=0===s?{enumerable:!0,value:t[r++]}:{enumerable:!0,get:s};
 /******/
-/******/n.o(e,o)?0===s&&r++
-/******/:
-/******/0===s?
-/******/Object.defineProperty(e,o,{enumerable:!0,value:t[r++]}):
-/******/Object.defineProperty(e,o,{enumerable:!0,get:s})
+/******/n.o(e,o)||Object.defineProperty(e,o,i)
 /******/}
 /******/else
 /******/for(var o in t)
@@ -417,13 +414,15 @@ const s=n=>{n.data===t.YT.PlayerState.PLAYING&&(e.dataset.hasPlayed="has-played"
 /******/;
 /******/
 /******/},
-/******/n.o=(e,t)=>Object.hasOwn(e,t)
-/******/,
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/n.o=(e,t)=>Object.hasOwn(e,t),
+/******/
+/******/ /* webpack/runtime/make namespace object */
 /******/ // define __esModule on exports
 /******/n.r=e=>{
-/******/Symbol.toStringTag&&
-/******/Object.defineProperty(e,Symbol.toStringTag,{value:"Module"})
-/******/,Object.defineProperty(e,"__esModule",{value:!0})};
+/******/Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),
+/******/Object.defineProperty(e,"__esModule",{value:!0})};
 /* harmony import */var r=n(99821),o=n(40839),s=n(23572),i=n(28908);
 /* harmony import */
 /**

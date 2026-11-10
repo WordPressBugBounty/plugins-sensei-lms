@@ -6,7 +6,7 @@
 /* harmony default export */const l=function(e){
 return r.createElement("svg",n({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24"},e),o||(o=r.createElement("path",{fill:"currentColor",d:"M17 3H7c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m.5 6c0 .3-.2.5-.5.5H7c-.3 0-.5-.2-.5-.5V5c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5zm-8-1.2h5V6.2h-5zM17 13H7c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2m.5 6c0 .3-.2.5-.5.5H7c-.3 0-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5zm-8-1.2h5v-1.5h-5z"})))};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/45326(e,s,t){"use strict";
 /* harmony import */var o,r=t(51609);
@@ -14,7 +14,7 @@ return r.createElement("svg",n({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
 /* harmony default export */const l=function(e){
 return r.createElement("svg",n({xmlns:"http://www.w3.org/2000/svg",width:24,height:24,fill:"none"},e),o||(o=r.createElement("path",{fill:"#1E1E1E",fillRule:"evenodd",d:"M15 4h-3v1.5h3zM6 18.5h3a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5M9 20H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2m6-1.5h3a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5m3 1.5h-3a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2M17 4h3v1.5h-3zm-7 0H4v1.5h6z",clipRule:"evenodd"})))};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/16711(e,s,t){"use strict";
 /* harmony import */var o,r=t(51609);
@@ -22,7 +22,7 @@ return r.createElement("svg",n({xmlns:"http://www.w3.org/2000/svg",width:24,heig
 /* harmony default export */const l=function(e){
 return r.createElement("svg",n({xmlns:"http://www.w3.org/2000/svg",width:24,height:24,fill:"none"},e),o||(o=r.createElement("path",{fill:"#1E1E1E",fillRule:"evenodd",d:"M9 9.5H6a.5.5 0 0 1-.5-.5V6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5M6 11h3a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2m12-1.5h-3a.5.5 0 0 1-.5-.5V6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5M15 11h3a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2M4 14.5h7V16H4zm16 0h-7V16h7zm-16 4h5V20H4zm14 0h-5V20h5z",clipRule:"evenodd"})))};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/48597(e,s,t){"use strict";
 /* harmony import */var o,r,n=t(51609);
@@ -30,7 +30,7 @@ return r.createElement("svg",n({xmlns:"http://www.w3.org/2000/svg",width:24,heig
 /* harmony default export */const i=function(e){
 return n.createElement("svg",l({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24"},e),o||(o=n.createElement("circle",{cx:12,cy:12,r:12,fill:"#43AF99"})),r||(r=n.createElement("path",{fill:"#fff",fillRule:"evenodd",d:"M9.835 15.38c.3-.23.179-.474.6-.563-.02.194.146.391.251.563-.109-.367-.002-.536.08-.72.347-.785-.662-1.293-1.35-1.418.235-.164.399-.327.694-.355a2.4 2.4 0 0 0-1.058.23c-1.112.531-1.993-.523-1.41-1.48.31-.51.664-.519.982-.865.077.178.103.372.075.564a.92.92 0 0 0 .049-.664c-.104-.336-.4-.338-.456-.821-.012-.101-.105.056-.263-.077-.038-.032-.113-.09-.163-.064-.085.044-.18.008-.232.034-.083.041-.109-.045-.2.016-.16.107-.178-.013-.332.005-.193.023-.32.261-.43.144-.102-.108-.206.075-.28.075-.05 0-.311.317-.426.028-.086-.216-.28.206-.382.063-.033-.046-.123.108-.18-.044-.014-.035 0-.078-.108-.027-.215.099-.138-.06-.207-.144-.083-.103-.113-.103-.068-.27.036-.133-.019-.33.2-.364.055-.008.107-.005.184-.148.096-.18.231-.093.207-.175-.036-.119.143-.28.226-.355.11-.103.254-.252.306-.396a.6.6 0 0 1 .102-.141c.081-.084.105-.003.227-.045.088-.03.02.053.106-.07.028-.038.105-.001.19-.039.259-.112.283-.11.347-.371.012-.05.025-.088.08-.083.109.01.134-.052.2-.05.061.001.083-.03.115-.068.18-.216.277-.055.357-.072.06-.012.022-.142.184-.102.23.057.155-.05.303-.015.174.041.186.19.306.225.143.042.211.198.307.196.337-.005.235.23.448.323-.16-.161.012-.421-.352-.455-.08-.007-.11-.127-.23-.183-.146-.067-.13-.21-.394-.27.068-.04.089.005.13-.073.058-.11.09-.046.113-.113.02-.063.006-.099.165-.155.165-.06.325-.195.472-.188.13.006.185-.08.177-.19-.008-.112-.033-.267.222-.22.153.029.15.003.15-.1-.002-.102.04-.165.174-.16.098.002.194-.003.231-.117.03-.091.207-.114.302-.148.317-.114.361.05.447-.095.07-.117.196-.317.337-.175.028.029.054.05.15-.056.08-.088.27-.2.337-.048.027.06.086.121.138.044a.08.08 0 0 1 .053-.039c.05-.01.079-.024.104-.036.218-.101.314-.095.213.125-.142.316.792-.192.532.151-.095.126.538.197.63.254.05.032.048.059.144.077.271.05.267.026.284.243.007.098.107.043.107.168 0 .535.472.266.549.399.012.022.032.042.079.042.149 0 .157-.03.224.089.027.047.05.072.127.096.12.037.112.05.068.138-.054.104.03.102.138.112.1.01.148.062.216.138.11.122.284.156.43.227.084.04.002.14.143.243.104.077.156.066.016.165-.59.418.22.305.446.694.051.087.118.195.216.295.225.23.1.293.221.437.07.083.015.063.13.137.272.175-.105.292-.319.212-.097-.035-.166-.085-.147-.025.016.049-.01.083-.052.12-.125.112.123.068.181.06.181-.025.664-.076.66.093-.005.22.136.27.25.284.185.024.238.057.34.226.092.152.145.07.288.205.097.093.217.258.02.282-.047.005-.099 0-.12.017a.4.4 0 0 1-.14.066c-.295.09.14.136.246.113.093-.02.209-.05.3-.027.057.015.062.08.244.107.06.01.036.099.006.16-.104.214.191.1.16.263-.017.093.11.245-.067.248-.057.001-.117-.015-.115.034.004.105-.165-.03-.317.115-.056.054-.19.092-.272-.009-.032-.038-.07-.069-.218-.023-.144.046-.242.204-.306-.04-.017-.064-.05-.065-.142-.097-.125-.043-.114-.258-.297-.12a.24.24 0 0 1-.214.039c-.144-.037-.303.012-.317-.096-.021-.179-.191-.305-.377-.296-.147.008-.278.034-.355-.137.057.195.207.208.382.208q.217 0 .255.225c.045.265.204.099.406.223.1.06.17.159.21.273.042.118.37-.024.282.258-.037.122-.107.168-.242.266-.4.294-.5.004-.618.239-.062.121-.063.031-.196.09-.22.098-.36-.128-.522-.045-.182.094-.168-.08-.352.037-.152.097-.308-.074-.38.192-.063.227-.322.232-.44.11-.189-.194-.132.229-.362.054-.123-.091-.213.043-.392.045-.33.005-.489-.282-.65-.107-.192.206-.331-.032-.334-.242-.003-.216-.777-.144-1.185-.256-.225-.062-.932.013-.702-.35-.372.39.456.366.682.455.136.053.245.095.377.114.13.296.214.617.227 1.007.043-.214.053-.433.028-.649-.043-.383.242.19.276.272.184.45-.022 1.278-.488 1.526a3 3 0 0 0-.562-.99c.256.392.616 1.192.327 1.65a1.02 1.02 0 0 1-.55-.483c.077.333.413.702.818.58.707-.213.704.233 1.641.307.682.111 1.654 0 2.118.037.254.02 1.32.197 1.315.465-.02 1.105-.438 1.164-1.539 1.268-.64.06-1.134.085-1.823.11-1.54.058-3.391.06-4.868 0-.724-.03-1.072-.036-1.841-.137-.769-.1-1.19-.363-1.178-1.187.005-.304.905-.594 1.2-.628.347-.039.901.005 1.405-.116.527-.127.747-.21 1.135-.508m5.347-6.052c-.167-.042-.051-.138-.339-.014-.17.073-.194-.13-.365-.094-.172.036-.242-.125-.499-.166-.318-.05-.088-.133-.592-.032-.097.02-.179-.09-.481-.052-.355.046-.23.084-.445-.115-.272-.251-.488-.082-.767-.184.216.166.368.019.622.221-.242.138-.523.802-.962.844.478.107.709.354 1.148.413.504.068.882.118 1.151.531.301.463.44.196.874.168.275-.017.282-.185.328-.362.063-.245.126-.256.31-.289.213-.037.163-.092.107-.156-.15-.172.019-.207.146-.244.222-.064.042-.075.042-.166-.278-.09-.063-.217.092-.273.169.105.242.087.317.073.109-.021.181.03.273-.028-.135.014-.163-.037-.278-.02-.051.007-.112.01-.219-.054-.18-.107-.27.048-.463 0m-2.28 1.64-1.09-.545c-1.316-.657-1.915.313-2.337 1.376l-.766.73c.549-.338.996-.714 1.574-.71.092 0 1.516.484 1.286-.092-.04-.104.09-.052.125-.201.04-.17.055-.141.195-.033.089.069.211.113.174-.048-.017-.072-.04-.137.28-.004.15.062.095-.064.303-.09.29-.034.228-.31.364-.349.076-.022.152.058.295-.077.05-.046.11-.089.232-.057-.143-.073-.22-.014-.292.03-.146.089-.203-.037-.343.07m-2.23-1.923q.24-.03.482-.046a.13.13 0 0 0 .074-.06.11.11 0 0 0 .007-.09.27.27 0 0 1 .147-.206l-.002-.003c-.258.001-.466.1-.73.211-.052.022-.024.111-.118.213a.26.26 0 0 1-.201.235.14.14 0 0 0-.09.046.11.11 0 0 0-.026.092.25.25 0 0 1-.277.061q-.3-.115-.448.036a.39.39 0 0 1 .398.014c.134.066.3.031.39-.082a.13.13 0 0 1 .126-.098.42.42 0 0 0 .268-.323",clipRule:"evenodd"})))};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/68604(e,s,t){"use strict";
 /* harmony import */var o,r,n=t(51609);
@@ -38,34 +38,34 @@ return n.createElement("svg",l({xmlns:"http://www.w3.org/2000/svg",fill:"none",v
 /* harmony default export */const i=function(e){
 return n.createElement("svg",l({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24"},e),o||(o=n.createElement("rect",{width:18.5,height:6.5,x:2.75,y:7.75,fill:"none",stroke:"currentColor",strokeWidth:1.5,rx:3.25})),r||(r=n.createElement("path",{d:"M6 7.75h10.7l-6.5 6.5H6c-1.8 0-3.25-1.45-3.25-3.25S4.2 7.75 6 7.75"})))};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/35479(e,s,t){"use strict";
 /* harmony export */t.d(s,{
 /* harmony export */A:()=>/* binding */n
 /* harmony export */});
-/* harmony import */var o=t(62540),r=t(5573),n=(0,o.jsx)(r.SVG,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",children:(0,o.jsx)(r.Path,{d:"M8 12.5h8V11H8v1.5Z M19 6.5H5a2 2 0 0 0-2 2V15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2ZM5 8h14a.5.5 0 0 1 .5.5V15a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8.5A.5.5 0 0 1 5 8Z"})});
+/* harmony import */var o=t(10790),r=t(5573),n=(0,o.jsx)(r.SVG,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",children:(0,o.jsx)(r.Path,{d:"M8 12.5h8V11H8v1.5Z M19 6.5H5a2 2 0 0 0-2 2V15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2ZM5 8h14a.5.5 0 0 1 .5.5V15a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8.5A.5.5 0 0 1 5 8Z"})});
 /* harmony import */},
 /***/63395(e,s,t){"use strict";
 /* harmony export */t.d(s,{
 /* harmony export */A:()=>/* binding */n
 /* harmony export */});
-/* harmony import */var o=t(62540),r=t(5573),n=(0,o.jsx)(r.SVG,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",children:(0,o.jsx)(r.Path,{d:"M6 5.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H6a.5.5 0 01-.5-.5V6a.5.5 0 01.5-.5zM4 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm11-.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5V6a.5.5 0 01.5-.5zM13 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2V6zm5 8.5h-3a.5.5 0 00-.5.5v3a.5.5 0 00.5.5h3a.5.5 0 00.5-.5v-3a.5.5 0 00-.5-.5zM15 13a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2v-3a2 2 0 00-2-2h-3zm-9 1.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H6a.5.5 0 01-.5-.5v-3a.5.5 0 01.5-.5zM4 15a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3z",fillRule:"evenodd",clipRule:"evenodd"})});
+/* harmony import */var o=t(10790),r=t(5573),n=(0,o.jsx)(r.SVG,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",children:(0,o.jsx)(r.Path,{d:"M6 5.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H6a.5.5 0 01-.5-.5V6a.5.5 0 01.5-.5zM4 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm11-.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5h-3a.5.5 0 01-.5-.5V6a.5.5 0 01.5-.5zM13 6a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2V6zm5 8.5h-3a.5.5 0 00-.5.5v3a.5.5 0 00.5.5h3a.5.5 0 00.5-.5v-3a.5.5 0 00-.5-.5zM15 13a2 2 0 00-2 2v3a2 2 0 002 2h3a2 2 0 002-2v-3a2 2 0 00-2-2h-3zm-9 1.5h3a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H6a.5.5 0 01-.5-.5v-3a.5.5 0 01.5-.5zM4 15a2 2 0 012-2h3a2 2 0 012 2v3a2 2 0 01-2 2H6a2 2 0 01-2-2v-3z",fillRule:"evenodd",clipRule:"evenodd"})});
 /* harmony import */},
 /***/1027(e,s,t){"use strict";
 /* harmony export */t.d(s,{
 /* harmony export */A:()=>/* binding */n
 /* harmony export */});
-/* harmony import */var o=t(62540),r=t(5573),n=(0,o.jsx)(r.SVG,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",children:(0,o.jsx)(r.Path,{d:"M16.5 7.5 10 13.9l-2.5-2.4-1 1 3.5 3.6 7.5-7.6z"})});
+/* harmony import */var o=t(10790),r=t(5573),n=(0,o.jsx)(r.SVG,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",children:(0,o.jsx)(r.Path,{d:"M16.5 7.5 10 13.9l-2.5-2.4-1 1 3.5 3.6 7.5-7.6z"})});
 /* harmony import */},
 /***/31451(e,s,t){"use strict";
 /* harmony export */t.d(s,{
 /* harmony export */A:()=>/* binding */n
 /* harmony export */});
-/* harmony import */var o=t(62540),r=t(5573),n=(0,o.jsx)(r.SVG,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",children:(0,o.jsx)(r.Path,{d:"M10 17.389H8.444A5.194 5.194 0 1 1 8.444 7H10v1.5H8.444a3.694 3.694 0 0 0 0 7.389H10v1.5ZM14 7h1.556a5.194 5.194 0 0 1 0 10.39H14v-1.5h1.556a3.694 3.694 0 0 0 0-7.39H14V7Zm-4.5 6h5v-1.5h-5V13Z"})});
+/* harmony import */var o=t(10790),r=t(5573),n=(0,o.jsx)(r.SVG,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",children:(0,o.jsx)(r.Path,{d:"M10 17.389H8.444A5.194 5.194 0 1 1 8.444 7H10v1.5H8.444a3.694 3.694 0 0 0 0 7.389H10v1.5ZM14 7h1.556a5.194 5.194 0 0 1 0 10.39H14v-1.5h1.556a3.694 3.694 0 0 0 0-7.39H14V7Zm-4.5 6h5v-1.5h-5V13Z"})});
 /* harmony import */},
 /***/90078(e,s,t){"use strict";
-/* harmony import */var o=t(47143),r=t(94715),n=t(27723),l=t(71406),i=t(44539),a=t(62540);
+/* harmony import */var o=t(47143),r=t(94715),n=t(27723),l=t(71406),i=t(44539),a=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -82,7 +82,7 @@ const c=e=>{const{placeholder:s,attributes:t,setAttributes:c}=e,{text:u}=t,{colo
 return(0,a.jsxs)("div",{...g,children:[p?(0,a.jsx)("div",{...m,children:e.text}):(0,a.jsx)(r.RichText,{placeholder:s||(0,n.__)("Add text…","sensei-lms"),value:u,onChange:e=>c({text:e}),...m,tagName:"div",identifier:"text",withoutInteractiveFormatting:!0}),(0/* ["default"] */,a.jsx)(i.A,{...e})]})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */c
+/* harmony export */"A",0,c
 /* harmony export */])},
 /***/71406(e,s,t){"use strict";
 /* harmony export */t.d(s,{
@@ -133,7 +133,7 @@ function({attributes:{borderRadius:e}}){return{className:{"no-border-radius":0==
 /* harmony export */"_N",0,/* binding */a
 /* harmony export */])},
 /***/21307(e,s,t){"use strict";
-/* harmony import */var o=t(4452),r=t.n(o),n=t(94715),l=t(74997),i=t(71406),a=t(62540);
+/* harmony import */var o=t(4452),r=t.n(o),n=t(94715),l=t(74997),i=t(71406),a=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -156,10 +156,10 @@ function({attributes:{borderRadius:e}}){return{className:{"no-border-radius":0==
 const c=({attributes:e,className:s,tagName:t,blockName:o})=>{const{text:c,inContainer:u,align:d}=e;let p=t;t||(p=(0,i/* .isLinkStyle */._N)({attributes:e})?"a":"button");const m=(0,a.jsx)("div",{...(0,i/* .getButtonWrapperProps */.KS)({className:s,attributes:e}),children:(0,a.jsx)(n.RichText.Content,{...(0,i/* .getButtonProps */.xh)({attributes:e}),tagName:p,value:c})});return u?(0,a.jsx)("div",{className:r()(s,"sensei-buttons-container__button-block",(0,l.getBlockDefaultClassName)(o)+"__wrapper",{[`sensei-buttons-container__button-align-${d}`]:d}),children:m}):m};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */c
+/* harmony export */"A",0,c
 /* harmony export */])},
 /***/44539(e,s,t){"use strict";
-/* harmony import */var o=t(94715),r=t(56427),n=t(27723),l=t(62540);
+/* harmony import */var o=t(94715),r=t(56427),n=t(27723),l=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -167,11 +167,11 @@ const c=({attributes:e,className:s,tagName:t,blockName:o})=>{const{text:c,inCont
 const i=({borderRadius:e,setAttributes:s})=>(0,l.jsx)(r.PanelBody,{title:(0,n.__)("Border settings","sensei-lms"),initialOpen:!1,children:(0,l.jsx)(r.RangeControl,{label:(0,n.__)("Border radius","sensei-lms"),value:e,min:0,max:50,allowReset:!0,onChange:e=>s({borderRadius:e})})}),a=e=>{const{attributes:s,setAttributes:t}=e,{borderRadius:r,align:a}=s;
 return(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(o.BlockControls,{children:(0,l.jsx)(o.BlockAlignmentToolbar,{label:(0,n.__)("Change button alignment","sensei-lms"),value:a||e.alignmentOptions?.default,onChange:e=>{e&&t({align:e})},...e.alignmentOptions})}),(0,l.jsx)(o.InspectorControls,{children:(0,l.jsx)(i,{borderRadius:r,setAttributes:t})})]})};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/71127(e,s,t){"use strict";
 /* unused harmony exports addColorSettings, removeColorSaveProps, removeColorEditProps, removeWrapperProps */
-/* harmony import */var o=t(66087),r=t(52619),n=t(27723),l=t(29281),i=t(62540);
+/* harmony import */var o=t(66087),r=t(52619),n=t(27723),l=t(29281),i=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -207,7 +207,7 @@ const a=e=>(e="string"==typeof e?e:e.name)&&e.startsWith("sensei-lms/button"),c=
 // We force an inline style to apply the color.
 if(u?.border?.color&&(h.borderColor=u.border.color),u?.border?.width&&(h.borderWidth=u.border.width),s){if(t){const e=(0,n.getColorObjectByAttributeValues)(s,t);h.backgroundColor=e.color}if(i){const e=(0,n.getColorObjectByAttributeValues)(s,i);h.color=e.color}}return{className:b||void 0,style:h}}])},
 /***/72613(e,s,t){"use strict";
-/* harmony import */var o=t(66087),r=t(4452),n=t.n(r),l=t(27723),i=t(74997),a=t(35479),c=(t(71127),t(90078)),u=t(21307),d=t(74862),p=t(29281),m=t(62540);
+/* harmony import */var o=t(66087),r=t(4452),n=t.n(r),l=t(27723),i=t(74997),a=t(35479),c=(t(71127),t(90078)),u=t(21307),d=t(74862),p=t(29281),m=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -238,7 +238,7 @@ return(0/* ["default"] */,m.jsx)(d.A,{message:e})}return t?(0,m.jsx)(t,{...e,chi
 /* harmony export */"u",0,/* binding */g
 /* harmony export */])},
 /***/76296(e,s,t){"use strict";
-/* harmony import */var o=t(27723),r=t(94715),n=t(72613),l=t(50594),i=t(62540);
+/* harmony import */var o=t(27723),r=t(94715),n=t(72613),l=t(50594),i=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -251,10 +251,10 @@ return(0/* ["default"] */,m.jsx)(d.A,{message:e})}return t?(0,m.jsx)(t,{...e,chi
  */
 /* harmony default export */const a=(0,n/* .createButtonBlockType */.e)({tagName:"a",settings:{name:"sensei-lms/button-continue-course",parent:["sensei-lms/course-actions"],title:(0,o.__)("Continue Course","sensei-lms"),description:(0,o.__)("Enable a student to pick up where they left off in a course.","sensei-lms"),keywords:[(0,o.__)("Button","sensei-lms"),(0,o.__)("Continue","sensei-lms"),(0,o.__)("Course","sensei-lms")],attributes:{text:{default:(0,o.__)("Continue","sensei-lms")}},styles:[{...n/* .BlockStyles */.u.Fill,isDefault:!0},n/* .BlockStyles */.u.Outline,n/* .BlockStyles */.u.Link]},EditWrapper:({children:e})=>(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(r.BlockControls,{children:(0/* ["default"] */,i.jsx)(l.A,{useCourseStatusContext:!0})}),e]})});
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/7122(e,s,t){"use strict";
-/* harmony import */var o=t(27723),r=t(94715),n=t(86087),l=t(47143),i=t(74862),a=t(50594),c=t(50131),u=t(60966),d=t(62540);
+/* harmony import */var o=t(27723),r=t(94715),n=t(86087),l=t(47143),i=t(74862),a=t(50594),c=t(50131),u=t(60966),d=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -270,13 +270,13 @@ const p=[["sensei-lms/button-take-course",{text:(0,o.__)("Start Course","sensei-
  * @return {Function} Function to select a child block by block name.
  */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */m
+/* harmony export */"A",0,m
 /* harmony export */])},
 /***/65911(e,s,t){"use strict";
 /* harmony export */t.d(s,{
 /* harmony export */A:()=>/* binding */n
 /* harmony export */});
-/* harmony import */var o=t(94715),r=t(62540);
+/* harmony import */var o=t(94715),r=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -295,7 +295,7 @@ return(0,r.jsx)(o.InnerBlocks.Content,{})}
  */
 /* harmony default export */const a={...r,metadata:r,example:{innerBlocks:[{name:"sensei-lms/button-take-course",attributes:{text:(0,o.__)("Start Course","sensei-lms")}}]},icon:i/* ["default"] */.A,edit:n/* ["default"] */.A,save:l/* ["default"] */.A};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/60966(e,s,t){"use strict";
 /* harmony import */var o=t(86087);
@@ -314,7 +314,7 @@ return(0,r.jsx)(o.InnerBlocks.Content,{})}
 const r=(0,o.createContext)();
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/50131(e,s,t){"use strict";
 /* harmony import */var o=t(27723);
@@ -325,10 +325,10 @@ const r=(0,o.createContext)();
 const r=[{label:(0,o.__)("Not Started","sensei-lms"),value:"not-started",showBlock:"sensei-lms/button-take-course"},{label:(0,o.__)("In Progress","sensei-lms"),value:"in-progress",showBlock:"sensei-lms/button-continue-course"},{label:(0,o.__)("Completed","sensei-lms"),value:"completed",showBlock:"sensei-lms/button-view-results"}];
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/50594(e,s,t){"use strict";
-/* harmony import */var o=t(56427),r=t(86087),n=t(50131),l=t(60966),i=t(2567),a=t(62540);
+/* harmony import */var o=t(56427),r=t(86087),n=t(50131),l=t(60966),i=t(2567),a=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -351,7 +351,7 @@ if(t&&!c?.courseStatus)return null;const u=t?c.courseStatus:e,d=t?c.setCourseSta
 return(0,a.jsx)(o.ToolbarGroup,{children:(0/* ["default"] */,a.jsx)(i.A,{options:n/* ["default"] */.A,optionsLabel:"Course Status",value:u,onChange:d})})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */c
+/* harmony export */"A",0,c
 /* harmony export */])},
 /***/85810(e,s,t){"use strict";
 /* harmony export */t.d(s,{
@@ -362,7 +362,7 @@ return(0,a.jsx)(o.ToolbarGroup,{children:(0/* ["default"] */,a.jsx)(i.A,{options
 /* harmony import */},
 /***/48288(e,s,t){"use strict";
 /* unused harmony export CourseCategoryEdit */
-/* harmony import */var o=t(66087),r=t(94715),n=t(56427),l=t(29491),i=t(27723),a=t(86087),c=t(63929),u=t(74862),d=t(29281),p=t(47143),m=t(38204),g=t(62540);
+/* harmony import */var o=t(66087),r=t(94715),n=t(56427),l=t(29491),i=t(27723),a=t(86087),c=t(63929),u=t(74862),d=t(29281),p=t(47143),m=t(38204),g=t(10790);
 /* harmony import */
 /* harmony default export */const b=(0,l.compose)((0,d/* .withColorSettings */.rt)({textColor:{style:"color",label:(0,i.__)("Text color","sensei-lms")},backgroundColor:{style:"background-color",label:(0,i.__)("Background color","sensei-lms")}}))(
 /**
@@ -374,7 +374,7 @@ return(0,a.jsx)(o.ToolbarGroup,{children:(0/* ["default"] */,a.jsx)(i.A,{options
 /**
  * Internal dependencies
  */
-function(e){const{attributes:s,backgroundColor:t,context:l,textColor:d,setAttributes:b,setBackgroundColor:h,setTextColor:v}=e,{textAlign:x,previewCategories:y,options:_}=s,{postId:f,postType:C}=l,{postTerms:k,isLoading:w}=(0,c/* ["default"] */.A)(f),{__unstableMarkNextChangeAsNotPersistent:A=o.noop}=(0,p.useDispatch)(r.store);(0,a.useEffect)(()=>{_&&(h(_.backgroundColor),v(_.textColor))},
+function(e){const{attributes:s,backgroundColor:t,context:l,textColor:d,setAttributes:b,setBackgroundColor:h,setTextColor:v}=e,{textAlign:x,previewCategories:y,options:_}=s,{postId:C,postType:f}=l,{postTerms:k,isLoading:w}=(0,c/* ["default"] */.A)(C),{__unstableMarkNextChangeAsNotPersistent:A=o.noop}=(0,p.useDispatch)(r.store);(0,a.useEffect)(()=>{_&&(h(_.backgroundColor),v(_.textColor))},
 // eslint-disable-next-line react-hooks/exhaustive-deps
 []),
 // We need to store the colors inside the option attribute because
@@ -383,12 +383,12 @@ function(e){const{attributes:s,backgroundColor:t,context:l,textColor:d,setAttrib
 // We need to store the colors inside the option attribute because
 // by default the root backgroundColor and textColor are overwritten by
 // Gutenberg withColors HOC.
-(0,a.useEffect)(()=>{A(),b({options:{backgroundColor:t?.color,textColor:d?.color}})},[t,d,b,A]);const j=(0,r.useBlockProps)((0,m/* .getStyleAndClassesFromAttributes */.O)(s)),S=e=>e?.map(e=>(0,g.jsx)("a",{href:e.link,onClick:e=>e.preventDefault(),children:(0,o.unescape)(e.name)},e.id));return y?(0,g.jsx)("div",{...j,children:S(y)}):"course"!==C?(0/* ["default"] */,g.jsx)(u.A,{message:(0,i.__)("The Course Categories block can only be used inside the Course List block.","sensei-lms")}):(0,g.jsxs)(g.Fragment,{children:[(0,g.jsx)(r.BlockControls,{children:(0,g.jsx)(r.AlignmentToolbar,{value:x,onChange:e=>{b({textAlign:e})}})}),(0,g.jsxs)("div",{...j,children:[w&&(0,g.jsx)(n.Spinner,{}),!w&&S(k)]})]})});
+(0,a.useEffect)(()=>{A(),b({options:{backgroundColor:t?.color,textColor:d?.color}})},[t,d,b,A]);const j=(0,r.useBlockProps)((0,m/* .getStyleAndClassesFromAttributes */.O)(s)),S=e=>e?.map(e=>(0,g.jsx)("a",{href:e.link,onClick:e=>e.preventDefault(),children:(0,o.unescape)(e.name)},e.id));return y?(0,g.jsx)("div",{...j,children:S(y)}):"course"!==f?(0/* ["default"] */,g.jsx)(u.A,{message:(0,i.__)("The Course Categories block can only be used inside the Course List block.","sensei-lms")}):(0,g.jsxs)(g.Fragment,{children:[(0,g.jsx)(r.BlockControls,{children:(0,g.jsx)(r.AlignmentToolbar,{value:x,onChange:e=>{b({textAlign:e})}})}),(0,g.jsxs)("div",{...j,children:[w&&(0,g.jsx)(n.Spinner,{}),!w&&S(k)]})]})});
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */b
+/* harmony export */"A",0,b
 /* harmony export */])},
 /***/32189(e,s,t){"use strict";
-/* harmony import */var o=t(94715),r=t(38204),n=t(62540);
+/* harmony import */var o=t(94715),r=t(38204),n=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -400,7 +400,7 @@ const l=({attributes:e})=>{const s=o.useBlockProps.save((0,r/* .getStyleAndClass
 return(0,n.jsx)("div",{...s})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/63929(e,s,t){"use strict";
 /* harmony export */t.d(s,{
@@ -422,7 +422,7 @@ return{isLoading:t?.postTerms?.includes(s)};if(!i.length)return{isLoading:!1};co
  */
 /* harmony default export */const a={...n,metadata:n,example:{attributes:{previewCategories:[{id:1,name:(0,o.__)("Music","sensei-lms")},{id:2,name:(0,o.__)("Movies","sensei-lms")}]}},icon:r/* ["default"] */.A,edit:l/* ["default"] */.A,save:i/* ["default"] */.A};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/38204(e,s,t){"use strict";
 /* harmony import */var o=t(4452),r=t.n(o),n=t(66087);
@@ -434,7 +434,7 @@ const l="--sensei-lms-course-categories";
 /* harmony export */t.d(s,[
 /* harmony export */"O",0,(e={})=>{const{options:s,textAlign:t}=e;return{style:(0,n.omitBy)({[`${l}-background-color`]:s?.backgroundColor,[`${l}-text-color`]:s?.textColor},n.isNil),className:r()({[`has-text-align-${t}`]:!!t})}}])},
 /***/8473(e,s,t){"use strict";
-/* harmony import */var o=t(27723),r=t(3582),n=t(62540);
+/* harmony import */var o=t(27723),r=t(3582),n=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -451,11 +451,11 @@ const l=({postId:e,isFeaturedImage:s,children:t})=>{const[l]=(0,r.useEntityProp)
 return(0,n.jsxs)("div",{className:u,children:[a&&d&&(0,n.jsx)("span",{className:"sensei-lms-course-list-featured-label__text",children:(0,o.__)("Featured","sensei-lms")}),t]})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/70371(e,s,t){"use strict";
 /* unused harmony export withQueryLoopPatternsAndSettingsHiddenForCourseList */
-/* harmony import */var o=t(27723),r=t(52619),n=t(62540);
+/* harmony import */var o=t(27723),r=t(52619),n=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -482,7 +482,7 @@ s[1].click(),
 s.forEach(e=>{e.style.display="none"})}),document.querySelectorAll(".block-editor-block-pattern-setup-list__list-item").forEach(e=>{[...e.querySelectorAll("div")].find(e=>"course-list-element"===e.innerText)||(e.style.display="none")})),(0,n.jsx)(e,{...s})})},
 /***/67939(e,s,t){"use strict";
 /* unused harmony exports DEFAULT_ATTRIBUTES, addWrapperAroundFeaturedImageBlock, addWrapperAroundCourseCategoriesBlock */
-/* harmony import */var o=t(27723),r=t(74997),n=t(47143),l=t(52619),i=(t(70371),t(16711)),a=t(8473),c=t(62540);
+/* harmony import */var o=t(27723),r=t(74997),n=t(47143),l=t(52619),i=(t(70371),t(16711)),a=t(8473),c=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -512,7 +512,7 @@ function(e,s){if("sensei-lms/course-categories"!==s)return e;const t=e.edit;retu
 /* harmony export */t.d(s,[
 /* harmony export */"w6",0,()=>{(0,r.registerBlockVariation)("core/query",{name:"sensei-lms/course-list",title:(0,o.__)("Course List","sensei-lms"),description:(0,o.__)("Show a list of courses.","sensei-lms"),icon:i/* ["default"] */.A,category:"sensei-lms",keywords:[(0,o.__)("Course","sensei-lms"),(0,o.__)("List","sensei-lms"),(0,o.__)("Courses","sensei-lms")],attributes:{...u},isActive:(e,s)=>e.className?.match(s.className)&&e.query.postType===s.query.postType,scope:["inserter"]})}])},
 /***/81596(e,s,t){"use strict";
-/* harmony import */var o=t(27723),r=t(47143),n=t(56427),l=t(94715),i=t(74862),a=t(62540);
+/* harmony import */var o=t(27723),r=t(47143),n=t(56427),l=t(94715),i=t(74862),a=t(10790);
 /* harmony import */function c({filters:e,types:s}){return!s||s.length<1?null:Object.keys(e).map(t=>{const o=e[t];return s.includes(t)?(0,a.jsx)(n.SelectControl,{options:o.options,onChange:()=>{},value:o.defaultOption},o.label):null})}
 /* harmony default export */const u=function({attributes:{types:e,defaultOptions:s},context:{query:t},setAttributes:u}){const d=
 /**
@@ -523,7 +523,7 @@ function(e,s){if("sensei-lms/course-categories"!==s)return e;const t=e.edit;retu
  */
 function(e){const s=(0,r.useSelect)(e=>e("core").getEntityRecords("taxonomy","course-category",{per_page:-1})??[],[]).map(e=>({label:e.name,value:e.id}));return{categories:{label:(0,o.__)("Categories","sensei-lms"),options:[{label:(0,o.__)("All Categories","sensei-lms"),value:-1},...s],defaultOption:e?.categories??-1},featured:{label:(0,o.__)("Featured","sensei-lms"),options:[{label:(0,o.__)("All Courses","sensei-lms"),value:"all"},{label:(0,o.__)("Featured","sensei-lms"),value:"featured"}],defaultOption:e?.featured??"all"},student_course:{label:(0,o.__)("Student Courses","sensei-lms"),options:[{label:(0,o.__)("All Courses","sensei-lms"),value:"all"},{label:(0,o.__)("Active","sensei-lms"),value:"active"},{label:(0,o.__)("Completed","sensei-lms"),value:"completed"}],defaultOption:e?.student_course??"all"}}}(s),p=(0,l.useBlockProps)();return"course"!==t?.postType?(u({align:!1,className:"wp-block-sensei-lms-course-list-filter__warning"}),(0/* ["default"] */,a.jsx)(i.A,{message:(0,o.__)("The Course List Filter block can only be used inside the Course List block.","sensei-lms")})):(0,a.jsxs)("div",{...p,children:[(0,a.jsx)(l.InspectorControls,{children:(0,a.jsx)(n.PanelBody,{title:(0,o.__)("Filter Type","sensei-lms"),children:Object.keys(d).map(s=>(0,a.jsx)(n.ToggleControl,{label:d[s].label,checked:e.includes(s),onChange:t=>function(e,s,t,o){t({types:e?[...s,o]:s.filter(e=>e!==o)})}(t,e,u,s)},s))})}),(0,a.jsx)(c,{filters:d,types:e})]})};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */u
+/* harmony export */"A",0,u
 /* harmony export */])},
 /***/48308(e,s,t){"use strict";
 /* harmony import */var o=t(45326),r=t(89726),n=t(81596);
@@ -533,7 +533,7 @@ function(e){const s=(0,r.useSelect)(e=>e("core").getEntityRecords("taxonomy","co
  */
 /* harmony default export */const l={...r,metadata:r,icon:o/* ["default"] */.A,edit:n/* ["default"] */.A};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/2883(e,s,t){"use strict";
 /**
@@ -683,7 +683,7 @@ TRACK_LESSON:({lessonId:e},s)=>{const t=[...s.trackedLessons];return t.includes(
 /* harmony export */"l",0,/* binding */u
 /* harmony export */])},
 /***/44956(e,s,t){"use strict";
-/* harmony import */var o=t(94715),r=t(27723),n=t(74862),l=t(62540);
+/* harmony import */var o=t(94715),r=t(27723),n=t(74862),l=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -701,7 +701,7 @@ TRACK_LESSON:({lessonId:e},s)=>{const t=[...s.trackedLessons];return t.includes(
 const i=({context:{postType:e}})=>{const s=(0,o.useBlockProps)();return["course","lesson"].includes(e)?(0,l.jsx)("div",{...s,children:(0,l.jsx)("a",{href:"#",children:(0,r.__)("Course Overview","sensei-lms")})}):(0/* ["default"] */,l.jsx)(n.A,{message:(0,r.__)("The Course Overview block can only be used inside the Course List block.","sensei-lms")})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/51764(e,s,t){"use strict";
 /* harmony import */var o=t(31451),r=t(44956),n=t(54350);
@@ -714,11 +714,11 @@ const i=({context:{postType:e}})=>{const s=(0,o.useBlockProps)();return["course"
  */
 /* harmony default export */const l={...n,metadata:n,icon:o/* ["default"] */.A,edit:r/* ["default"] */.A};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/62940(e,s,t){"use strict";
 /* unused harmony export CourseProgressEdit */
-/* harmony import */var o=t(4452),r=t.n(o),n=t(29491),l=t(27723),i=t(47143),a=t(29281),c=t(5705),u=t(28108),d=t(74862),p=t(62540);
+/* harmony import */var o=t(4452),r=t.n(o),n=t(29491),l=t(27723),i=t(47143),a=t(29281),c=t(5705),u=t(28108),d=t(74862),p=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -744,10 +744,10 @@ const i=({context:{postType:e}})=>{const s=(0,o.useBlockProps)();return["course"
  * @param {boolean}  props.attributes.isPreview    Whether block is rendered in a preview.
  * @param {Function} props.setAttributes           Callback to set the component attributes.
  */
-const m=(0,n.compose)((0,a/* .withColorSettings */.rt)({barColor:{style:"background-color",label:(0,l.__)("Progress bar color","sensei-lms")},barBackgroundColor:{style:"background-color",label:(0,l.__)("Progress bar background color","sensei-lms")},textColor:{style:"color",label:(0,l.__)("Text color","sensei-lms")}}),(0,a/* .withDefaultColor */.Lt)({defaultBarColor:{style:"background-color",probeKey:"primaryColor"}}))(e=>{const{className:s,barColor:t,defaultBarColor:o,barBackgroundColor:n,textColor:a,context:{postType:m},attributes:{height:g,borderRadius:b,isPreview:h},setAttributes:v}=e,{totalLessonsCount:x,completedLessonsCount:y}=(0,i.useSelect)(e=>e(c/* .COURSE_STATUS_STORE */.l).getLessonCounts(),[]),_={className:r()(s,a?.class),style:{color:a?.color}},f={className:t?.class||o?.className,style:{backgroundColor:t?.color||o?.color,borderRadius:b}},C={className:r()("wp-block-sensei-lms-course-progress",n?.class),style:{backgroundColor:n?.color,height:g,borderRadius:b}};return"course"!==m?(0/* ["default"] */,p.jsx)(d.A,{message:(0,l.__)("The Course Progress block can only be used inside the Course List block.","sensei-lms")}):(0,p.jsxs)(p.Fragment,{children:[(0/* ["default"] */,p.jsx)(u.A,{totalCount:h?3:x,completedCount:y,wrapperAttributes:_,barWrapperAttributes:C,barAttributes:f,countersClassName:"wp-block-sensei-lms-progress-heading",label:(0,l.__)("lessons","sensei-lms"),completedCountClassName:"wp-block-sensei-lms-progress-heading__completed"}),(0/* .ProgressBarSettings */,p.jsx)(u.m,{borderRadius:b,setBorderRadius:e=>v({borderRadius:e}),height:g,setHeight:e=>v({height:e})})]})});
+const m=(0,n.compose)((0,a/* .withColorSettings */.rt)({barColor:{style:"background-color",label:(0,l.__)("Progress bar color","sensei-lms")},barBackgroundColor:{style:"background-color",label:(0,l.__)("Progress bar background color","sensei-lms")},textColor:{style:"color",label:(0,l.__)("Text color","sensei-lms")}}),(0,a/* .withDefaultColor */.Lt)({defaultBarColor:{style:"background-color",probeKey:"primaryColor"}}))(e=>{const{className:s,barColor:t,defaultBarColor:o,barBackgroundColor:n,textColor:a,context:{postType:m},attributes:{height:g,borderRadius:b,isPreview:h},setAttributes:v}=e,{totalLessonsCount:x,completedLessonsCount:y}=(0,i.useSelect)(e=>e(c/* .COURSE_STATUS_STORE */.l).getLessonCounts(),[]),_={className:r()(s,a?.class),style:{color:a?.color}},C={className:t?.class||o?.className,style:{backgroundColor:t?.color||o?.color,borderRadius:b}},f={className:r()("wp-block-sensei-lms-course-progress",n?.class),style:{backgroundColor:n?.color,height:g,borderRadius:b}};return"course"!==m?(0/* ["default"] */,p.jsx)(d.A,{message:(0,l.__)("The Course Progress block can only be used inside the Course List block.","sensei-lms")}):(0,p.jsxs)(p.Fragment,{children:[(0/* ["default"] */,p.jsx)(u.A,{totalCount:h?3:x,completedCount:y,wrapperAttributes:_,barWrapperAttributes:f,barAttributes:C,countersClassName:"wp-block-sensei-lms-progress-heading",label:(0,l.__)("lessons","sensei-lms"),completedCountClassName:"wp-block-sensei-lms-progress-heading__completed"}),(0/* .ProgressBarSettings */,p.jsx)(u.m,{borderRadius:b,setBorderRadius:e=>v({borderRadius:e}),height:g,setHeight:e=>v({height:e})})]})});
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */m
+/* harmony export */"A",0,m
 /* harmony export */])},
 /***/70108(e,s,t){"use strict";
 /* harmony import */var o=t(68604),r=t(62940),n=t(7614);
@@ -757,10 +757,10 @@ const m=(0,n.compose)((0,a/* .withColorSettings */.rt)({barColor:{style:"backgro
  */
 /* harmony default export */const l={...n,metadata:n,icon:o/* ["default"] */.A,edit:r/* ["default"] */.A};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/2567(e,s,t){"use strict";
-/* harmony import */var o=t(4452),r=t.n(o),n=t(56427),l=t(1027),i=t(62540);
+/* harmony import */var o=t(4452),r=t.n(o),n=t(56427),l=t(1027),i=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -792,10 +792,10 @@ return(0,i.jsx)(n.ToolbarDropdownMenu,{className:"sensei-toolbar-dropdown",popov
 return(0,i.jsx)(n.MenuItem,{role:"menuitemradio",isSelected:s,icon:s?l/* ["default"] */.A:null,className:r()("sensei-toolbar-dropdown__option",{"is-selected":s},o?.className),onClick:()=>{a(e.value),t()},children:e.label,...o},e.value)})})})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/47056(e,s,t){"use strict";
-/* harmony import */var o=t(66087),r=t(74997),n=t(48597),l=t(62540);
+/* harmony import */var o=t(66087),r=t(74997),n=t(48597),l=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -821,10 +821,10 @@ n=(0,o.omit)(n,Object.keys(s))),(0,r.registerBlockType)(s||t,n);
 })};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/86760(e,s,t){"use strict";
-/* harmony import */var o=t(27723),r=t(94715),n=t(72613),l=t(50594),i=t(62540);
+/* harmony import */var o=t(27723),r=t(94715),n=t(72613),l=t(50594),i=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -837,10 +837,10 @@ n=(0,o.omit)(n,Object.keys(s))),(0,r.registerBlockType)(s||t,n);
  */
 /* harmony default export */const a=(0,n/* .createButtonBlockType */.e)({settings:{name:"sensei-lms/button-take-course",title:(0,o.__)("Course Signup","sensei-lms"),description:(0,o.__)("Enable a registered user to start the course. This block is only displayed if the user is not already enrolled.","sensei-lms"),keywords:[(0,o.__)("Start","sensei-lms"),(0,o.__)("Sign up","sensei-lms"),(0,o.__)("Signup","sensei-lms"),(0,o.__)("Enrol","sensei-lms"),(0,o.__)("Enroll","sensei-lms"),(0,o.__)("Course","sensei-lms"),(0,o.__)("Take course","sensei-lms")],attributes:{text:{default:(0,o.__)("Take Course","sensei-lms")}},example:{attributes:{align:"left"}}},invalidUsage:{message:(0,o.__)("The Course Signup block can only be used inside the Course List block.","sensei-lms"),validPostTypes:["course"]},EditWrapper:({children:e})=>(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(r.BlockControls,{children:(0/* ["default"] */,i.jsx)(l.A,{useCourseStatusContext:!0})}),e]})});
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/23371(e,s,t){"use strict";
-/* harmony import */var o=t(27723),r=t(94715),n=t(72613),l=t(50594),i=t(62540);
+/* harmony import */var o=t(27723),r=t(94715),n=t(72613),l=t(50594),i=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -853,7 +853,7 @@ n=(0,o.omit)(n,Object.keys(s))),(0,r.registerBlockType)(s||t,n);
  */
 /* harmony default export */const a=(0,n/* .createButtonBlockType */.e)({tagName:"a",settings:{name:"sensei-lms/button-view-results",description:(0,o.__)("Enable a student to view their course results.","sensei-lms"),title:(0,o.__)("View Results","sensei-lms"),attributes:{text:{default:(0,o.__)("View Results","sensei-lms")}},styles:[n/* .BlockStyles */.u.Fill,{...n/* .BlockStyles */.u.Outline,isDefault:!0},n/* .BlockStyles */.u.Link]},invalidUsage:{message:(0,o.__)("The View Results block can only be used inside the Course List block.","sensei-lms"),validPostTypes:["course"]},EditWrapper:({children:e})=>(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(r.BlockControls,{children:(0/* ["default"] */,i.jsx)(l.A,{useCourseStatusContext:!0})}),e]})});
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/77549(e,s,t){"use strict";
 /* unused harmony export getProbeStyles */
@@ -903,7 +903,7 @@ return e.body.removeChild(s),n},(e=i())=>e);
 /* harmony import */var o=t(95861),r=t(30983);
 /* harmony import */},
 /***/30983(e,s,t){"use strict";
-/* harmony import */var o=t(94715),r=t(56427),n=t(27723),l=t(62540);
+/* harmony import */var o=t(94715),r=t(56427),n=t(27723),l=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -920,10 +920,10 @@ return e.body.removeChild(s),n},(e=i())=>e);
 const i=({borderRadius:e,setBorderRadius:s,height:t,setHeight:i})=>(e=void 0===e?10:e,t=void 0===t?14:t,(0,l.jsx)(o.InspectorControls,{children:(0,l.jsxs)(r.PanelBody,{title:(0,n.__)("Progress bar settings","sensei-lms"),initialOpen:!1,className:"sensei-progress-bar-settings",children:[(0,l.jsx)(r.PanelRow,{children:(0,l.jsx)(r.RangeControl,{label:(0,n.__)("Border radius","sensei-lms"),value:e,onChange:s,min:0,max:15,allowReset:!0,initialPosition:10})}),(0,l.jsx)(r.PanelRow,{children:(0,l.jsx)(r.RangeControl,{label:(0,n.__)("Height","sensei-lms"),value:t,onChange:i,min:1,max:25,allowReset:!0,initialPosition:14})})]})}));
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/95861(e,s,t){"use strict";
-/* harmony import */var o=t(4452),r=t.n(o),n=t(27723),l=t(94715),i=t(62540);
+/* harmony import */var o=t(4452),r=t.n(o),n=t(27723),l=t(94715),i=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -953,11 +953,11 @@ return(0,i.jsxs)("div",{...h,children:[(0,i.jsx)("section",{className:r()("sense
 (0,n.__)("%1$d of %2$d %3$s completed","sensei-lms"),s,e,m||""),!t&&` (${g}%)`]})}),(0,i.jsx)("div",{role:"progressbar","aria-valuenow":g,"aria-valuemin":"0","aria-valuemax":"100",...a,className:r()("sensei-progress-bar__bar",a?.className),children:(0,i.jsx)("div",{...c,className:r()("sensei-progress-bar__progress",c?.className),style:{...c?.style&&c.style,width:`${b}%`}})})]})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/29281(e,s,t){"use strict";
 /* unused harmony export ColorSettings */
-/* harmony import */var o=t(66087),r=t(86087),n=t(94715),l=t(27723),i=t(77549),a=t(62540);
+/* harmony import */var o=t(66087),r=t(86087),n=t(94715),l=t(27723),i=t(77549),a=t(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -990,7 +990,7 @@ return(0,a.jsx)(n.InspectorControls,{children:(0,a.jsx)(n.PanelColorSettings,{ti
 /* harmony export */"Sw",0,(e="default")=>s=>t=>{let o=t.attributes?.className;const r={};o&&o.includes("is-style-")?r.className=o:o=r.className=[o,`is-style-${e}`].filter(Boolean).join(" ");const n=o.match(/is-style-(\w+)/);return n&&(r.blockStyle=n[1]),(0,a.jsx)(s,{...t,...r})},
 /* harmony export */"rt",0,e=>s=>{const t=(0,o.mapValues)(e,e=>e.style);return(0,n.withColors)(t)(t=>(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(s,{...t}),(0,a.jsx)(c,{colorSettings:e,props:t})]}))}])},
 /***/74862(e,s,t){"use strict";
-/* harmony import */var o=t(94715),r=t(62540);
+/* harmony import */var o=t(94715),r=t(10790);
 /* harmony import */
 /* harmony default export */const n=
 /**
@@ -999,7 +999,7 @@ return(0,a.jsx)(n.InspectorControls,{children:(0,a.jsx)(n.PanelColorSettings,{ti
 function({message:e}){const s=(0,o.useBlockProps)();
 return(0,r.jsx)("div",{...s,children:(0,r.jsx)(o.Warning,{children:e})})};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */n
+/* harmony export */"A",0,n
 /* harmony export */])},
 /***/77505(e,s,t){"use strict";
 /* unused harmony export composeFetchAction */
@@ -1035,18 +1035,8 @@ window.senseiStores=window.senseiStores||[];const{senseiStores:r}=window;
 /* harmony export */"i",0,e=>{
 // Returns if it's not an hexadecimal.
 if(!e||null===e.match("#"))return e;let s=0,t=0,o=0;const r=4===e.length?`#${e[1]+e[1]+e[2]+e[2]+e[3]+e[3]}`:e;return 7===r.length&&(s=parseInt(r.substr(1,2),16)||0,t=parseInt(r.substr(3,2),16)||0,o=parseInt(r.substr(5,2),16)||0),`rgb(${s}, ${t}, ${o})`}])},
-/***/2192(e,s,t){"use strict";
-/**
- * @license React
- * react-jsx-runtime.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */var o=t(51609),r=Symbol.for("react.element"),n=Symbol.for("react.fragment"),l=Object.prototype.hasOwnProperty,i=o.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,a={key:!0,ref:!0,__self:!0,__source:!0};function c(e,s,t){var o,n={},c=null,u=null;for(o in void 0!==t&&(c=""+t),void 0!==s.key&&(c=""+s.key),void 0!==s.ref&&(u=s.ref),s)l.call(s,o)&&!a.hasOwnProperty(o)&&(n[o]=s[o]);if(e&&e.defaultProps)for(o in s=e.defaultProps)void 0===n[o]&&(n[o]=s[o]);return{$$typeof:r,type:e,key:c,ref:u,props:n,_owner:i.current}}s.Fragment=n,s.jsx=c,s.jsxs=c},
-/***/62540(e,s,t){"use strict";e.exports=t(2192)},
 /***/51609(e){"use strict";e.exports=window.React},
+/***/10790(e){"use strict";e.exports=window.ReactJSXRuntime},
 /***/66087(e){"use strict";e.exports=window.lodash},
 /***/94715(e){"use strict";e.exports=window.wp.blockEditor},
 /***/74997(e){"use strict";e.exports=window.wp.blocks},
@@ -1099,7 +1089,6 @@ if(!e||null===e.match("#"))return e;let s=0,t=0,o=0;const r=4===e.length?`#${e[1
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/t.n=e=>{
 /******/const s=e&&e.__esModule?
@@ -1108,18 +1097,16 @@ if(!e||null===e.match("#"))return e;let s=0,t=0,o=0;const r=4===e.length?`#${e[1
 /******/
 /******/return t.d(s,{a:s}),s;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/t.d=(e,s)=>{
 /******/if(Array.isArray(s))
 /******/for(
 /******/var o=0;o<s.length;){
-/******/var r=s[o++],n=s[o++];
+/******/var r=s[o++],n=s[o++],l=0===n?{enumerable:!0,value:s[o++]}:{enumerable:!0,get:n};
 /******/
-/******/t.o(e,r)?0===n&&o++
-/******/:
-/******/0===n?
-/******/Object.defineProperty(e,r,{enumerable:!0,value:s[o++]}):
-/******/Object.defineProperty(e,r,{enumerable:!0,get:n})
+/******/t.o(e,r)||Object.defineProperty(e,r,l)
 /******/}
 /******/else
 /******/for(var r in s)
@@ -1128,8 +1115,9 @@ if(!e||null===e.match("#"))return e;let s=0,t=0,o=0;const r=4===e.length?`#${e[1
 /******/;
 /******/
 /******/},
-/******/t.o=(e,s)=>Object.hasOwn(e,s)
-/******/,
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/t.o=(e,s)=>Object.hasOwn(e,s),
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (()=>{"use strict";
 /* harmony import */var e=t(47056),s=t(67939),o=t(85810),r=t(68815),n=t(48308),l=t(51764),i=t(70108),a=t(86760),c=t(23371);

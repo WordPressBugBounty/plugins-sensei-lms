@@ -9,6 +9,9 @@ use Sensei\Admin\Tour\Sensei_Tour;
 use Sensei\Clock\Clock;
 use Sensei\Clock\Clock_Interface;
 use Sensei\Internal\Action_Scheduler\Action_Scheduler;
+use Sensei\Internal\Course_Lessons\Repositories\Course_Lessons_Repository_Interface;
+use Sensei\Internal\Course_Lessons\Repositories\Meta_Based_Course_Lessons_Repository;
+use Sensei\Internal\Course_Lessons\Services\Meta_Based_Course_Lessons_Query_Service;
 use Sensei\Internal\Emails\Email_Customization;
 use Sensei\Internal\Installer\Updates_Factory;
 use Sensei\Internal\Migration\Migration_Job;
@@ -21,6 +24,7 @@ use Sensei\Internal\Quiz_Submission\Grade\Repositories\Grade_Repository_Factory;
 use Sensei\Internal\Quiz_Submission\Grade\Repositories\Grade_Repository_Interface;
 use Sensei\Internal\Quiz_Submission\Submission\Repositories\Submission_Repository_Factory;
 use Sensei\Internal\Quiz_Submission\Submission\Repositories\Submission_Repository_Interface;
+use Sensei\Internal\Services\Progress_Query_Service_Factory;
 use Sensei\Internal\Services\Progress_Storage_Configuration;
 use Sensei\Internal\Student_Progress\Course_Progress\Repositories\Course_Progress_Repository_Factory;
 use Sensei\Internal\Student_Progress\Course_Progress\Repositories\Course_Progress_Repository_Interface;
@@ -356,6 +360,15 @@ class Sensei_Main {
 	public $sensei_wpml;
 
 	/**
+	 * Course lessons repository.
+	 *
+	 * @since 4.27.0
+	 * @psalm-suppress PropertyNotSetInConstructor
+	 * @var Course_Lessons_Repository_Interface
+	 */
+	public $course_lessons_repository;
+
+	/**
 	 * Course progress repository factory.
 	 *
 	 * @var Course_Progress_Repository_Factory
@@ -642,6 +655,10 @@ class Sensei_Main {
 	 * @since 1.9.0
 	 */
 	public function initialize_global_objects() {
+		// Course lessons repository.
+		global $wpdb;
+		$this->course_lessons_repository = new Meta_Based_Course_Lessons_Repository( $wpdb );
+
 		// Setup settings.
 		$this->settings                       = new Sensei_Settings();
 		$this->progress_storage_configuration = Progress_Storage_Configuration::resolve( $this->settings->settings );
@@ -728,8 +745,28 @@ class Sensei_Main {
 		// Editor Wizard.
 		Sensei_Editor_Wizard::instance()->init();
 
+		// Progress query services.
+		$query_service_factory    = new Progress_Query_Service_Factory( $this->progress_storage_configuration );
+		$aggregation_service      = $query_service_factory->create_aggregation_service();
+		$grading_listing_service  = $query_service_factory->create_grading_listing_service();
+		$grading_stats_service    = $query_service_factory->create_grading_stats_service();
+		$reports_listing_service  = $query_service_factory->create_reports_listing_service();
+		$progress_clauses_service = $query_service_factory->create_clauses_service();
+
 		// Load Analysis Reports.
-		$this->analysis = new Sensei_Analysis( $this->main_plugin_file_name );
+		$reports_overview_list_table_factory = Sensei_Reports_Overview_List_Table_Factory::create_with_dependencies(
+			$this->course,
+			$progress_clauses_service,
+			$aggregation_service,
+			$grading_stats_service
+		);
+		$this->analysis                      = Sensei_Analysis::create_with_dependencies(
+			$this->main_plugin_file_name,
+			$reports_overview_list_table_factory,
+			$reports_listing_service,
+			$aggregation_service,
+			$grading_stats_service
+		);
 
 		// Admin notices.
 		$this->admin_notices = Sensei_Admin_Notices::instance()->init();
@@ -763,7 +800,12 @@ class Sensei_Main {
 		$this->notices = new Sensei_Notices();
 
 		// Load Grading Functionality.
-		$this->grading = new Sensei_Grading( $this->main_plugin_file_name );
+		$this->grading = Sensei_Grading::create_with_dependencies(
+			$this->main_plugin_file_name,
+			$grading_listing_service,
+			$aggregation_service,
+			$grading_stats_service
+		);
 
 		// Load Email Class.
 		$this->emails = new Sensei_Emails( $this->main_plugin_file_name );
@@ -805,6 +847,9 @@ class Sensei_Main {
 		if ( $this->progress_storage_configuration->is_hpps_enabled() && $this->action_scheduler ) {
 			$this->init_migration_scheduler();
 		}
+
+		// Init course lessons query service.
+		( new Meta_Based_Course_Lessons_Query_Service() )->init();
 
 		// Init student progress handlers.
 		( new Course_Deleted_Handler( $this->course_progress_repository ) )->init();

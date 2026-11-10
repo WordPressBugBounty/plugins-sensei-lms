@@ -7,6 +7,8 @@
 
 namespace Sensei\Internal\Student_Progress\Course_Progress\Repositories;
 
+use Sensei\Internal\Persistence_Exception;
+
 use Sensei\Internal\Student_Progress\Course_Progress\Models\Course_Progress_Interface;
 use Sensei\Internal\Student_Progress\Course_Progress\Models\Tables_Based_Course_Progress;
 
@@ -59,6 +61,7 @@ class Comment_Reading_Aggregate_Course_Progress_Repository implements Course_Pro
 	 * @param int $course_id The course ID.
 	 * @param int $user_id The user ID.
 	 * @return Course_Progress_Interface The course progress.
+	 * @throws Persistence_Exception If required progress creation fails.
 	 */
 	public function create( int $course_id, int $user_id ): Course_Progress_Interface {
 		$progress = $this->comments_based_repository->create( $course_id, $user_id );
@@ -98,10 +101,9 @@ class Comment_Reading_Aggregate_Course_Progress_Repository implements Course_Pro
 	 * @internal
 	 *
 	 * @param Course_Progress_Interface $course_progress The course progress.
+	 * @throws Persistence_Exception If required progress creation fails.
 	 */
 	public function save( Course_Progress_Interface $course_progress ): void {
-		$this->comments_based_repository->save( $course_progress );
-
 		$tables_based_progress = $this->tables_based_repository->get( $course_progress->get_course_id(), $course_progress->get_user_id() );
 		if ( ! $tables_based_progress ) {
 			$tables_based_progress = $this->tables_based_repository->create(
@@ -131,6 +133,9 @@ class Comment_Reading_Aggregate_Course_Progress_Repository implements Course_Pro
 			$tables_based_progress->get_updated_at()
 		);
 		$this->tables_based_repository->save( $progress_to_save );
+
+		// Saving completed progress to comments can redirect and end the request, so tables must be synchronized first.
+		$this->comments_based_repository->save( $course_progress );
 	}
 
 	/**

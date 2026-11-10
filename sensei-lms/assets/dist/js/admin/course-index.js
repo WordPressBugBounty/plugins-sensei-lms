@@ -9,14 +9,14 @@
 /******/const r={};
 /******/
 /******/ // The require function
-/******/function t(n){
+/******/function t(o){
 /******/ // Check if module is in cache
-/******/const o=r[n];
-/******/if(void 0!==o)
-/******/return o.exports;
+/******/const n=r[o];
+/******/if(void 0!==n)
+/******/return n.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/const s=r[n]={
+/******/const s=r[o]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -26,12 +26,11 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return e[n](s,s.exports,t),s.exports;
+/******/return e[o](s,s.exports,t),s.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/t.n=e=>{
 /******/const r=e&&e.__esModule?
@@ -40,33 +39,23 @@
 /******/
 /******/return t.d(r,{a:r}),r;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/t.d=(e,r)=>{
-/******/if(Array.isArray(r))
-/******/for(
-/******/var n=0;n<r.length;){
-/******/var o=r[n++],s=r[n++];
-/******/
-/******/t.o(e,o)?0===s&&n++
-/******/:
-/******/0===s?
-/******/Object.defineProperty(e,o,{enumerable:!0,value:r[n++]}):
-/******/Object.defineProperty(e,o,{enumerable:!0,get:s})
-/******/}
-/******/else
 /******/for(var o in r)
 /******/t.o(r,o)&&!t.o(e,o)&&
 /******/Object.defineProperty(e,o,{enumerable:!0,get:r[o]})
 /******/;
-/******/
 /******/},
-/******/t.o=(e,r)=>Object.hasOwn(e,r)
-/******/;
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/t.o=(e,r)=>Object.hasOwn(e,r);
 /******/
 /************************************************************************/
-/* harmony import */var n=t(98490);
+/* harmony import */var o=t(98490);
 /* harmony import */
 /**
  * WordPress dependencies
  */
-t.n(n)()(()=>{jQuery(".sensei-show-more").on("click",e=>{e.preventDefault(),jQuery(e.target).addClass("hidden").siblings().removeClass("hidden")})})})();
+t.n(o)()(()=>{jQuery(".sensei-show-more").on("click",e=>{e.preventDefault(),jQuery(e.target).addClass("hidden").siblings().removeClass("hidden")})})})();

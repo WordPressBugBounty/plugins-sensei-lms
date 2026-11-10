@@ -1,1 +1,26 @@
-<?php return array('dependencies' => array('lodash', 'react', 'wp-api-fetch', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-data-controls', 'wp-edit-post', 'wp-editor', 'wp-element', 'wp-hooks', 'wp-html-entities', 'wp-i18n', 'wp-keycodes', 'wp-polyfill', 'wp-primitives', 'wp-token-list', 'wp-url'), 'version' => '7bb60248f01ba9203258');
+<?php return array(
+	'dependencies' => array(
+		'lodash',
+		'react',
+		'react-jsx-runtime',
+		'wp-api-fetch',
+		'wp-block-editor',
+		'wp-blocks',
+		'wp-components',
+		'wp-compose',
+		'wp-data',
+		'wp-data-controls',
+		'wp-edit-post',
+		'wp-editor',
+		'wp-element',
+		'wp-hooks',
+		'wp-html-entities',
+		'wp-i18n',
+		'wp-keycodes',
+		'wp-polyfill',
+		'wp-primitives',
+		'wp-token-list',
+		'wp-url'
+	),
+	'version' => 'd57b64baefcc119c87f7'
+);

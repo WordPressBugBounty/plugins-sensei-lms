@@ -185,12 +185,7 @@ class Sensei_Reports_Overview_List_Table_Lessons extends Sensei_Reports_Overview
 			_deprecated_hook( 'sensei_analysis_lesson_completions', '4.26.0', '', __( 'This filter is no longer used. Lesson counts now use the progress aggregation service.', 'sensei-lms' ) );
 		}
 
-		$status_counts = $this->aggregation_service->count_statuses(
-			[
-				'type'    => 'lesson',
-				'post_id' => $item->ID,
-			]
-		);
+		$status_counts = $this->aggregation_service->get_lesson_status_counts( $item->ID );
 
 		$lesson_students    = array_sum( $status_counts );
 		$lesson_completions = 0;
@@ -266,10 +261,10 @@ class Sensei_Reports_Overview_List_Table_Lessons extends Sensei_Reports_Overview
 	 * @return string
 	 */
 	private function get_row_module( int $lesson_id ): string {
-		$module        = '';
-		$modules_terms = wp_get_post_terms( $lesson_id, 'module' );
+		$module = '';
+		$term   = Sensei()->course_lessons_repository->get_lesson_module( $lesson_id );
 
-		foreach ( $modules_terms as $term ) {
+		if ( $term ) {
 			if ( $this->csv_output ) {
 				$module = esc_html( $term->name );
 			} else {
@@ -279,8 +274,6 @@ class Sensei_Reports_Overview_List_Table_Lessons extends Sensei_Reports_Overview
 					esc_html( $term->name )
 				);
 			}
-
-			break;
 		}
 
 		return $module;
@@ -334,10 +327,10 @@ class Sensei_Reports_Overview_List_Table_Lessons extends Sensei_Reports_Overview
 	private function get_totals_for_lesson_report_column_headers( int $course_id ) {
 		// Add search filter to query arguments.
 		$query_args = [];
-		// phpcs:ignore WordPress.Security.NonceVerification -- Argument is used for searching.
-		if ( ! empty( $_GET['s'] ) ) {
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			$query_args['s'] = esc_html( $_GET['s'] );
+		$search     = $this->get_search_value();
+		if ( '' !== $search ) {
+			// WP_Query strips slashes from search text before parsing it.
+			$query_args['s'] = wp_slash( $search );
 		}
 		$lessons = $this->course->course_lessons( $course_id, Utils::REPORTS_POST_STATUSES, 'ids', $query_args );
 

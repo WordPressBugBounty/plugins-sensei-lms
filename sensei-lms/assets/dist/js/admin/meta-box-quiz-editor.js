@@ -11,12 +11,12 @@
 /******/ // The require function
 /******/function n(i){
 /******/ // Check if module is in cache
-/******/const a=t[i];
-/******/if(void 0!==a)
-/******/return a.exports;
+/******/const s=t[i];
+/******/if(void 0!==s)
+/******/return s.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/const s=t[i]={
+/******/const a=t[i]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -26,12 +26,11 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return e[i](s,s.exports,n),s.exports;
+/******/return e[i](a,a.exports,n),a.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/n.n=e=>{
 /******/const t=e&&e.__esModule?
@@ -40,28 +39,18 @@
 /******/
 /******/return n.d(t,{a:t}),t;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/n.d=(e,t)=>{
-/******/if(Array.isArray(t))
-/******/for(
-/******/var i=0;i<t.length;){
-/******/var a=t[i++],s=t[i++];
-/******/
-/******/n.o(e,a)?0===s&&i++
-/******/:
-/******/0===s?
-/******/Object.defineProperty(e,a,{enumerable:!0,value:t[i++]}):
-/******/Object.defineProperty(e,a,{enumerable:!0,get:s})
-/******/}
-/******/else
-/******/for(var a in t)
-/******/n.o(t,a)&&!n.o(e,a)&&
-/******/Object.defineProperty(e,a,{enumerable:!0,get:t[a]})
+/******/for(var i in t)
+/******/n.o(t,i)&&!n.o(e,i)&&
+/******/Object.defineProperty(e,i,{enumerable:!0,get:t[i]})
 /******/;
-/******/
 /******/},
-/******/n.o=(e,t)=>Object.hasOwn(e,t)
-/******/;
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/n.o=(e,t)=>Object.hasOwn(e,t);
 /******/
 /************************************************************************/
 /* harmony import */var i=n(89877);
@@ -119,7 +108,7 @@ jQuery.fn.checkQuizGradeType=function(e){
 // Fetch all current question types
 var t,n,i=[];jQuery("#add-question-metadata > table > tbody > tr input.question_type").each(function(){t=jQuery(this).val(),i.push(t)}),
 // Add latest question to array if it exists
-e&&i.push(e);for(var a=!1,s=0;s<i.length;s++)if(n=i[s],!a)switch(n){case"multiple-choice":case"boolean":case"gap-fill":default:a=!1;break;case"multi-line":case"single-line":case"file-upload":a=!0}// End Switch Statement
+e&&i.push(e);for(var s=!1,a=0;a<i.length;a++)if(n=i[a],!s)switch(n){case"multiple-choice":case"boolean":case"gap-fill":default:s=!1;break;case"multi-line":case"single-line":case"file-upload":s=!0}// End Switch Statement
 // Save quiz grade type
 jQuery.fn.saveQuizGradeType()},
 /**
@@ -134,7 +123,7 @@ var n=parseInt(jQuery("#question_counter").val()),i=n;e=parseInt(e),
 // Increment or Decrement
 i="-"==t?n-e:n+e,
 // Set new value
-jQuery("#question_counter").val(i),i>0?jQuery("#no-questions-message").hasClass("hidden")||jQuery("#no-questions-message").addClass("hidden"):jQuery("#no-questions-message").removeClass("hidden");const a=new CustomEvent("sensei-quiz-editor-question-count-updated",{detail:{questions:i}});window.dispatchEvent(a),jQuery.fn.updateQuestionRows()},
+jQuery("#question_counter").val(i),i>0?jQuery("#no-questions-message").hasClass("hidden")||jQuery("#no-questions-message").addClass("hidden"):jQuery("#no-questions-message").removeClass("hidden");const s=new CustomEvent("sensei-quiz-editor-question-count-updated",{detail:{questions:i}});window.dispatchEvent(s),jQuery.fn.updateQuestionRows()},
 /**
    * Save quiz grade type
    *
@@ -162,7 +151,7 @@ jQuery.fn.saveQuestionOrderRandom=function(){var e="random_question_order="+(jQu
    * @since 1.5.0
    * @access public
    */
-jQuery.fn.updateQuestionRows=function(){var e=1,t="alternate";jQuery("#add-question-metadata").find("td.question-number").each(function(){if(jQuery(this).find("span.number").text(e),jQuery(this).closest("tbody").removeClass().addClass(t),t="alternate"==t?"":"alternate",""!=jQuery(this).find("span.total-number").text()){var n=parseInt(jQuery(this).find("span.total-number").text()),i=e+n-1,a="";a=e==i?e:e+" - "+i,jQuery(this).find("span.row-numbers").text(a),e+=n}else e++})},
+jQuery.fn.updateQuestionRows=function(){var e=1,t="alternate";jQuery("#add-question-metadata").find("td.question-number").each(function(){if(jQuery(this).find("span.number").text(e),jQuery(this).closest("tbody").removeClass().addClass(t),t="alternate"==t?"":"alternate",""!=jQuery(this).find("span.total-number").text()){var n=parseInt(jQuery(this).find("span.total-number").text()),i=e+n-1,s="";s=e==i?e:e+" - "+i,jQuery(this).find("span.row-numbers").text(s),e+=n}else e++})},
 /**
    * Update question order input field
    *
@@ -177,13 +166,13 @@ jQuery.fn.updateQuestionOrder=function(){var e="";jQuery("#sortable-questions").
    *
    * @since  1.5.0
    */
-jQuery.fn.uploadQuestionMedia=function(t){var n=t.attr("id"),i=n.replace("_button",""),a=n.replace("_button","_preview"),s=n.replace("_button","_link"),u=n.replace("_button","_button_delete");
+jQuery.fn.uploadQuestionMedia=function(t){var n=t.attr("id"),i=n.replace("_button",""),s=n.replace("_button","_preview"),a=n.replace("_button","_link"),u=n.replace("_button","_button_delete");
 // When a file is selected, run a callback.
 (
 // Create the media frame.
-e=wp.media.frames.file_frame=wp.media({title:t.data("uploader_title"),button:{text:t.data("uploader_button_text")},multiple:!1})).on("select",function(){var n=e.state().get("selection").first().toJSON();jQuery("#"+i).val(n.id);var r=n.type,o=!1;"image"==r&&(o=!0);var d=n.title;d&&""!=d||(d=n.filename);var l='<a class="'+r+'" href="'+n.url+'" target="_blank">'+d+"</a>";jQuery("#"+s).removeClass("hidden"),jQuery("#"+s).html(l),o?(jQuery("#"+a).removeClass("hidden"),jQuery("#"+a).attr("src",n.sizes.thumbnail.url)):(jQuery("#"+a).addClass("hidden"),jQuery("#"+a).attr("src","")),t.text(woo_localized_data.change_file),jQuery("#"+u).removeClass("hidden")}),
+e=wp.media.frames.file_frame=wp.media({title:t.data("uploader_title"),button:{text:t.data("uploader_button_text")},multiple:!1})).on("select",function(){var n=e.state().get("selection").first().toJSON();jQuery("#"+i).val(n.id);var r=n.type,o=!1;"image"==r&&(o=!0);var d=n.title;d&&""!=d||(d=n.filename);var l='<a class="'+r+'" href="'+n.url+'" target="_blank">'+d+"</a>";jQuery("#"+a).removeClass("hidden"),jQuery("#"+a).html(l),o?(jQuery("#"+s).removeClass("hidden"),jQuery("#"+s).attr("src",n.sizes.thumbnail.url)):(jQuery("#"+s).addClass("hidden"),jQuery("#"+s).attr("src","")),t.text(woo_localized_data.change_file),jQuery("#"+u).removeClass("hidden")}),
 // Open the modal
-e.open()},jQuery.fn.deleteQuestionMedia=function(e){var t=e.attr("id"),n=t.replace("_button_delete","_button"),i=t.replace("_button_delete",""),a=t.replace("_button_delete","_preview"),s=t.replace("_button_delete","_link");jQuery("#"+i).val(""),jQuery("#"+a).addClass("hidden"),jQuery("#"+a).attr("src",""),jQuery("#"+s).addClass("hidden"),jQuery("#"+s).html(),jQuery("#"+n).text(woo_localized_data.add_file),e.addClass("hidden")},
+e.open()},jQuery.fn.deleteQuestionMedia=function(e){var t=e.attr("id"),n=t.replace("_button_delete","_button"),i=t.replace("_button_delete",""),s=t.replace("_button_delete","_preview"),a=t.replace("_button_delete","_link");jQuery("#"+i).val(""),jQuery("#"+s).addClass("hidden"),jQuery("#"+s).attr("src",""),jQuery("#"+a).addClass("hidden"),jQuery("#"+a).html(),jQuery("#"+n).text(woo_localized_data.add_file),e.addClass("hidden")},
 /**
    * Update answer order input field
    *
@@ -263,25 +252,25 @@ jQuery(this).closest("tr.question-quick-edit").addClass("hidden")}),
    * @since 1.0.0
    * @access public
    */
-jQuery("#add-new-question").on("click","a.add_question_save",function(){var e="",t="",n="multiple-choice",i="",a="true";if(jQuery.fn.validateQuestionInput("add",jQuery(this))){
+jQuery("#add-new-question").on("click","a.add_question_save",function(){var e="",t="",n="multiple-choice",i="",s="true";if(jQuery.fn.validateQuestionInput("add",jQuery(this))){
 // Setup data to post
 e+="quiz_id="+jQuery("#quiz_id").val(),e+="&action=add",""!=jQuery("#add-question-type-options").val()&&(n=jQuery("#add-question-type-options").val()),// End If Statement
 ""!=jQuery("#add-question-category-options").val()&&(i=jQuery("#add-question-category-options").val());// End If Statement
-var s="question_default_fields";switch(n){case"multiple-choice":s="question_default_fields";break;case"boolean":s="question_boolean_fields";break;case"gap-fill":s="question_gapfill_fields";break;case"multi-line":s="question_multiline_fields";break;case"single-line":s="question_singleline_fields";break;case"file-upload":s="question_fileupload_fields"}// End Switch Statement
+var a="question_default_fields";switch(n){case"multiple-choice":a="question_default_fields";break;case"boolean":a="question_boolean_fields";break;case"gap-fill":a="question_gapfill_fields";break;case"multi-line":a="question_multiline_fields";break;case"single-line":a="question_singleline_fields";break;case"file-upload":a="question_fileupload_fields"}// End Switch Statement
 // Handle Required Fields
 jQuery("#add-new-question").find("div.question_required_fields").find("input").each(function(){"radio"!=jQuery(this).attr("type")&&(e+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val()));// End If Statement
 }),
 // Handle textarea required field
 ""!=jQuery("#add-new-question").find("div.question_required_fields").find("textarea").val()&&(e+="&"+jQuery("#add-new-question").find("div.question_required_fields").find("textarea").attr("name")+"="+encodeURIComponent(jQuery("#add-new-question").find("div.question_required_fields").find("textarea").val()));// End If Statement
 // Handle Question Input Fields
-var u=0;jQuery("#add-new-question").find("div."+s).find("input").each(function(){"radio"==jQuery(this).attr("type")?
+var u=0;jQuery("#add-new-question").find("div."+a).find("input").each(function(){"radio"==jQuery(this).attr("type")?
 // Only get the selected radio button
-0==u&&(a=jQuery("input[name="+jQuery(this).attr("name")+"]:checked").val(),e+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(a),u++):e+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val());// End If Statement
+0==u&&(s=jQuery("input[name="+jQuery(this).attr("name")+"]:checked").val(),e+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(s),u++):e+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val());// End If Statement
 }),
 // Handle Question Textarea Fields
-""!=jQuery("#add_question_right_answer_essay").val()&&"question_essay_fields"==s&&(e+="&"+jQuery("#add_question_right_answer_essay").attr("name")+"="+encodeURIComponent(jQuery("#add_question_right_answer_essay").val())),// End If Statement
-""!=jQuery("#add_question_right_answer_multiline").val()&&"question_multiline_fields"==s&&(e+="&"+jQuery("#add_question_right_answer_multiline").attr("name")+"="+encodeURIComponent(jQuery("#add_question_right_answer_multiline").val())),// End If Statement
-e+="&question_type="+n,e+="&question_category="+i,t=jQuery("#add-question-grade").val(),e+="&question_grade="+t;var r=parseInt(jQuery("#question_counter").val());e+="&question_count="+r;var o=jQuery("#add-new-question").find(".answer_order").val();e+="&answer_order="+o;var d=jQuery("#add-new-question").find(".question_media").val();if(e+="&question_media="+d,""!=jQuery("div#add-new-question").find("div."+s).find(".answer_feedback").exists()){var l=jQuery("#add-new-question").find("div."+s).find(".answer_feedback").val();e+="&answer_feedback="+encodeURIComponent(l)}var _="no";return jQuery("div#add-new-question").find(".random_order").is(":checked")&&(_="yes"),e+="&random_order="+_,
+""!=jQuery("#add_question_right_answer_essay").val()&&"question_essay_fields"==a&&(e+="&"+jQuery("#add_question_right_answer_essay").attr("name")+"="+encodeURIComponent(jQuery("#add_question_right_answer_essay").val())),// End If Statement
+""!=jQuery("#add_question_right_answer_multiline").val()&&"question_multiline_fields"==a&&(e+="&"+jQuery("#add_question_right_answer_multiline").attr("name")+"="+encodeURIComponent(jQuery("#add_question_right_answer_multiline").val())),// End If Statement
+e+="&question_type="+n,e+="&question_category="+i,t=jQuery("#add-question-grade").val(),e+="&question_grade="+t;var r=parseInt(jQuery("#question_counter").val());e+="&question_count="+r;var o=jQuery("#add-new-question").find(".answer_order").val();e+="&answer_order="+o;var d=jQuery("#add-new-question").find(".question_media").val();if(e+="&question_media="+d,""!=jQuery("div#add-new-question").find("div."+a).find(".answer_feedback").exists()){var l=jQuery("#add-new-question").find("div."+a).find(".answer_feedback").val();e+="&answer_feedback="+encodeURIComponent(l)}var _="no";return jQuery("div#add-new-question").find(".random_order").is(":checked")&&(_="yes"),e+="&random_order="+_,
 // Perform the AJAX call.
 jQuery.post(ajaxurl,{action:"lesson_update_question",lesson_update_question_nonce:woo_localized_data.lesson_update_question_nonce,data:e},function(e){
 // Check for a valid response
@@ -310,20 +299,20 @@ if(e){jQuery("#add-multiple-question-category-options").val(""),jQuery("#add-mul
 jQuery("#add-question-metadata").on("click","a.question_table_save",function(){var e,t,n="",i="";if(jQuery.fn.validateQuestionInput("edit",jQuery(this))){
 // Setup the data to post
 n+="quiz_id="+jQuery("#quiz_id").val(),n+="&action=save",jQuery(this).closest("td").children("input").each(function(){n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val())}),i=jQuery(this).closest("td").find("span.question_original_counter").text(),""!=jQuery(this).closest("td").find("input.question_type").val()&&(e=jQuery(this).closest("td").find("input.question_type").val());// End If Statement
-var a="question_default_fields";switch(e){case"multiple-choice":a="question_default_fields";break;case"boolean":a="question_boolean_fields";break;case"gap-fill":a="question_gapfill_fields";break;case"essay-paste":a="question_essay_fields";break;case"multi-line":a="question_multiline_fields";break;case"single-line":a="question_singleline_fields";break;case"file-upload":a="question_fileupload_fields"}// End Switch Statement
+var s="question_default_fields";switch(e){case"multiple-choice":s="question_default_fields";break;case"boolean":s="question_boolean_fields";break;case"gap-fill":s="question_gapfill_fields";break;case"essay-paste":s="question_essay_fields";break;case"multi-line":s="question_multiline_fields";break;case"single-line":s="question_singleline_fields";break;case"file-upload":s="question_fileupload_fields"}// End Switch Statement
 // Handle Required Fields
 jQuery(this).closest("td").find("div.question_required_fields").find("input").each(function(){"radio"!=jQuery(this).attr("type")&&(n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val()));// End If Statement
 }),
 // Handle textarea required field
 ""!=jQuery(this).closest("td").find("div.question_required_fields").find("textarea").val()&&(n+="&"+jQuery(this).closest("td").find("div.question_required_fields").find("textarea").attr("name")+"="+encodeURIComponent(jQuery(this).closest("td").find("div.question_required_fields").find("textarea").val()));// End If Statement
 // Handle Question Input Fields
-var s=0;jQuery(this).closest("td").find("div."+a).find("input").each(function(){"radio"==jQuery(this).attr("type")?
+var a=0;jQuery(this).closest("td").find("div."+s).find("input").each(function(){"radio"==jQuery(this).attr("type")?
 // Only get the selected radio button
-0==s&&(n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery("input[name="+jQuery(this).attr("name")+"]:checked").val()),s++):n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val());// End If Statement
+0==a&&(n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery("input[name="+jQuery(this).attr("name")+"]:checked").val()),a++):n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val());// End If Statement
 }),
 // Handle Question Textarea Fields
-""!=jQuery(this).closest("td").find("div."+a).find("textarea").val()&&"question_multiline_fields"==a&&(n+="&"+jQuery(this).closest("td").find("div."+a).find("textarea").attr("name")+"="+encodeURIComponent(jQuery(this).closest("td").find("div."+a).find("textarea").val())),// End If Statement
-"question_fileupload_fields"==a&&jQuery(this).closest("td").find("div."+a).find("textarea").each(function(){n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val())}),// End If Statement
+""!=jQuery(this).closest("td").find("div."+s).find("textarea").val()&&"question_multiline_fields"==s&&(n+="&"+jQuery(this).closest("td").find("div."+s).find("textarea").attr("name")+"="+encodeURIComponent(jQuery(this).closest("td").find("div."+s).find("textarea").val())),// End If Statement
+"question_fileupload_fields"==s&&jQuery(this).closest("td").find("div."+s).find("textarea").each(function(){n+="&"+jQuery(this).attr("name")+"="+encodeURIComponent(jQuery(this).val())}),// End If Statement
 n+="&question_type="+e,t=jQuery(this).closest("td").find("input.question_grade").val(),n+="&question_grade="+t;var u=parseInt(jQuery("#question_counter").val());n+="&question_count="+u;var r=jQuery(this).closest("td").find(".answer_order").val();n+="&answer_order="+r;var o=jQuery(this).closest("td").find(".question_media").val();if(n+="&question_media="+o,""!=jQuery(this).closest("td").find(".answer_feedback").exists()){var d=jQuery(this).closest("td").find(".answer_feedback").val();n+="&answer_feedback="+encodeURIComponent(d)}var l="no";return jQuery(this).closest("td").find(".random_order").is(":checked")&&(l="yes"),n+="&random_order="+l,
 // Perform the AJAX call.
 jQuery.post(ajaxurl,{action:"lesson_update_question",lesson_update_question_nonce:woo_localized_data.lesson_update_question_nonce,data:n},function(e){

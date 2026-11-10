@@ -128,6 +128,56 @@ class Comments_Based_Grading_Stats_Service implements Grading_Stats_Service_Inte
 	}
 
 	/**
+	 * Get grade counts and sums grouped by lesson.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param int[] $lesson_ids Requested lesson IDs; an empty selection matches no grades.
+	 * @param array $args       Optional user-login exclusions (see interface).
+	 * @return array<int, array{count:int, sum:float}> Totals keyed by requested lesson ID.
+	 */
+	public function get_grade_totals_by_lesson( array $lesson_ids, array $args = array() ): array {
+		$wpdb = $this->wpdb;
+
+		$lesson_id_map = Utils::get_progress_post_id_map( $lesson_ids, 'lesson' );
+		$totals        = array_fill_keys(
+			array_values( $lesson_id_map ),
+			array(
+				'count' => 0,
+				'sum'   => 0.0,
+			)
+		);
+
+		if ( empty( $lesson_id_map ) ) {
+			return Utils::map_results_to_requested_post_ids( $totals, $lesson_id_map );
+		}
+
+		$query_args = array(
+			'post__in'                    => array_keys( $totals ),
+			'exclude_user_login_prefixes' => $args['exclude_user_login_prefixes'] ?? array(),
+		);
+
+		$query = 'SELECT c.comment_post_ID AS lesson_id, COUNT(*) AS count, COALESCE(SUM(cm.meta_value), 0) AS sum '
+			. $this->get_grade_stats_from_where_sql()
+			. $this->build_post_filter( $query_args )
+			. Utils::build_comment_author_exclusion_clause( $wpdb, $query_args )
+			. ' GROUP BY c.comment_post_ID';
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Values are prepared by the clause builders; callers own caching.
+		$rows = $wpdb->get_results( $query );
+		Utils::log_query_error( $wpdb, 'Comments-based lesson grade totals' );
+
+		foreach ( (array) $rows as $row ) {
+			$totals[ (int) $row->lesson_id ] = array(
+				'count' => (int) $row->count,
+				'sum'   => (float) $row->sum,
+			);
+		}
+
+		return Utils::map_results_to_requested_post_ids( $totals, $lesson_id_map );
+	}
+
+	/**
 	 * Get average grade grouped by user.
 	 *
 	 * @since 4.26.4
@@ -185,7 +235,10 @@ class Comments_Based_Grading_Stats_Service implements Grading_Stats_Service_Inte
 
 		$status_placeholders = implode( ',', array_fill( 0, count( $statuses ), '%s' ) );
 
-		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- $status_placeholders is a list of %s; WP 6.4 changed WP_Comment_Query to use get_col(), so a comments_clauses-based aggregate is unreliable.
+		$exclusion = Utils::build_comment_author_exclusion_clause( $wpdb, array( 'exclude_user_login_prefixes' => Utils::REPORTS_EXCLUDED_USER_LOGIN_PREFIXES ) );
+
+		// WP_Comment_Query treats results as comment IDs or an integer count, so query the average directly.
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table names come from $wpdb; $status_placeholders contains %s placeholders; $exclusion is prepared by its helper.
 		$avg = $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT AVG(cm.meta_value)
@@ -194,11 +247,11 @@ class Comments_Based_Grading_Stats_Service implements Grading_Stats_Service_Inte
 				   ON cm.comment_id = c.comment_ID AND cm.meta_key = %s
 				 WHERE c.comment_post_ID = %d
 				   AND c.comment_type = %s
-				   AND c.comment_approved IN ( {$status_placeholders} )",
+				   AND c.comment_approved IN ( {$status_placeholders} )" . $exclusion,
 				array_merge( array( $meta_key, $post_id, $type ), $statuses )
 			)
 		);
-		// phpcs:enable
+		// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		Utils::log_query_error( $wpdb, 'Comments-based lesson average grade' );
 
 		return null !== $avg ? round( (float) $avg, 2 ) : null;
@@ -212,9 +265,10 @@ class Comments_Based_Grading_Stats_Service implements Grading_Stats_Service_Inte
 	 * @since 4.26.0
 	 *
 	 * @param int[] $course_ids Optional. Filter by courses. Empty = all.
+	 * @param array $args       Arguments for the query (see interface).
 	 * @return float
 	 */
-	public function get_courses_average_grade( array $course_ids = array() ): float {
+	public function get_courses_average_grade( array $course_ids = array(), array $args = array() ): float {
 		$wpdb = $this->wpdb;
 
 		if ( empty( $course_ids ) ) {
@@ -253,6 +307,7 @@ class Comments_Based_Grading_Stats_Service implements Grading_Stats_Service_Inte
 						WHERE cm2.comment_id = c.comment_ID
 							AND cm2.meta_key = 'quiz_answers'
 					)";
+		$query .= Utils::build_comment_author_exclusion_clause( $wpdb, $args );
 		$query .= $course_filter;
 		$query .= ' GROUP BY course.meta_value ) averages_by_course';
 

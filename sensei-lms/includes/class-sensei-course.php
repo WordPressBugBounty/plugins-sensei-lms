@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+use Sensei\Internal\Course_Status_Updates;
 use Sensei\Internal\Services\Sensei_Pro_Upsell;
 
 /**
@@ -659,10 +660,12 @@ class Sensei_Course {
 	 */
 	public function update_status_after_lesson_change( $user_id, $lesson_id ) {
 		if ( intval( $user_id ) > 0 && intval( $lesson_id ) > 0 ) {
-			$course_id = get_post_meta( $lesson_id, '_lesson_course', true );
-			if ( intval( $course_id ) > 0 ) {
+			$course_id = Sensei()->course_lessons_repository->get_course_id( (int) $lesson_id );
+			if ( $course_id ) {
 				// Updates the Course status and it's meta data
-				Sensei_Utils::user_complete_course( $course_id, $user_id );
+				if ( false === Sensei_Utils::user_complete_course( $course_id, $user_id ) ) {
+					Course_Status_Updates::mark_failed();
+				}
 			}
 		}
 	}
@@ -1660,14 +1663,7 @@ class Sensei_Course {
 			]
 		);
 
-		if ( ! isset( $query_args['meta_query'] ) ) {
-			$query_args['meta_query'] = [];
-		}
-
-		$query_args['meta_query'][] = [
-			'key'   => '_lesson_course',
-			'value' => intval( $course_id ),
-		];
+		$query_args['sensei_course'] = (int) $course_id;
 
 		$query_results = new WP_Query( $query_args );
 		$lessons       = $query_results->posts;
@@ -1681,7 +1677,7 @@ class Sensei_Course {
 			$lesson_order = array();
 			foreach ( $lessons as $lesson ) {
 
-				$order = intval( get_post_meta( $lesson->ID, '_order_' . $course_id, true ) );
+				$order = Sensei()->course_lessons_repository->get_lesson_order( $lesson->ID, (int) $course_id );
 				// for lessons with no order set it to be 10000 so that it show up at the end
 				$lesson_order[ $lesson->ID ] = $order ? $order : 100000;
 			}
@@ -2723,7 +2719,8 @@ class Sensei_Course {
 	public function save_course_notification_meta_box( $course_id ) {
 
 		if ( ! isset( $_POST['_sensei_course_notification'] )
-			|| ! wp_verify_nonce( sensei_request_text( $_POST['_sensei_course_notification'] ), 'update-course-notification-setting' ) ) {
+			|| ! wp_verify_nonce( sensei_request_text( $_POST['_sensei_course_notification'] ), 'update-course-notification-setting' )
+			|| ! current_user_can( 'edit_post', $course_id ) ) {
 			return;
 		}
 
@@ -3041,6 +3038,10 @@ class Sensei_Course {
 	 * course listings such as the Query Loop / Course List block. Those listings do not need the learner
 	 * terms, so priming is skipped here; the remaining course taxonomies are queried lazily where rendered.
 	 *
+	 * Queries for the `any` post type are included because they can return courses too. Jetpack Search,
+	 * for example, loads the matched posts with `post_type => any` and `post__in`, so searching for a
+	 * popular course would otherwise prime every learner term of every matched course.
+	 *
 	 * @since 4.26.0
 	 *
 	 * @access private
@@ -3051,7 +3052,7 @@ class Sensei_Course {
 		// `post_type` may be a single slug or an array (e.g. teacher author archives merge
 		// `course` into the existing post types), so treat any query that can return courses as one.
 		$post_types = (array) $query->get( 'post_type' );
-		if ( ! in_array( 'course', $post_types, true ) ) {
+		if ( ! in_array( 'course', $post_types, true ) && ! in_array( 'any', $post_types, true ) ) {
 			return;
 		}
 
@@ -3729,7 +3730,7 @@ class Sensei_Course {
 		}
 
 		// setting lesson order
-		$course_lesson_order = get_post_meta( $course_id, '_lesson_order', true );
+		$course_lesson_order = Sensei()->course_lessons_repository->get_root_lesson_order( $course_id );
 		$all_ids             = get_posts(
 			[
 				'post_type'      => 'lesson',
@@ -3741,7 +3742,7 @@ class Sensei_Course {
 		);
 		if ( ! empty( $course_lesson_order ) ) {
 
-			$course_lesson_query_args['post__in'] = array_merge( explode( ',', $course_lesson_order ), $all_ids );
+			$course_lesson_query_args['post__in'] = array_merge( $course_lesson_order, $all_ids );
 			$course_lesson_query_args['orderby']  = 'post__in';
 			unset( $course_lesson_query_args['order'] );
 
@@ -4301,7 +4302,7 @@ class Sensei_Course {
 			. sprintf(
 				// translators: Placeholder is the item title.
 				esc_attr__( 'You must first complete: %1$s', 'sensei-lms' ),
-				$course_title
+				esc_attr( $course_title )
 			)
 			. '">' . $course_title . '</a>';
 

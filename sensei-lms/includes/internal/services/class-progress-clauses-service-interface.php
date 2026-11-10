@@ -29,9 +29,14 @@ interface Progress_Clauses_Service_Interface {
 	 * @since 4.26.0
 	 *
 	 * @param array $clauses Associative array of the clauses for the query.
+	 * @param array $args {
+	 *     Optional query filters.
+	 *
+	 *     @type string[] $exclude_user_login_prefixes User login prefixes to exclude; none by default.
+	 * }
 	 * @return array Modified associative array of the clauses for the query.
 	 */
-	public function add_last_activity_to_courses_clauses( array $clauses ): array;
+	public function add_last_activity_to_courses_clauses( array $clauses, array $args = array() ): array;
 
 	/**
 	 * Modify WP_Query clauses to add days-to-completion data to course posts.
@@ -59,22 +64,57 @@ interface Progress_Clauses_Service_Interface {
 	public function filter_courses_by_last_activity( array $clauses, string $from = '', string $to = '' ): array;
 
 	/**
-	 * Modify WP_Query clauses to add last activity date to lesson posts.
+	 * Add Last Activity and Days to Completion fields to lesson queries.
 	 *
-	 * @since 4.26.0
+	 * @since 4.27.0
 	 *
-	 * @param array $clauses Associative array of the clauses for the query.
+	 * @param array $clauses    Associative array of the clauses for the query.
+	 * @param int[] $lesson_ids Requested lesson post IDs.
 	 * @return array Modified associative array of the clauses for the query.
 	 */
-	public function add_last_activity_to_lessons_clauses( array $clauses ): array;
+	public function add_progress_to_lessons_clauses( array $clauses, array $lesson_ids = array() ): array;
 
 	/**
-	 * Modify WP_Query clauses to add days-to-complete data to lesson posts.
+	 * Add Days to Completion to lesson queries.
 	 *
 	 * @since 4.26.0
 	 *
-	 * @param array $clauses Associative array of the clauses for the query.
+	 * @param array  $clauses       Associative array of the clauses for the query.
+	 * @param string $lesson_id_sql Stored lesson ID SQL expression; defaults to the queried post ID.
 	 * @return array Modified associative array of the clauses for the query.
 	 */
-	public function add_days_to_completion_to_lessons_clauses( array $clauses ): array;
+	public function add_days_to_completion_to_lessons_clauses( array $clauses, string $lesson_id_sql = '' ): array;
+
+	/**
+	 * Add Last Activity to lesson queries.
+	 *
+	 * @since 4.26.0
+	 *
+	 * @param array  $clauses       Associative array of the clauses for the query.
+	 * @param string $lesson_id_sql Stored lesson ID SQL expression; defaults to the queried post ID.
+	 * @return array Modified associative array of the clauses for the query.
+	 */
+	public function add_last_activity_to_lessons_clauses( array $clauses, string $lesson_id_sql = '' ): array;
+
+	/**
+	 * Add Last Activity grouped by user ID to a WP_User_Query.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param \WP_User_Query $query The user query.
+	 */
+	public function add_last_activity_to_users_query( \WP_User_Query $query ): void;
+
+	/**
+	 * Filter users by Last Activity after add_last_activity_to_users_query runs.
+	 *
+	 * Apply this filter before appending GROUP BY to query_where.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param \WP_User_Query $query The user query.
+	 * @param string         $from  Start date, or empty for no lower bound.
+	 * @param string         $to    End date, or empty for no upper bound.
+	 */
+	public function filter_users_by_last_activity( \WP_User_Query $query, string $from = '', string $to = '' ): void;
 }

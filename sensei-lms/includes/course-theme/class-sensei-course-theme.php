@@ -448,7 +448,7 @@ class Sensei_Course_Theme {
 	 *
 	 * @return string The customization url.
 	 */
-	public static function get_learning_mode_fse_url( ?string $post_type = null ) : string {
+	public static function get_learning_mode_fse_url( ?string $post_type = null ): string {
 		// Get the post type manually if not provided.
 		if ( ! $post_type ) {
 			$post_type = get_post_type();
@@ -475,26 +475,30 @@ class Sensei_Course_Theme {
 
 	/**
 	 * Returns the url for customizing Learning Mode template colors.
+	 *
+	 * @deprecated 4.27.0 Unused since the Customize Colors link was removed.
 	 */
 	public static function get_learning_mode_customizer_url(): string {
+		_deprecated_function( __METHOD__, '4.27.0' );
+
 			// Get the last modified lesson.
 		$result = get_posts(
-			[
+			array(
 				'posts_per_page' => 1,
 				'post_type'      => 'lesson',
 				'orderby'        => 'modified',
-				'meta'           => [
+				'meta'           => array(
 					'key'     => '_lesson_course',
 					'compare' => 'EXISTS',
-				],
-			]
+				),
+			)
 		);
 		if ( empty( $result ) ) {
 			return '';
 		}
 
 		$lesson      = $result[0];
-		$course_id   = get_post_meta( $lesson->ID, '_lesson_course', true );
+		$course_id   = Sensei()->course_lessons_repository->get_course_id( $lesson->ID );
 		$preview_url = '/?p=' . $lesson->ID;
 
 		if ( ! $course_id ) {

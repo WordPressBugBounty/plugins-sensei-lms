@@ -6,7 +6,7 @@
 /* harmony default export */const l=function(e){
 return n.createElement("svg",r({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24"},e),o||(o=n.createElement("path",{fill:"currentColor",d:"M17 3H7c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m.5 6c0 .3-.2.5-.5.5H7c-.3 0-.5-.2-.5-.5V5c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5zm-8-1.2h5V6.2h-5zM17 13H7c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2m.5 6c0 .3-.2.5-.5.5H7c-.3 0-.5-.2-.5-.5v-4c0-.3.2-.5.5-.5h10c.3 0 .5.2.5.5zm-8-1.2h5v-1.5h-5z"})))};
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/48597(e,t,s){"use strict";
 /* harmony import */var o,n,r=s(51609);
@@ -14,22 +14,22 @@ return n.createElement("svg",r({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
 /* harmony default export */const i=function(e){
 return r.createElement("svg",l({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24"},e),o||(o=r.createElement("circle",{cx:12,cy:12,r:12,fill:"#43AF99"})),n||(n=r.createElement("path",{fill:"#fff",fillRule:"evenodd",d:"M9.835 15.38c.3-.23.179-.474.6-.563-.02.194.146.391.251.563-.109-.367-.002-.536.08-.72.347-.785-.662-1.293-1.35-1.418.235-.164.399-.327.694-.355a2.4 2.4 0 0 0-1.058.23c-1.112.531-1.993-.523-1.41-1.48.31-.51.664-.519.982-.865.077.178.103.372.075.564a.92.92 0 0 0 .049-.664c-.104-.336-.4-.338-.456-.821-.012-.101-.105.056-.263-.077-.038-.032-.113-.09-.163-.064-.085.044-.18.008-.232.034-.083.041-.109-.045-.2.016-.16.107-.178-.013-.332.005-.193.023-.32.261-.43.144-.102-.108-.206.075-.28.075-.05 0-.311.317-.426.028-.086-.216-.28.206-.382.063-.033-.046-.123.108-.18-.044-.014-.035 0-.078-.108-.027-.215.099-.138-.06-.207-.144-.083-.103-.113-.103-.068-.27.036-.133-.019-.33.2-.364.055-.008.107-.005.184-.148.096-.18.231-.093.207-.175-.036-.119.143-.28.226-.355.11-.103.254-.252.306-.396a.6.6 0 0 1 .102-.141c.081-.084.105-.003.227-.045.088-.03.02.053.106-.07.028-.038.105-.001.19-.039.259-.112.283-.11.347-.371.012-.05.025-.088.08-.083.109.01.134-.052.2-.05.061.001.083-.03.115-.068.18-.216.277-.055.357-.072.06-.012.022-.142.184-.102.23.057.155-.05.303-.015.174.041.186.19.306.225.143.042.211.198.307.196.337-.005.235.23.448.323-.16-.161.012-.421-.352-.455-.08-.007-.11-.127-.23-.183-.146-.067-.13-.21-.394-.27.068-.04.089.005.13-.073.058-.11.09-.046.113-.113.02-.063.006-.099.165-.155.165-.06.325-.195.472-.188.13.006.185-.08.177-.19-.008-.112-.033-.267.222-.22.153.029.15.003.15-.1-.002-.102.04-.165.174-.16.098.002.194-.003.231-.117.03-.091.207-.114.302-.148.317-.114.361.05.447-.095.07-.117.196-.317.337-.175.028.029.054.05.15-.056.08-.088.27-.2.337-.048.027.06.086.121.138.044a.08.08 0 0 1 .053-.039c.05-.01.079-.024.104-.036.218-.101.314-.095.213.125-.142.316.792-.192.532.151-.095.126.538.197.63.254.05.032.048.059.144.077.271.05.267.026.284.243.007.098.107.043.107.168 0 .535.472.266.549.399.012.022.032.042.079.042.149 0 .157-.03.224.089.027.047.05.072.127.096.12.037.112.05.068.138-.054.104.03.102.138.112.1.01.148.062.216.138.11.122.284.156.43.227.084.04.002.14.143.243.104.077.156.066.016.165-.59.418.22.305.446.694.051.087.118.195.216.295.225.23.1.293.221.437.07.083.015.063.13.137.272.175-.105.292-.319.212-.097-.035-.166-.085-.147-.025.016.049-.01.083-.052.12-.125.112.123.068.181.06.181-.025.664-.076.66.093-.005.22.136.27.25.284.185.024.238.057.34.226.092.152.145.07.288.205.097.093.217.258.02.282-.047.005-.099 0-.12.017a.4.4 0 0 1-.14.066c-.295.09.14.136.246.113.093-.02.209-.05.3-.027.057.015.062.08.244.107.06.01.036.099.006.16-.104.214.191.1.16.263-.017.093.11.245-.067.248-.057.001-.117-.015-.115.034.004.105-.165-.03-.317.115-.056.054-.19.092-.272-.009-.032-.038-.07-.069-.218-.023-.144.046-.242.204-.306-.04-.017-.064-.05-.065-.142-.097-.125-.043-.114-.258-.297-.12a.24.24 0 0 1-.214.039c-.144-.037-.303.012-.317-.096-.021-.179-.191-.305-.377-.296-.147.008-.278.034-.355-.137.057.195.207.208.382.208q.217 0 .255.225c.045.265.204.099.406.223.1.06.17.159.21.273.042.118.37-.024.282.258-.037.122-.107.168-.242.266-.4.294-.5.004-.618.239-.062.121-.063.031-.196.09-.22.098-.36-.128-.522-.045-.182.094-.168-.08-.352.037-.152.097-.308-.074-.38.192-.063.227-.322.232-.44.11-.189-.194-.132.229-.362.054-.123-.091-.213.043-.392.045-.33.005-.489-.282-.65-.107-.192.206-.331-.032-.334-.242-.003-.216-.777-.144-1.185-.256-.225-.062-.932.013-.702-.35-.372.39.456.366.682.455.136.053.245.095.377.114.13.296.214.617.227 1.007.043-.214.053-.433.028-.649-.043-.383.242.19.276.272.184.45-.022 1.278-.488 1.526a3 3 0 0 0-.562-.99c.256.392.616 1.192.327 1.65a1.02 1.02 0 0 1-.55-.483c.077.333.413.702.818.58.707-.213.704.233 1.641.307.682.111 1.654 0 2.118.037.254.02 1.32.197 1.315.465-.02 1.105-.438 1.164-1.539 1.268-.64.06-1.134.085-1.823.11-1.54.058-3.391.06-4.868 0-.724-.03-1.072-.036-1.841-.137-.769-.1-1.19-.363-1.178-1.187.005-.304.905-.594 1.2-.628.347-.039.901.005 1.405-.116.527-.127.747-.21 1.135-.508m5.347-6.052c-.167-.042-.051-.138-.339-.014-.17.073-.194-.13-.365-.094-.172.036-.242-.125-.499-.166-.318-.05-.088-.133-.592-.032-.097.02-.179-.09-.481-.052-.355.046-.23.084-.445-.115-.272-.251-.488-.082-.767-.184.216.166.368.019.622.221-.242.138-.523.802-.962.844.478.107.709.354 1.148.413.504.068.882.118 1.151.531.301.463.44.196.874.168.275-.017.282-.185.328-.362.063-.245.126-.256.31-.289.213-.037.163-.092.107-.156-.15-.172.019-.207.146-.244.222-.064.042-.075.042-.166-.278-.09-.063-.217.092-.273.169.105.242.087.317.073.109-.021.181.03.273-.028-.135.014-.163-.037-.278-.02-.051.007-.112.01-.219-.054-.18-.107-.27.048-.463 0m-2.28 1.64-1.09-.545c-1.316-.657-1.915.313-2.337 1.376l-.766.73c.549-.338.996-.714 1.574-.71.092 0 1.516.484 1.286-.092-.04-.104.09-.052.125-.201.04-.17.055-.141.195-.033.089.069.211.113.174-.048-.017-.072-.04-.137.28-.004.15.062.095-.064.303-.09.29-.034.228-.31.364-.349.076-.022.152.058.295-.077.05-.046.11-.089.232-.057-.143-.073-.22-.014-.292.03-.146.089-.203-.037-.343.07m-2.23-1.923q.24-.03.482-.046a.13.13 0 0 0 .074-.06.11.11 0 0 0 .007-.09.27.27 0 0 1 .147-.206l-.002-.003c-.258.001-.466.1-.73.211-.052.022-.024.111-.118.213a.26.26 0 0 1-.201.235.14.14 0 0 0-.09.046.11.11 0 0 0-.026.092.25.25 0 0 1-.277.061q-.3-.115-.448.036a.39.39 0 0 1 .398.014c.134.066.3.031.39-.082a.13.13 0 0 1 .126-.098.42.42 0 0 0 .268-.323",clipRule:"evenodd"})))};
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/35479(e,t,s){"use strict";
 /* harmony export */s.d(t,{
 /* harmony export */A:()=>/* binding */r
 /* harmony export */});
-/* harmony import */var o=s(62540),n=s(5573),r=(0,o.jsx)(n.SVG,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",children:(0,o.jsx)(n.Path,{d:"M8 12.5h8V11H8v1.5Z M19 6.5H5a2 2 0 0 0-2 2V15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2ZM5 8h14a.5.5 0 0 1 .5.5V15a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8.5A.5.5 0 0 1 5 8Z"})});
+/* harmony import */var o=s(10790),n=s(5573),r=(0,o.jsx)(n.SVG,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",children:(0,o.jsx)(n.Path,{d:"M8 12.5h8V11H8v1.5Z M19 6.5H5a2 2 0 0 0-2 2V15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a2 2 0 0 0-2-2ZM5 8h14a.5.5 0 0 1 .5.5V15a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8.5A.5.5 0 0 1 5 8Z"})});
 /* harmony import */},
 /***/1027(e,t,s){"use strict";
 /* harmony export */s.d(t,{
 /* harmony export */A:()=>/* binding */r
 /* harmony export */});
-/* harmony import */var o=s(62540),n=s(5573),r=(0,o.jsx)(n.SVG,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",children:(0,o.jsx)(n.Path,{d:"M16.5 7.5 10 13.9l-2.5-2.4-1 1 3.5 3.6 7.5-7.6z"})});
+/* harmony import */var o=s(10790),n=s(5573),r=(0,o.jsx)(n.SVG,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",children:(0,o.jsx)(n.Path,{d:"M16.5 7.5 10 13.9l-2.5-2.4-1 1 3.5 3.6 7.5-7.6z"})});
 /* harmony import */},
 /***/90078(e,t,s){"use strict";
-/* harmony import */var o=s(47143),n=s(94715),r=s(27723),l=s(71406),i=s(44539),a=s(62540);
+/* harmony import */var o=s(47143),n=s(94715),r=s(27723),l=s(71406),i=s(44539),a=s(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -46,7 +46,7 @@ const c=e=>{const{placeholder:t,attributes:s,setAttributes:c}=e,{text:u}=s,{colo
 return(0,a.jsxs)("div",{...b,children:[m?(0,a.jsx)("div",{...p,children:e.text}):(0,a.jsx)(n.RichText,{placeholder:t||(0,r.__)("Add text…","sensei-lms"),value:u,onChange:e=>c({text:e}),...p,tagName:"div",identifier:"text",withoutInteractiveFormatting:!0}),(0/* ["default"] */,a.jsx)(i.A,{...e})]})};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */c
+/* harmony export */"A",0,c
 /* harmony export */])},
 /***/71406(e,t,s){"use strict";
 /* harmony export */s.d(t,{
@@ -97,7 +97,7 @@ function({attributes:{borderRadius:e}}){return{className:{"no-border-radius":0==
 /* harmony export */"_N",0,/* binding */a
 /* harmony export */])},
 /***/21307(e,t,s){"use strict";
-/* harmony import */var o=s(4452),n=s.n(o),r=s(94715),l=s(74997),i=s(71406),a=s(62540);
+/* harmony import */var o=s(4452),n=s.n(o),r=s(94715),l=s(74997),i=s(71406),a=s(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -120,10 +120,10 @@ function({attributes:{borderRadius:e}}){return{className:{"no-border-radius":0==
 const c=({attributes:e,className:t,tagName:s,blockName:o})=>{const{text:c,inContainer:u,align:d}=e;let m=s;s||(m=(0,i/* .isLinkStyle */._N)({attributes:e})?"a":"button");const p=(0,a.jsx)("div",{...(0,i/* .getButtonWrapperProps */.KS)({className:t,attributes:e}),children:(0,a.jsx)(r.RichText.Content,{...(0,i/* .getButtonProps */.xh)({attributes:e}),tagName:m,value:c})});return u?(0,a.jsx)("div",{className:n()(t,"sensei-buttons-container__button-block",(0,l.getBlockDefaultClassName)(o)+"__wrapper",{[`sensei-buttons-container__button-align-${d}`]:d}),children:p}):p};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */c
+/* harmony export */"A",0,c
 /* harmony export */])},
 /***/44539(e,t,s){"use strict";
-/* harmony import */var o=s(94715),n=s(56427),r=s(27723),l=s(62540);
+/* harmony import */var o=s(94715),n=s(56427),r=s(27723),l=s(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -131,11 +131,11 @@ const c=({attributes:e,className:t,tagName:s,blockName:o})=>{const{text:c,inCont
 const i=({borderRadius:e,setAttributes:t})=>(0,l.jsx)(n.PanelBody,{title:(0,r.__)("Border settings","sensei-lms"),initialOpen:!1,children:(0,l.jsx)(n.RangeControl,{label:(0,r.__)("Border radius","sensei-lms"),value:e,min:0,max:50,allowReset:!0,onChange:e=>t({borderRadius:e})})}),a=e=>{const{attributes:t,setAttributes:s}=e,{borderRadius:n,align:a}=t;
 return(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(o.BlockControls,{children:(0,l.jsx)(o.BlockAlignmentToolbar,{label:(0,r.__)("Change button alignment","sensei-lms"),value:a||e.alignmentOptions?.default,onChange:e=>{e&&s({align:e})},...e.alignmentOptions})}),(0,l.jsx)(o.InspectorControls,{children:(0,l.jsx)(i,{borderRadius:n,setAttributes:s})})]})};
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/71127(e,t,s){"use strict";
 /* unused harmony exports addColorSettings, removeColorSaveProps, removeColorEditProps, removeWrapperProps */
-/* harmony import */var o=s(66087),n=s(52619),r=s(27723),l=s(29281),i=s(62540);
+/* harmony import */var o=s(66087),n=s(52619),r=s(27723),l=s(29281),i=s(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -166,12 +166,12 @@ const a=e=>(e="string"==typeof e?e:e.name)&&e.startsWith("sensei-lms/button"),c=
 /* harmony export */s.d(t,[
 /* harmony export */"g",0,({attributes:e,colors:t})=>{const{backgroundColor:s,borderColor:o,customBackgroundColor:l,textColor:i,customTextColor:a,gradient:c,style:u={}}=e,d=(0,r.getColorClassName)("background-color",s);u.color||(u.color={}),l&&(u.color.background=l),a&&(u.color.text=a);const m=(0,r.getColorClassName)("border-color",o),p=(e=>{if(e)return`has-${e}-gradient-background`})(c),b=(0,r.getColorClassName)("color",i),g=n()(b,p,m,{
 // Don't apply the background class if there's a custom gradient
-[d]:!u?.color?.gradient&&!!d,"has-text-color":i||u?.color?.text,"has-background":s||u?.color?.background||c||u?.color?.gradient,"has-border-color":o}),_=u?.color?.background||u?.color?.text||u?.color?.gradient?{background:u?.color?.gradient?u.color.gradient:void 0,backgroundColor:u?.color?.background?u.color.background:void 0,color:u?.color?.text?u.color.text:void 0}:{};
+[d]:!u?.color?.gradient&&!!d,"has-text-color":i||u?.color?.text,"has-background":s||u?.color?.background||c||u?.color?.gradient,"has-border-color":o}),v=u?.color?.background||u?.color?.text||u?.color?.gradient?{background:u?.color?.gradient?u.color.gradient:void 0,backgroundColor:u?.color?.background?u.color.background:void 0,color:u?.color?.text?u.color.text:void 0}:{};
 // This is needed only for themes that don't load their color stylesheets in the editor
 // We force an inline style to apply the color.
-if(u?.border?.color&&(_.borderColor=u.border.color),u?.border?.width&&(_.borderWidth=u.border.width),t){if(s){const e=(0,r.getColorObjectByAttributeValues)(t,s);_.backgroundColor=e.color}if(i){const e=(0,r.getColorObjectByAttributeValues)(t,i);_.color=e.color}}return{className:g||void 0,style:_}}])},
+if(u?.border?.color&&(v.borderColor=u.border.color),u?.border?.width&&(v.borderWidth=u.border.width),t){if(s){const e=(0,r.getColorObjectByAttributeValues)(t,s);v.backgroundColor=e.color}if(i){const e=(0,r.getColorObjectByAttributeValues)(t,i);v.color=e.color}}return{className:g||void 0,style:v}}])},
 /***/72613(e,t,s){"use strict";
-/* harmony import */var o=s(66087),n=s(4452),r=s.n(n),l=s(27723),i=s(74997),a=s(35479),c=(s(71127),s(90078)),u=s(21307),d=s(74862),m=s(29281),p=s(62540);
+/* harmony import */var o=s(66087),n=s(4452),r=s.n(n),l=s(27723),i=s(74997),a=s(35479),c=(s(71127),s(90078)),u=s(21307),d=s(74862),m=s(29281),p=s(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -197,12 +197,12 @@ const b={Fill:{name:"default",label:(0,l.__)("Fill","sensei-lms")},Outline:{name
  * @param {Function} opts.EditWrapper  Custom edit wrapper component.
  */
 /* harmony export */s.d(t,[
-/* harmony export */"e",0,({settings:e,invalidUsage:t,EditWrapper:s,...n})=>{n={alignmentOptions:{controls:["left","center","right","full"],default:"left"},...n};const g=e.styles?e.styles:[{...b.Fill,isDefault:!0},b.Outline],_=(0,o.find)(g,"isDefault")?.name,v=(0,m/* .withDefaultBlockStyle */.Sw)(_)(c/* ["default"] */.A),h=(0,m/* .withDefaultBlockStyle */.Sw)(_)(u/* ["default"] */.A);return(0,o.merge)({apiVersion:3,name:"sensei-lms/button",title:"Sensei Button",category:"sensei-lms",attributes:{text:{type:"string",source:"html",selector:"a,button"},align:{type:"string"},borderRadius:{type:"number"},style:{type:"object"},isPreview:{type:"boolean",default:!1},inContainer:{type:"boolean",default:!1},buttonClassName:{type:"array",default:[]}},usesContext:["postType"],supports:{__experimentalBorder:{color:!0,width:!0,style:!0},border:!0,color:{gradients:!0,link:!0,__experimentalDefaultControls:{background:!0,text:!0,link:!0}},__experimentalColor:{gradients:!0},align:!1,html:!1},icon:a/* ["default"] */.A,styles:g,edit(e){const{postType:o}=e.context,r=(0,p.jsx)(v,{...e,...n});if(t?.validPostTypes&&!t.validPostTypes.includes(o)){const e=t?.message||(0,l.__)("This block can only be used inside the Course List block.","sensei-lms");
+/* harmony export */"e",0,({settings:e,invalidUsage:t,EditWrapper:s,...n})=>{n={alignmentOptions:{controls:["left","center","right","full"],default:"left"},...n};const g=e.styles?e.styles:[{...b.Fill,isDefault:!0},b.Outline],v=(0,o.find)(g,"isDefault")?.name,_=(0,m/* .withDefaultBlockStyle */.Sw)(v)(c/* ["default"] */.A),h=(0,m/* .withDefaultBlockStyle */.Sw)(v)(u/* ["default"] */.A);return(0,o.merge)({apiVersion:3,name:"sensei-lms/button",title:"Sensei Button",category:"sensei-lms",attributes:{text:{type:"string",source:"html",selector:"a,button"},align:{type:"string"},borderRadius:{type:"number"},style:{type:"object"},isPreview:{type:"boolean",default:!1},inContainer:{type:"boolean",default:!1},buttonClassName:{type:"array",default:[]}},usesContext:["postType"],supports:{__experimentalBorder:{color:!0,width:!0,style:!0},border:!0,color:{gradients:!0,link:!0,__experimentalDefaultControls:{background:!0,text:!0,link:!0}},__experimentalColor:{gradients:!0},align:!1,html:!1},icon:a/* ["default"] */.A,styles:g,edit(e){const{postType:o}=e.context,r=(0,p.jsx)(_,{...e,...n});if(t?.validPostTypes&&!t.validPostTypes.includes(o)){const e=t?.message||(0,l.__)("This block can only be used inside the Course List block.","sensei-lms");
 return(0/* ["default"] */,p.jsx)(d.A,{message:e})}return s?(0,p.jsx)(s,{...e,children:r}):r},save:t=>(0,p.jsx)(h,{...t,...n,blockName:e.name}),getEditWrapperProps:({inContainer:t,align:s})=>t?{className:r()("sensei-buttons-container__button-block",(0,i.getBlockDefaultClassName)(e.name)+"__wrapper",{[`sensei-buttons-container__button-align-${s}`]:s})}:{},example:{attributes:{align:"center",isPreview:!0}}},e)},
 /* harmony export */"u",0,/* binding */b
 /* harmony export */])},
 /***/2567(e,t,s){"use strict";
-/* harmony import */var o=s(4452),n=s.n(o),r=s(56427),l=s(1027),i=s(62540);
+/* harmony import */var o=s(4452),n=s.n(o),r=s(56427),l=s(1027),i=s(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -234,7 +234,7 @@ return(0,i.jsx)(r.ToolbarDropdownMenu,{className:"sensei-toolbar-dropdown",popov
 return(0,i.jsx)(r.MenuItem,{role:"menuitemradio",isSelected:t,icon:t?l/* ["default"] */.A:null,className:n()("sensei-toolbar-dropdown__option",{"is-selected":t},o?.className),onClick:()=>{a(e.value),s()},children:e.label,...o},e.value)})})})};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */a
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/56882(e,t,s){"use strict";
 /* harmony import */var o=s(27723),n=s(72613);
@@ -250,7 +250,7 @@ return(0,i.jsx)(r.MenuItem,{role:"menuitemradio",isSelected:t,icon:t?l/* ["defau
  */
 /* harmony default export */const r=(0,n/* .createButtonBlockType */.e)({settings:{name:"sensei-lms/button-complete-lesson",parent:["sensei-lms/lesson-actions"],title:(0,o.__)("Complete Lesson","sensei-lms"),description:(0,o.__)("Enable a student to mark the lesson as complete. This block is only displayed if the lesson has no quiz or the quiz is optional.","sensei-lms"),keywords:[(0,o.__)("Complete","sensei-lms"),(0,o.__)("Finish","sensei-lms"),(0,o.__)("Lesson","sensei-lms"),(0,o.__)("Button","sensei-lms")],attributes:{text:{default:(0,o.__)("Complete Lesson","sensei-lms")},buttonClassName:{default:["sensei-stop-double-submission"]}},styles:[{...n/* .BlockStyles */.u.Fill,isDefault:!0},n/* .BlockStyles */.u.Outline,n/* .BlockStyles */.u.Link]}});
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/19695(e,t,s){"use strict";
 /* harmony export */s.d(t,{
@@ -282,10 +282,10 @@ const o=["sensei-lms/button-complete-lesson","sensei-lms/button-view-quiz","sens
  */
 /* harmony default export */const i={...o,metadata:o,example:{innerBlocks:[{name:"sensei-lms/button-lesson-completed"},{name:"sensei-lms/button-complete-lesson"},{name:"sensei-lms/button-next-lesson"},{name:"sensei-lms/button-reset-lesson"}]},icon:l/* ["default"] */.A,edit:n/* ["default"] */.A,save:r/* ["default"] */.A};
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/36279(e,t,s){"use strict";
-/* harmony import */var o=s(4452),n=s.n(o),r=s(94715),l=s(27723),i=s(31436),a=s(60381),c=s(24704),u=s(99023),d=s(32634),m=s(26767),p=s(47143),b=s(43656),g=s(62540);
+/* harmony import */var o=s(4452),n=s.n(o),r=s(94715),l=s(27723),i=s(31436),a=s(60381),c=s(24704),u=s(99023),d=s(32634),m=s(26767),p=s(47143),b=s(43656),g=s(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -296,10 +296,10 @@ const o=["sensei-lms/button-complete-lesson","sensei-lms/button-view-quiz","sens
 /**
  * Internal dependencies
  */
-const _=window?.sensei?.courseThemeEnabled||!1,v=e=>{const{clientId:t,setAttributes:s,attributes:{toggledBlocks:o}}=e,[v,h]=(0/* .IN_PROGRESS_PREVIEW */,i/* ["default"] */.A)(m.fw),{isSiteEditor:x}=(0,p.useSelect)(e=>{const t=e(b.store).getCurrentPostId();return{isSiteEditor:!Number.isInteger(t)}}),f=(0,a/* ["default"] */.A)({parentClientId:t,setAttributes:s,toggledBlocks:o,blocks:[{blockName:"sensei-lms/button-reset-lesson",label:(0,l.__)("Reset Lesson","sensei-lms")}]}),k=(0,c/* ["default"] */.A)(),w=k||x?"has-quiz":"no-quiz",y=(0,u/* ["default"] */.A)(k)?"allowed":"not-allowed",C=x?"site-editor":"lesson-editor",j=(0,r.useBlockProps)({className:n()(`wp-block-sensei-lms-lesson-actions__preview-${v}`,`wp-block-sensei-lms-lesson-actions__${w}`,`wp-block-sensei-lms-lesson-actions__complete_lessons-${y}`,`wp-block-sensei-lms-lesson-actions__preview-${C}`)});if(_)return null;
+const v=window?.sensei?.courseThemeEnabled||!1,_=e=>{const{clientId:t,setAttributes:s,attributes:{toggledBlocks:o}}=e,[_,h]=(0/* .IN_PROGRESS_PREVIEW */,i/* ["default"] */.A)(m.fw),{isSiteEditor:x}=(0,p.useSelect)(e=>{const t=e(b.store).getCurrentPostId();return{isSiteEditor:!Number.isInteger(t)}}),k=(0,a/* ["default"] */.A)({parentClientId:t,setAttributes:s,toggledBlocks:o,blocks:[{blockName:"sensei-lms/button-reset-lesson",label:(0,l.__)("Reset Lesson","sensei-lms")}]}),w=(0,c/* ["default"] */.A)(),f=w||x?"has-quiz":"no-quiz",C=(0,u/* ["default"] */.A)(w)?"allowed":"not-allowed",y=x?"site-editor":"lesson-editor",j=(0,r.useBlockProps)({className:n()(`wp-block-sensei-lms-lesson-actions__preview-${_}`,`wp-block-sensei-lms-lesson-actions__${f}`,`wp-block-sensei-lms-lesson-actions__complete_lessons-${C}`,`wp-block-sensei-lms-lesson-actions__preview-${y}`)});if(v)return null;
 // Filter inner blocks based on the settings.
 const A=m/* .INNER_BLOCKS_TEMPLATE */.B8.filter(e=>!1!==o[e[0]]);
-return(0,g.jsxs)(g.Fragment,{children:[(0/* ["default"] */,g.jsx)(d.A,{previewState:v,onPreviewChange:h,toggleBlocks:f}),(0,g.jsx)("div",{...j,children:(0,g.jsx)("div",{className:"sensei-buttons-container",children:(0,g.jsx)(r.InnerBlocks,{allowedBlocks:m/* .ACTION_BLOCKS */.Gd,template:A,templateLock:"all",templateInsertUpdatesSelection:!1})})})]})};
+return(0,g.jsxs)(g.Fragment,{children:[(0/* ["default"] */,g.jsx)(d.A,{previewState:_,onPreviewChange:h,toggleBlocks:k}),(0,g.jsx)("div",{...j,children:(0,g.jsx)("div",{className:"sensei-buttons-container",children:(0,g.jsx)(r.InnerBlocks,{allowedBlocks:m/* .ACTION_BLOCKS */.Gd,template:A,templateLock:"all",templateInsertUpdatesSelection:!1})})})]})};
 /**
  * Edit lesson actions block component.
  *
@@ -310,10 +310,10 @@ return(0,g.jsxs)(g.Fragment,{children:[(0/* ["default"] */,g.jsx)(d.A,{previewSt
  * @param {Object}   props.attributes.toggledBlocks Toggled blocks, where the key is the block name.
  */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */v
+/* harmony export */"A",0,_
 /* harmony export */])},
 /***/48394(e,t,s){"use strict";
-/* harmony import */var o=s(94715),n=s(62540);
+/* harmony import */var o=s(94715),n=s(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -321,10 +321,10 @@ return(0,g.jsxs)(g.Fragment,{children:[(0/* ["default"] */,g.jsx)(d.A,{previewSt
 const r=()=>(0,n.jsx)("div",{...o.useBlockProps.save(),children:(0,n.jsx)("div",{className:"sensei-buttons-container",children:(0,n.jsx)(o.InnerBlocks.Content,{})})});
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/32634(e,t,s){"use strict";
-/* harmony import */var o=s(94715),n=s(56427),r=s(27723),l=s(2567),i=s(26767),a=s(62540);
+/* harmony import */var o=s(94715),n=s(56427),r=s(27723),l=s(2567),i=s(26767),a=s(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -350,7 +350,7 @@ const r=()=>(0,n.jsx)("div",{...o.useBlockProps.save(),children:(0,n.jsx)("div",
 const c=({toggleBlocks:e,previewState:t,onPreviewChange:s})=>(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(o.BlockControls,{children:(0,a.jsx)(n.ToolbarGroup,{children:(0/* ["default"] */,a.jsx)(l.A,{options:[{label:(0,r.__)("In Progress","sensei-lms"),value:i/* .IN_PROGRESS_PREVIEW */.fw},{label:(0,r.__)("Completed","sensei-lms"),value:i/* .COMPLETED_PREVIEW */.Jq}],optionsLabel:(0,r.__)("Preview lesson state","sensei-lms"),value:t,onChange:s})})}),(0,a.jsx)(o.InspectorControls,{children:(0,a.jsx)(n.PanelBody,{title:(0,r.__)("Additional Actions","sensei-lms"),children:e.map(e=>(0,a.jsx)(n.ToggleControl,{checked:e.active,onChange:e.onToggle,label:e.label},e.label))})})]});
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */c
+/* harmony export */"A",0,c
 /* harmony export */])},
 /***/99023(e,t,s){"use strict";
 /* harmony import */var o=s(86087);
@@ -370,7 +370,7 @@ const n=e=>{const t=document.getElementById("pass_required"),[s,n]=(0,o.useState
 if(!t)return;const e=()=>{n(!t.checked)};return t.addEventListener("change",e),()=>{t.removeEventListener("change",e)}},[t]),!e||s};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */n
+/* harmony export */"A",0,n
 /* harmony export */])},
 /***/24704(e,t,s){"use strict";
 /* harmony import */var o=s(47143),n=s(86087);
@@ -386,7 +386,7 @@ if(!t)return;const e=()=>{n(!t.checked)};return t.addEventListener("change",e),(
 const r=()=>{const[e,t]=(0,n.useState)(()=>{const e=document.getElementById("question_counter");return e?parseInt(e.value,10)>0:null});(0,n.useEffect)(()=>{const e=e=>{t(e.detail.questions>0)};return window.addEventListener("sensei-quiz-editor-question-count-updated",e),()=>{window.removeEventListener("sensei-quiz-editor-question-count-updated",e)}},[]);const{_quiz_has_questions:s}=(0,o.useSelect)(e=>e("core/editor").getEditedPostAttribute("meta"))||{};return null!==e?e:s};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/31436(e,t,s){"use strict";
 /* harmony import */var o=s(86087),n=s(47143),r=s(26767);
@@ -410,7 +410,7 @@ const l=e=>{const[t,s]=(0,o.useState)(e),l=(0,n.useSelect)(e=>e("core/block-edit
 return(0,o.useEffect)(()=>{if(!r/* .ACTION_BLOCKS */.Gd.includes(l?.name))return;const e=Object.keys(r/* .PREVIEW_STATE */.LB).find(e=>r/* .PREVIEW_STATE */.LB[e].includes(l.name));e!==t&&s(e)},[l,t]),[t,s]};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/60381(e,t,s){"use strict";
 /* harmony import */var o=s(86087),n=s(47143),r=s(74997),l=s(26767);
@@ -441,7 +441,7 @@ m=a.innerBlocks.filter(e=>e.name!==n),
 d(e=>({...e,[n]:i.attributes}))),m&&c(e,m,!1),t({toggledBlocks:{...s,[n]:o}})}),label:o.label};var n})};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/3088(e,t,s){"use strict";
 /* harmony import */var o=s(27723),n=s(72613);
@@ -457,7 +457,7 @@ d(e=>({...e,[n]:i.attributes}))),m&&c(e,m,!1),t({toggledBlocks:{...s,[n]:o}})}),
  */
 /* harmony default export */const r=(0,n/* .createButtonBlockType */.e)({settings:{name:"sensei-lms/button-lesson-completed",parent:["sensei-lms/lesson-actions"],title:(0,o.__)("Lesson Completed","sensei-lms"),description:(0,o.__)("This button becomes visible only when a lesson is completed. It has no other functionality other than indicating that the lesson is completed","sensei-lms"),keywords:[(0,o.__)("Completed","sensei-lms"),(0,o.__)("Finished","sensei-lms"),(0,o.__)("Lesson","sensei-lms"),(0,o.__)("Button","sensei-lms")],attributes:{text:{default:(0,o.__)("Completed","sensei-lms")}},styles:[n/* .BlockStyles */.u.Fill,{...n/* .BlockStyles */.u.Outline,isDefault:!0},n/* .BlockStyles */.u.Link]}});
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/3876(e,t,s){"use strict";
 /* harmony import */var o=s(27723),n=s(72613);
@@ -473,7 +473,7 @@ d(e=>({...e,[n]:i.attributes}))),m&&c(e,m,!1),t({toggledBlocks:{...s,[n]:o}})}),
  */
 /* harmony default export */const r=(0,n/* .createButtonBlockType */.e)({settings:{name:"sensei-lms/button-next-lesson",title:(0,o.__)("Next Lesson","sensei-lms"),parent:["sensei-lms/lesson-actions"],description:(0,o.__)("Enable a student to move to the next lesson. This block is only displayed if the current lesson has been completed.","sensei-lms"),keywords:[(0,o.__)("Next","sensei-lms"),(0,o.__)("Continue","sensei-lms"),(0,o.__)("Lesson","sensei-lms"),(0,o.__)("Button","sensei-lms")],attributes:{text:{default:(0,o.__)("Next Lesson","sensei-lms")}},styles:[{...n/* .BlockStyles */.u.Fill,isDefault:!0},n/* .BlockStyles */.u.Outline,n/* .BlockStyles */.u.Link]}});
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/31242(e,t,s){"use strict";
 /* harmony import */var o=s(27723),n=s(72613);
@@ -489,7 +489,7 @@ d(e=>({...e,[n]:i.attributes}))),m&&c(e,m,!1),t({toggledBlocks:{...s,[n]:o}})}),
  */
 /* harmony default export */const r=(0,n/* .createButtonBlockType */.e)({settings:{name:"sensei-lms/button-reset-lesson",title:(0,o.__)("Reset Lesson","sensei-lms"),parent:["sensei-lms/lesson-actions"],description:(0,o.__)("Enable a student to reset their progress. This block is only displayed if the lesson is completed and has no quiz, or the quiz is completed and retakes are enabled.","sensei-lms"),keywords:[(0,o.__)("Reset","sensei-lms"),(0,o.__)("Restart","sensei-lms"),(0,o.__)("Revert","sensei-lms"),(0,o.__)("Progress","sensei-lms"),(0,o.__)("Lesson","sensei-lms"),(0,o.__)("Button","sensei-lms")],attributes:{text:{default:(0,o.__)("Reset Lesson","sensei-lms")},buttonClassName:{default:["sensei-stop-double-submission"]}},styles:[n/* .BlockStyles */.u.Fill,{...n/* .BlockStyles */.u.Outline,isDefault:!0},n/* .BlockStyles */.u.Link]}});
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/11051(e,t,s){"use strict";
 /* harmony import */var o=s(27723),n=s(72613);
@@ -505,10 +505,10 @@ d(e=>({...e,[n]:i.attributes}))),m&&c(e,m,!1),t({toggledBlocks:{...s,[n]:o}})}),
  */
 /* harmony default export */const r=(0,n/* .createButtonBlockType */.e)({settings:{name:"sensei-lms/button-view-quiz",title:(0,o.__)("Take Quiz","sensei-lms"),parent:["sensei-lms/lesson-actions"],description:(0,o.__)("Enable a student to take the quiz.","sensei-lms"),keywords:[(0,o.__)("Quiz","sensei-lms"),(0,o.__)("Lesson","sensei-lms"),(0,o.__)("Button","sensei-lms")],attributes:{text:{default:(0,o.__)("Take Quiz","sensei-lms")}},styles:[{...n/* .BlockStyles */.u.Fill,isDefault:!0},n/* .BlockStyles */.u.Outline,n/* .BlockStyles */.u.Link]}});
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
 /***/47056(e,t,s){"use strict";
-/* harmony import */var o=s(66087),n=s(74997),r=s(48597),l=s(62540);
+/* harmony import */var o=s(66087),n=s(74997),r=s(48597),l=s(10790);
 /* harmony import */
 /**
  * External dependencies
@@ -534,7 +534,7 @@ r=(0,o.omit)(r,Object.keys(t))),(0,n.registerBlockType)(t||s,r);
 })};
 /* harmony default export */
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */i
+/* harmony export */"A",0,i
 /* harmony export */])},
 /***/77549(e,t,s){"use strict";
 /* unused harmony exports useColorsByProbe, getProbeStyles */
@@ -576,7 +576,7 @@ const{getComputedStyle:r}=e.defaultView||window,l={primaryColor:r(o).backgroundC
 return e.body.removeChild(t),l},(e=n())=>e)},
 /***/29281(e,t,s){"use strict";
 /* unused harmony exports ColorSettings, withDefaultColor */
-/* unused harmony import specifier */var o=s(66087),n=(s(86087),s(94715)),r=s(27723),l=(s(77549),s(62540));
+/* unused harmony import specifier */var o=s(66087),n=(s(86087),s(94715)),r=s(27723),l=(s(77549),s(10790));
 /* unused harmony import specifier */
 /**
  * External dependencies
@@ -606,7 +606,7 @@ return(0,l.jsx)(n.InspectorControls,{children:(0,l.jsx)(n.PanelColorSettings,{ti
 /* harmony export */"Sw",0,(e="default")=>t=>s=>{let o=s.attributes?.className;const n={};o&&o.includes("is-style-")?n.className=o:o=n.className=[o,`is-style-${e}`].filter(Boolean).join(" ");const r=o.match(/is-style-(\w+)/);return r&&(n.blockStyle=r[1]),(0,l.jsx)(t,{...s,...n})},
 /* harmony export */"rt",0,e=>t=>{const s=(0,o.mapValues)(e,e=>e.style);return(0,n.withColors)(s)(s=>(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(t,{...s}),(0,l.jsx)(i,{colorSettings:e,props:s})]}))}])},
 /***/74862(e,t,s){"use strict";
-/* harmony import */var o=s(94715),n=s(62540);
+/* harmony import */var o=s(94715),n=s(10790);
 /* harmony import */
 /* harmony default export */const r=
 /**
@@ -615,20 +615,10 @@ return(0,l.jsx)(n.InspectorControls,{children:(0,l.jsx)(n.PanelColorSettings,{ti
 function({message:e}){const t=(0,o.useBlockProps)();
 return(0,n.jsx)("div",{...t,children:(0,n.jsx)(o.Warning,{children:e})})};
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,/* export default binding */r
+/* harmony export */"A",0,r
 /* harmony export */])},
-/***/2192(e,t,s){"use strict";
-/**
- * @license React
- * react-jsx-runtime.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */var o=s(51609),n=Symbol.for("react.element"),r=Symbol.for("react.fragment"),l=Object.prototype.hasOwnProperty,i=o.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,a={key:!0,ref:!0,__self:!0,__source:!0};function c(e,t,s){var o,r={},c=null,u=null;for(o in void 0!==s&&(c=""+s),void 0!==t.key&&(c=""+t.key),void 0!==t.ref&&(u=t.ref),t)l.call(t,o)&&!a.hasOwnProperty(o)&&(r[o]=t[o]);if(e&&e.defaultProps)for(o in t=e.defaultProps)void 0===r[o]&&(r[o]=t[o]);return{$$typeof:n,type:e,key:c,ref:u,props:r,_owner:i.current}}t.Fragment=r,t.jsx=c,t.jsxs=c},
-/***/62540(e,t,s){"use strict";e.exports=s(2192)},
 /***/51609(e){"use strict";e.exports=window.React},
+/***/10790(e){"use strict";e.exports=window.ReactJSXRuntime},
 /***/66087(e){"use strict";e.exports=window.lodash},
 /***/94715(e){"use strict";e.exports=window.wp.blockEditor},
 /***/74997(e){"use strict";e.exports=window.wp.blocks},
@@ -675,7 +665,6 @@ return(0,n.jsx)("div",{...t,children:(0,n.jsx)(o.Warning,{children:e})})};
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/s.n=e=>{
 /******/const t=e&&e.__esModule?
@@ -684,18 +673,16 @@ return(0,n.jsx)("div",{...t,children:(0,n.jsx)(o.Warning,{children:e})})};
 /******/
 /******/return s.d(t,{a:t}),t;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/s.d=(e,t)=>{
 /******/if(Array.isArray(t))
 /******/for(
 /******/var o=0;o<t.length;){
-/******/var n=t[o++],r=t[o++];
+/******/var n=t[o++],r=t[o++],l=0===r?{enumerable:!0,value:t[o++]}:{enumerable:!0,get:r};
 /******/
-/******/s.o(e,n)?0===r&&o++
-/******/:
-/******/0===r?
-/******/Object.defineProperty(e,n,{enumerable:!0,value:t[o++]}):
-/******/Object.defineProperty(e,n,{enumerable:!0,get:r})
+/******/s.o(e,n)||Object.defineProperty(e,n,l)
 /******/}
 /******/else
 /******/for(var n in t)
@@ -704,8 +691,9 @@ return(0,n.jsx)("div",{...t,children:(0,n.jsx)(o.Warning,{children:e})})};
 /******/;
 /******/
 /******/},
-/******/s.o=(e,t)=>Object.hasOwn(e,t)
-/******/,
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/s.o=(e,t)=>Object.hasOwn(e,t),
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (()=>{"use strict";
 /* harmony import */var e=s(19695);

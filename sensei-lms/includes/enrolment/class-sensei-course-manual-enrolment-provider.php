@@ -97,15 +97,23 @@ class Sensei_Course_Manual_Enrolment_Provider extends Sensei_Course_Enrolment_St
 	 */
 	public function enrol_learner( $user_id, $course_id ) {
 
-		// Check if they are already manually enrolled.
-		if ( $this->is_enrolled( $user_id, $course_id ) ) {
+		$course_enrolment = Sensei_Course_Enrolment::get_course_instance( $course_id );
+		// Skip enrollment only when provider status, progress, and course access are already saved.
+		if ( $this->is_enrolled( $user_id, $course_id )
+			&& Sensei_Utils::has_started_course( $course_id, $user_id )
+			&& $course_enrolment->is_enrolled( $user_id ) ) {
 			return true;
 		}
 
 		$this->set_enrolment_status( $user_id, $course_id, true );
+
+		if ( false === Sensei_Utils::user_start_course( $user_id, $course_id ) ) {
+			$course_enrolment->invalidate_learner_result( $user_id );
+			return false;
+		}
 		Sensei_Course_Enrolment_Manager::trigger_course_enrolment_check( $user_id, $course_id );
 
-		if ( ! $this->is_enrolled( $user_id, $course_id ) ) {
+		if ( ! $this->is_enrolled( $user_id, $course_id ) || ! $course_enrolment->is_enrolled( $user_id, false ) ) {
 			return false;
 		}
 
@@ -170,7 +178,10 @@ class Sensei_Course_Manual_Enrolment_Provider extends Sensei_Course_Enrolment_St
 	 * @return bool
 	 */
 	private function get_legacy_enrolment( $user_id, $course_id ) {
-		$course_progress_comment_id = Sensei_Utils::get_course_progress_comment_id( $course_id, $user_id );
+		// Legacy providers use this ID to read comment metadata, even when tables supply progress.
+		$comments_repository        = Sensei()->course_progress_repository_factory->create_comments_based_repository();
+		$course_progress            = $comments_repository->get( $course_id, $user_id );
+		$course_progress_comment_id = $course_progress ? $course_progress->get_id() : false;
 
 		/**
 		 * Allows other providers to have an opinion about whether or not a user was enrolled pre-3.0.0.
@@ -209,8 +220,8 @@ class Sensei_Course_Manual_Enrolment_Provider extends Sensei_Course_Enrolment_St
 		}
 
 		// We only migrate people who had course progress.
-		$course_progress_comment_id = Sensei_Utils::get_course_progress_comment_id( $course_id, $user_id );
-		if ( ! $course_progress_comment_id ) {
+		$course_progress_id = Sensei_Utils::get_course_progress_id( $course_id, $user_id );
+		if ( ! $course_progress_id ) {
 			return false;
 		}
 

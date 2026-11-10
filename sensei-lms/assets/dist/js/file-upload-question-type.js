@@ -6,17 +6,17 @@
 /******/};
 /************************************************************************/
 /******/ // The module cache
-/******/const r={};
+/******/const t={};
 /******/
 /******/ // The require function
-/******/function t(n){
+/******/function n(o){
 /******/ // Check if module is in cache
-/******/const o=r[n];
-/******/if(void 0!==o)
-/******/return o.exports;
+/******/const r=t[o];
+/******/if(void 0!==r)
+/******/return r.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/const s=r[n]={
+/******/const s=t[o]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -26,45 +26,34 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return e[n](s,s.exports,t),s.exports;
+/******/return e[o](s,s.exports,n),s.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/t.n=e=>{
-/******/const r=e&&e.__esModule?
+/******/n.n=e=>{
+/******/const t=e&&e.__esModule?
 /******/()=>e.default:
 /******/()=>e;
 /******/
-/******/return t.d(r,{a:r}),r;
+/******/return n.d(t,{a:t}),t;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
-/******/t.d=(e,r)=>{
-/******/if(Array.isArray(r))
-/******/for(
-/******/var n=0;n<r.length;){
-/******/var o=r[n++],s=r[n++];
-/******/
-/******/t.o(e,o)?0===s&&n++
-/******/:
-/******/0===s?
-/******/Object.defineProperty(e,o,{enumerable:!0,value:r[n++]}):
-/******/Object.defineProperty(e,o,{enumerable:!0,get:s})
-/******/}
-/******/else
-/******/for(var o in r)
-/******/t.o(r,o)&&!t.o(e,o)&&
-/******/Object.defineProperty(e,o,{enumerable:!0,get:r[o]})
+/******/n.d=(e,t)=>{
+/******/for(var o in t)
+/******/n.o(t,o)&&!n.o(e,o)&&
+/******/Object.defineProperty(e,o,{enumerable:!0,get:t[o]})
 /******/;
-/******/
 /******/},
-/******/t.o=(e,r)=>Object.hasOwn(e,r)
-/******/;
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/n.o=(e,t)=>Object.hasOwn(e,t);
 /******/
 /************************************************************************/
-/* harmony import */var n=t(98490);
+/* harmony import */var o=n(98490);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -73,4 +62,4 @@
  * Handles uploading a file for a file upload question.
  *
  */
-t.n(n)()(()=>{document.querySelectorAll(".sensei-lms-question-block__file-input").forEach(e=>{e.addEventListener("change",e=>{const r=e.target,t=r.files?.[0],n=r.parentElement.parentElement.querySelector(".sensei-lms-question-block__file-upload-name");n&&(n.innerText=t&&t.name)})})})})();
+n.n(o)()(()=>{document.querySelectorAll(".sensei-lms-question-block__file-input").forEach(e=>{e.addEventListener("change",e=>{const t=e.target,n=t.files?.[0],o=t.parentElement.parentElement.querySelector(".sensei-lms-question-block__file-upload-name");o&&(o.innerText=n&&n.name)})})})})();

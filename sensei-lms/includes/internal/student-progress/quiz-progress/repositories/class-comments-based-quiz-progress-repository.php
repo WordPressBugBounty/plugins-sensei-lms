@@ -8,6 +8,7 @@
 namespace Sensei\Internal\Student_Progress\Quiz_Progress\Repositories;
 
 use DateTime;
+use Sensei\Internal\Persistence_Exception;
 use Sensei\Internal\Student_Progress\Quiz_Progress\Models\Comments_Based_Quiz_Progress;
 use Sensei\Internal\Student_Progress\Quiz_Progress\Models\Quiz_Progress_Interface;
 use Sensei_Utils;
@@ -34,7 +35,7 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 	 * @param int $quiz_id Quiz identifier.
 	 * @param int $user_id User identifier.
 	 * @return Quiz_Progress_Interface
-	 * @throws \RuntimeException When the quiz progress doesn't exist. In this implementation we re-use lesson progress.
+	 * @throws Persistence_Exception If the required lesson progress is missing.
 	 */
 	public function create( int $quiz_id, int $user_id ): Quiz_Progress_Interface {
 		/**
@@ -55,7 +56,8 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 			 * In comments-based implementation we don't have a separate quiz progress.
 			 * It depends on the lesson progress. If it doesn't exist yet, throw an exception.
 			 */
-			throw new \RuntimeException( 'Cannot create quiz progress' );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Safe persistence diagnostics.
+			throw new Persistence_Exception( 'quiz', 'comments', $quiz_id, $user_id, 'lesson_progress_missing' );
 		}
 
 		return $progress;
@@ -151,9 +153,15 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 	 * @internal
 	 *
 	 * @param Quiz_Progress_Interface $quiz_progress Quiz progress.
+	 * @throws Persistence_Exception If a required lesson progress comment cannot be inserted.
 	 */
 	public function save( Quiz_Progress_Interface $quiz_progress ): void {
 		$this->assert_comments_based_quiz_progress( $quiz_progress );
+
+		$status = (string) $quiz_progress->get_raw_status();
+		if ( empty( $status ) ) {
+			return;
+		}
 
 		$lesson_id  = (int) Sensei()->quiz->get_lesson_id( $quiz_progress->get_quiz_id() );
 		$metadata   = [];
@@ -163,14 +171,17 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 			$metadata['start'] = wp_date( 'Y-m-d H:i:s', $started_at->getTimestamp() );
 		}
 
-		// We need to use internal value for status, not the one returned by the getter.
-		// Commets-based `get_status` method excludes lesson-progress `complete` status, that we still need while saving.
-		$reflection_class = new \ReflectionClass( Comments_Based_Quiz_Progress::class );
-		$status_property  = $reflection_class->getProperty( 'status' );
-		$status_property->setAccessible( true );
-		$status = (string) $status_property->getValue( $quiz_progress );
+		$comment_id = Sensei_Utils::update_lesson_status(
+			$quiz_progress->get_user_id(),
+			$lesson_id,
+			$status,
+			$metadata
+		);
 
-		Sensei_Utils::update_lesson_status( $quiz_progress->get_user_id(), $lesson_id, $status, $metadata );
+		if ( ! $comment_id ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages contain safe diagnostics and are not rendered.
+			throw new Persistence_Exception( 'lesson', 'comments', $lesson_id, $quiz_progress->get_user_id() );
+		}
 	}
 
 	/**
@@ -256,6 +267,7 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 	 * Assert that the quiz progress is a Comments_Based_Quiz_Progress.
 	 *
 	 * @param Quiz_Progress_Interface $quiz_progress Quiz progress.
+	 * @psalm-assert Comments_Based_Quiz_Progress $quiz_progress
 	 * @throws \InvalidArgumentException When the quiz progress is not a Comments_Based_Quiz_Progress.
 	 */
 	private function assert_comments_based_quiz_progress( Quiz_Progress_Interface $quiz_progress ): void {

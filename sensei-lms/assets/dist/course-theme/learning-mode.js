@@ -104,7 +104,6 @@ function(){document.querySelectorAll(".sensei-course-theme-lesson-video").forEac
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/s.n=e=>{
 /******/const t=e&&e.__esModule?
@@ -113,18 +112,16 @@ function(){document.querySelectorAll(".sensei-course-theme-lesson-video").forEac
 /******/
 /******/return s.d(t,{a:t}),t;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/s.d=(e,t)=>{
 /******/if(Array.isArray(t))
 /******/for(
 /******/var o=0;o<t.length;){
-/******/var n=t[o++],r=t[o++];
+/******/var n=t[o++],r=t[o++],c=0===r?{enumerable:!0,value:t[o++]}:{enumerable:!0,get:r};
 /******/
-/******/s.o(e,n)?0===r&&o++
-/******/:
-/******/0===r?
-/******/Object.defineProperty(e,n,{enumerable:!0,value:t[o++]}):
-/******/Object.defineProperty(e,n,{enumerable:!0,get:r})
+/******/s.o(e,n)||Object.defineProperty(e,n,c)
 /******/}
 /******/else
 /******/for(var n in t)
@@ -133,8 +130,9 @@ function(){document.querySelectorAll(".sensei-course-theme-lesson-video").forEac
 /******/;
 /******/
 /******/},
-/******/s.o=(e,t)=>Object.hasOwn(e,t)
-/******/,
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/s.o=(e,t)=>Object.hasOwn(e,t),
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (()=>{"use strict";
 /* harmony import */s(52208),s(24945),s(32334)

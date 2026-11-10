@@ -16,7 +16,7 @@
 /******/return n.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/const a=s[i]={
+/******/const o=s[i]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -26,12 +26,11 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return e[i](a,a.exports,t),a.exports;
+/******/return e[i](o,o.exports,t),o.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/t.n=e=>{
 /******/const s=e&&e.__esModule?
@@ -40,28 +39,18 @@
 /******/
 /******/return t.d(s,{a:s}),s;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/t.d=(e,s)=>{
-/******/if(Array.isArray(s))
-/******/for(
-/******/var i=0;i<s.length;){
-/******/var n=s[i++],a=s[i++];
-/******/
-/******/t.o(e,n)?0===a&&i++
-/******/:
-/******/0===a?
-/******/Object.defineProperty(e,n,{enumerable:!0,value:s[i++]}):
-/******/Object.defineProperty(e,n,{enumerable:!0,get:a})
-/******/}
-/******/else
-/******/for(var n in s)
-/******/t.o(s,n)&&!t.o(e,n)&&
-/******/Object.defineProperty(e,n,{enumerable:!0,get:s[n]})
+/******/for(var i in s)
+/******/t.o(s,i)&&!t.o(e,i)&&
+/******/Object.defineProperty(e,i,{enumerable:!0,get:s[i]})
 /******/;
-/******/
 /******/},
-/******/t.o=(e,s)=>Object.hasOwn(e,s)
-/******/;
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/t.o=(e,s)=>Object.hasOwn(e,s);
 /******/
 /************************************************************************/
 /* harmony import */var i=t(98490);
@@ -74,7 +63,7 @@ t.n(i)()(()=>{const e="sensei-notice--is-hidden",s=e=>{const s=new FormData;e.da
    * Handle tasks present on the element if the element has the attribute "data-sensei-notice-tasks".
    *
    * @param {Event} event The event to handle.
-   */document.body.addEventListener("click",t=>{const i=t.target.closest(".sensei-notice");i&&(i.dataset.dismissNonce&&i.dataset.dismissAction&&t.target.classList.contains("notice-dismiss")?s(i):(t=>{const{target:i}=t;if(!i.dataset.senseiNoticeTasks)return;const n=JSON.parse(i.dataset.senseiNoticeTasks);if(n)for(const i of n){const n=i.notice_id&&document.querySelector(`.sensei-notice[data-sensei-notice-id="${i.notice_id}"]`);switch(i.type){case"preventDefault":t.preventDefault();break;case"show":n?.classList.remove(e);break;case"dismiss":n&&s(n);
+   */document.body.addEventListener("click",t=>{const i=t.target.closest(".sensei-notice");i&&(i.dataset.dismissNonce&&i.dataset.dismissAction&&t.target.classList.contains("notice-dismiss")?s(i):(t=>{const{target:i}=t,n=i.closest("[data-sensei-notice-tasks]");if(!n)return;const o=JSON.parse(n.dataset.senseiNoticeTasks);if(o)for(const i of o){const n=i.notice_id&&document.querySelector(`.sensei-notice[data-sensei-notice-id="${i.notice_id}"]`);switch(i.type){case"preventDefault":t.preventDefault();break;case"show":n?.classList.remove(e);break;case"dismiss":n&&s(n);
 //  We need to also hide the notice being dismissed:
 // eslint-disable-next-line no-fallthrough
 case"hide":n?.classList.add(e)}}})(t))})})})();

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
+class ComposerStaticInitc19c7361c28d06e3f0800b605b27a100
 {
     public static $files = array (
         '7e03bc80976ad8e42da9beffeb3edb01' => __DIR__ . '/../..' . '/includes/sensei-functions.php',
@@ -48,6 +48,11 @@ class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
         'Sensei\\Emails\\MailPoet\\Sync_Job' => __DIR__ . '/../..' . '/includes/mailpoet/class-sync-job.php',
         'Sensei\\Internal\\Action_Scheduler\\Action_Scheduler' => __DIR__ . '/../..' . '/includes/internal/action-scheduler/class-action-scheduler.php',
         'Sensei\\Internal\\Cache_Prefix' => __DIR__ . '/../..' . '/includes/internal/trait-cache-prefix.php',
+        'Sensei\\Internal\\Course_Lessons\\Repositories\\Course_Lessons_Repository_Interface' => __DIR__ . '/../..' . '/includes/internal/course-lessons/repositories/class-course-lessons-repository-interface.php',
+        'Sensei\\Internal\\Course_Lessons\\Repositories\\Meta_Based_Course_Lessons_Repository' => __DIR__ . '/../..' . '/includes/internal/course-lessons/repositories/class-meta-based-course-lessons-repository.php',
+        'Sensei\\Internal\\Course_Lessons\\Services\\Course_Lessons_Query_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/course-lessons/services/class-course-lessons-query-service-interface.php',
+        'Sensei\\Internal\\Course_Lessons\\Services\\Meta_Based_Course_Lessons_Query_Service' => __DIR__ . '/../..' . '/includes/internal/course-lessons/services/class-meta-based-course-lessons-query-service.php',
+        'Sensei\\Internal\\Course_Status_Updates' => __DIR__ . '/../..' . '/includes/internal/class-course-status-updates.php',
         'Sensei\\Internal\\Emails\\Email_Blocks' => __DIR__ . '/../..' . '/includes/internal/emails/class-email-blocks.php',
         'Sensei\\Internal\\Emails\\Email_Customization' => __DIR__ . '/../..' . '/includes/internal/emails/class-email-customization.php',
         'Sensei\\Internal\\Emails\\Email_Generator' => __DIR__ . '/../..' . '/includes/internal/emails/class-email-generator.php',
@@ -93,6 +98,7 @@ class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
         'Sensei\\Internal\\Migration\\Validations\\Progress_Validation' => __DIR__ . '/../..' . '/includes/internal/migration/validations/class-progress-validation.php',
         'Sensei\\Internal\\Migration\\Validations\\Quiz_Submission_Validation' => __DIR__ . '/../..' . '/includes/internal/migration/validations/class-quiz-submission-validation.php',
         'Sensei\\Internal\\Migration\\Validations\\Validation_Error' => __DIR__ . '/../..' . '/includes/internal/migration/validations/class-validation-error.php',
+        'Sensei\\Internal\\Persistence_Exception' => __DIR__ . '/../..' . '/includes/internal/class-persistence-exception.php',
         'Sensei\\Internal\\Quiz_Submission\\Answer\\Models\\Answer_Abstract' => __DIR__ . '/../..' . '/includes/internal/quiz-submission/answer/models/class-answer-abstract.php',
         'Sensei\\Internal\\Quiz_Submission\\Answer\\Models\\Answer_Interface' => __DIR__ . '/../..' . '/includes/internal/quiz-submission/answer/models/class-answer-interface.php',
         'Sensei\\Internal\\Quiz_Submission\\Answer\\Models\\Comments_Based_Answer' => __DIR__ . '/../..' . '/includes/internal/quiz-submission/answer/models/class-comments-based-answer.php',
@@ -128,6 +134,7 @@ class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
         'Sensei\\Internal\\Services\\Comments_Based_Progress_Aggregation_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-comments-based-progress-aggregation-service.php',
         'Sensei\\Internal\\Services\\Comments_Based_Progress_Clauses_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-comments-based-progress-clauses-service.php',
         'Sensei\\Internal\\Services\\Comments_Based_Reports_Listing_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-comments-based-reports-listing-service.php',
+        'Sensei\\Internal\\Services\\Comments_Based_Student_Management_Listing_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-comments-based-student-management-listing-service.php',
         'Sensei\\Internal\\Services\\Grading_Item' => __DIR__ . '/../..' . '/includes/internal/services/class-grading-item.php',
         'Sensei\\Internal\\Services\\Grading_Listing_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/services/class-grading-listing-service-interface.php',
         'Sensei\\Internal\\Services\\Grading_Stats_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/services/class-grading-stats-service-interface.php',
@@ -139,11 +146,15 @@ class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
         'Sensei\\Internal\\Services\\Reports_Item' => __DIR__ . '/../..' . '/includes/internal/services/class-reports-item.php',
         'Sensei\\Internal\\Services\\Reports_Listing_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/services/class-reports-listing-service-interface.php',
         'Sensei\\Internal\\Services\\Sensei_Pro_Upsell' => __DIR__ . '/../..' . '/includes/internal/services/class-sensei-pro-upsell.php',
+        'Sensei\\Internal\\Services\\Student_Management_Listing_Service_Interface' => __DIR__ . '/../..' . '/includes/internal/services/class-student-management-listing-service-interface.php',
+        'Sensei\\Internal\\Services\\Students_Item' => __DIR__ . '/../..' . '/includes/internal/services/class-students-item.php',
         'Sensei\\Internal\\Services\\Tables_Based_Grading_Listing_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-tables-based-grading-listing-service.php',
         'Sensei\\Internal\\Services\\Tables_Based_Grading_Stats_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-tables-based-grading-stats-service.php',
         'Sensei\\Internal\\Services\\Tables_Based_Progress_Aggregation_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-tables-based-progress-aggregation-service.php',
         'Sensei\\Internal\\Services\\Tables_Based_Progress_Clauses_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-tables-based-progress-clauses-service.php',
+        'Sensei\\Internal\\Services\\Tables_Based_Progress_Query' => __DIR__ . '/../..' . '/includes/internal/services/class-tables-based-progress-query.php',
         'Sensei\\Internal\\Services\\Tables_Based_Reports_Listing_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-tables-based-reports-listing-service.php',
+        'Sensei\\Internal\\Services\\Tables_Based_Student_Management_Listing_Service' => __DIR__ . '/../..' . '/includes/internal/services/class-tables-based-student-management-listing-service.php',
         'Sensei\\Internal\\Services\\Utils' => __DIR__ . '/../..' . '/includes/internal/services/class-utils.php',
         'Sensei\\Internal\\Student_Progress\\Course_Progress\\Models\\Comments_Based_Course_Progress' => __DIR__ . '/../..' . '/includes/internal/student-progress/course-progress/models/class-comments-based-course-progress.php',
         'Sensei\\Internal\\Student_Progress\\Course_Progress\\Models\\Course_Progress_Abstract' => __DIR__ . '/../..' . '/includes/internal/student-progress/course-progress/models/class-course-progress-abstract.php',
@@ -488,6 +499,7 @@ class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
         'Sensei_Lesson_Blocks' => __DIR__ . '/../..' . '/includes/blocks/class-sensei-lesson-blocks.php',
         'Sensei_Lesson_Completed_Block' => __DIR__ . '/../..' . '/includes/blocks/class-sensei-lesson-completed-block.php',
         'Sensei_Lesson_Properties_Block' => __DIR__ . '/../..' . '/includes/blocks/class-sensei-lesson-properties-block.php',
+        'Sensei_Lesson_Quiz_Saver' => __DIR__ . '/../..' . '/includes/class-sensei-lesson-quiz-saver.php',
         'Sensei_List_Table' => __DIR__ . '/../..' . '/includes/class-sensei-list-table.php',
         'Sensei_Main' => __DIR__ . '/../..' . '/includes/class-sensei.php',
         'Sensei_Messages' => __DIR__ . '/../..' . '/includes/class-sensei-messages.php',
@@ -642,7 +654,7 @@ class ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit44f39819ffbb99b0d8f9a5c8423b34a8::$classMap;
+            $loader->classMap = ComposerStaticInitc19c7361c28d06e3f0800b605b27a100::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,5 +1,7 @@
 <?php
 
+use Sensei\Internal\Course_Status_Updates;
+use Sensei\Internal\Persistence_Exception;
 use Sensei\Internal\Student_Progress\Course_Progress\Models\Course_Progress_Interface;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -468,25 +470,47 @@ class Sensei_Utils {
 			return false;
 		}
 
-		$quiz_submission->set_final_grade( $grade );
-		Sensei()->quiz_submission_repository->save( $quiz_submission );
+		// Direct callers also need this check; user_start_course() reuses existing progress.
+		$lesson_id = (int) Sensei()->quiz->get_lesson_id( $quiz_id );
+		$course_id = Sensei()->course_lessons_repository->get_course_id( $lesson_id );
+		if ( $course_id && false === self::user_start_course( $user_id, $course_id ) ) {
+			return false;
+		}
+		if ( ! Sensei()->lesson_progress_repository->has( $lesson_id, $user_id )
+			&& false === self::sensei_start_lesson( $lesson_id, $user_id ) ) {
+			return false;
+		}
 
-		$quiz_passmark = absint( get_post_meta( $quiz_id, '_quiz_passmark', true ) );
+		try {
+			$quiz_submission->set_final_grade( $grade );
+			Sensei()->quiz_submission_repository->save( $quiz_submission );
 
-		/**
-		 * Fires when a user quiz is graded.
-		 *
-		 * @hook sensei_user_quiz_grade
-		 *
-		 * @param {int}    $user_id         ID of user being graded.
-		 * @param {int}    $quiz_id         ID of quiz.
-		 * @param {float}  $grade           Grade received.
-		 * @param {int}    $quiz_passmark   Passmark for quiz.
-		 * @param {string} $quiz_grade_type Type of grading.
-		 */
-		do_action( 'sensei_user_quiz_grade', $user_id, $quiz_id, $grade, $quiz_passmark, $quiz_grade_type );
+			$quiz_passmark = absint( get_post_meta( $quiz_id, '_quiz_passmark', true ) );
 
-		return true;
+			/**
+			 * Fires when a user quiz is graded.
+			 *
+			 * @hook sensei_user_quiz_grade
+			 *
+			 * @param {int}    $user_id         ID of user being graded.
+			 * @param {int}    $quiz_id         ID of quiz.
+			 * @param {float}  $grade           Grade received.
+			 * @param {int}    $quiz_passmark   Passmark for quiz.
+			 * @param {string} $quiz_grade_type Type of grading.
+			 */
+			if ( ! Course_Status_Updates::run(
+				static function () use ( $user_id, $quiz_id, $grade, $quiz_passmark, $quiz_grade_type ) {
+					do_action( 'sensei_user_quiz_grade', $user_id, $quiz_id, $grade, $quiz_passmark, $quiz_grade_type );
+				}
+			) ) {
+				return false;
+			}
+
+			return true;
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'grading a quiz' );
+			return false;
+		}
 	}
 
 	/**
@@ -602,57 +626,70 @@ class Sensei_Utils {
 			return false;
 		}
 
-		$course_id = get_post_meta( $lesson_id, '_lesson_course', true );
+		$course_id = Sensei()->course_lessons_repository->get_course_id( (int) $lesson_id );
 		if ( $course_id ) {
 			$is_user_taking_course = self::has_started_course( $course_id, $user_id );
 			if ( ! $is_user_taking_course ) {
-				self::user_start_course( $user_id, $course_id );
+				if ( false === self::user_start_course( $user_id, $course_id ) ) {
+					return false;
+				}
 			}
 		}
 
-		/**
-		 * Fires when a user starts a lesson.
-		 * When this action runs the lesson status may not yet exist.
-		 *
-		 * @hook sensei_user_lesson_start
-		 *
-		 * @param {int} $user_id ID of user starting lesson.
-		 * @param {int} $lesson_id ID of lesson being started.
-		 */
-		do_action( 'sensei_user_lesson_start', $user_id, $lesson_id );
-
-		$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
-		if ( ! $lesson_progress ) {
-			$lesson_progress = Sensei()->lesson_progress_repository->create( $lesson_id, $user_id );
-			$has_questions   = Sensei_Lesson::lesson_quiz_has_questions( $lesson_id );
-			if ( $complete && $has_questions ) {
-				update_comment_meta( $lesson_progress->get_id(), 'grade', 0 );
-			}
-		}
-
-		if ( $complete && ! $lesson_progress->is_complete() ) {
-			$lesson_progress->complete();
-			Sensei()->lesson_progress_repository->save( $lesson_progress );
-		}
-
-		if ( $complete ) {
+		try {
 			/**
-			 * Fires when a user completes a lesson.
+			 * Fires when a user starts a lesson.
+			 * When this action runs the lesson status may not yet exist.
 			 *
-			 * This hook is fired when a user completes a lesson, passes a quiz or their quiz submission was graded.
-			 * Therefore the corresponding lesson is marked as complete.
+			 * @hook sensei_user_lesson_start
 			 *
-			 * @since 1.7.0
-			 *
-			 * @hook sensei_user_lesson_end
-			 *
-			 * @param {int} $user_id The user ID.
-			 * @param {int} $lesson_id The lesson ID.
+			 * @param {int} $user_id ID of user starting lesson.
+			 * @param {int} $lesson_id ID of lesson being started.
 			 */
-			do_action( 'sensei_user_lesson_end', $user_id, $lesson_id );
-		}
+			do_action( 'sensei_user_lesson_start', $user_id, $lesson_id );
 
-		return $lesson_progress->get_id();
+			$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
+			if ( ! $lesson_progress ) {
+				$lesson_progress = Sensei()->lesson_progress_repository->create( $lesson_id, $user_id );
+				$has_questions   = Sensei_Lesson::lesson_quiz_has_questions( $lesson_id );
+				if ( $complete && $has_questions ) {
+					self::update_user_data( 'grade', intval( $lesson_id ), 0, $user_id );
+				}
+			}
+
+			if ( $complete && ! $lesson_progress->is_complete() ) {
+				$lesson_progress->complete();
+				Sensei()->lesson_progress_repository->save( $lesson_progress );
+			}
+
+			if ( $complete ) {
+				/**
+				 * Fires when a user completes a lesson.
+				 *
+				 * This hook is fired when a user completes a lesson, passes a quiz or their quiz submission was graded.
+				 * Therefore the corresponding lesson is marked as complete.
+				 *
+				 * @since 1.7.0
+				 *
+				 * @hook sensei_user_lesson_end
+				 *
+				 * @param {int} $user_id The user ID.
+				 * @param {int} $lesson_id The lesson ID.
+				 */
+				if ( ! Course_Status_Updates::run(
+					static function () use ( $user_id, $lesson_id ) {
+						do_action( 'sensei_user_lesson_end', $user_id, $lesson_id );
+					}
+				) ) {
+					return false;
+				}
+			}
+
+			return $lesson_progress->get_id();
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( $complete ? 'completing a lesson' : 'starting a lesson' );
+			return false;
+		}
 	}
 
 	/**
@@ -676,11 +713,14 @@ class Sensei_Utils {
 		// Process quiz
 		$lesson_quiz_id = Sensei()->lesson->lesson_quizzes( $lesson_id );
 
-		// Delete quiz answers, this auto deletes the corresponding meta data, such as the question/answer grade
-		self::sensei_delete_quiz_answers( $lesson_quiz_id, $user_id );
+		$has_progress = Sensei()->lesson_progress_repository->has( $lesson_id, $user_id )
+			|| ( $lesson_quiz_id && Sensei()->quiz_progress_repository->has( $lesson_quiz_id, $user_id ) );
+		if ( $has_progress && false === Sensei()->quiz->reset_user_lesson_data( $lesson_id, $user_id ) ) {
+			return false;
+		}
 
-		// Delete quiz saved answers
-		Sensei()->quiz->reset_user_lesson_data( $lesson_id, $user_id );
+		// Delete quiz answers and their grading metadata after progress can be reset.
+		self::sensei_delete_quiz_answers( $lesson_quiz_id, $user_id );
 
 		// Delete lesson progress.
 		$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
@@ -697,7 +737,18 @@ class Sensei_Utils {
 			 * @param {int} $user_id The user ID.
 			 * @param {int} $lesson_id The lesson ID.
 			 */
-			do_action( 'sensei_user_lesson_reset', $user_id, $lesson_id );
+			try {
+				if ( ! Course_Status_Updates::run(
+					static function () use ( $user_id, $lesson_id ) {
+						do_action( 'sensei_user_lesson_reset', $user_id, $lesson_id );
+					}
+				) ) {
+					return false;
+				}
+			} catch ( Persistence_Exception $exception ) {
+				$exception->log( 'removing lesson progress' );
+				return false;
+			}
 		}
 
 		return true;
@@ -720,10 +771,12 @@ class Sensei_Utils {
 			$user_id = get_current_user_id();
 		}
 
-		$lesson_ids = Sensei()->course->course_lessons( $course_id, 'any', 'ids' );
+		$lesson_ids = Sensei()->course_lessons_repository->get_lesson_ids( (int) $course_id, 'any' );
 
 		foreach ( $lesson_ids as $lesson_id ) {
-			self::sensei_remove_user_from_lesson( $lesson_id, $user_id, true );
+			if ( false === self::sensei_remove_user_from_lesson( $lesson_id, $user_id, true ) ) {
+				return false;
+			}
 		}
 
 		// Delete course progress.
@@ -1004,6 +1057,7 @@ class Sensei_Utils {
 	 *
 	 * @param int $user_id User ID.
 	 * @param int $course_id Course ID
+	 * @return false|null False if a lesson could not be completed.
 	 */
 	public static function force_complete_user_course( $user_id, $course_id ) {
 		$user = get_user_by( 'id', $user_id );
@@ -1013,7 +1067,9 @@ class Sensei_Utils {
 		$lesson_ids = Sensei()->course->course_lessons( $course_id, 'any', 'ids' );
 
 		foreach ( $lesson_ids as $id ) {
-			self::sensei_start_lesson( $id, $user_id, true );
+			if ( false === self::sensei_start_lesson( $id, $user_id, true ) ) {
+				return false;
+			}
 		}
 	}
 
@@ -1242,7 +1298,7 @@ class Sensei_Utils {
 
 		if ( $lesson_id > 0 && $user_id > 0 ) {
 			// Course ID.
-			$course_id = absint( get_post_meta( $lesson_id, '_lesson_course', true ) );
+			$course_id = Sensei()->course_lessons_repository->get_course_id( (int) $lesson_id ) ?? 0;
 
 			// Has user started course.
 			$started_course = Sensei_Course::is_user_enrolled( $course_id, $user_id );
@@ -1335,7 +1391,7 @@ class Sensei_Utils {
 						. esc_url( get_permalink( $lesson_prerequisite ) )
 						. '" title="'
 						// translators: Placeholder is the item title.
-						. sprintf( esc_attr__( 'You must first complete: %1$s', 'sensei-lms' ), get_the_title( $lesson_prerequisite ) )
+						. sprintf( esc_attr__( 'You must first complete: %1$s', 'sensei-lms' ), esc_attr( get_the_title( $lesson_prerequisite ) ) )
 						. '">'
 						. esc_html__( 'prerequisites', 'sensei-lms' )
 						. '</a>';
@@ -1484,21 +1540,21 @@ class Sensei_Utils {
 	 * @since  1.4.8
 	 * @param  integer $user_id   User ID
 	 * @param  integer $course_id Course ID
-	 * @return bool|int False if they haven't started; Comment ID of course progress if they have.
+	 * @return bool|int False if they haven't started; course progress ID from the selected storage backend otherwise.
 	 */
 	public static function user_start_course( $user_id = 0, $course_id = 0 ) {
 
-		$activity_comment_id = false;
+		$course_progress_id = false;
 
 		if ( $user_id && $course_id ) {
 			// Check if user is already on the Course.
-			$activity_comment_id = self::get_course_progress_comment_id( $course_id, $user_id );
-			if ( false === $activity_comment_id ) {
-				$activity_comment_id = self::start_user_on_course( $user_id, $course_id );
+			$course_progress_id = self::get_course_progress_id( $course_id, $user_id );
+			if ( false === $course_progress_id ) {
+				$course_progress_id = self::start_user_on_course( $user_id, $course_id );
 			}
 		}
 
-		return $activity_comment_id;
+		return $course_progress_id;
 	}
 
 	/**
@@ -1523,15 +1579,17 @@ class Sensei_Utils {
 	}
 
 	/**
-	 * Get the course progress comment ID, if it exists.
+	 * Get the course progress ID from the selected storage backend, if it exists.
 	 *
-	 * @since 3.0.0
+	 * The ID may belong to a comment or a progress table row, depending on the active repository.
 	 *
-	 * @param int $course_id Course ID.
-	 * @param int $user_id   User ID.
-	 * @return int|false false or comment_ID
+	 * @since 4.27.0
+	 *
+	 * @param int      $course_id Course ID.
+	 * @param int|null $user_id   User ID. Defaults to the current user when empty.
+	 * @return int|false Course progress ID, or false if no progress exists.
 	 */
-	public static function get_course_progress_comment_id( $course_id, $user_id = null ) {
+	public static function get_course_progress_id( $course_id, $user_id = null ) {
 		if ( empty( $course_id ) ) {
 			return false;
 		}
@@ -1553,16 +1611,32 @@ class Sensei_Utils {
 	}
 
 	/**
+	 * Get the course progress ID from the selected storage backend, if it exists.
+	 *
+	 * @since 3.0.0
+	 * @deprecated 4.27.0 Use Sensei_Utils::get_course_progress_id() instead.
+	 *
+	 * @param int      $course_id Course ID.
+	 * @param int|null $user_id   User ID. Defaults to the current user when empty.
+	 * @return int|false Course progress ID, which is not necessarily a comment ID, or false if no progress exists.
+	 */
+	public static function get_course_progress_comment_id( $course_id, $user_id = null ) {
+		_deprecated_function( __METHOD__, '4.27.0', 'Sensei_Utils::get_course_progress_id' );
+
+		return self::get_course_progress_id( $course_id, $user_id );
+	}
+
+	/**
 	 * Check if a user has started a course or not.
 	 *
 	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
-	 * @return int|bool false or comment_ID
+	 * @return int|bool False or a course progress ID from the selected storage backend, subject to filtering.
 	 */
 	public static function has_started_course( $course_id = 0, $user_id = 0 ) {
-		$user_started_course = self::get_course_progress_comment_id( $course_id, $user_id );
+		$user_started_course = self::get_course_progress_id( $course_id, $user_id );
 
 		/**
 		 * Filter the user started course value
@@ -1571,7 +1645,7 @@ class Sensei_Utils {
 		 *
 		 * @hook sensei_user_started_course
 		 *
-		 * @param {bool|int} $user_started_course False if the user has not started the course, otherwise the comment ID of the course progress.
+		 * @param {bool|int} $user_started_course False if the user has not started the course, otherwise the course progress ID from the selected storage backend.
 		 * @param {int}      $course_id           The course ID.
 		 * @param {int}      $user_id             The user ID.
 		 * @return {bool|int} Filtered user started course ID.
@@ -1587,6 +1661,7 @@ class Sensei_Utils {
 	 * @since  1.7.0
 	 * @param  integer $course_id Course ID
 	 * @param  integer $user_id   User ID
+	 * @param bool    $trigger_completion_action Whether to fire the course completion action.
 	 * @return mixed boolean or comment_ID
 	 */
 	public static function user_complete_course( $course_id = 0, $user_id = 0, $trigger_completion_action = true ) {
@@ -1598,54 +1673,61 @@ class Sensei_Utils {
 			$user_id = get_current_user_id();
 		}
 
-		$course_progress = Sensei()->course_progress_repository->get( $course_id, $user_id );
-		if ( ! $course_progress ) {
-			$course_progress = Sensei()->course_progress_repository->create( $course_id, $user_id );
-		}
-		if ( ! $course_progress->get_started_at() ) {
-			$course_progress->start();
-		}
-
-		$lessons_completed = 0;
-
-		// Grab all of this Courses' lessons, looping through each...
-		$lesson_ids    = Sensei()->course->course_lessons( $course_id, 'publish', 'ids' );
-		$total_lessons = count( $lesson_ids );
-			// ...if course completion not set to 'passed', and all lessons are complete or graded,
-			// ......then all lessons are 'passed'
-			// ...else if course completion is set to 'passed', check if each lesson has questions...
-			// ......if no questions yet the status is 'complete'
-			// .........then the lesson is 'passed'
-			// ......else if questions check the lesson status has a grade and that the grade is greater than the lesson passmark
-			// .........then the lesson is 'passed'
-			// ...if all lessons 'passed' then update the course status to complete
-		// The below checks if a lesson is fully completed, though maybe should be Utils::user_completed_lesson()
-		$lesson_progress_args = array(
-			'user_id'   => $user_id,
-			'lesson_id' => $lesson_ids,
-		);
-		$all_lesson_progress  = Sensei()->lesson_progress_repository->find( $lesson_progress_args );
-
-		foreach ( $all_lesson_progress as $lesson_progress ) {
-			if ( $lesson_progress->is_complete() ) {
-				$lessons_completed++;
+		try {
+			$course_progress = Sensei()->course_progress_repository->get( $course_id, $user_id );
+			if ( ! $course_progress ) {
+				$course_progress = Sensei()->course_progress_repository->create( $course_id, $user_id );
 			}
-		}
+			if ( ! $course_progress->get_started_at() ) {
+				$course_progress->start();
+			}
 
-		if ( $lessons_completed === $total_lessons ) {
-			$course_progress->complete();
-		}
+			$lessons_completed = 0;
 
-		Sensei()->course_progress_repository->save( $course_progress );
+			// Grab all of this Courses' lessons, looping through each...
+			$lesson_ids    = Sensei()->course->course_lessons( $course_id, 'publish', 'ids' );
+			$total_lessons = count( $lesson_ids );
+				// ...if course completion not set to 'passed', and all lessons are complete or graded,
+				// ......then all lessons are 'passed'
+				// ...else if course completion is set to 'passed', check if each lesson has questions...
+				// ......if no questions yet the status is 'complete'
+				// .........then the lesson is 'passed'
+				// ......else if questions check the lesson status has a grade and that the grade is greater than the lesson passmark
+				// .........then the lesson is 'passed'
+				// ...if all lessons 'passed' then update the course status to complete
+			// The below checks if a lesson is fully completed, though maybe should be Utils::user_completed_lesson()
+			$lesson_progress_args = array(
+				'user_id'   => $user_id,
+				'lesson_id' => $lesson_ids,
+			);
+			$all_lesson_progress  = Sensei()->lesson_progress_repository->find( $lesson_progress_args );
 
-		$course_progress_metadata = [
-			// How many lessons have been completed.
-			'complete' => $lessons_completed,
-			// Overall percentage of the course lessons complete (or graded) compared to 'in-progress' regardless of the above.
-			'percent'  => self::quotient_as_absolute_rounded_percentage( $lessons_completed, $total_lessons ),
-		];
-		foreach ( $course_progress_metadata as $key => $value ) {
-			update_comment_meta( $course_progress->get_id(), $key, $value );
+			foreach ( $all_lesson_progress as $lesson_progress ) {
+				if ( $lesson_progress->is_complete() ) {
+					$lessons_completed++;
+				}
+			}
+
+			if ( $lessons_completed === $total_lessons ) {
+				$course_progress->complete();
+			}
+
+			$course_progress_metadata = [
+				// How many lessons have been completed.
+				'complete' => $lessons_completed,
+				// Overall percentage of the course lessons complete (or graded) compared to 'in-progress' regardless of the above.
+				'percent'  => self::quotient_as_absolute_rounded_percentage( $lessons_completed, $total_lessons ),
+			];
+			foreach ( $course_progress_metadata as $key => $value ) {
+				self::update_user_data( $key, intval( $course_id ), $value, $user_id );
+			}
+
+			// Status observers may redirect and end the request during the save.
+			Sensei()->course_progress_repository->save( $course_progress );
+
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'recalculating course progress' );
+			return false;
 		}
 
 		// Allow further actions.
@@ -2030,9 +2112,10 @@ class Sensei_Utils {
 	public static function update_lesson_status( $user_id, $lesson_id, $status = 'in-progress', $metadata = array() ) {
 		$comment_id = false;
 		if ( ! empty( $status ) ) {
+			$user = get_userdata( (int) $user_id );
 			$args = array(
 				'user_id'   => $user_id,
-				'username'  => get_userdata( $user_id )->user_login ?? null,
+				'username'  => $user ? $user->user_login : null,
 				'post_id'   => $lesson_id,
 				'status'    => $status,
 				'type'      => 'sensei_lesson_status', /* FIELD SIZE 20 */
@@ -2044,6 +2127,10 @@ class Sensei_Utils {
 			}
 
 			$comment_id = self::sensei_log_activity( $args );
+			if ( ! $comment_id ) {
+				return false;
+			}
+
 			if ( $comment_id && ! empty( $metadata ) ) {
 				foreach ( $metadata as $key => $value ) {
 					update_comment_meta( $comment_id, $key, $value );
@@ -2092,6 +2179,10 @@ class Sensei_Utils {
 			);
 
 			$comment_id = self::sensei_log_activity( $args );
+			if ( ! $comment_id ) {
+				return false;
+			}
+
 			if ( $comment_id && ! empty( $metadata ) ) {
 				foreach ( $metadata as $key => $value ) {
 					update_comment_meta( $comment_id, $key, $value );
@@ -2266,18 +2357,25 @@ class Sensei_Utils {
 		if ( ! isset( $sensei_user_status->comment_ID ) ) {
 
 			$start_function = 'user_start_' . $post_type;
-			self::$start_function( $user_id, $post_id );
-
+			if ( false === self::$start_function( $user_id, $post_id ) ) {
+				return false;
+			}
 		}
 
 		if ( 'course' === $post_type ) {
 			$course_progress_repository = Sensei()->course_progress_repository_factory->create_comments_based_repository();
 			$course_progress            = $course_progress_repository->get( $post_id, $user_id );
-			$sensei_user_activity_id    = $course_progress->get_id();
+			if ( ! $course_progress ) {
+				return false;
+			}
+			$sensei_user_activity_id = $course_progress->get_id();
 		} else {
 			$lesson_progress_repository = Sensei()->lesson_progress_repository_factory->create_comments_based_repository();
 			$lesson_progress            = $lesson_progress_repository->get( $post_id, $user_id );
-			$sensei_user_activity_id    = $lesson_progress->get_id();
+			if ( ! $lesson_progress ) {
+				return false;
+			}
+			$sensei_user_activity_id = $lesson_progress->get_id();
 		}
 
 		// store the data
@@ -2692,10 +2790,15 @@ class Sensei_Utils {
 	 *
 	 * @param int $user_id The user ID.
 	 * @param int $course_id The course ID.
-	 * @return int Returns the ID of the user course progress or false on failure. The progress ID might have different meanings depending on the underlying implementation.
+	 * @return int|false Returns the ID of the user course progress or false on failure. The progress ID might have different meanings depending on the underlying implementation.
 	 */
 	public static function start_user_on_course( $user_id, $course_id ) {
-		$course_progress = Sensei()->course_progress_repository->create( $course_id, $user_id );
+		try {
+			$course_progress = Sensei()->course_progress_repository->create( $course_id, $user_id );
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'starting a course' );
+			return false;
+		}
 
 		// Allow further actions.
 		$course_metadata = [
@@ -2703,7 +2806,7 @@ class Sensei_Utils {
 			'complete' => 0,
 		];
 		foreach ( $course_metadata as $key => $value ) {
-			update_comment_meta( $course_progress->get_id(), $key, $value );
+			self::update_user_data( $key, intval( $course_id ), $value, $user_id );
 		}
 
 		/**
@@ -2872,7 +2975,9 @@ class Sensei_Utils {
 	 * @return bool
 	 */
 	public static function reset_course_for_user( $course_id, $user_id ) {
-		self::sensei_remove_user_from_course( $course_id, $user_id );
+		if ( false === self::sensei_remove_user_from_course( $course_id, $user_id ) ) {
+			return false;
+		}
 
 		if ( ! Sensei_Course::is_user_enrolled( $course_id, $user_id ) ) {
 			return true;

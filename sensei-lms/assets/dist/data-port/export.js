@@ -27,17 +27,17 @@ const o=[{type:"course",label:(0,n.__)("Courses","sensei-lms"),restBase:"courses
 /* harmony export */"I",0,/* binding */o
 /* harmony export */])},
 /***/37283(e,s,t){"use strict";
-/* harmony import */var n=t(27723),o=t(46979),r=t(56427),i=t(14659),l=t(6934),a=t(62540);
+/* harmony import */var n=t(27723),o=t(46979),r=t(56427),i=t(14659),l=t(6934),a=t(10790);
 /* harmony import */
 /* harmony export */t.d(s,[
 /* harmony export */"W",0,({job:e,error:s,start:t,reset:c,cancel:d})=>((0,o/* .useSenseiColorTheme */.x)(),(0,a.jsx)("div",{className:"sensei-page-export",children:(0,a.jsxs)("section",{className:"sensei-data-port-step",children:[(0,a.jsxs)("header",{className:"sensei-data-port-step__header",children:[(0,a.jsx)("h2",{children:(0,n.__)("Export content to a CSV file","sensei-lms")}),(0,a.jsx)("p",{children:(0,n.__)("This tool enables you to export courses, lessons, and questions to CSV files. These files are bundled together and downloaded to your computer in .zip format.","sensei-lms")})]}),s&&(0,a.jsx)(r.Notice,{status:"error",isDismissible:!1,children:s}),e&&"creating"!==e.status?(0/* .ExportProgressPage */,a.jsx)(i.l,{job:e,reset:c,cancel:d}):(0/* .ExportSelectContentPage */,a.jsx)(l.B,{onSubmit:e=>t(e),job:e})]})}))])},
 /***/14659(e,s,t){"use strict";
-/* harmony import */var n=t(56427),o=t(86087),r=t(27723),i=t(20408),l=t(75808),a=t(62540);
+/* harmony import */var n=t(56427),o=t(86087),r=t(27723),i=t(20408),l=t(75808),a=t(10790);
 /* harmony import */
 /* harmony export */t.d(s,[
 /* harmony export */"l",0,({job:e,reset:s,cancel:t})=>{const{status:c,percentage:d,files:u,error:p}=e||{},_="completed"!==c;return(0,o.useEffect)(()=>{!_&&u&&u.forEach(i/* .downloadFile */.P)},[u,_]),(0,a.jsx)("section",{className:"sensei-data-port-step__body",children:_?(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("p",{children:(0,a.jsx)("progress",{className:"sensei-data-port__progressbar",max:"100",value:d||0})}),(0,a.jsx)("div",{className:"sensei-data-port-step__footer",children:(0,a.jsx)(n.Button,{isPrimary:!0,onClick:()=>t(),children:(0,r.__)("Cancel","sensei-lms")})})]}):(0,a.jsxs)(a.Fragment,{children:[(0,a.jsxs)("div",{className:"sensei-export__output-result",children:[u&&(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("p",{children:(0,r._n)("The following file was exported:","The following files were exported:",u.length,"sensei-lms")}),(0,a.jsx)("ul",{className:"sensei-export__output-files",children:u.map(({name:e,url:s})=>(0,a.jsx)("li",{className:"sensei-export__output-file sensei-data-port-step__line",children:(0,a.jsx)("a",{href:s,download:e,children:e})},e))})]}),p&&(0,a.jsx)("div",{className:"sensei-data-port-step__line",children:(0/* .Notice */,a.jsx)(l.$,{isError:!0,message:p})})]}),(0,a.jsx)("div",{className:"sensei-data-port-step__footer",children:(0,a.jsx)(n.Button,{isPrimary:!0,onClick:()=>s(),children:(0,r.__)("Export More Content","sensei-lms")})})]})})}])},
 /***/6934(e,s,t){"use strict";
-/* harmony import */var n=t(86087),o=t(56427),r=t(1455),i=t.n(r),l=t(27723),a=t(64978),c=t(78432),d=t(62540);
+/* harmony import */var n=t(86087),o=t(56427),r=t(1455),i=t.n(r),l=t(27723),a=t(64978),c=t(78432),d=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -106,10 +106,10 @@ return(0,d.jsxs)("div",{className:"sensei-data-port-step__body",children:[(0,d.j
 (0,i/* ["default"] */.Ay)();
 /* harmony default export */const l=(0,o.compose)((0,n.withSelect)(e=>({job:e(i/* .EXPORT_STORE */.zz).getJob(),error:e(i/* .EXPORT_STORE */.zz).getError()})),(0,n.withDispatch)(e=>{const{start:s,cancel:t,reset:n}=e(i/* .EXPORT_STORE */.zz);return{start:s,cancel:t,reset:n}}))(r/* .ExportPage */.W);
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */l
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/64978(e,s,t){"use strict";
-/* harmony import */var n=t(86087),o=t(56427),r=t(1455),i=t.n(r),l=t(18537),a=t(27723),c=t(62540);
+/* harmony import */var n=t(86087),o=t(56427),r=t(1455),i=t.n(r),l=t(18537),a=t(27723),c=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -221,7 +221,7 @@ const c={},d=e=>e&&!e.deleted?{job:{...e,...e.status,files:e.files&&Object.value
    */
 getJob:()=>l/* .checkForActiveJob */.fG()},_="sensei/export",m={reducer:(0,i/* .createReducerFromActionMap */.$x)(u,c),actions:a,selectors:{getJobId:({job:e})=>e&&e.id||null,getJob:({job:e})=>e,getError:({error:e})=>e},resolvers:p,controls:{...o.controls,...r/* ["default"] */.Ay}},f=()=>(0,n.registerStore)(_,m)},
 /***/75808(e,s,t){"use strict";
-/* harmony import */var n=t(4452),o=t.n(n),r=t(56427),i=t(62540);
+/* harmony import */var n=t(4452),o=t.n(n),r=t(56427),i=t(10790);
 /* harmony import */
 /* harmony export */t.d(s,[
 /* harmony export */"$",0,({message:e,isError:s})=>{const t=o()({"sensei-data-port-notice__message":!0,error:s});
@@ -294,7 +294,7 @@ create:e=>new Promise(s=>{r.clear(),r.current=setTimeout(()=>{s()},e)}),
 clear(){r.current&&(clearTimeout(r.current),r.current=null)}},i={TIMEOUT:({wait:e})=>r.create(e),CLEAR_TIMEOUT:()=>r.clear()};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"Ay",0,/* export default binding */i
+/* harmony export */"Ay",0,i
 /* harmony export */])},
 /***/20408(e,s,t){"use strict";
 /* harmony export */
@@ -309,18 +309,7 @@ function n({url:e,name:s}){const t=document.createElement("a");t.href=e,t.downlo
 /***/t.d(s,{
 /* harmony export */P:()=>/* binding */n
 /* harmony export */})},
-/***/2192(e,s,t){"use strict";
-/**
- * @license React
- * react-jsx-runtime.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */var n=t(51609),o=Symbol.for("react.element"),r=Symbol.for("react.fragment"),i=Object.prototype.hasOwnProperty,l=n.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,a={key:!0,ref:!0,__self:!0,__source:!0};function c(e,s,t){var n,r={},c=null,d=null;for(n in void 0!==t&&(c=""+t),void 0!==s.key&&(c=""+s.key),void 0!==s.ref&&(d=s.ref),s)i.call(s,n)&&!a.hasOwnProperty(n)&&(r[n]=s[n]);if(e&&e.defaultProps)for(n in s=e.defaultProps)void 0===r[n]&&(r[n]=s[n]);return{$$typeof:o,type:e,key:c,ref:d,props:r,_owner:l.current}}s.Fragment=r,s.jsx=c,s.jsxs=c},
-/***/62540(e,s,t){"use strict";e.exports=t(2192)},
-/***/51609(e){"use strict";e.exports=window.React},
+/***/10790(e){"use strict";e.exports=window.ReactJSXRuntime},
 /***/1455(e){"use strict";e.exports=window.wp.apiFetch},
 /***/56427(e){"use strict";e.exports=window.wp.components},
 /***/29491(e){"use strict";e.exports=window.wp.compose},
@@ -364,7 +353,6 @@ function n({url:e,name:s}){const t=document.createElement("a");t.href=e,t.downlo
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/t.n=e=>{
 /******/const s=e&&e.__esModule?
@@ -373,18 +361,16 @@ function n({url:e,name:s}){const t=document.createElement("a");t.href=e,t.downlo
 /******/
 /******/return t.d(s,{a:s}),s;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/t.d=(e,s)=>{
 /******/if(Array.isArray(s))
 /******/for(
 /******/var n=0;n<s.length;){
-/******/var o=s[n++],r=s[n++];
+/******/var o=s[n++],r=s[n++],i=0===r?{enumerable:!0,value:s[n++]}:{enumerable:!0,get:r};
 /******/
-/******/t.o(e,o)?0===r&&n++
-/******/:
-/******/0===r?
-/******/Object.defineProperty(e,o,{enumerable:!0,value:s[n++]}):
-/******/Object.defineProperty(e,o,{enumerable:!0,get:r})
+/******/t.o(e,o)||Object.defineProperty(e,o,i)
 /******/}
 /******/else
 /******/for(var o in s)
@@ -393,14 +379,16 @@ function n({url:e,name:s}){const t=document.createElement("a");t.href=e,t.downlo
 /******/;
 /******/
 /******/},
-/******/t.o=(e,s)=>Object.hasOwn(e,s)
-/******/,
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/t.o=(e,s)=>Object.hasOwn(e,s),
+/******/
+/******/ /* webpack/runtime/make namespace object */
 /******/ // define __esModule on exports
 /******/t.r=e=>{
-/******/Symbol.toStringTag&&
-/******/Object.defineProperty(e,Symbol.toStringTag,{value:"Module"})
-/******/,Object.defineProperty(e,"__esModule",{value:!0})},
+/******/Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),
+/******/Object.defineProperty(e,"__esModule",{value:!0})},
 // This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (()=>{"use strict";
-/* harmony import */var e=t(86087),s=t(74073),n=t(62540);
+/* harmony import */var e=t(86087),s=t(74073),n=t(10790);
 /* harmony import */(0,e.createRoot)(document.getElementById("sensei-export-page")).render((0/* ["default"] */,n.jsx)(s.A,{}))})()})();

@@ -1,36 +1,26 @@
 /******/(()=>{// webpackBootstrap
 /******/"use strict";
 /******/var e={
-/***/65419(e,n,r){
-/* harmony import */var t,o=r(51609);
-/* harmony import */function s(){return s=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var r=arguments[n];for(var t in r)({}).hasOwnProperty.call(r,t)&&(e[t]=r[t])}return e},s.apply(null,arguments)}
+/***/65419(e,n,t){
+/* harmony import */var s,r=t(51609);
+/* harmony import */function o(){return o=Object.assign?Object.assign.bind():function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var s in t)({}).hasOwnProperty.call(t,s)&&(e[s]=t[s])}return e},o.apply(null,arguments)}
 /* harmony default export */const i=function(e){
-return o.createElement("svg",s({xmlns:"http://www.w3.org/2000/svg",width:24,height:24,fill:"none"},e),t||(t=o.createElement("path",{fill:"#00594F",fillRule:"evenodd",d:"M16.5 9.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0M10 13.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m4.75 3a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5",clipRule:"evenodd"})))};
-/* harmony export */r.d(n,[
-/* harmony export */"A",0,/* export default binding */i
+return r.createElement("svg",o({xmlns:"http://www.w3.org/2000/svg",width:24,height:24,fill:"none"},e),s||(s=r.createElement("path",{fill:"#00594F",fillRule:"evenodd",d:"M16.5 9.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0M10 13.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m4.75 3a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5",clipRule:"evenodd"})))};
+/* harmony export */t.d(n,[
+/* harmony export */"A",0,i
 /* harmony export */])},
-/***/12417(e,n,r){
-/* harmony export */r.d(n,{
-/* harmony export */A:()=>/* binding */o
+/***/12417(e,n,t){
+/* harmony export */t.d(n,{
+/* harmony export */A:()=>/* binding */r
 /* harmony export */});
-/* harmony import */var t=r(86087),o=(0,t.forwardRef)(({icon:e,size:n=24,...r},o)=>(0,t.cloneElement)(e,{width:n,height:n,...r,ref:o}));
+/* harmony import */var s=t(86087),r=(0,s.forwardRef)(({icon:e,size:n=24,...t},r)=>(0,s.cloneElement)(e,{width:n,height:n,...t,ref:r}));
 /* harmony import */},
-/***/96516(e,n,r){
-/* harmony export */r.d(n,[
+/***/96516(e,n,t){
+/* harmony export */t.d(n,[
 /* harmony export */"h",0,(e="")=>{const{upsellUrl:n}=window.sensei_admin;return`${n}?${new URLSearchParams({utm_source:"plugin_sensei",utm_medium:"upsell",utm_campaign:e}).toString()}`}])},
-/***/2192(e,n,r){
-/**
- * @license React
- * react-jsx-runtime.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-var t=r(51609),o=Symbol.for("react.element"),s=Symbol.for("react.fragment"),i=Object.prototype.hasOwnProperty,a=t.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,l={key:!0,ref:!0,__self:!0,__source:!0};function c(e,n,r){var t,s={},c=null,d=null;for(t in void 0!==r&&(c=""+r),void 0!==n.key&&(c=""+n.key),void 0!==n.ref&&(d=n.ref),n)i.call(n,t)&&!l.hasOwnProperty(t)&&(s[t]=n[t]);if(e&&e.defaultProps)for(t in n=e.defaultProps)void 0===s[t]&&(s[t]=n[t]);return{$$typeof:o,type:e,key:c,ref:d,props:s,_owner:a.current}}n.Fragment=s,n.jsx=c,n.jsxs=c},
-/***/62540(e,n,r){e.exports=r(2192)},
 /***/51609(e){e.exports=window.React;
+/***/},
+/***/10790(e){e.exports=window.ReactJSXRuntime;
 /***/},
 /***/56427(e){e.exports=window.wp.components;
 /***/},
@@ -48,14 +38,14 @@ var t=r(51609),o=Symbol.for("react.element"),s=Symbol.for("react.fragment"),i=Ob
 /******/const n={};
 /******/
 /******/ // The require function
-/******/function r(t){
+/******/function t(s){
 /******/ // Check if module is in cache
-/******/const o=n[t];
-/******/if(void 0!==o)
-/******/return o.exports;
+/******/const r=n[s];
+/******/if(void 0!==r)
+/******/return r.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/const s=n[t]={
+/******/const o=n[s]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -65,44 +55,42 @@ var t=r(51609),o=Symbol.for("react.element"),s=Symbol.for("react.fragment"),i=Ob
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return e[t](s,s.exports,r),s.exports;
+/******/return e[s](o,o.exports,t),o.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/r.n=e=>{
+/******/t.n=e=>{
 /******/const n=e&&e.__esModule?
 /******/()=>e.default:
 /******/()=>e;
 /******/
-/******/return r.d(n,{a:n}),n;
+/******/return t.d(n,{a:n}),n;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
-/******/r.d=(e,n)=>{
+/******/t.d=(e,n)=>{
 /******/if(Array.isArray(n))
 /******/for(
-/******/var t=0;t<n.length;){
-/******/var o=n[t++],s=n[t++];
+/******/var s=0;s<n.length;){
+/******/var r=n[s++],o=n[s++],i=0===o?{enumerable:!0,value:n[s++]}:{enumerable:!0,get:o};
 /******/
-/******/r.o(e,o)?0===s&&t++
-/******/:
-/******/0===s?
-/******/Object.defineProperty(e,o,{enumerable:!0,value:n[t++]}):
-/******/Object.defineProperty(e,o,{enumerable:!0,get:s})
+/******/t.o(e,r)||Object.defineProperty(e,r,i)
 /******/}
 /******/else
-/******/for(var o in n)
-/******/r.o(n,o)&&!r.o(e,o)&&
-/******/Object.defineProperty(e,o,{enumerable:!0,get:n[o]})
+/******/for(var r in n)
+/******/t.o(n,r)&&!t.o(e,r)&&
+/******/Object.defineProperty(e,r,{enumerable:!0,get:n[r]})
 /******/;
 /******/
 /******/},
-/******/r.o=(e,n)=>Object.hasOwn(e,n)
-/******/;
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/t.o=(e,n)=>Object.hasOwn(e,n);
 /* unused harmony export addQuestionGeneratorUpsellButtonToQuizBlock */
-/* harmony import */var t=r(56427),o=r(27723),s=r(52619),i=r(29491),a=r(12417),l=r(65419),c=r(96516),d=r(62540);
+/* harmony import */var s=t(56427),r=t(27723),o=t(52619),i=t(29491),a=t(12417),l=t(65419),c=t(96516),d=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -110,4 +98,4 @@ var t=r(51609),o=Symbol.for("react.element"),s=Symbol.for("react.fragment"),i=Ob
 /**
  * Internal dependencies
  */
-const p=e=>n=>(0,d.jsxs)(d.Fragment,{children:[(0,d.jsx)(t.Fill,{name:"SenseiQuizHeader",children:(0,d.jsxs)(t.Button,{variant:"secondary",className:"sensei-pro-ai-generate-questions-button upsell",onClick:()=>{window.open((0,c/* .getSenseiProUpsellUrl */.h)("question-ai"),"_blank")},children:[(0,d.jsxs)("div",{className:"button-text-content",children:[(0/* ["default"] */,d.jsx)(a.A,{icon:(0/* ["default"] */,d.jsx)(l.A,{})}),(0,o.__)("Generate quiz questions with AI","sensei-lms")]}),(0,d.jsx)("span",{className:"awaiting-mod sensei-upsell-pro-badge",children:(0,o.__)("Pro","sensei-lms")})]})}),(0,d.jsx)(e,{...n})]});(0,s.addFilter)("blocks.registerBlockType","sensei-lms/with-chat-gpt-question-generator",e=>"sensei-lms/quiz"!==e.name?e:{...e,edit:(0,i.compose)(p)(e.edit)})})();
+const u=e=>n=>(0,d.jsxs)(d.Fragment,{children:[(0,d.jsx)(s.Fill,{name:"SenseiQuizHeader",children:(0,d.jsxs)(s.Button,{variant:"secondary",className:"sensei-pro-ai-generate-questions-button upsell",onClick:()=>{window.open((0,c/* .getSenseiProUpsellUrl */.h)("question-ai"),"_blank")},children:[(0,d.jsxs)("div",{className:"button-text-content",children:[(0/* ["default"] */,d.jsx)(a.A,{icon:(0/* ["default"] */,d.jsx)(l.A,{})}),(0,r.__)("Generate quiz questions with AI","sensei-lms")]}),(0,d.jsx)("span",{className:"awaiting-mod sensei-upsell-pro-badge",children:(0,r.__)("Pro","sensei-lms")})]})}),(0,d.jsx)(e,{...n})]});(0,o.addFilter)("blocks.registerBlockType","sensei-lms/with-chat-gpt-question-generator",e=>"sensei-lms/quiz"!==e.name?e:{...e,edit:(0,i.compose)(u)(e.edit)})})();

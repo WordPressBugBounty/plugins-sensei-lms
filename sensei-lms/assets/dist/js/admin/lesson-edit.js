@@ -12,7 +12,7 @@
  * Internal dependencies
  */
 // Sensei blocks by post type.
-const l={outline:"sensei-lms/course-outline",takeCourse:"sensei-lms/button-take-course",contactTeacher:"sensei-lms/button-contact-teacher",courseProgress:"sensei-lms/course-progress",viewResults:"sensei-lms/button-view-results"},c={lessonActions:"sensei-lms/lesson-actions",lessonProperties:"sensei-lms/lesson-properties",contactTeacher:"sensei-lms/button-contact-teacher",featuredVideo:"sensei-lms/featured-video"},a={course:{"meta-box-course-lessons":[l.outline],"meta-box-module_course_mb":[l.outline],"meta-box-course-video":Object.values(l)},lesson:{"meta-box-lesson-info":[c.lessonProperties]}},u=(0,o.select)(r.store),d=(0,o.dispatch)(r.store),b=(0,o.select)(n.store),p=(0,o.dispatch)(n.store),m=u.isEditorPanelEnabled?u.isEditorPanelEnabled:b.isEditorPanelEnabled,v=d.toggleEditorPanelEnabled?d.toggleEditorPanelEnabled:p.toggleEditorPanelEnabled,g=(e,s=[])=>s.some(s=>e.includes(s.name)||g(e,s.innerBlocks??[]));
+const l={outline:"sensei-lms/course-outline",takeCourse:"sensei-lms/button-take-course",contactTeacher:"sensei-lms/button-contact-teacher",courseProgress:"sensei-lms/course-progress",viewResults:"sensei-lms/button-view-results"},c={lessonActions:"sensei-lms/lesson-actions",lessonProperties:"sensei-lms/lesson-properties",contactTeacher:"sensei-lms/button-contact-teacher",featuredVideo:"sensei-lms/featured-video"},a={course:{"meta-box-course-lessons":[l.outline],"meta-box-module_course_mb":[l.outline],"meta-box-course-video":Object.values(l)},lesson:{"meta-box-lesson-info":[c.lessonProperties]}},u=(0,o.select)(r.store),d=(0,o.dispatch)(r.store),b=(0,o.select)(n.store),m=(0,o.dispatch)(n.store),p=u.isEditorPanelEnabled?u.isEditorPanelEnabled:b.isEditorPanelEnabled,v=d.toggleEditorPanelEnabled?d.toggleEditorPanelEnabled:m.toggleEditorPanelEnabled,g=(e,s=[])=>s.some(s=>e.includes(s.name)||g(e,s.innerBlocks??[]));
 // Metabox replacements.
 /* harmony export */t.d(s,[
 /* harmony export */"b",0,e=>{if(!u)return;let s;(0,i/* ["default"] */.A)({subscribeListener:()=>{const e=u.getEditorBlocks();
@@ -21,11 +21,11 @@ e!==s&&(s=e,t())}});
 /**
    * Toggle metaboxes if a replacement block is present or not.
    */
-const t=()=>{const s=u.getEditorBlocks();Object.entries(a[e]).forEach(([e,t])=>{!g(t,s)!==m(e)&&v(e)}),
+const t=()=>{const s=u.getEditorBlocks();Object.entries(a[e]).forEach(([e,t])=>{!g(t,s)!==p(e)&&v(e)}),
 // Prevent submit course modules.
-document.querySelectorAll("#module_course_mb input").forEach(e=>{e.disabled=!m("meta-box-module_course_mb")}),
+document.querySelectorAll("#module_course_mb input").forEach(e=>{e.disabled=!p("meta-box-module_course_mb")}),
 // Don't submit lesson length and complexity values in metaboxes.
-document.querySelectorAll("#lesson-info input, #lesson-info select").forEach(e=>{e.disabled=!m("meta-box-lesson-info")})};t()}])},
+document.querySelectorAll("#lesson-info input, #lesson-info select").forEach(e=>{e.disabled=!p("meta-box-lesson-info")})};t()}])},
 /***/45953(e,s,t){
 /* harmony import */var o=t(47143);
 /* harmony import */
@@ -52,7 +52,7 @@ i=c,n()):!i&&c?(
 i=c,t()):i=c})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,/* export default binding */n
+/* harmony export */"A",0,n
 /* harmony export */])},
 /***/47143(e){e.exports=window.wp.data;
 /***/},
@@ -90,7 +90,6 @@ i=c,t()):i=c})};
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
 /******/t.n=e=>{
 /******/const s=e&&e.__esModule?
@@ -99,18 +98,16 @@ i=c,t()):i=c})};
 /******/
 /******/return t.d(s,{a:s}),s;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
 /******/t.d=(e,s)=>{
 /******/if(Array.isArray(s))
 /******/for(
 /******/var o=0;o<s.length;){
-/******/var n=s[o++],r=s[o++];
+/******/var n=s[o++],r=s[o++],i=0===r?{enumerable:!0,value:s[o++]}:{enumerable:!0,get:r};
 /******/
-/******/t.o(e,n)?0===r&&o++
-/******/:
-/******/0===r?
-/******/Object.defineProperty(e,n,{enumerable:!0,value:s[o++]}):
-/******/Object.defineProperty(e,n,{enumerable:!0,get:r})
+/******/t.o(e,n)||Object.defineProperty(e,n,i)
 /******/}
 /******/else
 /******/for(var n in s)
@@ -119,8 +116,9 @@ i=c,t()):i=c})};
 /******/;
 /******/
 /******/},
-/******/t.o=(e,s)=>Object.hasOwn(e,s)
-/******/;
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/t.o=(e,s)=>Object.hasOwn(e,s);
 /* harmony import */var o=t(98490),n=t.n(o),r=t(82127);
 /* harmony import */
 /**

@@ -1,5 +1,7 @@
 <?php
 
+use Sensei\Internal\Course_Status_Updates;
+use Sensei\Internal\Persistence_Exception;
 use Sensei\Internal\Student_Progress\Quiz_Progress\Models\Quiz_Progress_Interface;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,6 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 class Sensei_Quiz {
+
+	/**
+	 * Unsaved form answers retained only for rendering the current request.
+	 *
+	 * @var array
+	 */
+	private $unsaved_answers = array();
 
 	/**
 	 * The CPT token.
@@ -298,6 +307,24 @@ class Sensei_Quiz {
 	}
 
 	/**
+	 * Shows progress errors using the current quiz layout's notice template.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param string $title   Error heading.
+	 * @param string $message Supporting text.
+	 */
+	private function add_progress_failure_notice( string $title, string $message ) {
+		$course_id = Sensei_Utils::get_current_course();
+		if ( $course_id && Sensei_Course_Theme_Option::has_learning_mode_enabled( $course_id ) ) {
+			Sensei_Context_Notices::instance( 'course_theme_quiz_grade' )->add_notice( 'quiz-progress-failure', $message, $title );
+			return;
+		}
+
+		Sensei()->notices->add_notice( $title . '. ' . $message, 'alert' );
+	}
+
+	/**
 	 * This function hooks into the quiz page and accepts the answer form save post.
 	 *
 	 * @since 1.7.3
@@ -327,13 +354,23 @@ class Sensei_Quiz {
 			$user_id
 		);
 
-		$success = self::save_user_answers( $answers, $_FILES, $lesson_id, $user_id );
+		$success = null !== $answers && self::save_user_answers( $answers, $_FILES, $lesson_id, $user_id );
 
 		if ( $success ) {
 			// Update the message shown to the user.
 			$message                     = __( 'Quiz Saved Successfully.', 'sensei-lms' );
 			Sensei()->frontend->messages = '<div class="sensei-message note">' . $message . '</div>';
 			Sensei_Context_Notices::instance( 'course_theme_quiz_grade' )->add_notice( 'quiz-save', $message );
+		} elseif ( null === $answers ) {
+			$message                     = __( 'The quiz could not be saved. Please reload the page and try again.', 'sensei-lms' );
+			Sensei()->frontend->messages = '<div class="sensei-message alert">' . $message . '</div>';
+			Sensei_Context_Notices::instance( 'course_theme_quiz_grade' )->add_notice( 'quiz-save', $message );
+		} else {
+			$this->unsaved_answers[ $lesson_id ][ $user_id ] = $answers;
+			$this->add_progress_failure_notice(
+				__( 'Unable to save your answers', 'sensei-lms' ),
+				__( 'Your answers are still shown below. Keep this page open and try again.', 'sensei-lms' )
+			);
 		}
 
 		// remove the hook as it should only fire once per click
@@ -351,9 +388,16 @@ class Sensei_Quiz {
 	 * @param int   $lesson_id       The lesson ID.
 	 * @param int   $user_id         The user ID.
 	 *
-	 * @return array
+	 * @return array|null The answers keyed by question, or null when the question set is not the one the quiz asked.
 	 */
-	private function parse_form_answers( array $answers, array $questions_asked, int $lesson_id, int $user_id ): array {
+	private function parse_form_answers( array $answers, array $questions_asked, int $lesson_id, int $user_id ): ?array {
+		// The question set is client input: it must carry the signature the quiz gave it.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput -- Nonce verified by the form listeners, and the value is only compared.
+		$signature = $_POST['questions_asked_signature'] ?? '';
+
+		if ( ! is_string( $signature ) || ! hash_equals( self::get_questions_asked_signature( (int) get_the_ID(), $questions_asked ), $signature ) ) {
+			return null;
+		}
 
 		// If we have a fraction of the answers (e.g. pagination), include the previously saved answers.
 		if ( count( $answers ) !== count( $questions_asked ) ) {
@@ -406,10 +450,12 @@ class Sensei_Quiz {
 		$quiz_id = Sensei()->lesson->lesson_quizzes( $lesson_id );
 
 		// start the lesson before saving the data in case the user has not started the lesson
-		Sensei_Utils::sensei_start_lesson( $lesson_id, $user_id );
+		if ( false === Sensei_Utils::sensei_start_lesson( $lesson_id, $user_id ) ) {
+			return false;
+		}
 
 		// prepare the answers
-		$prepared_answers = self::prepare_form_submitted_answers( $quiz_answers, $files );
+		$prepared_answers = self::prepare_form_submitted_answers( $quiz_answers, $files, $user_id );
 		if ( ! $prepared_answers ) {
 			return false;
 		}
@@ -450,6 +496,10 @@ class Sensei_Quiz {
 		if ( ! intval( $lesson_id ) > 0 || 'lesson' !== get_post_type( $lesson_id )
 		|| ! intval( $user_id ) > 0 || ! get_userdata( $user_id ) ) {
 			return false;
+		}
+
+		if ( isset( $this->unsaved_answers[ $lesson_id ][ $user_id ] ) ) {
+			return $this->unsaved_answers[ $lesson_id ][ $user_id ];
 		}
 
 		// save some time and get the transient cached data
@@ -525,7 +575,13 @@ class Sensei_Quiz {
 		}
 
 		// reset all user data
-		$this->reset_user_lesson_data( $lesson_id, get_current_user_id() );
+		if ( false === $this->reset_user_lesson_data( $lesson_id, get_current_user_id() ) ) {
+			$this->add_progress_failure_notice(
+				__( 'Unable to restart the quiz', 'sensei-lms' ),
+				__( 'Reload this page and check its status. Use Restart Quiz if available, or contact your instructor for help.', 'sensei-lms' )
+			);
+			return;
+		}
 
 		// Redirect to the start of the quiz.
 		wp_safe_redirect(
@@ -574,7 +630,22 @@ class Sensei_Quiz {
 			$user_id
 		);
 
-		self::submit_answers_for_grading( $answers, $_FILES, $lesson_id, $user_id );
+		if ( null === $answers ) {
+			$message                     = __( 'The quiz could not be submitted. Please reload the page and try again.', 'sensei-lms' );
+			Sensei()->frontend->messages = '<div class="sensei-message alert">' . $message . '</div>';
+			Sensei_Context_Notices::instance( 'course_theme_quiz_grade' )->add_notice( 'quiz-submit', $message );
+
+			return;
+		}
+
+		if ( false === self::submit_answers_for_grading( $answers, $_FILES, $lesson_id, $user_id ) ) {
+			$this->unsaved_answers[ $lesson_id ][ $user_id ] = $answers;
+			$this->add_progress_failure_notice(
+				__( 'Unable to submit your answers', 'sensei-lms' ),
+				__( 'Your answers are still shown below. Keep this page open and try again.', 'sensei-lms' )
+			);
+			return;
+		}
 
 		// Redirect to the start of the quiz.
 		wp_safe_redirect(
@@ -638,7 +709,14 @@ class Sensei_Quiz {
 				$user_id
 			);
 
-			self::save_user_answers( $answers, $_FILES, $lesson_id, $user_id );
+			if ( null !== $answers && false === self::save_user_answers( $answers, $_FILES, $lesson_id, $user_id ) ) {
+				$this->unsaved_answers[ $lesson_id ][ $user_id ] = $answers;
+				$this->add_progress_failure_notice(
+					__( 'Unable to change quiz pages', 'sensei-lms' ),
+					__( 'Your answers are still shown below. Keep this page open and try again.', 'sensei-lms' )
+				);
+				return;
+			}
 		}
 
 		// Redirect to the target page.
@@ -726,9 +804,10 @@ class Sensei_Quiz {
 	 *
 	 * @param array $unprepared_answers Submitted answers.
 	 * @param array $files Uploaded files.
+	 * @param int   $user_id The user who submitted the answers. Defaults to the current user.
 	 * @return array|false
 	 */
-	public static function prepare_form_submitted_answers( $unprepared_answers, $files ) {
+	public static function prepare_form_submitted_answers( $unprepared_answers, $files, $user_id = 0 ) {
 
 		$prepared_answers = array();
 
@@ -749,15 +828,20 @@ class Sensei_Quiz {
 			if ( 'multi-line' === $question_type ) {
 				$answer = wp_kses( $answer, wp_kses_allowed_html( 'post' ) );
 			} elseif ( 'file-upload' === $question_type ) {
-				$file_key = 'file_upload_' . $question_id;
+				$file_key      = 'file_upload_' . $question_id;
+				$attachment_id = false;
 				if (
 					isset( $files[ $file_key ] )
 					&& self::is_uploaded_file_valid( $files[ $file_key ]['tmp_name'], $files[ $file_key ]['name'], $question_id )
 				) {
 					$attachment_id = Sensei_Utils::upload_file( $files[ $file_key ] );
-					if ( $attachment_id ) {
-						$answer = $attachment_id;
-					}
+				}
+
+				if ( $attachment_id ) {
+					$answer = $attachment_id;
+				} elseif ( ! self::is_file_uploaded_by_user( $answer, $user_id ? $user_id : get_current_user_id() ) ) {
+					// Without a new upload, the answer can only be a file the user uploaded before.
+					$answer = '';
 				}
 			}
 
@@ -766,6 +850,24 @@ class Sensei_Quiz {
 		}
 
 		return $prepared_answers;
+	}
+
+	/**
+	 * Check if the answer to a file upload question is a file the user uploaded.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param mixed $attachment_id The answer to the file upload question.
+	 * @param int   $user_id       The user who gave the answer.
+	 *
+	 * @return bool
+	 */
+	public static function is_file_uploaded_by_user( $attachment_id, $user_id ) {
+		$attachment = is_numeric( $attachment_id ) && 0 < (int) $attachment_id ? get_post( (int) $attachment_id ) : null;
+
+		return $attachment instanceof WP_Post
+			&& 'attachment' === $attachment->post_type
+			&& (int) $attachment->post_author === (int) $user_id;
 	}
 
 	/**
@@ -852,87 +954,98 @@ class Sensei_Quiz {
 			return false;
 		}
 
-		// Get the lesson quiz.
-		$quiz_id = Sensei()->lesson->lesson_quizzes( $lesson_id );
+		try {
+			// Get the lesson quiz.
+			$quiz_id = Sensei()->lesson->lesson_quizzes( $lesson_id );
 
-		// Check if the user has started the lesson or quiz.
-		$need_reset_data          = false;
-		$user_has_lesson_progress = Sensei()->lesson_progress_repository->has( $lesson_id, $user_id );
-		if ( $user_has_lesson_progress ) {
-			$need_reset_data = true;
-		}
-		if ( $quiz_id ) {
-			$user_has_quiz_progress = Sensei()->quiz_progress_repository->has( $quiz_id, $user_id );
-			if ( $user_has_quiz_progress ) {
+			// Check if the user has started the lesson or quiz.
+			$need_reset_data          = false;
+			$user_has_lesson_progress = Sensei()->lesson_progress_repository->has( $lesson_id, $user_id );
+			if ( $user_has_lesson_progress ) {
 				$need_reset_data = true;
 			}
-		}
+			if ( $quiz_id ) {
+				$user_has_quiz_progress = Sensei()->quiz_progress_repository->has( $quiz_id, $user_id );
+				if ( $user_has_quiz_progress ) {
+					$need_reset_data = true;
+				}
+			}
 
-		// This user is not taking this lesson so this process is not needed.
-		if ( ! $need_reset_data ) {
+			// This user is not taking this lesson so this process is not needed.
+			if ( ! $need_reset_data ) {
+				return false;
+			}
+
+			// Reset the transients.
+			$answers_transient_key          = self::get_cache_key( 'sensei_answers_', $user_id, $lesson_id );
+			$grades_transient_key           = self::get_cache_key( 'quiz_grades_', $user_id, $lesson_id );
+			$answers_feedback_transient_key = self::get_cache_key( 'sensei_answers_feedback_', $user_id, $lesson_id );
+			delete_transient( $answers_transient_key );
+			delete_transient( $grades_transient_key );
+			delete_transient( $answers_feedback_transient_key );
+
+			$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
+			if ( $lesson_progress ) {
+				$lesson_progress->start();
+				Sensei()->lesson_progress_repository->save( $lesson_progress );
+			}
+
+			if ( $quiz_id ) {
+				// Reset the quiz progress.
+				$quiz_progress = Sensei()->quiz_progress_repository->get( $quiz_id, $user_id );
+				if ( $quiz_progress ) {
+					$quiz_progress->start();
+					Sensei()->quiz_progress_repository->save( $quiz_progress );
+				}
+
+				// Delete quiz answers, this auto deletes the corresponding meta data, such as the question/answer grade.
+				Sensei_Utils::sensei_delete_quiz_answers( $quiz_id, $user_id );
+			}
+
+			// Update course completion.
+			$course_id       = Sensei()->lesson->get_course_id( $lesson_id );
+			$course_progress = Sensei()->course_progress_repository->get( $course_id, $user_id );
+			if ( $course_progress ) {
+				$course_progress->start( $course_progress->get_started_at() );
+
+				Sensei()->course_progress_repository->save( $course_progress );
+
+				// Reset the course progress metadata.
+				$course_progress_metadata = [
+					'complete' => 0,
+					'percent'  => 0,
+				];
+				foreach ( $course_progress_metadata as $key => $value ) {
+					Sensei_Utils::update_user_data( $key, (int) $course_id, $value, $user_id );
+				}
+			}
+
+			/**
+			 * Fires when a user resets a lesson.
+			 * Run any action on quiz/lesson reset (previously this didn't occur on resetting a quiz,
+			 * see resetting a lesson in sensei_complete_lesson()).
+			 *
+			 * @hook sensei_user_lesson_reset
+			 *
+			 * @param {int} $user_id   The user ID.
+			 * @param {int} $lesson_id The lesson ID.
+			 */
+			if ( ! Course_Status_Updates::run(
+				static function () use ( $user_id, $lesson_id ) {
+					do_action( 'sensei_user_lesson_reset', $user_id, $lesson_id );
+				}
+			) ) {
+				return false;
+			}
+			if ( ! is_admin() ) {
+				Sensei()->notices->add_notice( __( 'Lesson Reset Successfully.', 'sensei-lms' ), 'info' );
+			}
+
+			return true;
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'resetting a lesson' );
 			return false;
 		}
-
-		// Reset the transients.
-		$answers_transient_key          = self::get_cache_key( 'sensei_answers_', $user_id, $lesson_id );
-		$grades_transient_key           = self::get_cache_key( 'quiz_grades_', $user_id, $lesson_id );
-		$answers_feedback_transient_key = self::get_cache_key( 'sensei_answers_feedback_', $user_id, $lesson_id );
-		delete_transient( $answers_transient_key );
-		delete_transient( $grades_transient_key );
-		delete_transient( $answers_feedback_transient_key );
-
-		$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
-		if ( $lesson_progress ) {
-			$lesson_progress->start();
-			Sensei()->lesson_progress_repository->save( $lesson_progress );
-		}
-
-		if ( $quiz_id ) {
-			// Reset the quiz progress.
-			$quiz_progress = Sensei()->quiz_progress_repository->get( $quiz_id, $user_id );
-			if ( $quiz_progress ) {
-				$quiz_progress->start();
-				Sensei()->quiz_progress_repository->save( $quiz_progress );
-			}
-
-			// Delete quiz answers, this auto deletes the corresponding meta data, such as the question/answer grade.
-			Sensei_Utils::sensei_delete_quiz_answers( $quiz_id, $user_id );
-		}
-
-		// Update course completion.
-		$course_id       = Sensei()->lesson->get_course_id( $lesson_id );
-		$course_progress = Sensei()->course_progress_repository->get( $course_id, $user_id );
-		if ( $course_progress ) {
-			$course_progress->start( $course_progress->get_started_at() );
-
-			Sensei()->course_progress_repository->save( $course_progress );
-
-			// Reset the course progress metadata.
-			$course_progress_metadata = [
-				'complete' => 0,
-				'percent'  => 0,
-			];
-			foreach ( $course_progress_metadata as $key => $value ) {
-				update_comment_meta( $course_progress->get_id(), $key, $value );
-			}
-		}
-
-		/**
-		 * Fires when a user resets a lesson.
-		 * Run any action on quiz/lesson reset (previously this didn't occur on resetting a quiz,
-		 * see resetting a lesson in sensei_complete_lesson()).
-		 *
-		 * @hook sensei_user_lesson_reset
-		 *
-		 * @param {int} $user_id   The user ID.
-		 * @param {int} $lesson_id The lesson ID.
-		 */
-		do_action( 'sensei_user_lesson_reset', $user_id, $lesson_id );
-		if ( ! is_admin() ) {
-			Sensei()->notices->add_notice( __( 'Lesson Reset Successfully.', 'sensei-lms' ), 'info' );
-		}
-
-		return true;
 	}
 
 	/**
@@ -972,105 +1085,125 @@ class Sensei_Quiz {
 		// Get quiz grade type.
 		$quiz_grade_type = get_post_meta( $quiz_id, '_quiz_grade_type', true );
 
-		// Get quiz pass setting.
-		$pass_required = get_post_meta( $quiz_id, '_pass_required', true );
+		try {
+			// Get quiz pass setting.
+			$pass_required = get_post_meta( $quiz_id, '_pass_required', true );
 
-		// Get the minimum percentage need to pass this quiz.
-		$quiz_pass_percentage = Sensei_Utils::as_absolute_rounded_number( get_post_meta( $quiz_id, '_quiz_passmark', true ), 2 );
+			// Get the minimum percentage need to pass this quiz.
+			$quiz_pass_percentage = Sensei_Utils::as_absolute_rounded_number( get_post_meta( $quiz_id, '_quiz_passmark', true ), 2 );
 
-		// Handle Quiz Questions asked
-		// This is to ensure we save the questions that we've asked this user and that this can't be change unless
-		// the quiz is reset by admin or user( user: only if the setting is enabled ).
-		// get the questions asked when when the quiz questions were generated for the user : Sensei_Lesson::lesson_quiz_questions.
-		$has_quiz_progress = Sensei()->quiz_progress_repository->has( $quiz_id, $user_id );
-		if ( ! $has_quiz_progress ) {
-			Sensei_Utils::user_start_lesson( $user_id, $lesson_id );
-		}
-
-		$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
-		if ( ! $lesson_progress ) {
-			$lesson_progress = Sensei()->lesson_progress_repository->create( $lesson_id, $user_id );
-		}
-
-		$quiz_progress = Sensei()->quiz_progress_repository->get( $quiz_id, $user_id );
-		if ( ! $quiz_progress ) {
-			// Even after starting a lesson we can't find the progress. Leave immediately.
-			return false;
-		}
-
-		// Save Quiz Answers for grading, the save function also calls the sensei_start_lesson.
-		self::save_user_answers( $quiz_answers, $files, $lesson_id, $user_id );
-
-		// Grade quiz.
-		$grade = Sensei_Grading::grade_quiz_auto( $quiz_id, $quiz_answers, 0, $quiz_grade_type );
-
-		// Get Lesson Grading Setting.
-		$lesson_metadata = array();
-		$lesson_status   = 'ungraded'; // Default when completing a quiz.
-		$quiz_progress->ungrade();
-
-		// At this point the answers have been submitted.
-		$answers_submitted = true;
-
-		// if this condition is false the quiz should manually be graded by admin.
-		if ( 'auto' === $quiz_grade_type && ! is_wp_error( $grade ) ) {
-
-			// Quiz has been automatically Graded.
-			if ( 'on' === $pass_required ) {
-
-				// Student has reached the pass mark and lesson is complete.
-				if ( $quiz_pass_percentage <= $grade ) {
-					$lesson_progress->complete();
-					$quiz_progress->pass();
-				} else {
-					$quiz_progress->fail();
+			// Handle Quiz Questions asked
+			// This is to ensure we save the questions that we've asked this user and that this can't be change unless
+			// the quiz is reset by admin or user( user: only if the setting is enabled ).
+			// get the questions asked when when the quiz questions were generated for the user : Sensei_Lesson::lesson_quiz_questions.
+			$has_quiz_progress = Sensei()->quiz_progress_repository->has( $quiz_id, $user_id );
+			if ( ! $has_quiz_progress ) {
+				if ( false === Sensei_Utils::user_start_lesson( $user_id, $lesson_id ) ) {
+					return false;
 				}
-			} else {
-				// Student only has to partake the quiz.
-				$lesson_progress->complete();
-				$quiz_progress->grade();
 			}
-		}
 
-		Sensei()->lesson_progress_repository->save( $lesson_progress );
-		Sensei()->quiz_progress_repository->save( $quiz_progress );
-		foreach ( $lesson_metadata as $key => $value ) {
-			update_comment_meta( $quiz_progress->get_id(), $key, $value );
-		}
+			$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
+			if ( ! $lesson_progress ) {
+				$lesson_progress = Sensei()->lesson_progress_repository->create( $lesson_id, $user_id );
+			}
 
-		if ( $lesson_progress->is_complete() ) {
+			$quiz_progress = Sensei()->quiz_progress_repository->get( $quiz_id, $user_id );
+			if ( ! $quiz_progress ) {
+				// Even after starting a lesson we can't find the progress. Leave immediately.
+				return false;
+			}
+
+			// Empty submissions still need progress, even though there are no answers to save.
+			$answers_saved = empty( $quiz_answers )
+				? Sensei_Utils::sensei_start_lesson( $lesson_id, $user_id )
+				: self::save_user_answers( $quiz_answers, $files, $lesson_id, $user_id );
+			if ( false === $answers_saved ) {
+				return false;
+			}
+
+			// Grade quiz.
+			$grade = Sensei_Grading::grade_quiz_auto( $quiz_id, $quiz_answers, 0, $quiz_grade_type );
+			if ( is_wp_error( $grade ) && 'sensei_progress_save_failed' === $grade->get_error_code() ) {
+				return false;
+			}
+
+			// Get Lesson Grading Setting.
+			$lesson_metadata = array();
+			$lesson_status   = 'ungraded'; // Default when completing a quiz.
+			$quiz_progress->ungrade();
+
+			// At this point the answers have been submitted.
+			$answers_submitted = true;
+
+			// if this condition is false the quiz should manually be graded by admin.
+			if ( 'auto' === $quiz_grade_type && ! is_wp_error( $grade ) ) {
+
+				// Quiz has been automatically Graded.
+				if ( 'on' === $pass_required ) {
+
+					// Student has reached the pass mark and lesson is complete.
+					if ( $quiz_pass_percentage <= $grade ) {
+						$lesson_progress->complete();
+						$quiz_progress->pass();
+					} else {
+						$quiz_progress->fail();
+					}
+				} else {
+					// Student only has to partake the quiz.
+					$lesson_progress->complete();
+					$quiz_progress->grade();
+				}
+			}
+
+			Sensei()->lesson_progress_repository->save( $lesson_progress );
+			Sensei()->quiz_progress_repository->save( $quiz_progress );
+			foreach ( $lesson_metadata as $key => $value ) {
+				update_comment_meta( $quiz_progress->get_id(), $key, $value );
+			}
+
+			if ( $lesson_progress->is_complete() ) {
+				/**
+				 * Fires when a user completes a lesson.
+				 * Here when the answers are submitted and the lesson is complete.
+				 *
+				 * @hook sensei_user_lesson_end
+				 *
+				 * @param {int} $user_id The user ID.
+				 * @param {int} $lesson_id The lesson ID.
+				 */
+				if ( ! Course_Status_Updates::run(
+					static function () use ( $user_id, $lesson_id ) {
+						do_action( 'sensei_user_lesson_end', $user_id, $lesson_id );
+					}
+				) ) {
+					return false;
+				}
+			}
+
 			/**
-			 * Fires when a user completes a lesson.
-			 * Here when the answers are submitted and the lesson is complete.
+			 * User quiz has been submitted
 			 *
-			 * @hook sensei_user_lesson_end
+			 * Fires the end of the submit_answers_for_grading function.
+			 * It will fire irrespective of the submission
+			 * results.
+			 *
+			 * @hook sensei_user_quiz_submitted
 			 *
 			 * @param {int} $user_id The user ID.
-			 * @param {int} $lesson_id The lesson ID.
+			 * @param {int} $quiz_id The quiz ID.
+			 * @param {int|false} $grade The grade of the quiz.
+			 * @param {float} $quiz_pass_percentage The pass percentage of the quiz.
+			 * @param {string} $quiz_grade_type The grade type of the quiz.
 			 */
-			do_action( 'sensei_user_lesson_end', $user_id, $lesson_id );
+			do_action( 'sensei_user_quiz_submitted', $user_id, $quiz_id, $grade, $quiz_pass_percentage, $quiz_grade_type );
 
+			return $answers_submitted;
+
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'submitting a quiz' );
+			return false;
 		}
-
-		/**
-		 * User quiz has been submitted
-		 *
-		 * Fires the end of the submit_answers_for_grading function.
-		 * It will fire irrespective of the submission
-		 * results.
-		 *
-		 * @hook sensei_user_quiz_submitted
-		 *
-		 * @param {int} $user_id The user ID.
-		 * @param {int} $quiz_id The quiz ID.
-		 * @param {int|false} $grade The grade of the quiz.
-		 * @param {float} $quiz_pass_percentage The pass percentage of the quiz.
-		 * @param {string} $quiz_grade_type The grade type of the quiz.
-		 */
-		do_action( 'sensei_user_quiz_submitted', $user_id, $quiz_id, $grade, $quiz_pass_percentage, $quiz_grade_type );
-
-		return $answers_submitted;
-
 	}
 
 	/**
@@ -1302,7 +1435,9 @@ class Sensei_Quiz {
 
 		// check if the lesson is started before saving, if not start the lesson for the user
 		if ( ! ( 0 < intval( Sensei_Utils::user_started_lesson( $lesson_id, $user_id ) ) ) ) {
-			Sensei_Utils::sensei_start_lesson( $lesson_id, $user_id );
+			if ( false === Sensei_Utils::sensei_start_lesson( $lesson_id, $user_id ) ) {
+				return false;
+			}
 		}
 
 		// encode the feedback
@@ -1592,7 +1727,7 @@ class Sensei_Quiz {
 		$user_id = $user_id ? $user_id : get_current_user_id();
 
 		$lesson_id = Sensei()->quiz->get_lesson_id( $quiz_id );
-		$course_id = (int) get_post_meta( $lesson_id, '_lesson_course', true );
+		$course_id = Sensei()->course_lessons_repository->get_course_id( (int) $lesson_id ) ?? 0;
 
 		// Check if the user has enrolled in the course.
 		if ( ! Sensei_Course::is_user_enrolled( $course_id, $user_id ) ) {
@@ -1600,7 +1735,7 @@ class Sensei_Quiz {
 		}
 
 		// Check if there is a lesson prerequisite and if the user has completed it.
-		$prerequisite_id = (int) get_post_meta( $lesson_id, '_lesson_prerequisite', true );
+		$prerequisite_id = Sensei()->course_lessons_repository->get_lesson_prerequisite_id( (int) $lesson_id );
 		if (
 			$prerequisite_id
 			&& ! Sensei_Utils::user_completed_lesson( $prerequisite_id, $user_id )
@@ -1846,6 +1981,25 @@ class Sensei_Quiz {
 			<?php
 		}
 
+		?>
+		<input type="hidden" name="questions_asked_signature" form="sensei-quiz-form" value="<?php echo esc_attr( self::get_questions_asked_signature( (int) get_the_ID(), $sensei_question_loop['questions_asked'] ?? array() ) ); ?>">
+		<?php
+	}
+
+	/**
+	 * Sign the set of questions a quiz asks, so the form cannot come back with another set.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param int   $quiz_id      Quiz ID.
+	 * @param int[] $question_ids IDs of the questions asked.
+	 * @return string
+	 */
+	private static function get_questions_asked_signature( int $quiz_id, array $question_ids ): string {
+		$question_ids = array_unique( array_map( 'intval', $question_ids ) );
+		sort( $question_ids );
+
+		return wp_hash( $quiz_id . '-' . implode( ',', $question_ids ), 'nonce' );
 	}
 
 	/**
@@ -1873,11 +2027,16 @@ class Sensei_Quiz {
 	}
 
 	/**
-	 * Rendering html element that will be replaced with Progress Bar.
+	 * Render the quiz progress bar for existing callers.
 	 *
 	 * @since 3.15.0
+	 * @deprecated 4.27.0 Automatic quiz progress bars have been retired. No replacement.
+	 *
+	 * @return void
 	 */
 	public static function the_quiz_progress_bar() {
+		_deprecated_function( __METHOD__, '4.27.0' );
+
 		$quiz_id             = get_the_ID();
 		$pagination_settings = json_decode(
 			get_post_meta( $quiz_id, '_pagination', true ),
@@ -1891,12 +2050,12 @@ class Sensei_Quiz {
 			return;
 		}
 
-		$attributes = [
+		$attributes = array(
 			'radius'                   => $pagination_settings['progress_bar_radius'],
 			'height'                   => $pagination_settings['progress_bar_height'],
 			'customBarColor'           => empty( $pagination_settings['progress_bar_color'] ) ? '' : $pagination_settings['progress_bar_color'],
 			'customBarBackgroundColor' => empty( $pagination_settings['progress_bar_background'] ) ? '' : $pagination_settings['progress_bar_background'],
-		];
+		);
 
 		Sensei()->assets->enqueue( 'sensei-shared-blocks-style', 'blocks/shared-style.scss' );
 
@@ -2464,7 +2623,12 @@ class Sensei_Quiz {
 			return;
 		}
 
-		$quiz_progress_repository->create( $quiz_id, $user_id );
+		try {
+			$quiz_progress_repository->create( $quiz_id, $user_id );
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'starting a quiz' );
+			Sensei()->notices->add_notice( __( 'Your quiz could not be started. Please try again.', 'sensei-lms' ), 'error' );
+		}
 	}
 
 	/**

@@ -823,7 +823,11 @@ class Sensei_Admin {
 
 		$type = $post->post_type;
 
-		if ( in_array( $type, array( 'lesson', 'course' ) ) ) {
+		if ( 'lesson' === $type ) {
+			foreach ( Sensei()->course_lessons_repository->get_lesson_ids_with_prerequisite( (int) $post_id ) as $lesson_id ) {
+				Sensei()->course_lessons_repository->delete_lesson_prerequisite( $lesson_id );
+			}
+		} elseif ( 'course' === $type ) {
 
 			$meta_key = '_' . $type . '_prerequisite';
 
@@ -1326,7 +1330,12 @@ class Sensei_Admin {
 	 * @return void
 	 */
 	public function lesson_order_screen() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nothing is modified.
+		$requested_course_id = isset( $_GET['course_id'] ) ? intval( $_GET['course_id'] ) : 0;
 
+		if ( $requested_course_id > 0 && ( 'course' !== get_post_type( $requested_course_id ) || ! Sensei_Course::can_current_user_edit_course( $requested_course_id ) ) ) {
+			wp_die( esc_html__( 'Insufficient permissions', 'sensei-lms' ) );
+		}
 		?>
 		<div id="<?php echo esc_attr( $this->lesson_order_page_slug ); ?>" class="wrap <?php echo esc_attr( $this->lesson_order_page_slug ); ?>">
 			<h1><?php esc_html_e( 'Order Lessons', 'sensei-lms' ); ?></h1>
@@ -1377,9 +1386,17 @@ class Sensei_Admin {
 			if ( isset( $_GET['course_id'] ) ) {
 				$course_id = intval( $_GET['course_id'] );
 				if ( $course_id > 0 ) {
+					// Include every course module so non-admin users do not submit a partial structure.
+					remove_filter( 'get_terms', array( Sensei()->modules, 'filter_module_terms' ), 20 );
+					remove_filter( 'get_object_terms', array( Sensei()->modules, 'filter_course_selected_terms' ), 20 );
+
 					$course_structure = $this->get_course_structure( $course_id );
-					$modules          = $this->get_course_structure( $course_structure, 'module' );
-					$has_lessons      = false;
+
+					add_filter( 'get_terms', array( Sensei()->modules, 'filter_module_terms' ), 20, 3 );
+					add_filter( 'get_object_terms', array( Sensei()->modules, 'filter_course_selected_terms' ), 20, 3 );
+
+					$modules     = $this->get_course_structure( $course_structure, 'module' );
+					$has_lessons = false;
 
 					// Form start.
 					$html .= '<form id="editgrouping" method="post" action="'
@@ -1500,11 +1517,7 @@ class Sensei_Admin {
 
 		if ( $course_id ) {
 			remove_filter( 'get_terms', array( Sensei()->modules, 'append_teacher_name_to_module' ), 70 );
-			// Temporarily remove the module ownership filters so the full unfiltered set of modules
-			// is used throughout the read-and-save cycle. Without this, non-admin users (e.g. Editors)
-			// would only see their own modules: get_course_structure() would return a partial list,
-			// and save() — which internally re-reads the current structure for diffing — would
-			// disassociate all other modules from the course. Filters are restored after save().
+			// Ownership filters are for display only; saving a partial structure resets hidden modules.
 			remove_filter( 'get_terms', array( Sensei()->modules, 'filter_module_terms' ), 20 );
 			remove_filter( 'get_object_terms', array( Sensei()->modules, 'filter_course_selected_terms' ), 20 );
 
@@ -1563,9 +1576,13 @@ class Sensei_Admin {
 	 * @return bool
 	 */
 	private function sync_lesson_order( array $lesson_ids, int $course_id ): bool {
-
 		remove_filter( 'get_terms', array( Sensei()->modules, 'append_teacher_name_to_module' ), 70 );
+		// Ownership filters are for display only; saving a partial structure resets hidden modules.
+		remove_filter( 'get_terms', array( Sensei()->modules, 'filter_module_terms' ), 20 );
+		remove_filter( 'get_object_terms', array( Sensei()->modules, 'filter_course_selected_terms' ), 20 );
+
 		$original_course_structure = $this->get_course_structure( $course_id );
+
 		add_filter( 'get_terms', array( Sensei()->modules, 'append_teacher_name_to_module' ), 70, 3 );
 
 		$lessons = [];
@@ -1605,6 +1622,8 @@ class Sensei_Admin {
 		// Save the new course structure.
 		$saved = Sensei_Course_Structure::instance( $course_id )
 			->save( $reordered_course_structure );
+		add_filter( 'get_terms', array( Sensei()->modules, 'filter_module_terms' ), 20, 3 );
+		add_filter( 'get_object_terms', array( Sensei()->modules, 'filter_course_selected_terms' ), 20, 3 );
 
 		return true === $saved;
 	}

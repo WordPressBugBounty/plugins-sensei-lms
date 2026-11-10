@@ -54,9 +54,10 @@ class Comments_Based_Progress_Clauses_Service implements Progress_Clauses_Servic
 	 * @since 4.26.0
 	 *
 	 * @param array $clauses Associative array of the clauses for the query.
+	 * @param array $args    Arguments for the query (see interface).
 	 * @return array Modified associative array of the clauses for the query.
 	 */
-	public function add_last_activity_to_courses_clauses( array $clauses ): array {
+	public function add_last_activity_to_courses_clauses( array $clauses, array $args = array() ): array {
 		$wpdb = $this->wpdb;
 
 		$complete = Lesson_Progress_Interface::STATUS_COMPLETE;
@@ -66,18 +67,28 @@ class Comments_Based_Progress_Clauses_Service implements Progress_Clauses_Servic
 		$lessons_query = "SELECT c.comment_post_id lesson_id, MAX(c.comment_date_gmt) as comment_date_gmt
 			FROM {$wpdb->comments} c
 			WHERE c.comment_approved IN ('{$complete}', '{$passed}', '{$graded}')
-			AND c.comment_type = 'sensei_lesson_status'
-			GROUP BY c.comment_post_id";
+			AND c.comment_type = 'sensei_lesson_status'"
+			. Utils::build_comment_author_exclusion_clause( $wpdb, $args ) . '
+			GROUP BY c.comment_post_id';
 
-		$course_query = "SELECT pm.meta_value AS course_id, MAX(lq.comment_date_gmt) AS comment_date_gmt
+		// Map lessons to courses via postmeta, then take the most recent activity date across all lessons per course.
+		// Numeric course IDs allow indexed lookups in the derived activity table.
+		$course_query = "SELECT CAST(pm.meta_value AS UNSIGNED) AS course_id, MAX(lq.comment_date_gmt) AS comment_date_gmt
 		FROM {$wpdb->postmeta} pm JOIN ({$lessons_query}) lq
 		ON lq.lesson_id = pm.post_id
 		AND pm.meta_key = '_lesson_course'
 		GROUP BY pm.meta_value
 		";
 
+		$course_id_map_sql = Utils::get_course_progress_id_map_sql( $wpdb );
+		$course_id_sql     = "{$wpdb->posts}.ID";
+		if ( $course_id_map_sql ) {
+			$clauses['join'] .= " LEFT JOIN ({$course_id_map_sql}) AS course_progress_ids ON course_progress_ids.requested_id = {$wpdb->posts}.ID";
+			$course_id_sql    = "COALESCE(course_progress_ids.stored_id, {$wpdb->posts}.ID)";
+		}
+
 		$clauses['fields'] .= ', la.comment_date_gmt AS last_activity_date';
-		$clauses['join']   .= " LEFT JOIN ({$course_query}) AS la ON la.course_id = {$wpdb->posts}.ID";
+		$clauses['join']   .= " LEFT JOIN ({$course_query}) AS la ON la.course_id = {$course_id_sql}";
 
 		return $clauses;
 	}
@@ -104,6 +115,7 @@ class Comments_Based_Progress_Clauses_Service implements Progress_Clauses_Servic
 		$clauses['join']    .= " AND {$wpdb->comments}.comment_type IN ('sensei_course_status')";
 		$complete            = Course_Progress_Interface::STATUS_COMPLETE;
 		$clauses['join']    .= " AND {$wpdb->comments}.comment_approved IN ( '{$complete}' )";
+		$clauses['join']    .= Utils::build_comment_author_exclusion_clause( $wpdb, array( 'exclude_user_login_prefixes' => Utils::REPORTS_EXCLUDED_USER_LOGIN_PREFIXES ) );
 		$clauses['join']    .= " LEFT JOIN {$wpdb->commentmeta} ON {$wpdb->comments}.comment_ID = {$wpdb->commentmeta}.comment_id";
 		$clauses['join']    .= " AND {$wpdb->commentmeta}.meta_key = 'start'";
 		$clauses['groupby'] .= " {$wpdb->posts}.ID";
@@ -142,51 +154,124 @@ class Comments_Based_Progress_Clauses_Service implements Progress_Clauses_Servic
 	}
 
 	/**
-	 * Modify WP_Query clauses to add last activity date to lesson posts.
+	 * Add Last Activity and Days to Completion fields to lesson queries.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param array $clauses    Associative array of the clauses for the query.
+	 * @param int[] $lesson_ids Requested lesson post IDs.
+	 * @return array Modified associative array of the clauses for the query.
+	 */
+	public function add_progress_to_lessons_clauses( array $clauses, array $lesson_ids = array() ): array {
+		$wpdb              = $this->wpdb;
+		$lesson_id_clauses = Utils::get_lesson_progress_id_mapping_clauses( $wpdb, $lesson_ids );
+		$clauses['join']  .= $lesson_id_clauses['join'];
+		$lesson_id_sql     = $lesson_id_clauses['lesson_id'];
+
+		$clauses = $this->add_days_to_completion_to_lessons_clauses( $clauses, $lesson_id_sql );
+
+		return $this->add_last_activity_to_lessons_clauses( $clauses, $lesson_id_sql );
+	}
+
+	/**
+	 * Add Days to Completion to lesson queries.
 	 *
 	 * @since 4.26.0
 	 *
-	 * @param array $clauses Associative array of the clauses for the query.
+	 * @param array  $clauses       Associative array of the clauses for the query.
+	 * @param string $lesson_id_sql Stored lesson ID SQL expression; defaults to the queried post ID.
 	 * @return array Modified associative array of the clauses for the query.
 	 */
-	public function add_last_activity_to_lessons_clauses( array $clauses ): array {
-		$wpdb = $this->wpdb;
+	public function add_days_to_completion_to_lessons_clauses( array $clauses, string $lesson_id_sql = '' ): array {
+		$wpdb          = $this->wpdb;
+		$lesson_id_sql = $lesson_id_sql ? $lesson_id_sql : "{$wpdb->posts}.ID";
+
+		$has_completion = "'" . implode( "','", Grading_Item::STATUSES_WITH_COMPLETION_DATE ) . "'";
+
+		$clauses['fields'] .= ", (SELECT SUM( ABS( DATEDIFF( STR_TO_DATE( {$wpdb->commentmeta}.meta_value, '%Y-%m-%d %H:%i:%s' ), {$wpdb->comments}.comment_date )) + 1 ) as days_to_complete";
+		$clauses['fields'] .= " FROM {$wpdb->comments}";
+		$clauses['fields'] .= " INNER JOIN {$wpdb->commentmeta} ON {$wpdb->comments}.comment_ID = {$wpdb->commentmeta}.comment_id";
+		$clauses['fields'] .= " WHERE {$wpdb->comments}.comment_post_ID = {$lesson_id_sql}";
+		$clauses['fields'] .= " AND {$wpdb->comments}.comment_type IN ('sensei_lesson_status')";
+		$clauses['fields'] .= " AND {$wpdb->comments}.comment_approved IN ( $has_completion )";
+		$clauses['fields'] .= Utils::build_comment_author_exclusion_clause( $wpdb, array( 'exclude_user_login_prefixes' => Utils::REPORTS_EXCLUDED_USER_LOGIN_PREFIXES ) );
+		$clauses['fields'] .= " AND {$wpdb->commentmeta}.meta_key = 'start') as days_to_complete";
+
+		return $clauses;
+	}
+
+	/**
+	 * Add Last Activity to lesson queries.
+	 *
+	 * @since 4.26.0
+	 *
+	 * @param array  $clauses       Associative array of the clauses for the query.
+	 * @param string $lesson_id_sql Stored lesson ID SQL expression; defaults to the queried post ID.
+	 * @return array Modified associative array of the clauses for the query.
+	 */
+	public function add_last_activity_to_lessons_clauses( array $clauses, string $lesson_id_sql = '' ): array {
+		$wpdb          = $this->wpdb;
+		$lesson_id_sql = $lesson_id_sql ? $lesson_id_sql : "{$wpdb->posts}.ID";
 
 		$complete = Lesson_Progress_Interface::STATUS_COMPLETE;
 		$passed   = Quiz_Progress_Interface::STATUS_PASSED;
 		$graded   = Quiz_Progress_Interface::STATUS_GRADED;
 
+		$exclusion = Utils::build_comment_author_exclusion_clause( $this->wpdb, array( 'exclude_user_login_prefixes' => Utils::REPORTS_EXCLUDED_USER_LOGIN_PREFIXES ) );
+
 		$clauses['fields'] .= ", (
 			SELECT MAX({$wpdb->comments}.comment_date_gmt)
 			FROM {$wpdb->comments}
-			WHERE {$wpdb->comments}.comment_post_ID = {$wpdb->posts}.ID
+			WHERE {$wpdb->comments}.comment_post_ID = {$lesson_id_sql}
 			AND {$wpdb->comments}.comment_approved IN ('{$complete}', '{$passed}', '{$graded}')
 			AND {$wpdb->comments}.comment_type = 'sensei_lesson_status'
+			{$exclusion}
 		) AS last_activity_date";
 
 		return $clauses;
 	}
 
 	/**
-	 * Modify WP_Query clauses to add days-to-complete data to lesson posts.
+	 * Add Last Activity grouped by user ID to a WP_User_Query.
 	 *
-	 * @since 4.26.0
+	 * @since 4.27.0
 	 *
-	 * @param array $clauses Associative array of the clauses for the query.
-	 * @return array Modified associative array of the clauses for the query.
+	 * @param \WP_User_Query $query The user query.
 	 */
-	public function add_days_to_completion_to_lessons_clauses( array $clauses ): array {
-		$wpdb           = $this->wpdb;
-		$has_completion = "'" . implode( "','", Grading_Item::STATUSES_WITH_COMPLETION_DATE ) . "'";
+	public function add_last_activity_to_users_query( \WP_User_Query $query ): void {
+		$wpdb = $this->wpdb;
 
-		$clauses['fields'] .= ", (SELECT SUM( ABS( DATEDIFF( STR_TO_DATE( {$wpdb->commentmeta}.meta_value, '%Y-%m-%d %H:%i:%s' ), {$wpdb->comments}.comment_date )) + 1 ) as days_to_complete";
-		$clauses['fields'] .= " FROM {$wpdb->comments}";
-		$clauses['fields'] .= " INNER JOIN {$wpdb->commentmeta} ON {$wpdb->comments}.comment_ID = {$wpdb->commentmeta}.comment_id";
-		$clauses['fields'] .= " WHERE {$wpdb->comments}.comment_post_ID = {$wpdb->posts}.ID";
-		$clauses['fields'] .= " AND {$wpdb->comments}.comment_type IN ('sensei_lesson_status')";
-		$clauses['fields'] .= " AND {$wpdb->comments}.comment_approved IN ( $has_completion )";
-		$clauses['fields'] .= " AND {$wpdb->commentmeta}.meta_key = 'start') as days_to_complete";
+		$complete = Lesson_Progress_Interface::STATUS_COMPLETE;
+		$passed   = Quiz_Progress_Interface::STATUS_PASSED;
+		$graded   = Quiz_Progress_Interface::STATUS_GRADED;
 
-		return $clauses;
+		$query->query_fields .= ', l.last_activity_date';
+		$query->query_from   .= "
+			LEFT JOIN (
+				SELECT user_id, MAX(comment_date_gmt) AS last_activity_date
+				FROM {$wpdb->comments}
+				WHERE comment_approved IN ('{$complete}', '{$passed}', '{$graded}')
+				AND comment_type = 'sensei_lesson_status'
+				GROUP BY user_id
+			) AS l ON {$wpdb->users}.ID = l.user_id";
+	}
+
+	/**
+	 * Filter users by Last Activity after adding the activity field.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param \WP_User_Query $query The user query.
+	 * @param string         $from  Start date, or empty for no lower bound.
+	 * @param string         $to    End date, or empty for no upper bound.
+	 */
+	public function filter_users_by_last_activity( \WP_User_Query $query, string $from = '', string $to = '' ): void {
+		if ( $from ) {
+			$query->query_where .= $this->wpdb->prepare( ' AND l.last_activity_date >= %s', $from );
+		}
+
+		if ( $to ) {
+			$query->query_where .= $this->wpdb->prepare( ' AND l.last_activity_date <= %s', $to );
+		}
 	}
 }

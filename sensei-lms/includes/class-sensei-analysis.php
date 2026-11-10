@@ -1,4 +1,8 @@
 <?php
+use Sensei\Internal\Services\Grading_Stats_Service_Interface;
+use Sensei\Internal\Services\Progress_Aggregation_Service_Interface;
+use Sensei\Internal\Services\Reports_Listing_Service_Interface;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -11,6 +15,34 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 class Sensei_Analysis {
+	/**
+	 * Reports overview list table factory.
+	 *
+	 * @var Sensei_Reports_Overview_List_Table_Factory|null
+	 */
+	private ?Sensei_Reports_Overview_List_Table_Factory $reports_overview_list_table_factory = null;
+
+	/**
+	 * Reports listing service.
+	 *
+	 * @var Reports_Listing_Service_Interface|null
+	 */
+	private ?Reports_Listing_Service_Interface $reports_listing_service = null;
+
+	/**
+	 * Progress aggregation service.
+	 *
+	 * @var Progress_Aggregation_Service_Interface|null
+	 */
+	private ?Progress_Aggregation_Service_Interface $aggregation_service = null;
+
+	/**
+	 * Grading statistics service.
+	 *
+	 * @var Grading_Stats_Service_Interface|null
+	 */
+	private ?Grading_Stats_Service_Interface $grading_stats_service = null;
+
 	/**
 	 * The reports' page slug.
 	 */
@@ -27,7 +59,7 @@ class Sensei_Analysis {
 	 * Constructor
 	 *
 	 * @since  1.0.0
-	 * @param string $file
+	 * @param string $file Main plugin file path.
 	 */
 	public function __construct( $file ) {
 		$this->file = $file;
@@ -49,6 +81,29 @@ class Sensei_Analysis {
 			// Add custom navigation.
 			add_action( 'in_admin_header', [ $this, 'add_custom_navigation' ] );
 		}
+	}
+
+	/**
+	 * Create an analysis controller with its query-service dependencies.
+	 *
+	 * @internal
+	 * @since 4.27.0
+	 *
+	 * @param string                                     $file                                Main plugin file path.
+	 * @param Sensei_Reports_Overview_List_Table_Factory $reports_overview_list_table_factory Reports overview list table factory.
+	 * @param Reports_Listing_Service_Interface          $reports_listing_service             Reports listing service.
+	 * @param Progress_Aggregation_Service_Interface     $aggregation_service                 Progress aggregation service.
+	 * @param Grading_Stats_Service_Interface            $grading_stats_service               Grading statistics service.
+	 * @return self
+	 */
+	public static function create_with_dependencies( $file, Sensei_Reports_Overview_List_Table_Factory $reports_overview_list_table_factory, Reports_Listing_Service_Interface $reports_listing_service, Progress_Aggregation_Service_Interface $aggregation_service, Grading_Stats_Service_Interface $grading_stats_service ): self {
+		$instance                                      = new self( $file );
+		$instance->reports_overview_list_table_factory = $reports_overview_list_table_factory;
+		$instance->reports_listing_service             = $reports_listing_service;
+		$instance->aggregation_service                 = $aggregation_service;
+		$instance->grading_stats_service               = $grading_stats_service;
+
+		return $instance;
 	}
 
 	/**
@@ -249,17 +304,7 @@ class Sensei_Analysis {
 	 * @return Sensei_List_Table     Class instance object
 	 */
 	public function load_data_object( $name = '', $data = 0, $optional_data = null ) {
-		if ( 'Overview' === $name ) {
-			$factory                = new Sensei_Reports_Overview_List_Table_Factory();
-			$sensei_analysis_object = $factory->create( $data );
-		} else {
-			$object_name = 'Sensei_Analysis_' . $name . '_List_Table';
-			if ( is_null( $optional_data ) ) {
-				$sensei_analysis_object = new $object_name( $data );
-			} else {
-				$sensei_analysis_object = new $object_name( $data, $optional_data );
-			}
-		}
+		$sensei_analysis_object = $this->load_report_object( $name, $data, $optional_data );
 
 		$sensei_analysis_object->prepare_items();
 
@@ -806,7 +851,7 @@ class Sensei_Analysis {
 		$title         = sprintf( '<a href="%s">%s</a>', esc_url( add_query_arg( $analysis_args, admin_url( 'admin.php' ) ) ), esc_html( $this->get_name() ) );
 		if ( isset( $_GET['lesson_id'] ) ) {
 			$lesson_id = intval( $_GET['lesson_id'] );
-			$course_id = intval( get_post_meta( $lesson_id, '_lesson_course', true ) );
+			$course_id = Sensei()->course_lessons_repository->get_course_id( $lesson_id ) ?? 0;
 			$url       = add_query_arg(
 				array(
 					'page'      => self::PAGE_SLUG,
@@ -998,23 +1043,35 @@ class Sensei_Analysis {
 	 * @return object                 class instance object
 	 */
 	public function load_report_object( $name = '', $data = 0, $optional_data = null ) {
-		if ( 'Overview' === $name ) {
-			$factory                       = new Sensei_Reports_Overview_List_Table_Factory();
-			$sensei_analysis_report_object = $factory->create( $data );
-		} else {
-			$object_name = 'Sensei_Analysis_' . $name . '_List_Table';
-			if ( is_null( $optional_data ) ) {
-				$sensei_analysis_report_object = new $object_name( $data );
-			} else {
-				$sensei_analysis_report_object = new $object_name( $data, $optional_data );
-			}
+		switch ( $name ) {
+			case 'Overview':
+				$factory = $this->reports_overview_list_table_factory ?? new Sensei_Reports_Overview_List_Table_Factory();
+				return $factory->create( $data );
+			case 'Course':
+				return new Sensei_Analysis_Course_List_Table(
+					$data,
+					$optional_data ?? 0,
+					$this->reports_listing_service,
+					$this->aggregation_service,
+					$this->grading_stats_service
+				);
+			case 'Lesson':
+				return new Sensei_Analysis_Lesson_List_Table( $data, $optional_data ?? $this->reports_listing_service );
+			case 'User_Profile':
+				return new Sensei_Analysis_User_Profile_List_Table( $data, $optional_data ?? $this->reports_listing_service );
 		}
 
-		return $sensei_analysis_report_object;
+		$object_name = 'Sensei_Analysis_' . $name . '_List_Table';
+
+		if ( is_null( $optional_data ) ) {
+			return new $object_name( $data );
+		}
+
+		return new $object_name( $data, $optional_data );
 	}
 
 	/**
-	 * Write array data to CSV
+	 * Write report data to CSV, decoding HTML entities in every cell.
 	 *
 	 * @since  1.2.0
 	 * @param  array $report_data data array
@@ -1023,6 +1080,18 @@ class Sensei_Analysis {
 	public function report_write_download( $report_data = array() ) {
 		$fp = fopen( 'php://output', 'w' );
 		foreach ( $report_data as $row ) {
+			$row = array_map(
+				/**
+				 * Decode a CSV cell.
+				 *
+				 * @param mixed $cell Cell value.
+				 * @return string Decoded cell value.
+				 */
+				static function ( $cell ) {
+					return html_entity_decode( (string) $cell, ENT_QUOTES, 'UTF-8' );
+				},
+				$row
+			);
 			fputcsv( $fp, $row, ',', '"', '' );
 		}
 		fclose( $fp ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose

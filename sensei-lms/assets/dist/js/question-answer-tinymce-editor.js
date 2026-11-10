@@ -6,17 +6,17 @@
 /******/};
 /************************************************************************/
 /******/ // The module cache
-/******/const r={};
+/******/const n={};
 /******/
 /******/ // The require function
-/******/function n(o){
+/******/function o(t){
 /******/ // Check if module is in cache
-/******/const t=r[o];
-/******/if(void 0!==t)
-/******/return t.exports;
+/******/const r=n[t];
+/******/if(void 0!==r)
+/******/return r.exports;
 /******/
 /******/ // Create a new module (and put it into the cache)
-/******/const i=r[o]={
+/******/const i=n[t]={
 /******/ // no module.id needed
 /******/ // no module.loaded needed
 /******/exports:{}
@@ -26,45 +26,34 @@
 /******/
 /******/
 /******/ // Return the exports of the module
-/******/return e[o](i,i.exports,n),i.exports;
+/******/return e[t](i,i.exports,o),i.exports;
 /******/}
 /******/
 /************************************************************************/
 /******/ /* webpack/runtime/compat get default export */
-/******/
 /******/ // getDefaultExport function for compatibility with non-harmony modules
-/******/n.n=e=>{
-/******/const r=e&&e.__esModule?
+/******/o.n=e=>{
+/******/const n=e&&e.__esModule?
 /******/()=>e.default:
 /******/()=>e;
 /******/
-/******/return n.d(r,{a:r}),r;
+/******/return o.d(n,{a:n}),n;
 /******/},
+/******/
+/******/ /* webpack/runtime/define property getters */
 /******/ // define getter/value functions for harmony exports
-/******/n.d=(e,r)=>{
-/******/if(Array.isArray(r))
-/******/for(
-/******/var o=0;o<r.length;){
-/******/var t=r[o++],i=r[o++];
-/******/
-/******/n.o(e,t)?0===i&&o++
-/******/:
-/******/0===i?
-/******/Object.defineProperty(e,t,{enumerable:!0,value:r[o++]}):
-/******/Object.defineProperty(e,t,{enumerable:!0,get:i})
-/******/}
-/******/else
-/******/for(var t in r)
-/******/n.o(r,t)&&!n.o(e,t)&&
-/******/Object.defineProperty(e,t,{enumerable:!0,get:r[t]})
+/******/o.d=(e,n)=>{
+/******/for(var t in n)
+/******/o.o(n,t)&&!o.o(e,t)&&
+/******/Object.defineProperty(e,t,{enumerable:!0,get:n[t]})
 /******/;
-/******/
 /******/},
-/******/n.o=(e,r)=>Object.hasOwn(e,r)
-/******/;
+/******/
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/o.o=(e,n)=>Object.hasOwn(e,n);
 /******/
 /************************************************************************/
-/* harmony import */var o=n(27723);
+/* harmony import */var t=o(27723);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -78,6 +67,6 @@ window.addPlaceholderInTinymceEditor=e=>{
 // Remove placeholder on submit.
 jQuery("#sensei-quiz-form").submit(function(){return e.dom.remove("multi-line-placeholder"),!0}),
 // Add placeholder on init and blur.
-e.on("blur init",function(){""===e.getContent()&&e.setContent("<p id='multi-line-placeholder'>"+(0,o.__)("Your answer","sensei-lms")+"</p>")}),
+e.on("blur init",function(){""===e.getContent()&&e.setContent("<p id='multi-line-placeholder'>"+(0,t.__)("Your answer","sensei-lms")+"</p>")}),
 // Remove placeholder on focus.
 e.on("focus",function(){e.dom.remove("multi-line-placeholder")})}})();

@@ -7,6 +7,8 @@
 
 namespace Sensei\Internal\Student_Progress\Lesson_Progress\Repositories;
 
+use Sensei\Internal\Persistence_Exception;
+
 use Sensei\Internal\Student_Progress\Lesson_Progress\Models\Comments_Based_Lesson_Progress;
 use Sensei\Internal\Student_Progress\Lesson_Progress\Models\Lesson_Progress_Interface;
 
@@ -51,6 +53,7 @@ class Table_Reading_Aggregate_Lesson_Progress_Repository implements Lesson_Progr
 	 * @param int $lesson_id The lesson ID.
 	 * @param int $user_id   The user ID.
 	 * @return Lesson_Progress_Interface The lesson progress.
+	 * @throws Persistence_Exception If required progress creation fails.
 	 */
 	public function create( int $lesson_id, int $user_id ): Lesson_Progress_Interface {
 		$this->comments_based_repository->create( $lesson_id, $user_id );
@@ -83,6 +86,7 @@ class Table_Reading_Aggregate_Lesson_Progress_Repository implements Lesson_Progr
 	 * Save a lesson progress.
 	 *
 	 * @param Lesson_Progress_Interface $lesson_progress The lesson progress.
+	 * @throws Persistence_Exception If required progress creation fails.
 	 */
 	public function save( Lesson_Progress_Interface $lesson_progress ): void {
 		$this->tables_based_repository->save( $lesson_progress );
@@ -109,14 +113,12 @@ class Table_Reading_Aggregate_Lesson_Progress_Repository implements Lesson_Progr
 			}
 		}
 
-		// Use reflection to get underlying status value.
-		// Comments-based lesson progress uses a different set of statuses than tables-based lesson progress,
-		// because is used for both lessons and quizzes.
-		// `get_status` method returns the normalized status, but we need the underlying status here.
-		$reflection_class    = new \ReflectionClass( Comments_Based_Lesson_Progress::class );
-		$reflection_property = $reflection_class->getProperty( 'status' );
-		$reflection_property->setAccessible( true );
-		$status = $reflection_property->getValue( $comments_based_progress );
+		/**
+		 * Comments-based lesson progress.
+		 *
+		 * @var Comments_Based_Lesson_Progress $comments_based_progress
+		 */
+		$status = $comments_based_progress->get_raw_status();
 
 		$updated_comments_based_progress = new Comments_Based_Lesson_Progress(
 			$comments_based_progress->get_id(),

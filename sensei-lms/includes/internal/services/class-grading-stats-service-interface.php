@@ -39,6 +39,25 @@ interface Grading_Stats_Service_Interface {
 	 */
 	public function get_grade_totals( array $args = array() ): array;
 
+	/**
+	 * Get grade counts and sums grouped by lesson.
+	 *
+	 * Only submitted grades with graded, passed, or failed status are included.
+	 * Empty selections match no grades. Translated lessons read original progress;
+	 * results retain requested IDs, including zero totals for missing grades.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param int[] $lesson_ids Requested lesson IDs.
+	 * @param array $args {
+	 *     Optional exclusions.
+	 *
+	 *     @type string[] $exclude_user_login_prefixes User login prefixes to exclude; none by default.
+	 * }
+	 * @return array<int, array{count:int, sum:float}> Totals keyed by requested lesson ID.
+	 */
+	public function get_grade_totals_by_lesson( array $lesson_ids, array $args = array() ): array;
+
 	// TODO: In a separate PR, rename the scalar methods to get_average_grade_for_courses()
 	// and get_average_grade_for_users() so "by" identifies grouped results and "for"
 	// identifies a single filtered aggregate.
@@ -55,6 +74,8 @@ interface Grading_Stats_Service_Interface {
 
 	/**
 	 * Get the average quiz grade for a lesson.
+	 *
+	 * Guest and preview users are excluded regardless of status.
 	 *
 	 * @since 4.26.4
 	 *
@@ -77,9 +98,14 @@ interface Grading_Stats_Service_Interface {
 	 * @since 4.26.0
 	 *
 	 * @param int[] $course_ids Optional. Filter by courses. Empty = all.
+	 * @param array $args {
+	 *     Optional query filters.
+	 *
+	 *     @type string[] $exclude_user_login_prefixes User login prefixes to exclude; none by default.
+	 * }
 	 * @return float
 	 */
-	public function get_courses_average_grade( array $course_ids = array() ): float;
+	public function get_courses_average_grade( array $course_ids = array(), array $args = array() ): float;
 
 	/**
 	 * Average grade filtered by user IDs.

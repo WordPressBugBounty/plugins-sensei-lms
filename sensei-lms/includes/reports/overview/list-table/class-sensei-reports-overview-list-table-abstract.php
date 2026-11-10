@@ -109,10 +109,9 @@ abstract class Sensei_Reports_Overview_List_Table_Abstract extends Sensei_List_T
 		);
 
 		// Handle search.
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- No action, nonce is not required.
-		$search = sensei_request_text( $_GET['s'] ?? '' );
-		if ( ! empty( $search ) ) {
-			$args['search'] = esc_html( $search );
+		$search = $this->get_search_value();
+		if ( '' !== $search ) {
+			$args['search'] = $search;
 		}
 
 		return array_merge( $args, $this->get_additional_filters() );
@@ -140,7 +139,8 @@ abstract class Sensei_Reports_Overview_List_Table_Abstract extends Sensei_List_T
 	}
 
 	/**
-	 * Get all the item ids.
+	 * Get IDs for all matching items so column headers can show totals across pages.
+	 * Request IDs only, without the current page-size limit.
 	 *
 	 * @return array The post ids.
 	 */
@@ -183,10 +183,9 @@ abstract class Sensei_Reports_Overview_List_Table_Abstract extends Sensei_List_T
 		);
 
 		// Handle search.
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- No action, nonce is not required.
-		$search = sensei_request_text( $_GET['s'] ?? '' );
-		if ( ! empty( $search ) ) {
-			$args['search'] = esc_html( $search );
+		$search = $this->get_search_value();
+		if ( '' !== $search ) {
+			$args['search'] = $search;
 		}
 
 		$filters           = array_merge( $args, $this->get_additional_filters() );
@@ -441,7 +440,7 @@ abstract class Sensei_Reports_Overview_List_Table_Abstract extends Sensei_List_T
 				'start_date'             => $this->get_start_date_filter_value(),
 				'end_date'               => $this->get_end_date_filter_value(),
 				'timezone'               => rawurlencode( $this->get_timezone() ),
-				's'                      => $this->get_search_value(),
+				's'                      => rawurlencode( $this->get_search_value() ),
 			),
 			admin_url( 'admin.php' )
 		);
@@ -499,12 +498,12 @@ abstract class Sensei_Reports_Overview_List_Table_Abstract extends Sensei_List_T
 	}
 
 	/**
-	 * Get the search value.
+	 * Get the normalized plain-text search value.
 	 *
-	 * @return string search param value.
+	 * @return string Search parameter value.
 	 */
-	private function get_search_value(): string {
+	protected function get_search_value(): string {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Arguments used for filtering.
-		return isset( $_GET['s'] ) ? esc_attr( sensei_request_text( $_GET['s'] ) ) : '';
+		return sensei_request_text( $_GET['s'] ?? '' );
 	}
 }

@@ -132,6 +132,63 @@ class Tables_Based_Grading_Stats_Service implements Grading_Stats_Service_Interf
 	}
 
 	/**
+	 * Get grade counts and sums grouped by lesson.
+	 *
+	 * @since 4.27.0
+	 *
+	 * @param int[] $lesson_ids Requested lesson IDs; an empty selection matches no grades.
+	 * @param array $args       Optional user-login exclusions (see interface).
+	 * @return array<int, array{count:int, sum:float}> Totals keyed by requested lesson ID.
+	 */
+	public function get_grade_totals_by_lesson( array $lesson_ids, array $args = array() ): array {
+		$wpdb = $this->wpdb;
+
+		$lesson_id_map = Utils::get_progress_post_id_map( $lesson_ids, 'lesson' );
+		$totals        = array_fill_keys(
+			array_values( $lesson_id_map ),
+			array(
+				'count' => 0,
+				'sum'   => 0.0,
+			)
+		);
+
+		if ( empty( $lesson_id_map ) ) {
+			return Utils::map_results_to_requested_post_ids( $totals, $lesson_id_map );
+		}
+
+		$query_args = array(
+			'post__in'                    => array_keys( $totals ),
+			'exclude_user_login_prefixes' => $args['exclude_user_login_prefixes'] ?? array(),
+		);
+
+		$table             = $this->get_progress_table_name();
+		$submissions_table = $this->get_submissions_table_name();
+		$statuses          = $this->get_graded_statuses_sql();
+
+		$query = "SELECT lesson_quiz.post_id AS lesson_id, COUNT(*) AS count, COALESCE(SUM(qs.final_grade), 0) AS sum
+			FROM `$table` p
+			INNER JOIN `$submissions_table` qs ON qs.quiz_id = p.post_id AND qs.user_id = p.user_id
+			INNER JOIN `{$wpdb->postmeta}` lesson_quiz ON lesson_quiz.meta_key = '_lesson_quiz' AND lesson_quiz.meta_value = p.post_id
+			WHERE p.type = 'quiz' AND p.status IN $statuses AND qs.final_grade IS NOT NULL"
+			. $this->build_post_filter( $query_args )
+			. Utils::build_user_exclusion_clause( $wpdb, $query_args )
+			. ' GROUP BY lesson_quiz.post_id';
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Values are prepared by the clause builders; callers own caching.
+		$rows = $wpdb->get_results( $query );
+		Utils::log_query_error( $wpdb, 'Tables-based lesson grade totals' );
+
+		foreach ( (array) $rows as $row ) {
+			$totals[ (int) $row->lesson_id ] = array(
+				'count' => (int) $row->count,
+				'sum'   => (float) $row->sum,
+			);
+		}
+
+		return Utils::map_results_to_requested_post_ids( $totals, $lesson_id_map );
+	}
+
+	/**
 	 * Get average grade grouped by user.
 	 *
 	 * @since 4.26.4
@@ -193,10 +250,10 @@ class Tables_Based_Grading_Stats_Service implements Grading_Stats_Service_Interf
 		$post_id           = (int) ( $args['post_id'] ?? 0 );
 		$status_sql        = Utils::get_statuses_sql( $wpdb, $args );
 
-		// Filter by the caller-provided statuses on the effective quiz status,
-		// then average the grade from quiz_submissions. Table names are trusted $wpdb
-		// properties and $status_sql is built from escaped args; the post_id uses a placeholder.
-		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$exclusion = Utils::build_user_exclusion_clause( $wpdb, array( 'exclude_user_login_prefixes' => Utils::REPORTS_EXCLUDED_USER_LOGIN_PREFIXES ) );
+
+		// Use the quiz status when quiz progress exists; otherwise use the lesson status.
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Table names come from $wpdb properties or its prefix; $status_sql and $exclusion are prepared by their helpers; post_id uses a placeholder.
 		$avg = $wpdb->get_var(
 			$wpdb->prepare(
 				'SELECT AVG( qs.final_grade )'
@@ -205,11 +262,12 @@ class Tables_Based_Grading_Stats_Service implements Grading_Stats_Service_Interf
 				. " LEFT JOIN `$table` q ON q.post_id = pm.meta_value AND q.user_id = p.user_id AND q.type = 'quiz'"
 				. " LEFT JOIN `$submissions_table` qs ON qs.quiz_id = pm.meta_value AND qs.user_id = p.user_id"
 				. " WHERE p.post_id = %d AND p.type = 'lesson' AND qs.final_grade IS NOT NULL"
+				. $exclusion
 				. " AND ( q.status IN ( {$status_sql} ) OR ( q.post_id IS NULL AND p.status IN ( {$status_sql} ) ) )",
 				$post_id
 			)
 		);
-		// phpcs:enable
+		// phpcs:enable WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		Utils::log_query_error( $wpdb, 'Tables-based lesson average grade' );
 
 		return null !== $avg ? round( (float) $avg, 2 ) : null;
@@ -223,9 +281,10 @@ class Tables_Based_Grading_Stats_Service implements Grading_Stats_Service_Interf
 	 * @since 4.26.0
 	 *
 	 * @param int[] $course_ids Optional. Filter by courses. Empty = all.
+	 * @param array $args       Arguments for the query (see interface).
 	 * @return float
 	 */
-	public function get_courses_average_grade( array $course_ids = array() ): float {
+	public function get_courses_average_grade( array $course_ids = array(), array $args = array() ): float {
 		$wpdb              = $this->wpdb;
 		$table             = $this->get_progress_table_name();
 		$submissions_table = $this->get_submissions_table_name();
@@ -255,6 +314,7 @@ class Tables_Based_Grading_Stats_Service implements Grading_Stats_Service_Interf
 				WHERE p.type = 'lesson'
 					AND q.status IN " . $this->get_graded_statuses_sql() . '
 					AND qs.final_grade IS NOT NULL';
+		$query .= Utils::build_user_exclusion_clause( $wpdb, $args, 'q.status' );
 		$query .= $course_filter;
 		$query .= ' GROUP BY lesson_course.meta_value ) averages_by_course';
 

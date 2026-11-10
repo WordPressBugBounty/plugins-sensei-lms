@@ -197,14 +197,14 @@ class Sensei_Grading_User_Quiz {
 						// Get uploaded file.
 						if ( $user_answer_content ) {
 							$attachment_id = $user_answer_content;
-							if ( 0 < intval( $attachment_id ) ) {
+							if ( Sensei_Quiz::is_file_uploaded_by_user( $attachment_id, $user_id ) ) {
 								$answer_media_url      = wp_get_attachment_url( $attachment_id );
 								$filename_raw          = basename( $answer_media_url );
 								$answer_media_filename = self::remove_hash_prefix( $filename_raw );
 
 								if ( $answer_media_url && $answer_media_filename ) {
 									// translators: Placeholder %1$s is a link to the submitted file.
-									$user_answer_content = sprintf( __( 'Submitted file: %1$s', 'sensei-lms' ), '<a href="' . esc_url( $answer_media_url ) . '" target="_blank">' . esc_html( $answer_media_filename ) . '</a>' );
+									$user_answer_content = sprintf( __( 'Submitted file: %1$s', 'sensei-lms' ), '<a href="' . esc_url( $answer_media_url ) . '" target="_blank" download>' . esc_html( $answer_media_filename ) . '</a>' );
 								}
 							}
 						} else {
@@ -335,10 +335,14 @@ class Sensei_Grading_User_Quiz {
 							 */
 							$_user_answer = apply_filters( 'sensei_answer_text', $_user_answer );
 
-							$html = wp_kses_post( $_user_answer );
-							$html = '<html><head><title></title></head><body>' . $html . '</body></html>';
+							$html    = wp_kses_post( $_user_answer );
+							$html    = '<html><head><title></title></head><body>' . $html . '</body></html>';
+							$sandbox = 'allow-same-origin';
+							if ( 'file-upload' === $type ) {
+								$sandbox .= ' allow-popups allow-downloads';
+							}
 							?>
-							<iframe class="user-answer" srcdoc="<?php echo esc_attr( $html ); ?>" sandbox="allow-same-origin" height="auto"></iframe>
+							<iframe class="user-answer" srcdoc="<?php echo esc_attr( $html ); ?>" sandbox="<?php echo esc_attr( $sandbox ); ?>" height="auto"></iframe>
 							<?php
 						}
 						?>
