@@ -158,6 +158,20 @@ class Sensei_REST_API_Lessons_Controller extends WP_REST_Posts_Controller {
 			$meta_value = $request->get_param( 'metaValue' );
 			$meta_key   = esc_sql( $meta_key );
 
+			$is_course_id = is_scalar( $meta_value ) && preg_match( '/^[1-9][0-9]*$/', (string) $meta_value );
+
+			if ( '_lesson_course' === $meta_key && $is_course_id ) {
+				$args['sensei_course'] = (int) $meta_value;
+
+				return $args;
+			}
+
+			if ( '_lesson_course' === $meta_key && empty( $meta_value ) ) {
+				$args['sensei_without_course'] = true;
+
+				return $args;
+			}
+
 			if ( empty( $meta_value ) ) {
 				$meta_query[] = array(
 					'relation' => 'OR',
@@ -269,7 +283,7 @@ class Sensei_REST_API_Lessons_Controller extends WP_REST_Posts_Controller {
 			return true;
 		}
 
-		$current_course_id = isset( $request['id'] ) ? (int) get_post_meta( (int) $request['id'], '_lesson_course', true ) : 0;
+		$current_course_id = isset( $request['id'] ) ? Sensei()->course_lessons_repository->get_course_id( (int) $request['id'] ) ?? 0 : 0;
 
 		$can_edit_course = 'course' === get_post_type( $course_id ) && Sensei_Course::can_current_user_edit_course( $course_id );
 

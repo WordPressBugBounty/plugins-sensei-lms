@@ -439,9 +439,23 @@ class Sensei_Core_Modules {
 			return true;
 		}
 
-		$post_query = new WP_Query(
+		$lessons_query = new WP_Query(
 			array(
-				'post_type'      => array( 'lesson', 'course' ),
+				'post_type'      => 'lesson',
+				'sensei_module'  => intval( $module_term_id ),
+				'fields'         => 'ids',
+				'posts_per_page' => 1,
+				'no_found_rows'  => true,
+			)
+		);
+
+		if ( $lessons_query->post_count > 0 ) {
+			return true;
+		}
+
+		$courses_query = new WP_Query(
+			array(
+				'post_type'      => 'course',
 				'tax_query'      => array(
 					array(
 						'taxonomy' => 'module',
@@ -451,14 +465,11 @@ class Sensei_Core_Modules {
 				),
 				'fields'         => 'ids',
 				'posts_per_page' => 1,
+				'no_found_rows'  => true,
 			)
 		);
 
-		if ( $post_query->found_posts > 0 ) {
-			return true;
-		}
-
-		return false;
+		return $courses_query->post_count > 0;
 	}
 
 	/**
@@ -900,22 +911,18 @@ class Sensei_Core_Modules {
 			// Set order of lessons
 			if ( version_compare( Sensei()->version, '1.6.0', '>=' ) ) {
 				$module_id = $query->queried_object_id;
-				$query->set( 'meta_key', '_order_module_' . $module_id );
-				$query->set( 'orderby', 'meta_value_num date' );
+				$query->set( 'sensei_lesson_order_module', $module_id );
+				$query->set( 'orderby', 'date' );
 			} else {
 				$query->set( 'orderby', 'menu_order' );
 			}
 			$query->set( 'order', 'ASC' );
 
 			// Limit to specific course if specified
-			if ( isset( $_GET['course_id'] ) && 0 < intval( $_GET['course_id'] ) ) {
-				$course_id    = intval( $_GET['course_id'] );
-				$meta_query   = [];
-				$meta_query[] = array(
-					'key'   => '_lesson_course',
-					'value' => intval( $course_id ),
-				);
-				$query->set( 'meta_query', $meta_query );
+			// phpcs:ignore WordPress.Security.NonceVerification -- Read-only filter argument of the archive URL.
+			$course_id = isset( $_GET['course_id'] ) ? intval( $_GET['course_id'] ) : 0;
+			if ( 0 < $course_id ) {
+				$query->set( 'sensei_course', $course_id );
 			}
 		}
 	}
@@ -1219,19 +1226,8 @@ class Sensei_Core_Modules {
 			'post_type'      => 'lesson',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'tax_query'      => array(
-				array(
-					'taxonomy' => $this->taxonomy,
-					'field'    => 'id',
-					'terms'    => $module_id,
-				),
-			),
-			'meta_query'     => array(
-				array(
-					'key'   => '_lesson_course',
-					'value' => $course_id,
-				),
-			),
+			'sensei_module'  => (int) $module_id,
+			'sensei_course'  => (int) $course_id,
 			'fields'         => 'ids',
 		);
 		$lessons = get_posts( $args );
@@ -1702,13 +1698,7 @@ class Sensei_Core_Modules {
 		$args = array(
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'tax_query'      => array(
-				array(
-					'taxonomy' => $this->taxonomy,
-					'field'    => 'id',
-					'terms'    => intval( $term_id ),
-				),
-			),
+			'sensei_module'  => intval( $term_id ),
 		);
 
 		$module = get_term( $term_id, $this->taxonomy );
@@ -2120,21 +2110,15 @@ class Sensei_Core_Modules {
 			'post_status'      => $course_lessons_post_status,
 			'posts_per_page'   => -1,
 			'sensei_course'    => intval( $course_id ),
-			'tax_query'        => array(
-				array(
-					'taxonomy' => 'module',
-					'field'    => 'id',
-					'terms'    => intval( $term_id ),
-				),
-			),
+			'sensei_module'    => intval( $term_id ),
 			'orderby'          => 'menu_order',
 			'order'            => 'ASC',
 			'suppress_filters' => 0,
 		);
 
 		if ( version_compare( Sensei()->version, '1.6.0', '>=' ) ) {
-			$args['meta_key'] = '_order_module_' . intval( $term_id );
-			$args['orderby']  = 'meta_value_num date ID';
+			$args['sensei_lesson_order_module'] = intval( $term_id );
+			$args['orderby']                    = 'date ID';
 		}
 
 		$lessons_query = new WP_Query( $args );
@@ -2163,15 +2147,7 @@ class Sensei_Core_Modules {
 		$base_args      = [];
 
 		if ( ! empty( $course_modules ) && is_array( $course_modules ) ) {
-			$term_ids               = wp_list_pluck( $course_modules, 'term_id' );
-			$base_args['tax_query'] = [
-				[
-					'taxonomy' => 'module',
-					'field'    => 'id',
-					'terms'    => $term_ids,
-					'operator' => 'NOT IN',
-				],
-			];
+			$base_args['sensei_module__not_in'] = wp_list_pluck( $course_modules, 'term_id' );
 		}
 
 		return Sensei()->course->course_lessons( $course_id, $post_status, 'all', $base_args );

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'automattic/sensei-lms',
-        'pretty_version' => 'dev-08080706f450814831e332c98df37fd84bfb560f',
-        'version' => 'dev-08080706f450814831e332c98df37fd84bfb560f',
-        'reference' => '08080706f450814831e332c98df37fd84bfb560f',
+        'pretty_version' => 'dev-758548e723248f7817750cf04a33d23696db784f',
+        'version' => 'dev-758548e723248f7817750cf04a33d23696db784f',
+        'reference' => '758548e723248f7817750cf04a33d23696db784f',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'automattic/sensei-lms' => array(
-            'pretty_version' => 'dev-08080706f450814831e332c98df37fd84bfb560f',
-            'version' => 'dev-08080706f450814831e332c98df37fd84bfb560f',
-            'reference' => '08080706f450814831e332c98df37fd84bfb560f',
+            'pretty_version' => 'dev-758548e723248f7817750cf04a33d23696db784f',
+            'version' => 'dev-758548e723248f7817750cf04a33d23696db784f',
+            'reference' => '758548e723248f7817750cf04a33d23696db784f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

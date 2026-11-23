@@ -82,7 +82,9 @@ if(r.hasClass("user_right")||r.hasClass("user_wrong")||r.hasClass("zero-graded")
 if(r.addClass("ungraded"),r.hasClass("gap-fill")?(t=r.find(".user-answer").contents().find(".highlight").html(),a=r.find(".correct-answer .highlight").html()):(t=r.find(".user-answer").contents().find("body").map(function(){return this.innerHTML.trim()}).toArray().join("<br>"),a=r.find(".correct-answer").html()),t=t.trim(),a=a.trim(),r.hasClass("auto-grade")){
 // Split answers to multiple choice questions into an array since there may be
 // multiple correct answers.
-if(r.hasClass("multiple-choice")){const r=t.split("<br>"),i=a.split("<br>");n=!0,r.forEach(function(r){-1===e.inArray(r,i)&&(n=!1)}),r.length!==i.length-1&&(n=!1)}else t=t.split("<br>")[0],a=a.split("<br>")[0];n||t===a?(
+if(r.hasClass("multiple-choice")){const r=t.split("<br>"),i=a.split("<br>");n=!0,r.forEach(function(r){-1===e.inArray(r,i)&&(n=!1)}),
+// Repeating one right answer must not stand in for the others.
+i.some(e=>e&&!r.includes(e))&&(n=!1),r.length!==i.length-1&&(n=!1)}else t=t.split("<br>")[0],a=a.split("<br>")[0];n||t===a?(
 // Right answer
 r.addClass("user_right").removeClass("user_wrong").removeClass("ungraded"),r.find(".grading-mark.icon_right input").attr("checked",!0),r.find(".grading-mark.icon_wrong input").attr("checked",!1),r.find("input.question-grade").val(r.find("input.question_total_grade").val())):(
 // Wrong answer

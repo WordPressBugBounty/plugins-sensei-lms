@@ -11,6 +11,7 @@ use DateTime;
 use Sensei\Internal\Persistence_Exception;
 use Sensei\Internal\Student_Progress\Quiz_Progress\Models\Comments_Based_Quiz_Progress;
 use Sensei\Internal\Student_Progress\Quiz_Progress\Models\Quiz_Progress_Interface;
+use Sensei\Internal\Student_Progress\Progress_Start_Date;
 use Sensei_Utils;
 use WP_Comment;
 
@@ -180,7 +181,7 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 
 		if ( ! $comment_id ) {
 			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages contain safe diagnostics and are not rendered.
-			throw new Persistence_Exception( 'lesson', 'comments', $lesson_id, $quiz_progress->get_user_id() );
+			throw new Persistence_Exception( 'lesson', 'comments', $lesson_id, $quiz_progress->get_user_id(), 'write_failed', 'save' );
 		}
 	}
 
@@ -339,6 +340,8 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 				case 'started_at':
 					throw new \InvalidArgumentException( 'Ordering by started_at is not supported in comments-based version.' );
 				case 'completed_at':
+					$comments_args['orderby'] = 'comment_date_gmt';
+					break;
 				case 'created_at':
 				case 'updated_at':
 					$comments_args['orderby'] = 'comment_date';
@@ -396,10 +399,11 @@ class Comments_Based_Quiz_Progress_Repository implements Quiz_Progress_Repositor
 	private function create_progress_from_comment( WP_Comment $comment, ?int $quiz_id = null ): Comments_Based_Quiz_Progress {
 		$comment_date = new DateTime( $comment->comment_date, wp_timezone() );
 		$meta_start   = get_comment_meta( (int) $comment->comment_ID, 'start', true );
-		$started_at   = ! empty( $meta_start ) ? new DateTime( $meta_start, wp_timezone() ) : current_datetime();
+		$started_at   = Progress_Start_Date::is_recorded( $meta_start ) ? new DateTime( $meta_start, wp_timezone() ) : null;
 
 		if ( in_array( $comment->comment_approved, [ 'complete', 'passed', 'graded' ], true ) ) {
-			$completed_at = $comment_date;
+			$completed_at = new DateTime( $comment->comment_date_gmt, new \DateTimeZone( 'UTC' ) );
+			$completed_at->setTimezone( wp_timezone() );
 		} else {
 			$completed_at = null;
 		}

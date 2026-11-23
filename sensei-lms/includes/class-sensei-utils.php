@@ -105,13 +105,16 @@ class Sensei_Utils {
 			if ( empty( $args['keep_time'] ) ) {
 				$data['comment_date'] = current_time( 'mysql' );
 			}
-			wp_update_comment( $data );
+			if ( false === wp_update_comment( $data ) ) {
+				return false;
+			}
 		}
 
 		/**
-		 * Fires after logging the activity.
+		 * Fires after logging the activity, unless an existing comment update fails.
 		 *
 		 * @hook sensei_log_activity_after
+		 * @since 4.28.0 No longer fires when an existing comment update fails.
 		 *
 		 * @param {array} $args Initial arguments.
 		 * @param {array} $data Processed data to log.
@@ -710,8 +713,7 @@ class Sensei_Utils {
 			$user_id = get_current_user_id();
 		}
 
-		// Process quiz
-		$lesson_quiz_id = Sensei()->lesson->lesson_quizzes( $lesson_id );
+		$lesson_quiz_id = (int) Sensei()->lesson->lesson_quizzes( $lesson_id );
 
 		$has_progress = Sensei()->lesson_progress_repository->has( $lesson_id, $user_id )
 			|| ( $lesson_quiz_id && Sensei()->quiz_progress_repository->has( $lesson_quiz_id, $user_id ) );
@@ -719,13 +721,13 @@ class Sensei_Utils {
 			return false;
 		}
 
-		// Delete quiz answers and their grading metadata after progress can be reset.
-		self::sensei_delete_quiz_answers( $lesson_quiz_id, $user_id );
-
-		// Delete lesson progress.
-		$lesson_progress = Sensei()->lesson_progress_repository->get( $lesson_id, $user_id );
-		if ( $lesson_progress ) {
-			Sensei()->lesson_progress_repository->delete( $lesson_progress );
+		try {
+			if ( $user_id ) {
+				Sensei()->lesson_progress_removal->remove_for_student( $lesson_id, $user_id, $lesson_quiz_id );
+			}
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'removing lesson progress' );
+			return false;
 		}
 
 		if ( ! $from_course ) {
@@ -880,29 +882,22 @@ class Sensei_Utils {
 			return false;
 		}
 
-		$deleted   = false;
-		$questions = self::sensei_get_quiz_questions( $quiz_id );
-		foreach ( $questions as $question ) {
-			// Fallback for pre 1.7.4 data.
-			$deleted = self::sensei_delete_activities(
-				array(
-					'post_id' => $question->ID,
-					'user_id' => $user_id,
-					'type'    => 'sensei_user_answer',
-				)
-			);
-		}
+		try {
+			$quiz_submission = Sensei()->quiz_submission_repository->get( $quiz_id, $user_id );
+			if ( ! $quiz_submission ) {
+				return false;
+			}
 
-		$quiz_submission = Sensei()->quiz_submission_repository->get( $quiz_id, $user_id );
-		if ( $quiz_submission ) {
-			Sensei()->quiz_submission_repository->delete( $quiz_submission );
-			Sensei()->quiz_answer_repository->delete_all( $quiz_submission );
 			Sensei()->quiz_grade_repository->delete_all( $quiz_submission );
+			Sensei()->quiz_answer_repository->delete_all( $quiz_submission );
+			Sensei()->quiz_submission_repository->delete( $quiz_submission );
 
-			$deleted = true;
+			return true;
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'clearing quiz answers' );
+			return false;
 		}
 
-		return $deleted;
 	}
 
 	/**
@@ -927,10 +922,16 @@ class Sensei_Utils {
 			return false;
 		}
 
-		$quiz_submission->set_final_grade( null );
-		Sensei()->quiz_submission_repository->save( $quiz_submission );
+		try {
+			$quiz_submission->set_final_grade( null );
+			Sensei()->quiz_submission_repository->save( $quiz_submission );
 
-		return true;
+			return true;
+		} catch ( Persistence_Exception $exception ) {
+			$exception->log( 'clearing a quiz grade' );
+			return false;
+		}
+
 	}
 
 	/**
@@ -1677,9 +1678,6 @@ class Sensei_Utils {
 			$course_progress = Sensei()->course_progress_repository->get( $course_id, $user_id );
 			if ( ! $course_progress ) {
 				$course_progress = Sensei()->course_progress_repository->create( $course_id, $user_id );
-			}
-			if ( ! $course_progress->get_started_at() ) {
-				$course_progress->start();
 			}
 
 			$lessons_completed = 0;
@@ -2703,7 +2701,6 @@ class Sensei_Utils {
 	public static function restore_wp_query() {
 
 		wp_reset_query();
-
 	}
 
 	/**
@@ -3191,7 +3188,6 @@ class Sensei_Utils {
 		}
 		$video_embed = get_post_meta( $post->ID, '_lesson_video_embed', true );
 		return $video_embed ? self::render_video_embed( $video_embed ) : null;
-
 	}
 
 	/**

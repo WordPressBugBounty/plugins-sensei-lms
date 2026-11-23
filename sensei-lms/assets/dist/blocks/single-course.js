@@ -86,7 +86,7 @@ return l.createElement("svg",r({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
  * @return {string} The upgrade URL.
  */
 /* harmony export */t.d(s,[
-/* harmony export */"h",0,(e="")=>{const{upsellUrl:s}=window.sensei_admin;return`${s}?${new URLSearchParams({utm_source:"plugin_sensei",utm_medium:"upsell",utm_campaign:e}).toString()}`}])},
+/* harmony export */"h",0,(e="")=>{const{upsellUrl:s}=window.sensei_admin,t=new URL(s);return t.searchParams.set("utm_source","plugin_sensei"),t.searchParams.set("utm_medium","upsell"),t.searchParams.set("utm_campaign",e),t.toString()}])},
 /***/32054(e,s,t){"use strict";
 /* harmony import */var n=t(66087),o=t(47143),l=t(36536),r=t.n(l);
 /* harmony import */
@@ -337,7 +337,7 @@ const y=["sensei-lms/course-outline-lesson"],f=(0,a.compose)((0,h/* .withColorSe
    *
    * @param {string} value Name value.
    */
-const[L,O]=(0,u.useState)(!0),I=void 0!==a?a:N,R=(0,r.useBlockProps)({className:o()({"wp-block-sensei-lms-course-outline-module-bordered":I}),style:I?{borderColor:d||j?.color}:void 0}),P=/is-style-(\w+)/,M=R.className?.match(P)?.[1]||B?.match(P)?.[1],D={default:{background:w?.color||E?.color,color:k?.color||C?.color},minimal:{color:k?.color}}[M];
+const[L,O]=(0,u.useState)(!0),I=void 0!==a?a:N,P=(0,r.useBlockProps)({className:o()({"wp-block-sensei-lms-course-outline-module-bordered":I}),style:I?{borderColor:d||j?.color}:void 0}),R=/is-style-(\w+)/,M=P.className?.match(R)?.[1]||B?.match(R)?.[1],D={default:{background:w?.color||E?.color,color:k?.color||C?.color},minimal:{color:k?.color}}[M];
 /**
    * Handle update name.
    *
@@ -346,7 +346,7 @@ const[L,O]=(0,u.useState)(!0),I=void 0!==a?a:N,R=(0,r.useBlockProps)({className:
 // Minimal border element.
 let U;return"minimal"===M&&(U=(0,S.jsx)("div",{className:"wp-block-sensei-lms-course-outline-module__name__minimal-border",style:{background:w?.color||E?.color}})),(0,u.useEffect)(()=>{const e=document.querySelector('select[name="sensei-course-teacher-author"]');e&&e.addEventListener("change",e=>{A({teacherId:e.target.value})})},
 // eslint-disable-next-line react-hooks/exhaustive-deps
-[]),(0,S.jsxs)(S.Fragment,{children:[(0/* ["default"] */,S.jsx)(b.A,{bordered:I,setBordered:e=>A({borderedSelected:e}),customSlug:f,setCustomSlug:e=>{A({slug:e})}}),(0,S.jsxs)("section",{...R,children:[(0,S.jsxs)("header",{className:"wp-block-sensei-lms-course-outline-module__header",style:D,children:[(0,S.jsxs)("h2",{className:"wp-block-sensei-lms-course-outline-module__title",children:[(0/* ["default"] */,S.jsx)(x.A,{className:"wp-block-sensei-lms-course-outline-module__title-input",placeholder:(0,m.__)("Module name","sensei-lms"),value:(0,p.decodeEntities)(t),onChange:e=>{A({title:e})}}),f&&(0,S.jsxs)(S.Fragment,{children:[(0,S.jsx)("br",{}),(0,S.jsxs)("span",{className:"custom-slug",children:["(",f,")"]})]})]}),h&&(0,S.jsxs)("span",{className:"teacher-name",children:["(",h,")"]}),(0/* .ModuleStatus */,S.jsx)(v.f,{clientId:s}),T&&(0,S.jsxs)("button",{type:"button",className:o()("wp-block-sensei-lms-course-outline__arrow",{"sensei-collapsed":!L}),onClick:()=>O(!L),children:[(0/* ["default"] */,S.jsx)(i.A,{icon:c/* ["default"] */.A}),(0,S.jsx)("span",{className:"screen-reader-text",children:(0,m.__)("Toggle module content","sensei-lms")})]})]}),U,(0/* ["default"] */,S.jsxs)(l.A,{className:"wp-block-sensei-lms-collapsible",duration:500,animateOpacity:!0,height:!T||L?"auto":0,children:[(0,S.jsx)("div",{className:"wp-block-sensei-lms-course-outline-module__description",children:(0,S.jsx)(r.RichText,{className:"wp-block-sensei-lms-course-outline-module__description-input",placeholder:(0,m.__)("Module description","sensei-lms"),value:n,onChange:e=>{A({description:e})}})}),(0,S.jsx)("h3",{className:"wp-block-sensei-lms-course-outline-module__lessons-title",children:(0,m.__)("Lessons","sensei-lms")}),(0,S.jsx)(r.InnerBlocks,{allowedBlocks:y,templateInsertUpdatesSelection:!1,renderAppender:()=>null})]})]})]})});
+[]),(0,S.jsxs)(S.Fragment,{children:[(0/* ["default"] */,S.jsx)(b.A,{bordered:I,setBordered:e=>A({borderedSelected:e}),customSlug:f,setCustomSlug:e=>{A({slug:e})}}),(0,S.jsxs)("section",{...P,children:[(0,S.jsxs)("header",{className:"wp-block-sensei-lms-course-outline-module__header",style:D,children:[(0,S.jsxs)("h2",{className:"wp-block-sensei-lms-course-outline-module__title",children:[(0/* ["default"] */,S.jsx)(x.A,{className:"wp-block-sensei-lms-course-outline-module__title-input",placeholder:(0,m.__)("Module name","sensei-lms"),value:(0,p.decodeEntities)(t),onChange:e=>{A({title:e})}}),f&&(0,S.jsxs)(S.Fragment,{children:[(0,S.jsx)("br",{}),(0,S.jsxs)("span",{className:"custom-slug",children:["(",f,")"]})]})]}),h&&(0,S.jsxs)("span",{className:"teacher-name",children:["(",h,")"]}),(0/* .ModuleStatus */,S.jsx)(v.f,{clientId:s}),T&&(0,S.jsxs)("button",{type:"button",className:o()("wp-block-sensei-lms-course-outline__arrow",{"sensei-collapsed":!L}),onClick:()=>O(!L),children:[(0/* ["default"] */,S.jsx)(i.A,{icon:c/* ["default"] */.A}),(0,S.jsx)("span",{className:"screen-reader-text",children:(0,m.__)("Toggle module content","sensei-lms")})]})]}),U,(0/* ["default"] */,S.jsxs)(l.A,{className:"wp-block-sensei-lms-collapsible",duration:500,animateOpacity:!0,height:!T||L?"auto":0,children:[(0,S.jsx)("div",{className:"wp-block-sensei-lms-course-outline-module__description",children:(0,S.jsx)(r.RichText,{className:"wp-block-sensei-lms-course-outline-module__description-input",placeholder:(0,m.__)("Module description","sensei-lms"),value:n,onChange:e=>{A({description:e})}})}),(0,S.jsx)("h3",{className:"wp-block-sensei-lms-course-outline-module__lessons-title",children:(0,m.__)("Lessons","sensei-lms")}),(0,S.jsx)(r.InnerBlocks,{allowedBlocks:y,templateInsertUpdatesSelection:!1,renderAppender:()=>null})]})]})]})});
 /**
  * Edit module block component.
  *
@@ -1376,12 +1376,12 @@ const E=(0,n.useRef)(v),k=(0,n.useRef)(null),C=(0,n.useRef)(void 0),j=(0,n.useRe
 // Reset negative height to 0
 O=v<0?0:v,I="hidden"):o(O)&&(
 // If value is string "0%" make sure we convert it to number 0
-O="0%"===v?0:v,I="hidden");const[R,P]=(0,n.useState)(O),[M,D]=(0,n.useState)(I),[U,V]=(0,n.useState)(!1),[z,H]=(0,n.useState)(i(A.current,v));
+O="0%"===v?0:v,I="hidden");const[P,R]=(0,n.useState)(O),[M,D]=(0,n.useState)(I),[U,V]=(0,n.useState)(!1),[z,H]=(0,n.useState)(i(A.current,v));
 // ------------------ Did mount
 // ------------------ Did mount
 (0,n.useEffect)(()=>{
 // Hide content if height is 0 (to prevent tabbing into it)
-l(k.current,R,_);
+l(k.current,P,_);
 // This should be explicitly run only on mount
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[]),
@@ -1414,14 +1414,14 @@ const u=[A.current.animating,("auto"===E.current||v<E.current)&&A.current.animat
 // Set starting height and animating classes
 // When animating from 'auto' we first need to set fixed height
 // that change should be animated
-P(t),D("hidden"),V(!a),H(u),
+R(t),D("hidden"),V(!a),H(u),
 // Clear timeouts
 clearTimeout(j.current),clearTimeout(C.current),a?(
 // When animating from 'auto' we use a short timeout to start animation
 // after setting fixed height above
 r=!0,
 // Short timeout to allow rendering of the initial animation state first
-j.current=setTimeout(()=>{P(n),D(c),V(r),
+j.current=setTimeout(()=>{R(n),D(c),V(r),
 // ANIMATION STARTS, run a callback if it exists
 S?.(n),
 // Set static classes and remove transitions when animation ends
@@ -1434,7 +1434,7 @@ b?.(n)},s)},50)):(
 // ANIMATION STARTS, run a callback if it exists
 S?.(t),
 // Set end height, classes and remove transitions when animation is complete
-j.current=setTimeout(()=>{P(n),D(c),V(!1),H(d),
+j.current=setTimeout(()=>{R(n),D(c),V(!1),H(d),
 // ANIMATION ENDS
 // If height is auto, don't hide the content
 // (case when element is empty, therefore height is 0)
@@ -1447,13 +1447,13 @@ b?.(t)},s))}return E.current=O,()=>{clearTimeout(j.current),clearTimeout(C.curre
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[v]);
 // ------------------ Render
-const F={...y,height:R,overflow:M||y?.overflow};U&&u&&(F.transition=`height ${L}ms ${x} ${B}ms`,
+const F={...y,height:P,overflow:M||y?.overflow};U&&u&&(F.transition=`height ${L}ms ${x} ${B}ms`,
 // Include transition passed through styles
 y?.transition&&(F.transition=`${y.transition}, ${F.transition}`),
 // Add webkit vendor prefix still used by opera, blackberry...
 F.WebkitTransition=F.transition);const $={};t&&($.transition=`opacity ${L}ms ${x} ${B}ms`,
 // Add webkit vendor prefix still used by opera, blackberry...
-$.WebkitTransition=$.transition,0===R&&($.opacity=0));
+$.WebkitTransition=$.transition,0===P&&($.opacity=0));
 // Check if user passed aria-hidden prop
 const G=void 0!==w["aria-hidden"]?w["aria-hidden"]:0===v;return n.createElement("div",{...w,"aria-hidden":G,className:`${z} ${m}`,style:F,ref:s},n.createElement("div",{className:p,style:$,ref:e=>{k.current=e,f&&(f.current=e)}},d))});
 /* harmony export */t.d(s,[

@@ -49,7 +49,7 @@ return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)("span",{className:"sensei-stude
 /* harmony export */])},
 /***/69946(e,t,s){"use strict";
 /* unused harmony export StudentModal */
-/* harmony import */var n=s(56427),r=s(86087),o=s(5823),i=s(27723),l=s(89877),a=s(1455),c=s.n(a),u=s(37134),d=s(72108),p=s(21181),m=s(10790);
+/* harmony import */var n=s(56427),r=s(86087),o=s(5823),i=s(27723),l=s(89877),a=s(1455),c=s.n(a),u=s(37134),d=s(72108),p=s(21181),m=s(43813),h=s(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -57,7 +57,7 @@ return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)("span",{className:"sensei-stude
 /**
  * Internal dependencies
  */
-const h=({action:e,onClose:t,students:s,studentDisplayName:a})=>{const{description:h,buttonLabel:g,errorMessage:_,isDestructive:f,sendAction:b}=((e,t,s)=>{const n=(0,l.escapeHTML)(s);return{add:{description:t>1?(0,i.sprintf)(
+const g=(e,t,s)=>t.flatMap(t=>s.map(s=>!0===e?.[t]?.[s.id])),_=({action:e,onClose:t,students:s,studentDisplayName:a})=>{const{description:_,buttonLabel:f,errorMessage:b,isDestructive:v,sendAction:w}=((e,t,s)=>{const n=(0,l.escapeHTML)(s);return{add:{description:t>1?(0,i.sprintf)(
 // Translators: placeholder is the number of selected students.
 // Translators: placeholder is the number of selected students.
 (0,i.__)("Select the course(s) you would like to add <strong>%d students</strong> to:","sensei-lms"),t):(0,i.sprintf)(
@@ -77,28 +77,20 @@ description:t>1?(0,i.sprintf)(
 (0,i.__)("Select the course(s) you would like to reset progress from for <strong>%d students</strong>:","sensei-lms"),t):(0,i.sprintf)(
 // Translators: placeholder is the student's name.
 // Translators: placeholder is the student's name.
-(0,i.__)("Select the course(s) you would like to reset progress from for <strong>%s</strong>:","sensei-lms"),n),buttonLabel:(0,i.__)("Reset Progress","sensei-lms"),errorMessage:e=>(0,i._n)("Unable to reset progress for this student. Please try again.","Unable to reset progress for these students. Please try again.",e.length,"sensei-lms"),sendAction:(e,t,{signal:s})=>c()({path:"/sensei-internal/v1/course-progress/batch",method:"DELETE",data:{student_ids:e,course_ids:t},signal:s}),isDestructive:!0}}[e]})(e,s.length,a),[w,v]=(0,r.useState)([]),[x,y]=(0,r.useState)(""),[S,j]=(0,r.useState)(!1),[k,C]=(0,r.useState)(!1),[A,N]=(0,r.useState)(!1),{getSignal:E}=(0,p/* ["default"] */.A)(),D=(0,r.useCallback)(async()=>{j(!0),C(!1);try{const n=await b(s,w.map(e=>e.id),{signal:E()});if("add"===e){
-// A completed request can contain failed or missing student/course results.
-const e=s.flatMap(e=>w.map(t=>!0===n?.[e]?.[t.id]));if(e.includes(!1)){const t=e.filter(Boolean).length,n=e.length-t,r=t>0;
+(0,i.__)("Select the course(s) you would like to reset progress from for <strong>%s</strong>:","sensei-lms"),n),buttonLabel:(0,i.__)("Reset Progress","sensei-lms"),errorMessage:m/* .resetProgressErrorMessage */.A,sendAction:(e,t,{signal:s})=>c()({path:"/sensei-internal/v1/course-progress/batch",method:"DELETE",data:{student_ids:e,course_ids:t},signal:s}),isDestructive:!0}}[e]})(e,s.length,a),[x,y]=(0,r.useState)([]),[S,j]=(0,r.useState)(""),[k,A]=(0,r.useState)(!1),[C,N]=(0,r.useState)(!1),[E,R]=(0,r.useState)(!1),{getSignal:D}=(0,p/* ["default"] */.A)(),M=(0,r.useCallback)(async()=>{A(!0),N(!1);try{const n=await w(s,x.map(e=>e.id),{signal:D()});if("add"===e){const e=g(n,s,x);if(e.includes(!1)){const t=e.filter(Boolean).length,n=e.length-t,r=t>0;
 // Keep the modal and selection available for retry.
 return r&&
 // Show saved enrollments when the modal is dismissed.
-N(!0),C(r?(0,i.sprintf)(
+R(!0),N(r?(0,i.sprintf)(
 // Translators: %1$d is completed enrollments; %2$d is failed enrollments.
 // Translators: %1$d is completed enrollments; %2$d is failed enrollments.
-(0,i._n)("%1$d enrollment completed; %2$d couldn't be completed. Successful enrollments were kept. You can repeat the action to retry the failed enrollments.","%1$d enrollments completed; %2$d couldn't be completed. Successful enrollments were kept. You can repeat the action to retry the failed enrollments.",t,"sensei-lms"),t,n):_(s)),void j(!1)}}t(!0)}catch{E().aborted||(C(_(s)),j(!1))}},[e,b,s,w,t,E,_]);
-return(0,m.jsxs)(n.Modal,{className:"sensei-student-modal",title:(0,i.__)("Choose Course","sensei-lms"),onRequestClose:()=>t(A),children:[(0,m.jsx)(r.RawHTML,{children:h}),(0/* ["default"] */,m.jsx)(d.A,{iconRight:o/* ["default"] */.A,onChange:e=>y(e),placeholder:(0,i.__)("Search courses","sensei-lms"),value:x}),(0/* ["default"] */,m.jsx)(u.A,{searchQuery:x,onChange:e=>{v(e)}}),k&&(0,m.jsx)(n.Notice,{status:"error",isDismissible:!1,className:"sensei-student-modal__notice",children:k}),(0,m.jsx)("div",{className:"sensei-student-modal__action",children:(0,m.jsxs)(n.Button,{className:"sensei-student-modal__action",variant:f?"":"primary",onClick:()=>D(),disabled:S||0===w.length,isDestructive:f,children:[S&&(0,m.jsx)(n.Spinner,{}),g]})})]})};
-/**
- * Student Actions Modal.
- *
- * @param {Object}   props
- * @param {Object}   props.action             Action that is being performed.
- * @param {Function} props.onClose            Close callback.
- * @param {Array}    props.students           A list of Student ids related to the action should be applied.
- * @param {string}   props.studentDisplayName Name of the student, shown when there's only one student.
- */
+(0,i._n)("%1$d enrollment completed; %2$d couldn't be completed. Successful enrollments were kept. You can repeat the action to retry the failed enrollments.","%1$d enrollments completed; %2$d couldn't be completed. Successful enrollments were kept. You can repeat the action to retry the failed enrollments.",t,"sensei-lms"),t,n):b(s)),void A(!1)}}if("reset-progress"===e){
+// A 200 response can contain failed or missing student/course results.
+// Keep the selection visible; refresh if any reset persisted.
+const e=g(n,s,x);if(e.includes(!1)){return e.includes(!0)&&R(!0),N(b(s)),void A(!1)}}t(!0)}catch{D().aborted||(N(b(s)),A(!1))}},[e,w,s,x,t,D,b]);
+return(0,h.jsxs)(n.Modal,{className:"sensei-student-modal",title:(0,i.__)("Choose Course","sensei-lms"),onRequestClose:()=>t(E),children:[(0,h.jsx)(r.RawHTML,{children:_}),(0/* ["default"] */,h.jsx)(d.A,{iconRight:o/* ["default"] */.A,onChange:e=>j(e),placeholder:(0,i.__)("Search courses","sensei-lms"),value:S}),(0/* ["default"] */,h.jsx)(u.A,{searchQuery:S,onChange:e=>{y(e)}}),C&&(0,h.jsx)(n.Notice,{status:"error",isDismissible:!1,className:"sensei-student-modal__notice",children:C}),(0,h.jsx)("div",{className:"sensei-student-modal__action",children:(0,h.jsxs)(n.Button,{className:"sensei-student-modal__action",variant:v?"":"primary",onClick:()=>M(),disabled:k||0===x.length,isDestructive:v,children:[k&&(0,h.jsx)(n.Spinner,{}),f]})})]})};
 /* harmony export */s.d(t,[
-/* harmony export */"A",0,h
+/* harmony export */"A",0,_
 /* harmony export */])},
 /***/72108(e,t,s){"use strict";
 /* harmony import */var n=s(4452),r=s.n(n),o=s(56427),i=s(10790);
@@ -156,6 +148,11 @@ return(0,o.useEffect)(()=>{a(t);
 /* harmony export */s.d(t,[
 /* harmony export */"A",0,i
 /* harmony export */])},
+/***/43813(e,t,s){"use strict";
+/* harmony import */var n=s(27723);
+/* harmony import */
+/* harmony export */s.d(t,[
+/* harmony export */"A",0,()=>(0,n.__)("We couldn't finish resetting progress. Some progress or quiz answers may already have been cleared. Refresh the page and review student progress before taking further action. If it looks inconsistent, contact your site administrator.","sensei-lms")])},
 /***/10790(e){"use strict";e.exports=window.ReactJSXRuntime},
 /***/66087(e){"use strict";e.exports=window.lodash},
 /***/1455(e){"use strict";e.exports=window.wp.apiFetch},
@@ -249,5 +246,5 @@ return(0,o.useEffect)(()=>{a(t);
  * @param {Object}  props
  * @param {boolean} props.isDisabled Set button's initial state to be disabled or enabled, defaults to disabled.
  */
-const l=({isDisabled:s=!0})=>{const[l,a]=(0,t.useState)("add"),[c,u]=(0,t.useState)(!1),[d,p]=(0,t.useState)([]),[m,h]=(0,t.useState)(""),[g,_]=(0,t.useState)(s),f=e=>{e&&window.location.reload(),u(!1)},b=e=>{_(!(e.detail&&e.detail.enable))};(0,t.useEffect)(()=>(globalThis.addEventListener("enableDisableCourseSelectionToggle",b),()=>{globalThis.removeEventListener("enableDisableCourseSelectionToggle",b)}),[]);const w=(0/* ["default"] */,i.jsx)(o.A,{action:l,onClose:f,students:d,studentDisplayName:m}),v=(0,n.applyFilters)("senseiStudentBulkActionModal",w,l,f,d,m);
-return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(e.Button,{className:"button button-primary sensei-student-bulk-actions__button",disabled:g,id:"sensei-bulk-learner-actions-modal-toggle",onClick:()=>{const e=document.getElementById("bulk-action-selector-top"),t=Array.from(document.querySelectorAll("input.sensei_user_select_id:checked")),s=t.map(e=>Number(e.value));e&&(e=>{switch(e){case"enrol_restore_enrolment":a("add");break;case"remove_enrolment":a("remove");break;case"remove_progress":a("reset-progress");break;default:a(e)}})(e.value),p(s),1===t.length&&h(t[0].closest("tr").querySelector(".student-action-menu").getAttribute("data-user-display-name")),u(!0)},children:(0,r.__)("Select Action","sensei-lms")}),c&&v]})};Array.from(document.querySelectorAll("div.sensei-student-bulk-actions__button")).forEach(e=>{(0,t.createRoot)(e).render((0,i.jsx)(l,{}))})})()})();
+const l=({isDisabled:s=!0})=>{const[l,a]=(0,t.useState)("add"),[c,u]=(0,t.useState)(!1),[d,p]=(0,t.useState)([]),[m,h]=(0,t.useState)(""),[g,_]=(0,t.useState)(s),f=e=>{e&&window.location.reload(),u(!1)},b=e=>{_(!(e.detail&&e.detail.enable))};(0,t.useEffect)(()=>(globalThis.addEventListener("enableDisableCourseSelectionToggle",b),()=>{globalThis.removeEventListener("enableDisableCourseSelectionToggle",b)}),[]);const v=(0/* ["default"] */,i.jsx)(o.A,{action:l,onClose:f,students:d,studentDisplayName:m}),w=(0,n.applyFilters)("senseiStudentBulkActionModal",v,l,f,d,m);
+return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(e.Button,{className:"button button-primary sensei-student-bulk-actions__button",disabled:g,id:"sensei-bulk-learner-actions-modal-toggle",onClick:()=>{const e=document.getElementById("bulk-action-selector-top"),t=Array.from(document.querySelectorAll("input.sensei_user_select_id:checked")),s=t.map(e=>Number(e.value));e&&(e=>{switch(e){case"enrol_restore_enrolment":a("add");break;case"remove_enrolment":a("remove");break;case"remove_progress":a("reset-progress");break;default:a(e)}})(e.value),p(s),1===t.length&&h(t[0].closest("tr").querySelector(".student-action-menu").getAttribute("data-user-display-name")),u(!0)},children:(0,r.__)("Select Action","sensei-lms")}),c&&w]})};Array.from(document.querySelectorAll("div.sensei-student-bulk-actions__button")).forEach(e=>{(0,t.createRoot)(e).render((0,i.jsx)(l,{}))})})()})();

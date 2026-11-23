@@ -12,6 +12,7 @@ use DateTime;
 use InvalidArgumentException;
 use Sensei\Internal\Student_Progress\Lesson_Progress\Models\Comments_Based_Lesson_Progress;
 use Sensei\Internal\Student_Progress\Lesson_Progress\Models\Lesson_Progress_Interface;
+use Sensei\Internal\Student_Progress\Progress_Start_Date;
 use Sensei_Utils;
 use WP_Comment;
 
@@ -32,13 +33,14 @@ class Comments_Based_Lesson_Progress_Repository implements Lesson_Progress_Repos
 	 *
 	 * @internal
 	 *
-	 * @param int $lesson_id The lesson ID.
-	 * @param int $user_id The user ID.
+	 * @param int  $lesson_id The lesson ID.
+	 * @param int  $user_id The user ID.
+	 * @param bool $record_start Whether creation also records a start event.
 	 *
 	 * @return Lesson_Progress_Interface The lesson progress.
 	 * @throws Persistence_Exception If required progress creation fails.
 	 */
-	public function create( int $lesson_id, int $user_id ): Lesson_Progress_Interface {
+	public function create( int $lesson_id, int $user_id, bool $record_start = true ): Lesson_Progress_Interface {
 		/**
 		 * Filter lesson id for lesson progress creation.
 		 *
@@ -51,9 +53,7 @@ class Comments_Based_Lesson_Progress_Repository implements Lesson_Progress_Repos
 		 */
 		$lesson_id = (int) apply_filters( 'sensei_lesson_progress_create_lesson_id', $lesson_id );
 
-		$metadata   = [
-			'start' => current_time( 'mysql' ),
-		];
+		$metadata   = $record_start ? array( 'start' => current_time( 'mysql' ) ) : array();
 		$comment_id = Sensei_Utils::update_lesson_status( $user_id, $lesson_id, Lesson_Progress_Interface::STATUS_IN_PROGRESS, $metadata );
 		if ( ! $comment_id ) {
 			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages contain safe diagnostics and are not rendered.
@@ -176,7 +176,7 @@ class Comments_Based_Lesson_Progress_Repository implements Lesson_Progress_Repos
 
 		if ( ! $comment_id ) {
 			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception messages contain safe diagnostics and are not rendered.
-			throw new Persistence_Exception( 'lesson', 'comments', $lesson_progress->get_lesson_id(), $lesson_progress->get_user_id() );
+			throw new Persistence_Exception( 'lesson', 'comments', $lesson_progress->get_lesson_id(), $lesson_progress->get_user_id(), 'write_failed', 'save' );
 		}
 
 		$completed_at = $lesson_progress->get_completed_at();
@@ -197,16 +197,35 @@ class Comments_Based_Lesson_Progress_Repository implements Lesson_Progress_Repos
 	 * @internal
 	 *
 	 * @param Lesson_Progress_Interface $lesson_progress The lesson progress.
+	 * @throws Persistence_Exception If required progress cannot be deleted.
 	 */
 	public function delete( Lesson_Progress_Interface $lesson_progress ): void {
+		$this->delete_for_student( $lesson_progress->get_lesson_id(), $lesson_progress->get_user_id() );
+	}
+
+	/**
+	 * Delete progress for a student, including when the selected read store has no record.
+	 *
+	 * @internal
+	 * @since 4.28.0
+	 *
+	 * @param int $lesson_id The lesson ID.
+	 * @param int $user_id   The student ID.
+	 * @throws Persistence_Exception If required progress cannot be deleted.
+	 */
+	public function delete_for_student( int $lesson_id, int $user_id ): void {
 		$args = array(
-			'post_id' => $lesson_progress->get_lesson_id(),
+			'post_id' => $lesson_id,
 			'type'    => 'sensei_lesson_status',
-			'user_id' => $lesson_progress->get_user_id(),
+			'user_id' => $user_id,
 		);
 
-		// This auto deletes the corresponding meta data, such as the quiz grade, and questions asked.
+		// Deleting the comment also removes its quiz metadata.
 		Sensei_Utils::sensei_delete_activities( $args );
+		if ( Sensei_Utils::sensei_check_for_activity( $args ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Safe persistence diagnostics.
+			throw new Persistence_Exception( 'lesson', 'comments', $lesson_id, $user_id, 'delete_failed', 'delete' );
+		}
 	}
 
 	/**
@@ -394,6 +413,8 @@ class Comments_Based_Lesson_Progress_Repository implements Lesson_Progress_Repos
 				case 'started_at':
 					throw new InvalidArgumentException( 'Ordering by started_at is not supported in comments-based version.' );
 				case 'completed_at':
+					$comments_args['orderby'] = 'comment_date_gmt';
+					break;
 				case 'created_at':
 				case 'updated_at':
 					$comments_args['orderby'] = 'comment_date';
@@ -449,10 +470,11 @@ class Comments_Based_Lesson_Progress_Repository implements Lesson_Progress_Repos
 	private function create_progress_from_comment( WP_Comment $comment ): Comments_Based_Lesson_Progress {
 		$comment_date = new DateTime( $comment->comment_date, wp_timezone() );
 		$meta_start   = get_comment_meta( (int) $comment->comment_ID, 'start', true );
-		$started_at   = ! empty( $meta_start ) ? new DateTime( $meta_start, wp_timezone() ) : current_datetime();
+		$started_at   = Progress_Start_Date::is_recorded( $meta_start ) ? new DateTime( $meta_start, wp_timezone() ) : null;
 
 		if ( in_array( $comment->comment_approved, [ 'complete', 'passed', 'graded' ], true ) ) {
-			$completed_at = $comment_date;
+			$completed_at = new DateTime( $comment->comment_date_gmt, new \DateTimeZone( 'UTC' ) );
+			$completed_at->setTimezone( wp_timezone() );
 		} else {
 			$completed_at = null;
 		}

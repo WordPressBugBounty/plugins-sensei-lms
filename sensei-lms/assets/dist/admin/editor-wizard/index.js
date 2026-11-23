@@ -12,13 +12,13 @@ return n.createElement("svg",r({xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 
 /***/48597(e,s,t){
 /* harmony import */var i,n,r=t(51609);
 /* harmony import */function o(){return o=Object.assign?Object.assign.bind():function(e){for(var s=1;s<arguments.length;s++){var t=arguments[s];for(var i in t)({}).hasOwnProperty.call(t,i)&&(e[i]=t[i])}return e},o.apply(null,arguments)}
-/* harmony default export */const l=function(e){
+/* harmony default export */const a=function(e){
 return r.createElement("svg",o({xmlns:"http://www.w3.org/2000/svg",fill:"none",viewBox:"0 0 24 24"},e),i||(i=r.createElement("circle",{cx:12,cy:12,r:12,fill:"#43AF99"})),n||(n=r.createElement("path",{fill:"#fff",fillRule:"evenodd",d:"M9.835 15.38c.3-.23.179-.474.6-.563-.02.194.146.391.251.563-.109-.367-.002-.536.08-.72.347-.785-.662-1.293-1.35-1.418.235-.164.399-.327.694-.355a2.4 2.4 0 0 0-1.058.23c-1.112.531-1.993-.523-1.41-1.48.31-.51.664-.519.982-.865.077.178.103.372.075.564a.92.92 0 0 0 .049-.664c-.104-.336-.4-.338-.456-.821-.012-.101-.105.056-.263-.077-.038-.032-.113-.09-.163-.064-.085.044-.18.008-.232.034-.083.041-.109-.045-.2.016-.16.107-.178-.013-.332.005-.193.023-.32.261-.43.144-.102-.108-.206.075-.28.075-.05 0-.311.317-.426.028-.086-.216-.28.206-.382.063-.033-.046-.123.108-.18-.044-.014-.035 0-.078-.108-.027-.215.099-.138-.06-.207-.144-.083-.103-.113-.103-.068-.27.036-.133-.019-.33.2-.364.055-.008.107-.005.184-.148.096-.18.231-.093.207-.175-.036-.119.143-.28.226-.355.11-.103.254-.252.306-.396a.6.6 0 0 1 .102-.141c.081-.084.105-.003.227-.045.088-.03.02.053.106-.07.028-.038.105-.001.19-.039.259-.112.283-.11.347-.371.012-.05.025-.088.08-.083.109.01.134-.052.2-.05.061.001.083-.03.115-.068.18-.216.277-.055.357-.072.06-.012.022-.142.184-.102.23.057.155-.05.303-.015.174.041.186.19.306.225.143.042.211.198.307.196.337-.005.235.23.448.323-.16-.161.012-.421-.352-.455-.08-.007-.11-.127-.23-.183-.146-.067-.13-.21-.394-.27.068-.04.089.005.13-.073.058-.11.09-.046.113-.113.02-.063.006-.099.165-.155.165-.06.325-.195.472-.188.13.006.185-.08.177-.19-.008-.112-.033-.267.222-.22.153.029.15.003.15-.1-.002-.102.04-.165.174-.16.098.002.194-.003.231-.117.03-.091.207-.114.302-.148.317-.114.361.05.447-.095.07-.117.196-.317.337-.175.028.029.054.05.15-.056.08-.088.27-.2.337-.048.027.06.086.121.138.044a.08.08 0 0 1 .053-.039c.05-.01.079-.024.104-.036.218-.101.314-.095.213.125-.142.316.792-.192.532.151-.095.126.538.197.63.254.05.032.048.059.144.077.271.05.267.026.284.243.007.098.107.043.107.168 0 .535.472.266.549.399.012.022.032.042.079.042.149 0 .157-.03.224.089.027.047.05.072.127.096.12.037.112.05.068.138-.054.104.03.102.138.112.1.01.148.062.216.138.11.122.284.156.43.227.084.04.002.14.143.243.104.077.156.066.016.165-.59.418.22.305.446.694.051.087.118.195.216.295.225.23.1.293.221.437.07.083.015.063.13.137.272.175-.105.292-.319.212-.097-.035-.166-.085-.147-.025.016.049-.01.083-.052.12-.125.112.123.068.181.06.181-.025.664-.076.66.093-.005.22.136.27.25.284.185.024.238.057.34.226.092.152.145.07.288.205.097.093.217.258.02.282-.047.005-.099 0-.12.017a.4.4 0 0 1-.14.066c-.295.09.14.136.246.113.093-.02.209-.05.3-.027.057.015.062.08.244.107.06.01.036.099.006.16-.104.214.191.1.16.263-.017.093.11.245-.067.248-.057.001-.117-.015-.115.034.004.105-.165-.03-.317.115-.056.054-.19.092-.272-.009-.032-.038-.07-.069-.218-.023-.144.046-.242.204-.306-.04-.017-.064-.05-.065-.142-.097-.125-.043-.114-.258-.297-.12a.24.24 0 0 1-.214.039c-.144-.037-.303.012-.317-.096-.021-.179-.191-.305-.377-.296-.147.008-.278.034-.355-.137.057.195.207.208.382.208q.217 0 .255.225c.045.265.204.099.406.223.1.06.17.159.21.273.042.118.37-.024.282.258-.037.122-.107.168-.242.266-.4.294-.5.004-.618.239-.062.121-.063.031-.196.09-.22.098-.36-.128-.522-.045-.182.094-.168-.08-.352.037-.152.097-.308-.074-.38.192-.063.227-.322.232-.44.11-.189-.194-.132.229-.362.054-.123-.091-.213.043-.392.045-.33.005-.489-.282-.65-.107-.192.206-.331-.032-.334-.242-.003-.216-.777-.144-1.185-.256-.225-.062-.932.013-.702-.35-.372.39.456.366.682.455.136.053.245.095.377.114.13.296.214.617.227 1.007.043-.214.053-.433.028-.649-.043-.383.242.19.276.272.184.45-.022 1.278-.488 1.526a3 3 0 0 0-.562-.99c.256.392.616 1.192.327 1.65a1.02 1.02 0 0 1-.55-.483c.077.333.413.702.818.58.707-.213.704.233 1.641.307.682.111 1.654 0 2.118.037.254.02 1.32.197 1.315.465-.02 1.105-.438 1.164-1.539 1.268-.64.06-1.134.085-1.823.11-1.54.058-3.391.06-4.868 0-.724-.03-1.072-.036-1.841-.137-.769-.1-1.19-.363-1.178-1.187.005-.304.905-.594 1.2-.628.347-.039.901.005 1.405-.116.527-.127.747-.21 1.135-.508m5.347-6.052c-.167-.042-.051-.138-.339-.014-.17.073-.194-.13-.365-.094-.172.036-.242-.125-.499-.166-.318-.05-.088-.133-.592-.032-.097.02-.179-.09-.481-.052-.355.046-.23.084-.445-.115-.272-.251-.488-.082-.767-.184.216.166.368.019.622.221-.242.138-.523.802-.962.844.478.107.709.354 1.148.413.504.068.882.118 1.151.531.301.463.44.196.874.168.275-.017.282-.185.328-.362.063-.245.126-.256.31-.289.213-.037.163-.092.107-.156-.15-.172.019-.207.146-.244.222-.064.042-.075.042-.166-.278-.09-.063-.217.092-.273.169.105.242.087.317.073.109-.021.181.03.273-.028-.135.014-.163-.037-.278-.02-.051.007-.112.01-.219-.054-.18-.107-.27.048-.463 0m-2.28 1.64-1.09-.545c-1.316-.657-1.915.313-2.337 1.376l-.766.73c.549-.338.996-.714 1.574-.71.092 0 1.516.484 1.286-.092-.04-.104.09-.052.125-.201.04-.17.055-.141.195-.033.089.069.211.113.174-.048-.017-.072-.04-.137.28-.004.15.062.095-.064.303-.09.29-.034.228-.31.364-.349.076-.022.152.058.295-.077.05-.046.11-.089.232-.057-.143-.073-.22-.014-.292.03-.146.089-.203-.037-.343.07m-2.23-1.923q.24-.03.482-.046a.13.13 0 0 0 .074-.06.11.11 0 0 0 .007-.09.27.27 0 0 1 .147-.206l-.002-.003c-.258.001-.466.1-.73.211-.052.022-.024.111-.118.213a.26.26 0 0 1-.201.235.14.14 0 0 0-.09.046.11.11 0 0 0-.026.092.25.25 0 0 1-.277.061q-.3-.115-.448.036a.39.39 0 0 1 .398.014c.134.066.3.031.39-.082a.13.13 0 0 1 .126-.098.42.42 0 0 0 .268-.323",clipRule:"evenodd"})))};
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,l
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/74454(e,s,t){
-/* harmony import */var i=t(47143),n=t(56427),r=t(86087),o=t(43656),l=t(76522),a=t(45998),c=t(66920),d=(t(61912),t(10790));
+/* harmony import */var i=t(47143),n=t(56427),r=t(86087),o=t(43656),a=t(76522),l=t(45998),c=t(66920),d=(t(61912),t(10790));
 /* harmony import */
 /**
  * WordPress dependencies
@@ -29,14 +29,14 @@ return r.createElement("svg",o({xmlns:"http://www.w3.org/2000/svg",fill:"none",v
 /**
  * Editor wizard modal component.
  */
-const u=()=>{const e=(0,r.useState)({}),s=e[0],{editPost:t,savePost:u}=(0,i.useDispatch)(o.store),p=(0,c/* .useLogEvent */._B)(),[_,m]=(0,c/* .useWizardOpenState */.Sc)(),x=(0,a/* ["default"] */.A)(),w=(0,c/* .useSetDefaultPattern */.rj)({"sensei-content-description":s.description}),h=()=>{m(!0),t({meta:{_new_post:!1}}),u()},g=()=>{w(),h()};return _&&(0,d.jsx)(n.Modal,{className:"sensei-editor-wizard-modal",onRequestClose:()=>{g(),p("editor_wizard_close_modal")},children:(0/* ["default"] */,d.jsx)(l.A,{steps:x,wizardDataState:e,onCompletion:h,skipWizard:g})})};
+const u=()=>{const e=(0,r.useState)({}),s=e[0],{editPost:t,savePost:u}=(0,i.useDispatch)(o.store),p=(0,c/* .useLogEvent */._B)(),[_,m]=(0,c/* .useWizardOpenState */.Sc)(),w=(0,l/* ["default"] */.A)(),x=(0,c/* .useSetDefaultPattern */.rj)({"sensei-content-description":s.description}),h=()=>{m(!0),t({meta:{_new_post:!1}}),u()},g=()=>{x(),h()};return _&&(0,d.jsx)(n.Modal,{className:"sensei-editor-wizard-modal",onRequestClose:()=>{g(),p("editor_wizard_close_modal")},children:(0/* ["default"] */,d.jsx)(a.A,{steps:w,wizardDataState:e,onCompletion:h,skipWizard:g})})};
 /* harmony default export */
 /* harmony export */t.d(s,[
 /* harmony export */"A",0,u
 /* harmony export */])},
 /***/66920(e,s,t){
 /* unused harmony exports getSenseiPatterns, useSetPostBlocks */
-/* harmony import */var i=t(47143),n=t(86087),r=t(74997),o=t(3582),l=t(43656),a=t(52619),c=t(45793);
+/* harmony import */var i=t(47143),n=t(86087),r=t(74997),o=t(3582),a=t(43656),l=t(52619),c=t(45793);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -44,7 +44,7 @@ const u=()=>{const e=(0,r.useState)({}),s=e[0],{editPost:t,savePost:u}=(0,i.useD
 /**
  * Internal dependencies
  */
-const d=()=>{const{editorPatterns:e,registeredPatterns:s}=(0,i.useSelect)(e=>{const s=e(l.store).getEditorSettings()||{};return{
+const d=()=>{const{editorPatterns:e,registeredPatterns:s}=(0,i.useSelect)(e=>{const s=e(a.store).getEditorSettings()||{};return{
 // Include client-added patterns that may not be registered on the server.
 editorPatterns:s.__experimentalAdditionalBlockPatterns||s.__experimentalBlockPatterns||[],
 // Unlike the block editor selector, core data does not apply the active canvas's insertion rules.
@@ -68,7 +68,7 @@ blocks:e.blocks||(0,r.parse)(e.content||"",{__unstableSkipMigrationLogs:!0})})))
 setTimeout(()=>{t(document.body.classList.contains("modal-open"))},1);const s=new window.MutationObserver(()=>{t(document.body.classList.contains("modal-open"))});return s.observe(document.body,{attributes:!0,attributeFilter:["class"]}),()=>{s.disconnect()}},[e]),s})(!t);return(0,n.useLayoutEffect)(()=>{t?s(!1):!1===r&&
 // If no modal is open, it's time to open.
 s(!0)},[t,r]),[e,i]},
-/* harmony export */"_B",0,()=>{const{postType:e}=(0,i.useSelect)(e=>({postType:e(l.store).getCurrentPostType()}),[]);return(s,t)=>{window.sensei_log_event(s,{post_type:e,...t})}},
+/* harmony export */"_B",0,()=>{const{postType:e}=(0,i.useSelect)(e=>({postType:e(a.store).getCurrentPostType()}),[]);return(s,t)=>{window.sensei_log_event(s,{post_type:e,...t})}},
 /* harmony export */"bC",0,()=>{const{senseiProExtension:e}=(0,i.useSelect)(e=>({senseiProExtension:e(c/* .EXTENSIONS_STORE */.z).getSenseiProExtension()}),[]);
 /**
    * Filters if the editor wizard upsells should show or not
@@ -77,12 +77,12 @@ s(!0)},[t,r]),[e,i]},
    *
    * @param {boolean} hideEditorWizardUpsell Whether to hide the editor wizard upsells.
    * @return {boolean} Whether to hide the editor wizard upsells.
-   */return(0,a.applyFilters)("senseiEditorWizardUpsellHide",!e||!0===e.is_activated)},
-/* harmony export */"rj",0,e=>{const s=d(),{template:t}=(0,i.useSelect)(e=>{const s=e(l.store).getCurrentPostType();return{template:e(o.store).getPostType(s)?.template}}),n=(()=>{const{resetEditorBlocks:e}=(0,i.useDispatch)(l.store);return s=>{e(s)}})(),r=s.find(e=>e.name===t?.[0]?.[1]?.slug);
+   */return(0,l.applyFilters)("senseiEditorWizardUpsellHide",!e||!0===e.is_activated)},
+/* harmony export */"rj",0,e=>{const s=d(),{template:t}=(0,i.useSelect)(e=>{const s=e(a.store).getCurrentPostType();return{template:e(o.store).getPostType(s)?.template}}),n=(()=>{const{resetEditorBlocks:e}=(0,i.useDispatch)(a.store);return s=>{e(s)}})(),r=s.find(e=>e.name===t?.[0]?.[1]?.slug);
 // Set default pattern with replaced content.
 return()=>{if(!r)return;const s=u(r.blocks,e);n(s)}}])},
 /***/31615(e,s,t){
-/* harmony import */var i=t(94715),n=t(52619),r=t(27723),o=t(48558),l=t(74997),a=t(86087),c=t(66920),d=t(10790);
+/* harmony import */var i=t(94715),n=t(52619),r=t(27723),o=t(48558),a=t(74997),l=t(86087),c=t(66920),d=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -97,7 +97,7 @@ return()=>{if(!r)return;const s=u(r.blocks,e);n(s)}}])},
  *
  * @return {Object} Object with props to add in the React element.
  */
-const u=e=>{const s=(0,l.getBlockType)(e.name)?.example,t=s&&"core/group"!==e.name?s.innerBlocks:e.innerBlocks;return s?(0,l.getBlockFromExample)(e.name,{attributes:{...s.attributes,...e.attributes},innerBlocks:t}):e},p=e=>"sensei-lms/lesson-actions"!==e.name,_=()=>{
+const u=e=>{const s=(0,a.getBlockType)(e.name)?.example,t=s&&"core/group"!==e.name?s.innerBlocks:e.innerBlocks;return s?(0,a.getBlockFromExample)(e.name,{attributes:{...s.attributes,...e.attributes},innerBlocks:t}):e},p=e=>"sensei-lms/lesson-actions"!==e.name,_=()=>{
 /**
    * Filters the warning message when no layouts are available.
    *
@@ -105,7 +105,7 @@ const u=e=>{const s=(0,l.getBlockType)(e.name)?.example,t=s&&"core/group"!==e.na
    * @return {string} Filtered warning message.
    */
 const e=(0,n.applyFilters)("sensei.editorWizard.noLayoutsWarning",(0,r.__)("No layouts available for this theme.","sensei-lms"));
-return(0,d.jsx)("div",{className:"sensei-patterns-list__warning",children:(0,d.jsx)("div",{className:"sensei-patterns-list__warning-title",children:e})})},m=({patternsToExclude:e=[],onChoose:s})=>{const t=(0,c/* .useSenseiPatterns */.OT)(),n=(0,a.useCallback)(({name:s,categories:t})=>!e.includes(s)&&t&&t.includes("sensei-lms"),[e]);return t&&0!==t.length?(0,d.jsx)("div",{className:"sensei-patterns-list",role:"listbox","aria-label":(0,r.__)("Sensei block patterns","sensei-lms"),children:t.filter(n).map(({name:e,title:t,description:n,blocks:r,viewportWidth:l,template:a})=>{return(0,d.jsxs)("div",{className:"sensei-patterns-list__item",title:n,role:"option",tabIndex:0,...(c=()=>{s(r,e,a)},{onClick:c,onKeyUp:e=>{[o.ENTER,o.SPACE].includes(e.keyCode)&&c(e)}}),children:[(0,d.jsx)("div",{className:"sensei-patterns-list__item-preview",children:(0,d.jsx)(i.BlockPreview,{additionalStyles:[{css:"body { padding: 30px; }"}],blocks:r.filter(p).map(u),viewportWidth:l??800})}),(0,d.jsx)("div",{className:"sensei-patterns-list__item-title",children:t})]},e);var c})}):(0,d.jsx)(_,{})};
+return(0,d.jsx)("div",{className:"sensei-patterns-list__warning",children:(0,d.jsx)("div",{className:"sensei-patterns-list__warning-title",children:e})})},m=({patternsToExclude:e=[],onChoose:s})=>{const t=(0,c/* .useSenseiPatterns */.OT)(),n=(0,l.useCallback)(({name:s,categories:t})=>!e.includes(s)&&t&&t.includes("sensei-lms"),[e]);return t&&0!==t.length?(0,d.jsx)("div",{className:"sensei-patterns-list",role:"listbox","aria-label":(0,r.__)("Sensei block patterns","sensei-lms"),children:t.filter(n).map(({name:e,title:t,description:n,blocks:r,viewportWidth:a,template:l})=>{return(0,d.jsxs)("div",{className:"sensei-patterns-list__item",title:n,role:"option",tabIndex:0,...(c=()=>{s(r,e,l)},{onClick:c,onKeyUp:e=>{[o.ENTER,o.SPACE].includes(e.keyCode)&&c(e)}}),children:[(0,d.jsx)("div",{className:"sensei-patterns-list__item-preview",children:(0,d.jsx)(i.BlockPreview,{additionalStyles:[{css:"body { padding: 30px; }"}],blocks:r.filter(p).map(u),viewportWidth:a??800})}),(0,d.jsx)("div",{className:"sensei-patterns-list__item-title",children:t})]},e);var c})}):(0,d.jsx)(_,{})};
 /**
  * Use the block's example option for the block's content in the pattern preview.
  *
@@ -116,7 +116,7 @@ return(0,d.jsx)("div",{className:"sensei-patterns-list__warning",children:(0,d.j
 /* harmony export */"A",0,m
 /* harmony export */])},
 /***/28678(e,s,t){
-/* harmony import */var i=t(27723),n=t(56427),r=t(43656),o=t(47143),l=t(4446),a=t(56184),c=t(10790);
+/* harmony import */var i=t(27723),n=t(56427),r=t(43656),o=t(47143),a=t(4446),l=t(56184),c=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -132,7 +132,7 @@ return(0,d.jsx)("div",{className:"sensei-patterns-list__warning",children:(0,d.j
  * @param {Function} props.setWizardData Wizard data setter.
  */
 const d=({wizardData:e,setWizardData:s})=>{const{editPost:t}=(0,o.useDispatch)(r.store);
-return(0,c.jsxs)("div",{className:"sensei-editor-wizard-modal__columns",children:[(0,c.jsxs)("div",{className:"sensei-editor-wizard-modal__content",children:[(0,c.jsx)("h1",{className:"sensei-editor-wizard-step__title",children:(0,i.__)("Create your course","sensei-lms")}),(0,c.jsx)("p",{className:"sensei-editor-wizard-step__description",children:(0,i.__)("Keep your Course Title short as it will get displayed in different places around your website. You can easily change both later.","sensei-lms")}),(0,c.jsxs)("div",{className:"sensei-editor-wizard-step__form",children:[(0/* ["default"] */,c.jsx)(l.A,{className:"sensei-editor-wizard-step__form-control",label:(0,i.__)("Course Title","sensei-lms"),value:e.title??"",onChange:i=>{s({...e,title:i}),t({title:i})},maxLength:40,autoFocus:!0}),(0/* ["default"] */,c.jsx)(l.A,{className:"sensei-editor-wizard-step__form-control",label:(0,i.__)("Course Description","sensei-lms"),value:e.description??"",onChange:i=>{s({...e,description:i}),t({excerpt:i})},maxLength:350,multiline:!0})]})]}),(0,c.jsx)("div",{className:"sensei-editor-wizard-modal__illustration",children:(0,c.jsx)("img",{src:window.sensei.pluginUrl+a,alt:(0,i.__)("Illustration of course sample with some placeholders.","sensei-lms"),className:"sensei-editor-wizard-modal__illustration-image"})})]})};d.Actions=({goToNextStep:e})=>(0,c.jsx)(n.Button,{isPrimary:!0,onClick:e,children:(0,i.__)("Continue","sensei-lms")});
+return(0,c.jsxs)("div",{className:"sensei-editor-wizard-modal__columns",children:[(0,c.jsxs)("div",{className:"sensei-editor-wizard-modal__content",children:[(0,c.jsx)("h1",{className:"sensei-editor-wizard-step__title",children:(0,i.__)("Create your course","sensei-lms")}),(0,c.jsx)("p",{className:"sensei-editor-wizard-step__description",children:(0,i.__)("Keep your Course Title short as it will get displayed in different places around your website. You can easily change both later.","sensei-lms")}),(0,c.jsxs)("div",{className:"sensei-editor-wizard-step__form",children:[(0/* ["default"] */,c.jsx)(a.A,{className:"sensei-editor-wizard-step__form-control",label:(0,i.__)("Course Title","sensei-lms"),value:e.title??"",onChange:i=>{s({...e,title:i}),t({title:i})},maxLength:40,autoFocus:!0}),(0/* ["default"] */,c.jsx)(a.A,{className:"sensei-editor-wizard-step__form-control",label:(0,i.__)("Course Description","sensei-lms"),value:e.description??"",onChange:i=>{s({...e,description:i}),t({excerpt:i})},maxLength:350,multiline:!0})]})]}),(0,c.jsx)("div",{className:"sensei-editor-wizard-modal__illustration",children:(0,c.jsx)("img",{src:window.sensei.pluginUrl+l,alt:(0,i.__)("Illustration of course sample with some placeholders.","sensei-lms"),className:"sensei-editor-wizard-modal__illustration-image"})})]})};d.Actions=({goToNextStep:e})=>(0,c.jsx)(n.Button,{isPrimary:!0,onClick:e,children:(0,i.__)("Continue","sensei-lms")});
 /* harmony default export */const u=d;
 /* harmony export */t.d(s,[
 /* harmony export */"A",0,u
@@ -152,13 +152,13 @@ return(0,c.jsxs)("div",{className:"sensei-editor-wizard-modal__columns",children
  * @param {Object} props            Component props.
  * @param {Object} props.wizardData Wizard data.
  */
-const l=({wizardData:e,...s})=>{const{user:t}=(0,n.useSelect)(e=>({user:e("core").getCurrentUser()})),l={};return e.title&&(l["sensei-content-title"]=e.title),e.description&&(l["sensei-content-description"]=e.description),t.name&&(l["sensei-content-author"]=`<strong>${t.name}</strong>`),(0/* ["default"] */,o.jsx)(r.A,{title:(0,i.__)("Course Layout","sensei-lms"),replaces:l,...s})};l.Actions=r/* ["default"] */.A.Actions;
-/* harmony default export */const a=l;
+const a=({wizardData:e,...s})=>{const{user:t}=(0,n.useSelect)(e=>({user:e("core").getCurrentUser()})),a={};return e.title&&(a["sensei-content-title"]=e.title),e.description&&(a["sensei-content-description"]=e.description),t.name&&(a["sensei-content-author"]=`<strong>${t.name}</strong>`),(0/* ["default"] */,o.jsx)(r.A,{title:(0,i.__)("Course Layout","sensei-lms"),replaces:a,...s})};a.Actions=r/* ["default"] */.A.Actions;
+/* harmony default export */const l=a;
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,a
+/* harmony export */"A",0,l
 /* harmony export */])},
 /***/48332(e,s,t){
-/* harmony import */var i=t(56427),n=t(27723),r=t(47143),o=t(45793),l=t(17676),a=t(16012),c=t(96516),d=t(10790);
+/* harmony import */var i=t(56427),n=t(27723),r=t(47143),o=t(45793),a=t(17676),l=t(16012),c=t(96516),d=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -173,19 +173,19 @@ const u=()=>{const{senseiProExtension:e}=(0,r.useSelect)(e=>({senseiProExtension
 return(0,d.jsxs)("div",{className:"sensei-editor-wizard-modal__columns",children:[(0,d.jsxs)("div",{className:"sensei-editor-wizard-modal__content",children:[(0,d.jsx)("h1",{className:"sensei-editor-wizard-step__title",children:(0,n.__)("Sell with Sensei Pro","sensei-lms")}),(0,d.jsx)("p",{className:"sensei-editor-wizard-step__description",children:(0,n.__)("Do you want to sell this course? This requires Sensei Pro which also unlocks many useful features.","sensei-lms")}),(0,d.jsx)("strong",{className:"sensei-editor-wizard-modal-upsell__price",children:(0,n.sprintf)(
 // translators: placeholder is the price.
 // translators: placeholder is the price.
-(0,n.__)("%s USD","sensei-lms"),e.price.replace(".00",""))}),(0,d.jsx)("span",{className:"sensei-editor-wizard-modal-upsell__price-detail",children:(0,n.__)("per year, 1 site","sensei-lms")}),(0,d.jsxs)("ul",{className:"sensei-editor-wizard-modal-upsell__features",children:[(0,d.jsx)(p,{children:(0,n.__)("WooCommerce integration","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Schedule 'drip' content","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Set expiration date of courses","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Quiz timer","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Flashcards, Image Hotspots, and Checklists","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("1 year of updates & support","sensei-lms")})]})]}),(0,d.jsx)("div",{className:"sensei-editor-wizard-modal__illustration",children:(0,d.jsx)("img",{src:window.sensei.pluginUrl+l,alt:(0,n.__)('Illustration of a course listing with the pricing defined and with the button "Purchase Button"',"sensei-lms"),className:"sensei-editor-wizard-modal__illustration-image"})})]})},p=({children:e})=>(0,d.jsxs)("li",{className:"sensei-editor-wizard-modal-upsell__feature-item",children:[(0/* ["default"] */,d.jsx)(a.A,{className:"sensei-editor-wizard-modal-upsell__feature-item-icon"}),e]});
+(0,n.__)("%s USD","sensei-lms"),e.price.replace(".00",""))}),(0,d.jsx)("span",{className:"sensei-editor-wizard-modal-upsell__price-detail",children:(0,n.__)("per year, 1 site","sensei-lms")}),(0,d.jsxs)("ul",{className:"sensei-editor-wizard-modal-upsell__features",children:[(0,d.jsx)(p,{children:(0,n.__)("WooCommerce integration","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Schedule 'drip' content","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Set expiration date of courses","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Quiz timer","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("Flashcards, Image Hotspots, and Checklists","sensei-lms")}),(0,d.jsx)(p,{children:(0,n.__)("1 year of updates & support","sensei-lms")})]})]}),(0,d.jsx)("div",{className:"sensei-editor-wizard-modal__illustration",children:(0,d.jsx)("img",{src:window.sensei.pluginUrl+a,alt:(0,n.__)('Illustration of a course listing with the pricing defined and with the button "Purchase Button"',"sensei-lms"),className:"sensei-editor-wizard-modal__illustration-image"})})]})},p=({children:e})=>(0,d.jsxs)("li",{className:"sensei-editor-wizard-modal-upsell__feature-item",children:[(0/* ["default"] */,d.jsx)(l.A,{className:"sensei-editor-wizard-modal-upsell__feature-item-icon"}),e]});
 /**
  * Item of the feature list in the Upgrade Step
  *
  * @param {Object} props          Component Props
  * @param {string} props.children Text to be included after the feature item icon
- */u.Actions=({goToNextStep:e})=>(0,d.jsxs)(d.Fragment,{children:[(0,d.jsx)(i.Button,{isTertiary:!0,onClick:e,className:"sensei-editor-wizard-modal-upsell__button",children:(0,n.__)("Continue with Sensei Free","sensei-lms")}),(0,d.jsx)(i.Button,{isPrimary:!0,onClick:()=>{window.open((0,c/* .getSenseiProUpsellUrl */.h)("course_editor_wizard"),"sensei-pricing","noreferrer"),e()},target:"_blank",className:"sensei-editor-wizard-modal-upsell__button",children:(0,n.__)("Get Sensei Pro","sensei-lms")})]});
+ */u.Actions=({goToNextStep:e})=>(0,d.jsxs)(d.Fragment,{children:[(0,d.jsx)(i.Button,{isTertiary:!0,onClick:e,className:"sensei-editor-wizard-modal-upsell__button",children:(0,n.__)("Continue with Sensei Free","sensei-lms")}),(0,d.jsx)(i.Button,{isPrimary:!0,onClick:()=>{window.open((0,c/* .getSenseiProCheckoutUrl */.u)("course_editor_wizard"),"sensei-checkout","noreferrer"),e()},target:"_blank",className:"sensei-editor-wizard-modal-upsell__button",children:(0,n.__)("Buy Sensei Pro","sensei-lms")})]});
 /* harmony default export */const _=u;
 /* harmony export */t.d(s,[
 /* harmony export */"A",0,_
 /* harmony export */])},
 /***/46069(e,s,t){
-/* harmony import */var i=t(56427),n=t(47143),r=t(43656),o=t(86087),l=t(27723),a=t(4446),c=t(56184),d=t(10790);
+/* harmony import */var i=t(56427),n=t(47143),r=t(43656),o=t(86087),a=t(27723),l=t(4446),c=t(56184),d=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -200,12 +200,12 @@ return(0,d.jsxs)("div",{className:"sensei-editor-wizard-modal__columns",children
  * @param {Object}   props.wizardData    Wizard data.
  * @param {Function} props.setWizardData Wizard data setter.
  */
-const u=({wizardData:e,setWizardData:s})=>{const[t,i]=p(e,s),r=(0,n.useSelect)(e=>e("core/editor").getCurrentPostAttribute("meta"));return(0,o.useEffect)(()=>{r&&r._initial_content&&s({...e,description:r._initial_content})},[r]),(0,d.jsxs)("div",{className:"sensei-editor-wizard-modal__columns",children:[(0,d.jsxs)("div",{className:"sensei-editor-wizard-modal__content",children:[(0,d.jsx)("h1",{className:"sensei-editor-wizard-step__title",children:(0,l.__)("Create your lesson","sensei-lms")}),(0,d.jsx)("p",{className:"sensei-editor-wizard-step__description",children:(0,l.__)("It is best to keep your Lesson Title short because it will show in your course outline and navigation. You can easily change both later.","sensei-lms")}),(0,d.jsx)("div",{className:"sensei-editor-wizard-step__form",children:(0/* ["default"] */,d.jsx)(a.A,{className:"sensei-editor-wizard-step__form-control",label:(0,l.__)("Lesson Title","sensei-lms"),value:t,onChange:i,maxLength:40,autoFocus:!0})})]}),(0,d.jsx)("div",{className:"sensei-editor-wizard-modal__illustration",children:(0,d.jsx)("img",{src:window.sensei.pluginUrl+c,className:"sensei-editor-wizard-modal__illustration-image",alt:(0,l.__)("Illustration of lesson sample with some placeholders.","sensei-lms")})})]})};
+const u=({wizardData:e,setWizardData:s})=>{const[t,i]=p(e,s),r=(0,n.useSelect)(e=>e("core/editor").getCurrentPostAttribute("meta"));return(0,o.useEffect)(()=>{r&&r._initial_content&&s({...e,description:r._initial_content})},[r]),(0,d.jsxs)("div",{className:"sensei-editor-wizard-modal__columns",children:[(0,d.jsxs)("div",{className:"sensei-editor-wizard-modal__content",children:[(0,d.jsx)("h1",{className:"sensei-editor-wizard-step__title",children:(0,a.__)("Create your lesson","sensei-lms")}),(0,d.jsx)("p",{className:"sensei-editor-wizard-step__description",children:(0,a.__)("It is best to keep your Lesson Title short because it will show in your course outline and navigation. You can easily change both later.","sensei-lms")}),(0,d.jsx)("div",{className:"sensei-editor-wizard-step__form",children:(0/* ["default"] */,d.jsx)(l.A,{className:"sensei-editor-wizard-step__form-control",label:(0,a.__)("Lesson Title","sensei-lms"),value:t,onChange:i,maxLength:40,autoFocus:!0})})]}),(0,d.jsx)("div",{className:"sensei-editor-wizard-modal__illustration",children:(0,d.jsx)("img",{src:window.sensei.pluginUrl+c,className:"sensei-editor-wizard-modal__illustration-image",alt:(0,a.__)("Illustration of lesson sample with some placeholders.","sensei-lms")})})]})};
 /**
  * Actions for the LessonDetailsStep.
  *
  * @param {Function} goToNextStep Invoke to go to the next step.
- */u.Actions=({goToNextStep:e})=>(0,d.jsx)(i.Button,{isPrimary:!0,onClick:e,children:(0,l.__)("Continue","sensei-lms")});
+ */u.Actions=({goToNextStep:e})=>(0,d.jsx)(i.Button,{isPrimary:!0,onClick:e,children:(0,a.__)("Continue","sensei-lms")});
 /**
  * Load the post title from the Editor Store.
  *
@@ -218,7 +218,7 @@ const p=(e,s)=>{const{editPost:t}=(0,n.useDispatch)(r.store),{postTitle:i}=(0,n.
 /* harmony export */"A",0,_
 /* harmony export */])},
 /***/29080(e,s,t){
-/* harmony import */var i=t(27723),n=t(86087),r=t(30717),o=t(48597),l=t(96516),a=t(66920),c=t(10790);
+/* harmony import */var i=t(27723),n=t(86087),r=t(30717),o=t(48597),a=t(96516),l=t(66920),c=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -232,8 +232,8 @@ const p=(e,s)=>{const{editPost:t}=(0,n.useDispatch)(r.store),{postTitle:i}=(0,n.
  * @param {Object} props            Component props.
  * @param {Object} props.wizardData Wizard data.
  */
-const d=({wizardData:e,...s})=>{const t={};e.title&&(t["sensei-content-title"]=e.title),e.description&&(t["sensei-content-description"]=e.description);const o=(0,a/* .useHideEditorWizardUpsell */.bC)();
-return(0,c.jsxs)(n.Fragment,{children:[(0/* ["default"] */,c.jsx)(r.A,{title:(0,i.__)("Lesson Layout","sensei-lms"),replaces:t,patternsToExclude:["sensei-lms/default"],...s}),(0/* ["default"] */,c.jsx)(r.A.UpsellFill,{children:o?null:(0,c.jsx)(u,{})})]})},u=()=>(0,c.jsxs)("div",{className:"sensei-editor-wizard-patterns-upsell",children:[(0/* ["default"] */,c.jsx)(o.A,{className:"sensei-editor-wizard-patterns-upsell__logo"}),(0,c.jsxs)("div",{className:"sensei-editor-wizard-patterns-upsell__text",children:[(0,c.jsx)("b",{className:"sensei-editor-wizard-patterns-upsell__title",children:(0,i.__)("Want More Lesson Layouts?","sensei-lms")}),(0,c.jsx)("br",{}),(0,i.__)("Get flashcards, timed quizzes, image hotspots, and more with Sensei Pro.","sensei-lms")," ",(0,c.jsx)("a",{className:"sensei-editor-wizard-patterns-upsell__link",href:(0,l/* .getSenseiProUpsellUrl */.h)("lesson_patterns_editor_wizard"),rel:"noreferrer external",target:"blank",children:(0,i.__)("Learn more.","sensei-lms")})]})]});
+const d=({wizardData:e,...s})=>{const t={};e.title&&(t["sensei-content-title"]=e.title),e.description&&(t["sensei-content-description"]=e.description);const o=(0,l/* .useHideEditorWizardUpsell */.bC)();
+return(0,c.jsxs)(n.Fragment,{children:[(0/* ["default"] */,c.jsx)(r.A,{title:(0,i.__)("Lesson Layout","sensei-lms"),replaces:t,patternsToExclude:["sensei-lms/default"],...s}),(0/* ["default"] */,c.jsx)(r.A.UpsellFill,{children:o?null:(0,c.jsx)(u,{})})]})},u=()=>(0,c.jsxs)("div",{className:"sensei-editor-wizard-patterns-upsell",children:[(0/* ["default"] */,c.jsx)(o.A,{className:"sensei-editor-wizard-patterns-upsell__logo"}),(0,c.jsxs)("div",{className:"sensei-editor-wizard-patterns-upsell__text",children:[(0,c.jsx)("b",{className:"sensei-editor-wizard-patterns-upsell__title",children:(0,i.__)("Want More Lesson Layouts?","sensei-lms")}),(0,c.jsx)("br",{}),(0,i.__)("Get flashcards, timed quizzes, image hotspots, and more with Sensei Pro.","sensei-lms")," ",(0,c.jsx)("a",{className:"sensei-editor-wizard-patterns-upsell__link",href:(0,a/* .getSenseiProUpsellUrl */.h)("lesson_patterns_editor_wizard"),rel:"noreferrer external",target:"blank",children:(0,i.__)("Learn more.","sensei-lms")})]})]});
 /**
  * The Pattern Upsell block, which is shown only for Sensei Free users.
  */d.Actions=r/* ["default"] */.A.Actions;
@@ -242,7 +242,7 @@ return(0,c.jsxs)(n.Fragment,{children:[(0/* ["default"] */,c.jsx)(r.A,{title:(0,
 /* harmony export */"A",0,p
 /* harmony export */])},
 /***/30717(e,s,t){
-/* harmony import */var i=t(56427),n=t(43656),r=t(47143),o=t(27723),l=t(31615),a=t(66920),c=t(10790);
+/* harmony import */var i=t(56427),n=t(43656),r=t(47143),o=t(27723),a=t(31615),l=t(66920),c=t(10790);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -250,8 +250,8 @@ return(0,c.jsxs)(n.Fragment,{children:[(0/* ["default"] */,c.jsx)(r.A,{title:(0,
 /**
  * Internal dependencies
  */
-const{Fill:d,Slot:u}=(0,i.createSlotFill)("Patterns Upsell"),p=e=>{const{title:s,replaces:t,patternsToExclude:i,onCompletion:o}=e,{resetEditorBlocks:d,editPost:p}=(0,r.useDispatch)(n.store),_=(0,a/* .useLogEvent */._B)(),m=(0,r.useSelect)(e=>e(n.store).getEditorSettings()).availableTemplates;
-return(0,c.jsxs)("div",{className:"sensei-editor-wizard-modal__content",children:[(0,c.jsx)("h1",{className:"sensei-editor-wizard-step__sticky-title",children:s}),(0,c.jsx)(u,{}),(0/* ["default"] */,c.jsx)(l.A,{patternsToExclude:i,onChoose:(e,s,i)=>{const n=t?(0,a/* .replacePlaceholders */.Lb)(e,t):e;d(n),o(),
+const{Fill:d,Slot:u}=(0,i.createSlotFill)("Patterns Upsell"),p=e=>{const{title:s,replaces:t,patternsToExclude:i,onCompletion:o}=e,{resetEditorBlocks:d,editPost:p}=(0,r.useDispatch)(n.store),_=(0,l/* .useLogEvent */._B)(),m=(0,r.useSelect)(e=>e(n.store).getEditorSettings()).availableTemplates;
+return(0,c.jsxs)("div",{className:"sensei-editor-wizard-modal__content",children:[(0,c.jsx)("h1",{className:"sensei-editor-wizard-step__sticky-title",children:s}),(0,c.jsx)(u,{}),(0/* ["default"] */,c.jsx)(a.A,{patternsToExclude:i,onChoose:(e,s,i)=>{const n=t?(0,l/* .replacePlaceholders */.Lb)(e,t):e;d(n),o(),
 //Auto select a template if the pattern specifies an available one.
 i&&Object.keys(m).includes(i)&&p({template:i}),_("editor_wizard_choose_pattern",{name:s})}})]})};
 /**
@@ -262,7 +262,7 @@ i&&Object.keys(m).includes(i)&&p({template:i}),_("editor_wizard_choose_pattern",
  * @param {Object}   props.replaces          Object containing content to be replaced. The keys are the block classNames to find. The values are the content to be replaced.
  * @param {Array}    props.patternsToExclude Array of patterns to exclude.
  * @param {Function} props.onCompletion      On completion callback.
- */p.Actions=({skipWizard:e})=>{const s=(0,a/* .useLogEvent */._B)();
+ */p.Actions=({skipWizard:e})=>{const s=(0,l/* .useLogEvent */._B)();
 return(0,c.jsx)(i.Button,{isTertiary:!0,onClick:()=>{e(),s("editor_wizard_start_with_default_layout")},children:(0,o.__)("Start with default layout","sensei-lms")})},
 /**
  * Component to fill the Patterns Upsell section
@@ -273,7 +273,7 @@ p.UpsellFill=d;
 /* harmony export */"A",0,_
 /* harmony export */])},
 /***/45998(e,s,t){
-/* harmony import */var i=t(47143),n=t(43656),r=t(28678),o=t(48332),l=t(23689),a=t(46069),c=t(29080),d=t(66920);
+/* harmony import */var i=t(47143),n=t(43656),r=t(28678),o=t(48332),a=t(23689),l=t(46069),c=t(29080),d=t(66920);
 /* harmony import */
 /**
  * WordPress dependencies
@@ -287,7 +287,7 @@ p.UpsellFill=d;
  *
  * @return {Array} The list of components to show to the user.
  */
-const u=()=>{const e={course:[r/* ["default"] */.A,o/* ["default"] */.A,l/* ["default"] */.A],lesson:[a/* ["default"] */.A,c/* ["default"] */.A]},{postType:s}=(0,i.useSelect)(e=>({postType:e(n.store)?.getCurrentPostType()}),[]);return(0,d/* .useHideEditorWizardUpsell */.bC)()&&(e.course=e.course.filter(e=>e!==o/* ["default"] */.A)),e[s]};
+const u=()=>{const e={course:[r/* ["default"] */.A,o/* ["default"] */.A,a/* ["default"] */.A],lesson:[l/* ["default"] */.A,c/* ["default"] */.A]},{postType:s}=(0,i.useSelect)(e=>({postType:e(n.store)?.getCurrentPostType()}),[]);return(0,d/* .useHideEditorWizardUpsell */.bC)()&&(e.course=e.course.filter(e=>e!==o/* ["default"] */.A)),e[s]};
 /* harmony default export */
 /* harmony export */t.d(s,[
 /* harmony export */"A",0,u
@@ -310,18 +310,19 @@ const u=()=>{const e={course:[r/* ["default"] */.A,o/* ["default"] */.A,l/* ["de
  * @param {Function} props.onCompletion    Callback to call when wizard is completed.
  * @param {Function} props.skipWizard      Function to skip wizard.
  */
-const l=({steps:e,wizardDataState:s,onCompletion:t,skipWizard:l})=>{const[a,c]=(0,i.useState)(0),[d,u]=s,p=(0,r/* .useLogEvent */._B)(),_=e[a];
+const a=({steps:e,wizardDataState:s,onCompletion:t,skipWizard:a})=>{const[l,c]=(0,i.useState)(0),[d,u]=s,p=(0,r/* .useLogEvent */._B)(),_=e[l];
 return(0,o.jsxs)("div",{className:"sensei-editor-wizard",children:[(0,o.jsx)(_,{wizardData:d,setWizardData:u,onCompletion:t}),(0,o.jsxs)("div",{className:"sensei-editor-wizard__footer",children:[(0,o.jsx)("div",{className:"sensei-editor-wizard__progress",children:(0,n.sprintf)(
 // translators: %1$d Current step number, %2$d Number of steps.
 // translators: %1$d Current step number, %2$d Number of steps.
-(0,n.__)("Step %1$d of %2$d","sensei-lms"),a+1,e.length)}),_.Actions&&(0,o.jsx)("div",{className:"sensei-editor-wizard__actions",children:(0,o.jsx)(_.Actions,{goToNextStep:()=>{const s=a+1;s<e.length?(c(s),p("editor_wizard_navigate_to_next_step",{navigated_to:e[s].name})):t(d)},skipWizard:l})})]})]})};
+(0,n.__)("Step %1$d of %2$d","sensei-lms"),l+1,e.length)}),_.Actions&&(0,o.jsx)("div",{className:"sensei-editor-wizard__actions",children:(0,o.jsx)(_.Actions,{goToNextStep:()=>{const s=l+1;s<e.length?(c(s),p("editor_wizard_navigate_to_next_step",{navigated_to:e[s].name})):t(d)},skipWizard:a})})]})]})};
 /* harmony default export */
 /* harmony export */t.d(s,[
-/* harmony export */"A",0,l
+/* harmony export */"A",0,a
 /* harmony export */])},
 /***/96516(e,s,t){
 /* harmony export */t.d(s,[
-/* harmony export */"h",0,(e="")=>{const{upsellUrl:s}=window.sensei_admin;return`${s}?${new URLSearchParams({utm_source:"plugin_sensei",utm_medium:"upsell",utm_campaign:e}).toString()}`}])},
+/* harmony export */"h",0,(e="")=>{const{upsellUrl:s}=window.sensei_admin,t=new URL(s);return t.searchParams.set("utm_source","plugin_sensei"),t.searchParams.set("utm_medium","upsell"),t.searchParams.set("utm_campaign",e),t.toString()},
+/* harmony export */"u",0,(e="")=>{const{checkoutUrl:s}=window.sensei_admin,t=new URL(s);return t.searchParams.set("utm_source","plugin_sensei"),t.searchParams.set("utm_medium","checkout"),t.searchParams.set("utm_campaign",e),t.toString()}])},
 /***/4446(e,s,t){
 /* harmony import */var i=t(56427),n=t(27723),r=t(10790);
 /* harmony import */
@@ -336,8 +337,8 @@ return(0,o.jsxs)("div",{className:"sensei-editor-wizard",children:[(0,o.jsx)(_,{
  * @param {number}  props.maxLength Maximum length for the field.
  * @param {boolean} props.multiline Whether if multiline input (textarea) must be used or not.
  */
-const o=({value:e,maxLength:s,multiline:t=!1,...o})=>{const l=t?i.TextareaControl:i.TextControl;
-return(0,r.jsx)(l,{help:(0,n.sprintf)(
+const o=({value:e,maxLength:s,multiline:t=!1,...o})=>{const a=t?i.TextareaControl:i.TextControl;
+return(0,r.jsx)(a,{help:(0,n.sprintf)(
 // translators: %1$d number of characters introduced, %2$d number of total characters allowed.
 // translators: %1$d number of characters introduced, %2$d number of total characters allowed.
 (0,n.__)("Characters: %1$d/%2$d","sensei-lms"),e.length,s),value:e,maxLength:s,...o})};
@@ -347,7 +348,7 @@ return(0,r.jsx)(l,{help:(0,n.sprintf)(
 /* harmony export */])},
 /***/45793(e,s,t){
 /* unused harmony export isLoadingStatus */
-/* harmony import */var i=t(66087),n=t(47143),r=t(66161),o=t(27723),l=t(77505),a=t(34198);
+/* harmony import */var i=t(66087),n=t(47143),r=t(66161),o=t(27723),a=t(77505),l=t(34198);
 /* harmony import */t(61912);
 /**
  * External dependencies
@@ -379,13 +380,13 @@ setEntities:e=>({type:"SET_ENTITIES",entities:e}),
    *
    * @param {string} slug The extension slug to install.
    */
-*installExtension(e){(0,a/* .logEvent */.$)("extensions_install",{slug:e}),yield d.runProcess({slugs:[e],actionType:"install"})},
+*installExtension(e){(0,l/* .logEvent */.$)("extensions_install",{slug:e}),yield d.runProcess({slugs:[e],actionType:"install"})},
 /**
    * Updates the provided extensions.
    *
    * @param {string[]} slugs The extension slugs to update.
    */
-*updateExtensions(e){e.map(e=>(0,a/* .logEvent */.$)("extensions_update",{slug:e})),yield d.runProcess({slugs:e,actionType:"update"})},
+*updateExtensions(e){e.map(e=>(0,l/* .logEvent */.$)("extensions_update",{slug:e})),yield d.runProcess({slugs:e,actionType:"update"})},
 /**
    * Run extension process (install or update).
    *
@@ -395,11 +396,11 @@ setEntities:e=>({type:"SET_ENTITIES",entities:e}),
    */
 *runProcess(e){const{slugs:s,actionType:t}=e;
 // Add to process to queue and skip if a process is already running.
-if((yield(0,n.select)(m).getExtensionsByStatus(c.IN_PROGRESS)).length>0)return void(yield d.addToQueue(e));let l,a,u;yield d.setExtensionsStatus(s,c.IN_PROGRESS),"update"===t?(l={plugins:s},a=(0,o.__)("Update completed successfully!","sensei-lms"),
+if((yield(0,n.select)(m).getExtensionsByStatus(c.IN_PROGRESS)).length>0)return void(yield d.addToQueue(e));let a,l,u;yield d.setExtensionsStatus(s,c.IN_PROGRESS),"update"===t?(a={plugins:s},l=(0,o.__)("Update completed successfully!","sensei-lms"),
 // translators: Placeholder is the underlying error message.
-u=(0,o.__)("There was an error while updating the plugin: %1$s","sensei-lms")):(l={plugin:s[0]},a=(0,o.__)("Installation completed successfully!","sensei-lms"),
+u=(0,o.__)("There was an error while updating the plugin: %1$s","sensei-lms")):(a={plugin:s[0]},l=(0,o.__)("Installation completed successfully!","sensei-lms"),
 // translators: Placeholder is the underlying error message.
-u=(0,o.__)("There was an error while installing the plugin: %1$s","sensei-lms"));try{const e=yield(0,r.apiFetch)({path:`/sensei-internal/v1/sensei-extensions/${t}`,method:"POST",data:l});yield d.setError(null),yield d.setEntities({extensions:(0,i.keyBy)(e.completed,"product_slug")}),yield(0,n.dispatch)("core/notices").createNotice("success",a,{type:"snackbar"})}catch(e){yield d.setError((0,o.sprintf)(u,e.message))}finally{yield d.setExtensionsStatus(s,""),yield d.removeFromQueue(e);const t=yield(0,n.select)(m).getNextProcess();t&&(yield d.runProcess(t))}},
+u=(0,o.__)("There was an error while installing the plugin: %1$s","sensei-lms"));try{const e=yield(0,r.apiFetch)({path:`/sensei-internal/v1/sensei-extensions/${t}`,method:"POST",data:a});yield d.setError(null),yield d.setEntities({extensions:(0,i.keyBy)(e.completed,"product_slug")}),yield(0,n.dispatch)("core/notices").createNotice("success",l,{type:"snackbar"})}catch(e){yield d.setError((0,o.sprintf)(u,e.message))}finally{yield d.setExtensionsStatus(s,""),yield d.removeFromQueue(e);const t=yield(0,n.select)(m).getNextProcess();t&&(yield d.runProcess(t))}},
 /**
    * Set extensions in progress.
    *
@@ -438,7 +439,7 @@ setError:e=>({type:"SET_ERROR",error:e})},u={getExtensions:({extensionSlugs:e,en
 /**
    * Loads the extensions during initialization.
    */
-*getExtensions(){const e=yield(0,r.apiFetch)({path:"/sensei-internal/v1/sensei-extensions?type=plugin"});yield d.setEntities({extensions:(0,i.keyBy)(e.extensions,"product_slug")}),yield d.setExtensions(e.extensions.map(e=>e.product_slug))}},_={SET_EXTENSIONS:({extensionSlugs:e},s)=>({...s,extensionSlugs:e}),SET_EXTENSIONS_STATUS:({slugs:e,status:s},t)=>({...t,entities:{...t.entities,extensions:Object.keys(t.entities.extensions).reduce((i,n)=>({...i,[n]:{...t.entities.extensions[n],status:e.includes(n)?s:t.entities.extensions[n].status}}),{})}}),SET_CONNECTION_STATUS:({connected:e},s)=>({...s,connected:e}),SET_LAYOUT:({layout:e},s)=>({...s,layout:e}),SET_ENTITIES:({entities:e},s)=>({...s,entities:(0,i.merge)({},s.entities,e)}),ADD_TO_QUEUE:({process:e},s)=>({...s,queue:[...s.queue,e]}),REMOVE_FROM_QUEUE:({process:e},s)=>({...s,queue:s.queue.filter(s=>!(0,i.isEqual)(s,e))}),SET_ERROR:({error:e},s)=>({...s,error:e}),DEFAULT:(e,s)=>s},m=(0,l/* .createStore */.y$)("sensei/extensions",{reducer:(0,l/* .createReducerFromActionMap */.$x)(_,{
+*getExtensions(){const e=yield(0,r.apiFetch)({path:"/sensei-internal/v1/sensei-extensions?type=plugin"});yield d.setEntities({extensions:(0,i.keyBy)(e.extensions,"product_slug")}),yield d.setExtensions(e.extensions.map(e=>e.product_slug))}},_={SET_EXTENSIONS:({extensionSlugs:e},s)=>({...s,extensionSlugs:e}),SET_EXTENSIONS_STATUS:({slugs:e,status:s},t)=>({...t,entities:{...t.entities,extensions:Object.keys(t.entities.extensions).reduce((i,n)=>({...i,[n]:{...t.entities.extensions[n],status:e.includes(n)?s:t.entities.extensions[n].status}}),{})}}),SET_CONNECTION_STATUS:({connected:e},s)=>({...s,connected:e}),SET_LAYOUT:({layout:e},s)=>({...s,layout:e}),SET_ENTITIES:({entities:e},s)=>({...s,entities:(0,i.merge)({},s.entities,e)}),ADD_TO_QUEUE:({process:e},s)=>({...s,queue:[...s.queue,e]}),REMOVE_FROM_QUEUE:({process:e},s)=>({...s,queue:s.queue.filter(s=>!(0,i.isEqual)(s,e))}),SET_ERROR:({error:e},s)=>({...s,error:e}),DEFAULT:(e,s)=>s},m=(0,a/* .createStore */.y$)("sensei/extensions",{reducer:(0,a/* .createReducerFromActionMap */.$x)(_,{
 /**
    * Extensions list. It is mapped with the entities and served through the selectors.
    */

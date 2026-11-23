@@ -22,5 +22,5 @@
 		'wp-token-list',
 		'wp-url'
 	),
-	'version' => 'd57b64baefcc119c87f7'
+	'version' => 'ecbd7b981552e411a307'
 );
